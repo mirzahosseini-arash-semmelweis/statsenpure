@@ -71,15 +71,4 @@ What you want to say, questions to ask, timing, and reminders.
 
 For browser-side student interactions, prefer small Observable JS (`{ojs}`) cells where possible. Reserve global JavaScript for truly course-wide behavior.
 
-
-## Week 1 full deck
-
-`week01/week01.qmd` now contains a complete 30-slide Week 1 lecture, including the title slide, speaker notes, two browser-side Observable JS interactive slides, and the extended semantic CSS components used by the deck.
-
-Recommended first render:
-
-```bash
-quarto render week01/week01.qmd
-```
-
 Interactive slides use Quarto's Observable JS runtime and should work in the rendered HTML without Shiny or an R server.

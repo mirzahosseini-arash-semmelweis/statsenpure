@@ -1,0 +1,11 @@
+.quarto/
+*_cache/
+*_files/
+_site/
+.Rproj.user
+**/.Rproj.user/
+**/.quarto/
+**/_site/
+**/.Rhistory
+**/.RData
+**/_quarto_internal_scss_error.scss
