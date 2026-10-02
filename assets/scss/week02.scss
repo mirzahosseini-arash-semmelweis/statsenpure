@@ -1,0 +1,920 @@
+/*-- scss:rules --*/
+
+/* ---- Week 2 components --------------------------------------------------- */
+
+.dist-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:.55em; align-items:stretch; }
+
+/* ---- Two-Column Distribution Grid & Uniform Image Cards ----------------- */
+
+.dist-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8em;
+  align-items: stretch; /* Forces both cards to match total height */
+  margin-top: 0.6em;
+}
+
+.dist-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid $line;
+  border-radius: 14px;
+  padding: 0.7em 0.8em;
+  box-sizing: border-box;
+  text-align: left;
+
+  .dist-title {
+    font-weight: 850;
+    font-size: 0.65em;
+    color: $navy;
+    margin-bottom: 0.25em;
+  }
+
+  .dist-sub {
+    font-size: 0.48em;
+    color: $muted;
+    line-height: 1.35;
+    margin-bottom: 0.5em;
+  }
+
+  .dist-eq {
+    font-size: 0.52em;
+    font-weight: 750;
+    color: $warning;
+    text-align: center;
+    margin-bottom: 0.4em;
+    .katex, .MathJax {
+    font-size: var(--eq-size, 1.5em) !important;
+    line-height: 1.2;
+    }
+  }
+
+  /* Pushes image container to bottom and centers it */
+  .weight-row {
+    margin-top: auto; /* Pushes image down so bottoms stay aligned */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 0.4em;
+  }
+
+  /* Enforces uniform height, center-alignment, and crisp scaling */
+  .step-image {
+    width: 100%;
+    max-width: 320px;       /* Makes images larger */
+    height: 130px;          /* Fixed height across both images */
+    object-fit: cover;      /* Crops aspect ratios without stretching */
+    object-position: center;/* Keeps primary subject centered */
+    border-radius: 8px;
+    border: 1px solid $line;
+  }
+
+  /* Border variations */
+  &.model-border {
+    border-top: 4px solid $model;
+  }
+
+  &.warning-border {
+    border-top: 4px solid $warning;
+  }
+}
+
+.dist-grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:.45em; align-items:stretch; }
+.dist-grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:.35em; align-items:stretch; }
+.dist-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.55em; box-shadow:0 8px 22px rgba(16,24,40,.045); }
+.dist-card .dist-title { font-size:.6em; color:$navy; font-weight:820; line-height:1.08; }
+.dist-card .dist-sub { margin-top:.18em; font-size:.5em; color:$muted; line-height:1.18; }
+.dist-card .dist-eq { margin-top:.32em; font-size:.56em; color:$uncertainty; }
+.dist-card.observed-border { border-top:7px solid $observed; }
+.dist-card.model-border { border-top:7px solid $model; }
+.dist-card.estimate-border { border-top:7px solid $estimate; }
+.dist-card.warning-border { border-top:7px solid $warning; }
+.dist-card.probability-border { border-top:7px solid $uncertainty; }
+
+.weight-row { display:flex; align-items:flex-end; gap:.28em; height:3.6em; margin-top:.4em; padding:.3em .2em 0; border-bottom:2px solid #98a2b3; }
+.weight-bar { flex:1; border-radius:8px 8px 0 0; background:$uncertainty; opacity:.82; position:relative; min-height:.25em; }
+.weight-bar span { position:absolute; left:50%; bottom:-1.4em; transform:translateX(-50%); color:$muted; font-size:.42em; font-weight:700; }
+.weight-dot { width:.48em; height:.48em; border-radius:50%; background:$observed; box-shadow:0 2px 6px rgba(16,24,40,.16); }
+
+.discrete-continuous { display:grid; grid-template-columns:1fr 1fr; gap:.7em; align-items:center; }
+.mini-axis { position:relative; height:5.2em; background:#fff; border:1px solid $line; border-radius:18px; overflow:hidden; }
+.mini-axis::after { content:""; position:absolute; left:.45em; right:.45em; bottom:.58em; height:2px; background:#98a2b3; }
+.die-bars { position:absolute; left:.55em; right:.55em; bottom:.58em; height:3.8em; display:flex; align-items:flex-end; gap:.18em; }
+.die-bars span { flex:1; height:70%; background:rgba($uncertainty,.70); border-radius:7px 7px 0 0; position:relative; }
+.die-bars span::after { content:attr(data-x); position:absolute; bottom:-1.25em; left:50%; transform:translateX(-50%); color:$muted; font-size:.35em; font-weight:800; }
+.uniform-fill { position:absolute; left:.7em; right:.7em; bottom:.58em; height:2.5em; background:rgba($uncertainty,.22); border-top:4px solid $uncertainty; }
+.uniform-fill::before, .uniform-fill::after { position:absolute; bottom:-1.25em; color:$muted; font-size:.38em; font-weight:800; }
+.uniform-fill::before { content:"0"; left:-.05em; }
+.uniform-fill::after { content:"1"; right:-.05em; }
+
+/* ---- Discrete vs Continuous Layout Fixes -------------------------------- */
+
+.discrete-continuous { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 0.7em; 
+  align-items: stretch; /* Stretches both cards to match equal height */
+}
+
+.dist-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.8em;
+  background: #ffffff;
+  border: 1px solid $line;
+  border-radius: 14px;
+}
+
+/* Base mini-axis for bar graphs / uniform fills */
+.mini-axis { 
+  position: relative; 
+  height: 5.2em; 
+  background: #fff; 
+  border: 1px solid $line; 
+  border-radius: 12px; 
+  overflow: hidden; 
+
+  &::after { 
+    content: ""; 
+    position: absolute; 
+    left: 0.45em; 
+    right: 0.45em; 
+    bottom: 0.58em; 
+    height: 2px; 
+    background: #98a2b3; 
+  }
+}
+
+.die-bars { 
+  position: absolute; 
+  left: 0.55em; 
+  right: 0.55em; 
+  bottom: 0.58em; 
+  height: 3.8em; 
+  display: flex; 
+  align-items: flex-end; 
+  gap: 0.18em; 
+
+  span { 
+    flex: 1; 
+    height: 70%; 
+    background: rgba($uncertainty, 0.70); 
+    border-radius: 7px 7px 0 0; 
+    position: relative; 
+
+    &::after { 
+      content: attr(data-x); 
+      position: absolute; 
+      bottom: -1.25em; 
+      left: 50%; 
+      transform: translateX(-50%); 
+      color: $muted; 
+      font-size: 0.35em; 
+      font-weight: 800; 
+    }
+  }
+}
+
+/* Uniform media container for BOTH Image and Video */
+.media-container {
+  width: 100%;
+  height: 7.0em; /* Increased equal height for both media boxes */
+  margin-top: 0.5em;
+  background: #fbfcfe;
+  border: 1px solid $line;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img.step-image,
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Scales proportionally inside the card without overflowing */
+    display: block;
+  }
+}
+
+/* ---- PMF vs PDF Visual Comparisons ------------------------------------- */
+.visual-container {
+  margin: 0.6em 0;
+  padding: 0.4em 0.5em 1.6em;
+  background: #f8fafc;
+  border: 1px solid $line;
+  border-radius: 10px;
+  height: 5.2em; 
+  display: flex;
+  align-items: flex-end;
+  box-sizing: border-box;
+}
+
+/* 1. Discrete PMF Axis & Bars */
+.pmf-axis {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  border-bottom: 2px solid $navy;
+  position: relative;
+
+  .pmf-bar {
+    width: 12%;
+    height: var(--h);
+    background: rgba($observed, 0.3);
+    border-top: 2px solid $observed;
+    border-radius: 3px 3px 0 0;
+    position: relative;
+    transition: all 0.2s ease;
+
+    .x-val {
+      position: absolute;
+      bottom: -1.4em;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.45em;
+      font-weight: 700;
+      color: $muted;
+    }
+
+    /* Highlighted Bar for X = 4 */
+    &.active {
+      background: $observed;
+      border-top: 2px solid $navy;
+
+      .x-val {
+        color: $navy;
+        font-weight: 900;
+      }
+
+      .prob-tag {
+        position: absolute;
+        top: -1.5em;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.42em;
+        font-weight: 850;
+        color: #ffffff;
+        background: $observed;
+        padding: 0.1em 0.35em;
+        border-radius: 4px;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+/* 2. Continuous PDF Axis & Shaded Area */
+/* ---- Continuous PDF Axis with In-Card Ticks & Double Fill ---------------- */
+.pdf-axis {
+  width: 100%;
+  height: 100%;
+  border-bottom: 2px solid $navy;
+  position: relative;
+
+  /* 1. Entire PDF faint background fill */
+  .pdf-background-fill {
+    position: absolute;
+    top: 20%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba($model, 0.08); /* Very subtle tint */
+  }
+
+  /* 2. Density line f(x) = 1 */
+  .pdf-density-line {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: $model;
+    z-index: 2;
+  }
+
+  /* 3. Highlighted Interval Fill [0.4, 0.6] */
+  .pdf-interval-fill {
+    position: absolute;
+    top: 20%;
+    bottom: 0;
+    left: 40%;
+    width: 20%;
+    background: rgba($model, 0.55); /* Stronger contrast against faint fill */
+    border-left: 2px dashed $model;
+    border-right: 2px dashed $model;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+
+    .area-tag {
+      font-size: 0.38em;
+      font-weight: 850;
+      color: #ffffff;
+      background: $model;
+      padding: 0.12em 0.35em;
+      border-radius: 4px;
+      white-space: nowrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    }
+  }
+
+  /* 4. Axis Ticks - Positioned INSIDE the card container */
+  .axis-ticks {
+    position: absolute;
+    bottom: -0.25em; /* Shifted up so it sits inside the padding */
+    left: 0;
+    right: 0;
+    z-index: 4;
+
+    span {
+      position: absolute;
+      transform: translateX(-50%);
+      font-size: 0.42em;
+      font-weight: 700;
+      color: $muted;
+
+      &.tick-active {
+        color: $model;
+        font-weight: 900;
+      }
+    }
+  }
+}
+
+/* ---- Parameter Intuition Widget Styles --------------------------------- */
+
+.widget-sigma-area {
+  fill: rgba(152, 162, 179, 0.22); /* Faint gray fill for ±1σ area */
+  stroke: none;
+}
+
+.widget-line-sigma {
+  stroke: #98a2b3;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.normal-manim {
+  margin-top: 0.45em;
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(16,24,40,.04);
+}
+
+.normal-manim video {
+  display: block;
+  width: 100%;
+  height: 280px;
+  object-fit: contain;
+  background: #fbfcfe;
+}
+
+/* ---- Manim animation ----------------------------------------------------- */
+
+.cauchy-video {
+  width: 100%;
+  margin: 0.15em auto 0.25em;
+  border: 1px solid $line;
+  border-radius: 18px;
+  background: $paper;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(16, 24, 40, 0.05);
+}
+
+.cauchy-video video {
+  display: block;
+  width: 100%;
+  height: 320px;
+  object-fit: contain;
+  background: $paper;
+}
+
+.support-line { display:flex; flex-wrap:wrap; gap:.22em; margin-top:.4em; align-items:center; }
+.support-pill { display:inline-flex; align-items:center; justify-content:center; min-width:1.35em; min-height:1.35em; border-radius:999px; border:1px solid rgba($uncertainty,.28); background:rgba($uncertainty,.08); color:$uncertainty; font-size:.54em; font-weight:800; padding:.1em .35em; }
+.support-range { display:flex; align-items:center; justify-content:space-between; height:1.5em; border-radius:999px; border:2px solid rgba($model,.28); background:rgba($model,.08); color:$model; padding:0 .45em; font-size:.56em; font-weight:800; margin-top:.52em; }
+
+.sum-integral-row { display:grid; grid-template-columns:1fr 1fr; gap:.6em; margin-top:.55em; }
+.sum-integral-row .definition-box { min-height:3.2em; display:flex; align-items:center; justify-content:center; }
+
+.cdf-panel { background:#fff; border:1px solid $line; border-radius:20px; padding:.45em; }
+.cdf-panel svg { width:100%; height:5.3em; display:block; }
+.cdf-axis { stroke:#98a2b3; stroke-width:2; }
+.cdf-bars rect { fill:rgba($uncertainty,.72); }
+.cdf-step { fill:none; stroke:$uncertainty; stroke-width:4; stroke-linejoin:round; }
+.cdf-curve { fill:none; stroke:$uncertainty; stroke-width:4; }
+.cdf-shade { fill:rgba($uncertainty,.20); }
+.cdf-caption { font-size:.43em; color:$muted; text-align:center; margin-top:.2em; }
+
+.question-types { display:grid; grid-template-columns:repeat(4,1fr); gap:.32em; margin-top:.55em; }
+.qtype-card { background:#fff; border:1px solid $line; border-radius:18px; padding:.42em; text-align:center; min-height:4em; }
+.qtype-card .qtype-title { font-size:.5em; color:$navy; font-weight:820; }
+.qtype-card .qtype-eq { margin-top:.35em; font-size:.6em; color:$uncertainty; }
+.qtype-card .qtype-note { margin-top:.3em; font-size:.57em; color:$muted; }
+
+.normal-widget, .cdf-widget, .tablet-widget, .binomial-widget { background:#fff; border:1px solid $line; border-radius:22px; padding:.55em; box-shadow:0 8px 20px rgba(16,24,40,.04); }
+.week02-control-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.5em; margin-bottom:.45em; }
+.week02-control { font-size:.42em; color:$muted; font-weight:760; }
+.week02-control input, .week02-control select { width:100%; margin-top:.12em; accent-color:$uncertainty; }
+.week02-control select { border:1px solid $line; border-radius:10px; padding:.25em .35em; font-size:1em; background:#fff; color:$navy; }
+.week02-svg { width:100%; height:6.9em; display:block; background:#fbfcfe; border:1px solid #edf1f7; border-radius:18px; }
+.week02-output { display:grid; grid-template-columns:repeat(3,1fr); gap:.35em; margin-top:.4em; }
+.week02-output .out { background:#f8fafc; border:1px solid $line; border-radius:14px; padding:.3em; text-align:center; }
+.week02-output .out span { display:block; color:$muted; font-size:.45em; font-weight:780; }
+.week02-output .out strong { display:block; color:$navy; font-size:.72em; .katex, .MathJax {font-size: 2.28em !important; line-height: 1.2;}}
+.widget-path { fill:none; stroke:$model; stroke-width:3; }
+.widget-path-blue { fill:none; stroke:$observed; stroke-width:3; }
+.widget-area { fill:rgba($uncertainty,.28); }
+.widget-axis { stroke:#98a2b3; stroke-width:1.5; }
+.widget-line { stroke:$warning; stroke-width:2; stroke-dasharray:5 4; }
+.widget-label { fill:$muted; font-size:10px; font-weight:700; }
+
+.week02-control input:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+/* ---- Expanded Dual Panel CDF Widget ------------------------------------ */
+
+.week02-svg.dual-panel {
+  display: block;
+  width: 100%;
+  height: 14em;
+  overflow: visible;
+}
+
+.panel-label {
+  fill: $navy;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.panel-divider {
+  stroke: $line;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+.widget-path-faint {
+  fill: none;
+  stroke: rgba($muted, 0.30);
+  stroke-width: 2.5;
+  stroke-dasharray: 5 4;
+}
+
+.widget-path-blue {
+  fill: none;
+  stroke: $observed;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.widget-line-horizontal {
+  stroke: $observed;
+  stroke-width: 1.8;
+  stroke-dasharray: 5 4;
+}
+
+.cdf-tracker-point {
+  fill: $observed;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+}
+
+.widget-label.active {
+  fill: $observed;
+  font-weight: 900;
+}
+
+.cdf-widget {
+  width: 100%;
+}
+
+.cdf-widget .week02-control-row {
+  margin-bottom: 0.25em;
+}
+
+.empirical-stack {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.35em;
+}
+
+.normal-mini {
+  width: 100%;
+  height: 5.6em;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+}
+
+.normal-mini .empirical-rule-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+}
+
+.empirical-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.35em;
+  width: 100%;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.empirical-card {
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 16px;
+  padding: 0.36em;
+  text-align: center;
+}
+
+.empirical-card strong {
+  display: block;
+  color: $uncertainty;
+  font-size: 0.95em;
+}
+
+.empirical-card span {
+  display: block;
+  color: $muted;
+  font-size: 0.82em;
+}
+
+.quantile-point {
+  fill: $uncertainty;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.quantile-symbol {
+  fill: $uncertainty;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.moment-beam { position:relative; height:4.2em; margin-top:.55em; background:#fff; border:1px solid $line; border-radius:20px; overflow:hidden; }
+.moment-beam .beam-line { position:absolute; left:6%; right:6%; bottom:1.05em; height:6px; border-radius:999px; background:#98a2b3; }
+.mass-dot { position:absolute; bottom:1.16em; width:.42em; height:.42em; border-radius:50%; background:$observed; transform:translate(-50%,0); }
+.balance-point { position:absolute; bottom:.4em; left:52%; width:0; height:0; border-left:.32em solid transparent; border-right:.32em solid transparent; border-bottom:.76em solid $estimate; transform:translateX(-50%); }
+.balance-label { position:absolute; left:52%; top:.35em; transform:translateX(-50%); color:$estimate; font-size:.52em; font-weight:820; }
+
+.variance-lines {
+  position: relative;
+  height: 4.4em;
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 20px;
+  margin-top: .55em;
+  overflow: hidden;
+}
+.variance-lines .axis {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: .72em;
+  height: 2px;
+  background: #98a2b3;
+}
+.variance-lines .mu-line {
+  position: absolute;
+  left: 50%;
+  top: .4em;
+  bottom: .75em;
+  width: 3px;
+  background: $estimate;
+}
+.variance-lines .v-dot {
+  position: absolute;
+  bottom: .82em;
+  width: .36em;
+  height: .36em;
+  border-radius: 50%;
+  background: $observed;
+  transform: translateX(-50%);
+}
+/* one range/spread arrow */
+.variance-lines .dev.longest {
+  position: absolute;
+  left: 18%;
+  width: 60%;
+
+  /* move it clearly above the blue dots */
+  bottom: 2.05em;
+
+  height: 3px;
+  background: rgba($uncertainty, .7);
+}
+/* arrowheads */
+.variance-lines .dev.longest::before,
+.variance-lines .dev.longest::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+
+  width: .34em;
+  height: .34em;
+
+  background: rgba($uncertainty, .7);
+}
+.variance-lines .dev.longest::before {
+  left: 0;
+  transform: translate(-70%, -50%);
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+}
+.variance-lines .dev.longest::after {
+  right: 0;
+  transform: translate(70%, -50%);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.skew-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.35em; margin-top:.45em; }
+.skew-card { background:#fff; border:1px solid $line; border-radius:18px; padding:.35em; min-height:6.5em; }
+.skew-card svg { width:100%; height:4.2em; display:block; }
+.skew-title { text-align:center; color:$navy; font-size:.52em; font-weight:820; }
+.marker-mean,
+.marker-median,
+.marker-mode,
+.marker-all {
+  stroke-width: 3;
+  stroke-dasharray: 4 3;
+}
+.marker-mean {
+  stroke: $estimate;
+}
+.marker-median {
+  stroke: $uncertainty;
+}
+.marker-mode {
+  stroke: $model;
+}
+/* symmetric case: all three coincide */
+.marker-all {
+  stroke: $navy;
+  stroke-width: 4;
+}
+.skew-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2em;
+  margin: 0 0 0.35em;
+  font-size: 0.46em;
+  color: $muted;
+  font-weight: 760;
+}
+.skew-legend > div {
+  display: flex;
+  align-items: center;
+  gap: 0.28em;
+}
+.legend-line {
+  display: inline-block;
+  width: 1.6em;
+  height: 3px;
+  border-radius: 999px;
+}
+.legend-line.mean {
+  background: $estimate;
+}
+.legend-line.median {
+  background: $uncertainty;
+}
+.legend-line.mode {
+  background: $model;
+}
+
+.tail-compare { display:grid; grid-template-columns:1fr .95fr; gap:.6em; align-items:center; }
+.tail-legend { display:flex; flex-direction:column; gap:.35em; }
+.tail-legend-item { background:#fff; border:1px solid $line; border-radius:16px; padding:.38em; font-size:.5em; color:$muted; }
+.tail-legend-item strong { color:$navy; }
+
+.tail-center-line {
+  stroke: rgba($muted, 0.45);
+  stroke-width: 2;
+  stroke-dasharray: 4 4;
+}
+
+.tail-label {
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.tail-label-normal {
+  fill: $model;
+}
+
+.tail-label-cauchy {
+  fill: $observed;
+}
+
+.cauchy-stage { background:#fff; border:1px solid $line; border-radius:22px; padding:.4em; margin-top:.4em; }
+.cauchy-stage svg { width:100%; height:7em; display:block; }
+.ray { stroke:$warning; stroke-width:3; transform-origin:180px 170px; animation:cauchyRay 6s ease-in-out infinite; }
+.hit-dot { fill:$warning; animation:cauchyDot 6s ease-in-out infinite; }
+@keyframes cauchyRay { 0%,100% { transform:rotate(-58deg); } 50% { transform:rotate(58deg); } }
+@keyframes cauchyDot { 0%,100% { transform:translateX(-145px); } 50% { transform:translateX(145px); } }
+
+.family-map { display:grid; grid-template-columns:1fr 1fr; gap:.55em; margin-top:.4em; }
+.family-column { background:#fff; border:1px solid $line; border-radius:22px; padding:.5em; }
+.family-heading { font-size:.58em; color:$navy; font-weight:850; margin-bottom:.35em; }
+.family-list { display:grid; grid-template-columns:1fr 1fr; gap:.25em; }
+.family-pill { border-radius:14px; background:#f8fafc; border:1px solid $line; padding:.28em; font-size:.42em; color:$muted; min-height:2.5em; }
+.family-pill strong { display:block; color:$uncertainty; font-size:1.12em; }
+
+.dist-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.mini-pmf {
+  display: block;
+  width: 100%;
+  height: 3.0em;
+  margin-top: auto;
+}
+
+.mini-control {
+  display: block;
+  margin-top: .22em;
+  font-size: .37em;
+  color: $muted;
+  font-weight: 750;
+}
+
+.mini-control strong {
+  color: $uncertainty;
+}
+
+.mini-control input[type="range"] {
+  display: block;
+  width: 100%;
+  margin-top: .08em;
+  accent-color: $uncertainty;
+}
+
+.mini-control-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .3em;
+  margin-top: .15em;
+}
+
+.mini-pmf-axis {
+  stroke: #98a2b3;
+  stroke-width: 1.4;
+}
+
+.mini-pmf-stem {
+  stroke: $observed;
+  stroke-width: 3;
+}
+
+.mini-pmf-dot {
+  fill: $observed;
+}
+
+.probability-border .mini-pmf-stem {
+  stroke: $uncertainty;
+}
+
+.probability-border .mini-pmf-dot {
+  fill: $uncertainty;
+}
+
+.mini-pmf-label {
+  fill: $muted;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.mini-control-row-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .18em;
+  margin-top: .12em;
+}
+
+.mini-control-row-3 .mini-control {
+  min-width: 0;
+}
+
+.mini-density {
+  display: block;
+  width: 100%;
+  height: 3em;
+  margin-top: auto;
+}
+
+.mini-density-axis {
+  stroke: #98a2b3;
+  stroke-width: 1.4;
+}
+
+.mini-density-path {
+  fill: none;
+  stroke: $uncertainty;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.model-border .mini-density-path {
+  stroke: $model;
+}
+
+.warning-border .mini-density-path {
+  stroke: $warning;
+}
+
+.mini-density-fill {
+  fill: rgba($uncertainty, .12);
+}
+
+.model-border .mini-density-fill {
+  fill: rgba($model, .12);
+}
+
+.mini-density-label {
+  fill: $muted;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.mini-control-spacer {
+  height: 1.15em;
+}
+
+.dirac-stem {
+  stroke: $warning;
+  stroke-width: 3;
+}
+
+.dirac-arrow {
+  fill: $warning;
+}
+
+.dirac-area-label {
+  fill: $warning;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.model-border .mini-density-path {
+  stroke: $model;
+}
+
+.model-border .mini-density-fill {
+  fill: rgba($model, .12);
+}
+
+.estimate-border .mini-density-path {
+  stroke: $estimate;
+}
+
+.estimate-border .mini-density-fill {
+  fill: rgba($estimate, .12);
+}
+
+.warning-border .mini-density-path {
+  stroke: $warning;
+}
+
+.warning-border .mini-density-fill {
+  fill: rgba($warning, .10);
+}
+
+.matching-grid { display:grid; grid-template-columns:1.15fr .85fr; gap:.55em; align-items:start; }
+.scenario-list { display:flex; flex-direction:column; gap:.26em; }
+.scenario-item { background:#fff; border:1px solid $line; border-radius:14px; padding:.3em .42em; font-size:.46em; color:$navy; }
+.scenario-answer { background:rgba($estimate,.08); border:1px solid rgba($estimate,.22); border-radius:14px; padding:.3em .42em; font-size:.46em; color:$estimate; font-weight:800; }
+
+.calc-grid { display:grid; grid-template-columns:1fr 1fr; gap:.4em; margin-top:.4em; }
+.calc-card { background:#fff; border:1px solid $line; border-radius:18px; padding:.42em; min-height:4.7em; }
+.calc-card .calc-title { color:$navy; font-size:.5em; font-weight:820; }
+.calc-card .calc-question { margin-top:.22em; color:$muted; font-size:.42em; line-height:1.18; }
+.calc-card .calc-answer { margin-top:.25em; color:$uncertainty; font-size:.52em; }
+
+.recursive-stack { display:flex; flex-direction:column; gap:.38em; margin-top:.55em; }
+.recursive-line { background:#fff; border:1px solid $line; border-left:7px solid $uncertainty; border-radius:16px; padding:.38em .55em; color:$navy; font-size:.64em; font-weight:730; }
+.cliffhanger { margin-top:.6em; padding:.48em .65em; border-radius:18px; background:rgba($model,.08); border:1px solid rgba($model,.24); color:$model; font-size:.76em; font-weight:810; text-align:center; }
+
+@media (max-width: 1100px) {
+  .dist-grid-4, .question-types, .empirical-row { gap:.25em; }
+  .family-list { grid-template-columns:1fr; }
+}

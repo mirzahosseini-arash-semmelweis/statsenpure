@@ -1,0 +1,881 @@
+/*-- scss:rules --*/
+
+/* ---- Week 3 shared grids/cards ------------------------------------------ */
+
+.w3-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:.55em; align-items:stretch; }
+.w3-grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:.42em; align-items:stretch; }
+.w3-grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:.35em; align-items:stretch; }
+.w3-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.52em; box-shadow:0 8px 22px rgba(16,24,40,.045); }
+.w3-card-title { font-size:.65em; color:$navy; font-weight:820; line-height:1.08; }
+.w3-card-sub { margin-top:.20em; font-size:.58em; color:$muted; line-height:1.18; }
+.w3-card-eq { margin-top:.28em; font-size:.58em; color:$uncertainty; }
+.observed-border { border-top:7px solid $observed; }
+.model-border { border-top:7px solid $model; }
+.estimate-border { border-top:7px solid $estimate; }
+.warning-border { border-top:7px solid $warning; }
+.probability-border { border-top:7px solid $uncertainty; }
+
+/* ---- Hook and direction of inference ------------------------------------ */
+
+.patient-count-card { display:flex; align-items:center; justify-content:center; flex-direction:column; min-height:4.8em; background:#fff; border:1px solid $line; border-radius:22px; box-shadow:0 8px 20px rgba(16,24,40,.045); }
+.patient-count-card .big-number { font-size:2.05em; line-height:1; font-weight:840; color:$observed; letter-spacing:-.045em; }
+.patient-count-card .count-label { margin-top:.2em; color:$muted; font-size:.52em; font-weight:760; }
+.binom-guess { display:grid; grid-template-columns:repeat(3,1fr); gap:.42em; margin-top:.65em; }
+.guess-card { background:#fff; border:1px solid $line; border-radius:18px; padding:.5em; text-align:center; }
+.guess-card .guess-main { color:$uncertainty; font-size:.92em; font-weight:830; }
+.guess-card .guess-sub { color:$muted; font-size:.42em; margin-top:.12em; }
+
+.direction-compare { display:grid; grid-template-columns:1fr .16fr 1fr; gap:.34em; align-items:center; margin-top:.65em; }
+.direction-panel { background:#fff; border:1px solid $line; border-radius:22px; padding:.7em .55em; min-height:5.2em; text-align:center; }
+.direction-panel .direction-title { font-size:.52em; color:$muted; font-weight:830; text-transform:uppercase; letter-spacing:.11em; }
+.direction-panel .direction-eq { margin-top:.45em; font-size:.85em; color:$navy; font-weight:760; }
+.direction-panel.prob { border-top:7px solid $model; }
+.direction-panel.stat { border-top:7px solid $observed; }
+.direction-arrow { text-align:center; font-size:1.4em; color:#98a2b3; font-weight:900; }
+
+/* ---- MLE widget ---------------------------------------------------------- */
+
+.mle-widget, .normal-like-widget, .mcq-widget { background:#fff; border:1px solid $line; border-radius:22px; padding:.55em; box-shadow:0 8px 20px rgba(16,24,40,.04); }
+.w3-control-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:.5em; margin-bottom:.45em; align-items:end; }
+.w3-control { font-size:.42em; color:$muted; font-weight:760; }
+.w3-control input, .w3-control select { width:100%; margin-top:.12em; accent-color:$uncertainty; }
+.w3-output { background:#f8fafc; border:1px solid $line; border-radius:14px; padding:.28em; text-align:center; }
+.w3-output span { display:block; color:$muted; font-size:.82em; font-weight:780; }
+.w3-output strong { display:block; color:$navy; font-size:1.55em; line-height:1.05; }
+.w3-svg { width:100%; height:8.1em; display:block; background:#fbfcfe; border:1px solid #edf1f7; border-radius:18px; }
+.w3-svg.dual { height:8.6em; }
+.widget-axis { stroke:#98a2b3; stroke-width:1.5; }
+.widget-path { fill:none; stroke:$model; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+.widget-path-blue { fill:none; stroke:$observed; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+.widget-area { fill:rgba($uncertainty,.20); }
+.widget-line { stroke:$warning; stroke-width:2; stroke-dasharray:5 4; }
+.widget-label { fill:$muted; font-size:15px; font-weight:700; }
+.binom-bar { fill:rgba($observed,.55); }
+.binom-bar.highlight { fill:$warning; }
+.likelihood-dot { fill:$warning; stroke:#fff; stroke-width:2; }
+.mle-max-line { stroke:$estimate; stroke-width:2; stroke-dasharray:4 3; }
+
+/* ---- Study design tree/timelines ---------------------------------------- */
+
+.tree-wrap { background:#fff; border:1px solid $line; border-radius:22px; padding:.58em; }
+.tree-row { display:grid; grid-template-columns:repeat(2,1fr); gap:.45em; margin-top:.35em; }
+.tree-root { width:fit-content; margin:0 auto .35em; padding:.22em .7em; border-radius:999px; background:rgba($uncertainty,.10); color:$uncertainty; border:1px solid rgba($uncertainty,.25); font-size:.62em; font-weight:840; }
+.tree-node { background:#f8fafc; border:1px solid $line; border-radius:18px; padding:.45em; text-align:center; }
+.tree-node .node-title { font-size:.58em; font-weight:820; color:$navy; }
+.tree-node .node-sub { font-size:.40em; color:$muted; margin-top:.12em; line-height:1.15; }
+.study-flow { display:grid; grid-template-columns:1fr .18fr 1fr .18fr 1fr; gap:.22em; align-items:center; margin-top:.55em; }
+.flow-box { background:#fff; border:1px solid $line; border-radius:18px; padding:.48em; text-align:center; min-height:3.7em; display:flex; align-items:center; justify-content:center; flex-direction:column; }
+.flow-box .flow-title { color:$navy; font-size:.75em; font-weight:800; }
+.flow-box .flow-sub { color:$muted; font-size:.65em; line-height:1.15; margin-top:.15em; }
+.flow-arrow { color:#98a2b3; text-align:center; font-weight:900; font-size:1.0em; }
+.timeline-dual { display:grid; grid-template-columns:1fr 1fr; gap:.6em; margin-top:.55em; }
+.trial-timeline { background:#fff; border:1px solid $line; border-radius:20px; padding:.5em; min-height:5.4em; }
+.trial-title { font-size:.58em; color:$navy; font-weight:820; }
+.trial-lane { margin-top:.35em; display:flex; align-items:center; gap:.18em; }
+.lane-pill { padding:.22em .42em; border-radius:999px; background:rgba($uncertainty,.08); border:1px solid rgba($uncertainty,.22); color:$uncertainty; font-size:.55em; font-weight:780; white-space:nowrap; }
+.lane-arrow { color:#98a2b3; font-weight:900; }
+
+.tree-graph-wrap {
+  position: relative;
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 22px;
+  padding: 1.2em 0.8em;
+
+  .tree-svg-connectors {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+
+    .tree-branch {
+      fill: none;
+      stroke: rgba($uncertainty, 0.45);
+      stroke-width: 2px;
+      stroke-linecap: round;
+    }
+  }
+
+  .tree-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto auto;
+    gap: 1.2em 0.8em;
+    align-items: center;
+
+    /* Grid Positioning */
+    #node-root { grid-column: 1 / span 3; justify-self: center; }
+    #node-obs  { grid-column: 1 / span 2; grid-row: 2; justify-self: center; width: 85%; }
+    #node-exp  { grid-column: 3;           grid-row: 2; justify-self: center; width: 85%; }
+    
+    #node-desc { grid-column: 1; grid-row: 3; }
+    #node-anal { grid-column: 2; grid-row: 3; }
+    #node-clin { grid-column: 3; grid-row: 3; }
+    #node-goal { grid-column: 3; grid-row: 4; justify-self: center; width: 85%; }
+  }
+
+  /* Node Styling */
+  .tree-node {
+    background: #f8fafc;
+    border: 1px solid $line;
+    border-radius: 14px;
+    padding: 0.45em 0.6em;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+
+    .node-title { font-size: 0.58em; font-weight: 820; color: $navy; }
+    .node-sub   { font-size: 0.40em; color: $muted; margin-top: 0.12em; line-height: 1.15; }
+
+    &.root-node {
+      border-radius: 999px;
+      background: rgba($uncertainty, 0.10);
+      color: $uncertainty;
+      border: 1px solid rgba($uncertainty, 0.25);
+      padding: 0.25em 1em;
+      .node-title { font-size: 0.62em; font-weight: 840; color: $uncertainty; }
+    }
+    
+    &.goal-node {
+      background: #f1f5f9;
+      border-dasharray: 4px;
+    }
+  }
+}
+
+.study-direction-figure {
+  grid-column: 1 / -1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0em;
+  padding: 0;
+  overflow: hidden;
+}
+
+.study-direction-figure img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  max-height: 50vh;
+  object-fit: contain;
+  margin: 0 auto;
+  transform: none;
+}
+
+/* Slim Meta-analysis synthesis card spanning underneath study-flow */
+.meta-synthesis-card {
+  margin-top: 0.8em;
+  padding: 0.45em 0.8em;
+  background: linear-gradient(135deg, rgba($uncertainty, 0.06), rgba($uncertainty, 0.12));
+  border: 1px dashed rgba($uncertainty, 0.4);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+
+  .meta-icon {
+    font-size: 0.85em;
+    font-weight: 900;
+    color: $uncertainty;
+    line-height: 1;
+  }
+
+  .meta-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .meta-title {
+    font-size: 0.60em;
+    font-weight: 840;
+    color: $navy;
+    white-space: nowrap;
+  }
+
+  .meta-sub {
+    font-size: 0.55em;
+    color: $muted;
+  }
+}
+
+/* ---- Causality, Simpson, bias ------------------------------------------- */
+
+.causal-diagram {
+  position: relative;
+  height: 8.5em;
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 22px;
+  margin-top: 0.55em;
+  padding: 1em 1.5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  align-items: center;
+
+  .causal-svg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .causal-node {
+    position: relative;
+    z-index: 2;
+    padding: 0.38em 0.8em;
+    border-radius: 999px;
+    background: #fff;
+    border: 2px solid $line;
+    font-size: 0.68em;
+    color: $navy;
+    font-weight: 780;
+    text-align: center;
+    width: fit-content;
+
+    &.severity {
+      grid-column: 1 / span 2;
+      grid-row: 1;
+      justify-self: center;
+      align-self: start;
+      border-color: rgba($warning, 0.45);
+      color: $warning;
+    }
+
+    &.treatment {
+      grid-column: 1;
+      grid-row: 2;
+      justify-self: start;
+      align-self: end;
+      border-color: rgba($model, 0.45);
+      color: $model;
+    }
+
+    &.outcome {
+      grid-column: 2;
+      grid-row: 2;
+      justify-self: end;
+      align-self: end;
+      border-color: rgba($observed, 0.45);
+      color: $observed;
+    }
+  }
+}
+
+.simpson-table { display:grid; grid-template-columns:1.2fr repeat(3,1fr); border:1px solid $line; border-radius:18px; overflow:hidden; background:#fff; margin-top:.55em; }
+.simpson-table > div { padding:.32em .36em; border-right:1px solid $line; border-bottom:1px solid $line; text-align:center; font-size:.64em; color:$navy; }
+.simpson-table > div:nth-child(4n) { border-right:0; }
+.simpson-table > div:nth-last-child(-n+4) { border-bottom:0; }
+.simpson-head { background:rgba($uncertainty,.08); color:$uncertainty !important; font-weight:840; }
+.simpson-rowhead { font-weight:820; background:#f8fafc; }
+.simpson-good { color:$estimate !important; font-weight:850; }
+.simpson-bad { color:$warning !important; font-weight:850; }
+
+/* ---------------------------------------------------------
+   Simpson's paradox table
+   --------------------------------------------------------- */
+
+.simpson-table {
+  display: grid;
+  grid-template-columns: 1.35fr repeat(3, 1fr);
+  gap: 2px;
+  width: 100%;
+  margin-top: .35em;
+  background: $line;
+  border: 1px solid $line;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.simpson-table > div {
+  background: #fff;
+  padding: .32em .4em;
+  text-align: center;
+  font-size: .48em;
+}
+
+.simpson-head {
+  color: $navy;
+  font-weight: 850;
+  background: $panel !important;
+}
+
+.simpson-rowhead {
+  text-align: left !important;
+  color: $navy;
+  font-weight: 800;
+}
+
+.simpson-good {
+  color: $estimate;
+  font-weight: 850;
+}
+
+.simpson-bad {
+  color: $warning;
+  font-weight: 850;
+}
+
+
+/* ---------------------------------------------------------
+   Continuous Simpson plot
+   --------------------------------------------------------- */
+
+.continuous-simpson-wrap {
+  width: 100%;
+  margin-top: .4em;
+  padding: .3em .45em .2em;
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 18px;
+  box-sizing: border-box;
+}
+
+.simpson-plot-header {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: .4em;
+  flex-wrap: wrap;
+  margin-bottom: .1em;
+  text-align: center;
+  font-size: .43em;
+}
+
+.simpson-plot-header strong {
+  color: $navy;
+  font-weight: 850;
+}
+
+.simpson-plot-header span {
+  color: $muted;
+}
+
+.simpson-continuous-svg {
+  display: block;
+  width: 100%;
+  height: 7.0em;
+}
+
+.simpson-axis {
+  stroke: #98a2b3;
+  stroke-width: 1.5;
+}
+
+.simpson-axis-title {
+  fill: $muted;
+  font-size: 20px;
+  font-weight: 750;
+}
+
+
+/* subgroup 1 */
+
+.simpson-group-1 {
+  fill: $observed;
+  stroke: $observed;
+}
+
+
+/* subgroup 2 */
+
+.simpson-group-2 {
+  fill: $estimate;
+  stroke: $estimate;
+}
+
+
+/* subgroup 3 */
+
+.simpson-group-3 {
+  fill: $model;
+  stroke: $model;
+}
+
+
+.simpson-group-line {
+  stroke-width: 2.5;
+  fill: none;
+  stroke-dasharray: 7 5;
+}
+
+.simpson-group-label {
+  font-size: 20px;
+  font-weight: 850;
+}
+
+
+/* pooled reversal */
+
+.simpson-overall-line {
+  stroke: $warning;
+  stroke-width: 3;
+  stroke-dasharray: 7 5;
+}
+
+.simpson-overall-label {
+  fill: $warning;
+  font-size: 20px;
+  font-weight: 850;
+}
+
+.simpson-pooled-note {
+  fill: $warning;
+  font-size: 20px;
+  font-weight: 850;
+}
+
+.simpson-within-label {
+  fill: $muted;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.bias-pipeline { display:grid; grid-template-columns:repeat(5,1fr); gap:.28em; margin-top:.6em; }
+.bias-stage { background:#fff; border:1px solid $line; border-radius:18px; padding:.42em; min-height:4.7em; }
+.bias-stage .stage-num { width:1.6em; height:1.6em; border-radius:50%; background:rgba($warning,.10); color:$warning; display:flex; align-items:center; justify-content:center; font-size:.42em; font-weight:860; }
+.bias-stage .stage-title { margin-top:.35em; color:$navy; font-size:.58em; font-weight:820; }
+.bias-stage .stage-examples { margin-top:.18em; color:$muted; font-size:.56em; line-height:1.16; }
+.bias-taxonomy { display:grid; grid-template-columns:repeat(4,1fr); gap:.36em; margin-top:.55em; }
+.bias-box { background:#fff; border:1px solid $line; border-radius:18px; padding:.42em; min-height:5.5em; }
+.bias-box .bias-title { color:$warning; font-size:.64em; font-weight:840; }
+.bias-box ul { margin:.25em 0 0 .9em; padding:0; color:$muted; font-size:.58em; line-height:1.18; }
+
+/* ---- Experimental design ------------------------------------------------- */
+
+.factorial-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:.22em; width:25.5em; margin:.45em auto 0; }
+.factor-cell { min-height:2.3em; background:#fff; border:1px solid $line; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:.78em; font-weight:800; color:$navy; }
+.factor-cell span { color:$uncertainty; }
+.latin-square { display:grid; grid-template-columns:repeat(4,1fr); width:9.4em; margin:.45em auto 0; border:1px solid $line; border-radius:16px; overflow:hidden; }
+.latin-square div { min-height:1.55em; display:flex; align-items:center; justify-content:center; border-right:1px solid $line; border-bottom:1px solid $line; background:#fff; font-size:.58em; font-weight:820; color:$uncertainty; }
+.latin-square div:nth-child(4n) { border-right:0; }
+.latin-square div:nth-last-child(-n+4) { border-bottom:0; }
+.robust-diagram { display:grid; grid-template-columns:1fr .22fr 1fr; gap:.25em; align-items:center; margin-top:.55em; }
+.robust-box { background:#fff; border:1px solid $line; border-radius:20px; padding:.55em; text-align:center; min-height:4.4em; }
+.robust-box .r-title { font-size:.68em; font-weight:830; color:$navy; }
+.robust-box .r-sub { font-size:.52em; color:$muted; margin-top:.2em; }
+.noise-arrow { text-align:center; color:$warning; font-weight:900; }
+
+/* ---- Latin Square Grid Layout ---------------------------------- */
+
+.latin-square-wrap {
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 20px;
+  padding: 0.8em;
+  margin-top: 0.6em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+  display: flex;
+  justify-content: center;
+
+  .latin-square-table {
+    border-collapse: separate;
+    border-spacing: 0.35em;
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+
+    /* Header Cell Styles */
+    th {
+      font-size: 0.48em;
+      font-weight: 800;
+      color: $navy;
+      padding: 0.4em 0.6em;
+
+      &.corner-header {
+        font-size: 0.42em;
+        color: $muted;
+        text-align: right;
+        padding-right: 0.8em;
+        line-height: 1.2;
+
+        .row-label { display: block; }
+        .col-label { display: block; color: $navy; font-weight: 800; }
+      }
+
+      &.row-title {
+        text-align: right;
+        padding-right: 0.8em;
+        font-weight: 800;
+        color: $navy;
+        white-space: nowrap;
+      }
+    }
+
+    /* Table Grid Cells */
+    td {
+      background: #f8fafc;
+      border: 1px solid $line;
+      border-radius: 12px;
+      padding: 0.45em;
+      vertical-align: middle;
+      width: 28%;
+    }
+  }
+
+  /* Distinct Drug Formulations */
+  .drug-pill {
+    display: inline-block;
+    width: 100%;
+    padding: 0.3em 0.5em;
+    border-radius: 999px;
+    font-size: 0.52em;
+    font-weight: 840;
+    text-align: center;
+    box-sizing: border-box;
+
+    &.drug-a {
+      background: rgba($model, 0.12);
+      color: $model;
+      border: 1px solid rgba($model, 0.3);
+    }
+
+    &.drug-b {
+      background: rgba($observed, 0.12);
+      color: $observed;
+      border: 1px solid rgba($observed, 0.3);
+    }
+
+    &.drug-c {
+      background: rgba($warning, 0.12);
+      color: $warning;
+      border: 1px solid rgba($warning, 0.3);
+    }
+  }
+}
+
+/* ---- Accuracy/precision and summaries ----------------------------------- */
+
+.target-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.35em; margin-top:.45em; }
+.target-panel { background:#fff; border:1px solid $line; border-radius:18px; padding:.28em; text-align:center; }
+.target-panel svg { width:100%; height:4.2em; display:block; }
+.target-title { font-size:.42em; color:$navy; font-weight:820; }
+.summary-strip { position:relative; height:4.5em; margin-top:.55em; background:#fff; border:1px solid $line; border-radius:22px; overflow:hidden; }
+.summary-strip .axis { position:absolute; left:5%; right:5%; bottom:.75em; height:2px; background:#98a2b3; }
+.summary-dot { position:absolute; bottom:.83em; width:.38em; height:.38em; border-radius:50%; background:$observed; transform:translateX(-50%); }
+.summary-marker { position:absolute; bottom:.75em; width:3px; top:.5em; }
+.summary-marker.mean { background:$estimate; }
+.summary-marker.median { background:$uncertainty; }
+.summary-label { position:absolute; top:.25em; transform:translateX(-50%); font-size:.42em; font-weight:800; }
+.summary-label.mean { color:$estimate; }
+.summary-label.median { color:$uncertainty; }
+.summary-card { background:#fff; border:1px solid $line; border-radius:18px; padding:.42em; }
+.summary-card .s-title { font-size:.75em; font-weight:830; color:$navy; }
+.summary-card .s-eq { margin-top:.62em; font-size:.70em; color:$uncertainty; }
+.summary-card .s-sub { margin-top:.52em; font-size:.60em; line-height:1.15; color:$muted; }
+
+/* ---- Measurement Concepts Grid Section ---------------------------- */
+
+.concepts-section-title {
+  font-size: 0.58em;
+  font-weight: 800;
+  color: $navy;
+  margin: 1.2em 0 0.5em 0;
+  border-left: 3px solid $model;
+  padding-left: 0.5em;
+}
+
+.concept-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8em;
+  margin-top: 0.4em;
+
+  .concept-card {
+    background: #ffffff;
+    border: 1px solid $line;
+    border-radius: 16px;
+    padding: 0.8em 1em;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.4em;
+      margin-bottom: 0.5em;
+      border-bottom: 1px solid rgba($line, 0.6);
+      padding-bottom: 0.35em;
+
+      .card-icon {
+        font-size: 0.8em;
+      }
+
+      h4 {
+        font-size: 0.54em;
+        font-weight: 800;
+        color: $navy;
+        margin: 0;
+      }
+    }
+
+    .card-body {
+      font-size: 0.44em;
+      line-height: 1.45;
+      color: lighten($navy, 15%);
+
+      p {
+        margin: 0 0 0.45em 0;
+        &:last-child { margin-bottom: 0; }
+      }
+
+      strong {
+        color: $navy;
+      }
+
+      ul {
+        margin: 0.3em 0 0 0;
+        padding-left: 1.1em;
+
+        li {
+          margin-bottom: 0.25em;
+          &:last-child { margin-bottom: 0; }
+        }
+      }
+
+      .callout-subtext {
+        font-size: 0.92em;
+        background: rgba($observed, 0.08);
+        border-radius: 6px;
+        padding: 0.25em 0.5em;
+        margin-bottom: 0.4em;
+        color: $observed;
+        font-weight: 700;
+      }
+    }
+
+    /* Highlight style for the R-metrics card */
+    &.highlight-r {
+      border-color: rgba($observed, 0.3);
+      background: linear-gradient(180deg, #ffffff 0%, rgba($observed, 0.02) 100%);
+    }
+  }
+}
+
+/* ---- Outlier Sensitivity Comparison Table ------------------------ */
+
+.sample-compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  margin: 0.2em 0;
+
+  th {
+    font-size: 0.52em;
+    font-weight: 820;
+    color: $navy;
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid rgba($line, 0.6);
+  }
+
+  td {
+    padding: 0.4em 0.6em;
+    vertical-align: top;
+    width: 50%;
+  }
+
+  .sample-values {
+    font-size: 0.68em;
+    font-weight: 700;
+  }
+
+  .sample-stats {
+    font-size: 0.48em;
+    color: $muted;
+
+    .stat-item {
+      display: inline-block;
+      margin: 0 0.35em;
+      
+      strong {
+        color: $navy;
+      }
+
+      &.highlight-mean {
+        color: $warning;
+        font-weight: 800;
+        background: rgba($warning, 0.12);
+        padding: 0.1em 0.4em;
+        border-radius: 6px;
+      }
+    }
+  }
+}
+
+/* ---------------------------------------------------------
+   Robust spread mini figures
+   --------------------------------------------------------- */
+
+.summary-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-figure {
+  width: 100%;
+  margin-top: .35em;
+}
+
+.summary-mini-svg {
+  display: block;
+  width: 100%;
+  height: 5.25em;
+  background: #fbfcfe;
+  border: 1px solid $line;
+  border-radius: 16px;
+}
+
+
+/* ---------------------------------------------------------
+   Shared axes / labels
+   --------------------------------------------------------- */
+
+.robust-axis {
+  stroke: #98a2b3;
+  stroke-width: 1.5;
+}
+
+.robust-label {
+  fill: $muted;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.robust-label.strong {
+  fill: $uncertainty;
+  font-weight: 850;
+}
+
+.robust-caption {
+  fill: $uncertainty;
+  font-size: 9px;
+  font-weight: 850;
+}
+
+
+/* ---------------------------------------------------------
+   IQR
+   --------------------------------------------------------- */
+
+.iqr-density {
+  fill: none;
+  stroke: $model;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.iqr-fill {
+  fill: rgba($uncertainty, .22);
+}
+
+.iqr-line {
+  stroke: $uncertainty;
+  stroke-width: 2.3;
+  stroke-dasharray: 4 3;
+}
+
+.iqr-median-line {
+  stroke: $estimate;
+  stroke-width: 2.2;
+  stroke-dasharray: 3 3;
+}
+
+
+/* ---------------------------------------------------------
+   MAD
+   --------------------------------------------------------- */
+
+/* central region ±MAD */
+
+.mad-zone {
+  fill: rgba($uncertainty, .08);
+}
+
+
+/* individual deviations from the median */
+
+.mad-deviation {
+  stroke: rgba($uncertainty, .28);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+
+/* emphasized MAD distance */
+
+.mad-highlight {
+  stroke: $uncertainty;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.mad-arrowhead {
+  fill: $uncertainty;
+}
+
+
+/* observations */
+
+.mad-dot {
+  fill: $observed;
+  stroke: #fff;
+  stroke-width: 1.5;
+}
+
+.mad-dot.median {
+  fill: $estimate;
+}
+
+
+/* median */
+
+.mad-median-line {
+  stroke: $estimate;
+  stroke-width: 2.2;
+  stroke-dasharray: 3 3;
+}
+
+
+/* boundaries at median ± MAD */
+
+.mad-boundary {
+  stroke: $uncertainty;
+  stroke-width: 2;
+}
+
+/* ---- MCQ ----------------------------------------------------------------- */
+
+.mcq-widget { margin-top:.5em; }
+.mcq-question { font-size:.62em; color:$navy; font-weight:820; line-height:1.14; }
+.mcq-options { display:grid; grid-template-columns:repeat(2,1fr); gap:.35em; margin-top:.45em; }
+.mcq-option { border:1px solid $line; border-radius:16px; padding:.36em .44em; background:#fff; color:$navy; font-size:.48em; font-weight:760; cursor:pointer; }
+.mcq-option:hover { border-color:rgba($uncertainty,.45); background:rgba($uncertainty,.04); }
+.mcq-option.correct { border-color:rgba($estimate,.45); background:rgba($estimate,.08); color:$estimate; }
+.mcq-option.incorrect { border-color:rgba($warning,.45); background:rgba($warning,.08); color:$warning; }
+.mcq-explanation { margin-top:.42em; display:none; border-left:6px solid $uncertainty; padding:.25em .45em; font-size:.48em; color:$muted; background:#fff; border-radius:0 12px 12px 0; }
+.mcq-explanation.visible { display:block; }
+
+/* ---- Closing ------------------------------------------------------------- */
+
+.bridge-flow { display:grid; grid-template-columns:1fr .18fr 1fr .18fr 1fr .18fr 1fr; gap:.18em; align-items:center; margin-top:.65em; }
+.bridge-node { background:#fff; border:1px solid $line; border-radius:18px; padding:.48em .32em; min-height:3.4em; display:flex; align-items:center; justify-content:center; text-align:center; color:$navy; font-size:.46em; font-weight:800; }
+.bridge-node.model { border-top:6px solid $model; }
+.bridge-node.observed { border-top:6px solid $observed; }
+.bridge-node.warning { border-top:6px solid $warning; }
+.bridge-node.estimate { border-top:6px solid $estimate; }
+
+@media (max-width:1100px) {
+  .w3-grid-4, .target-grid, .bias-taxonomy { gap:.25em; }
+  .w3-control-row { gap:.25em; }
+}

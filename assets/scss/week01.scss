@@ -1,0 +1,977 @@
+/*-- scss:rules --*/
+
+/* ---- Week 1 components --------------------------------------------------- */
+
+.reveal .slides section.section-break {
+  background: linear-gradient(135deg, #101828 0%, #231544 100%);
+  color: #ffffff;
+  padding: 1.35em 1.25em;
+  border-radius: 22px;
+}
+
+.reveal .slides section.section-break h2 { display: none; }
+
+.section-kicker {
+  font-size: 0.55em;
+  color: rgba(255,255,255,.65);
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-weight: 800;
+}
+
+.section-title {
+  margin-top: .55em;
+  font-size: 2.05em;
+  line-height: .98;
+  max-width: 12em;
+  font-weight: 780;
+  letter-spacing: -.045em;
+}
+
+.section-subtitle {
+  margin-top: .75em;
+  font-size: .72em;
+  color: rgba(255,255,255,.72);
+}
+
+.loop-diagram {
+  display: grid;
+  grid-template-columns: 1.1fr .28fr 1.1fr .28fr 1.1fr .28fr 1.1fr .28fr 1.1fr;
+  align-items: center;
+  gap: .18em;
+  margin-top: .7em;
+}
+
+.loop-node {
+  min-height: 3.15em;
+  border-radius: 22px;
+  background: #fff;
+  border: 1px solid $line;
+  box-shadow: 0 10px 24px rgba(16,24,40,.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: .56em;
+  font-weight: 760;
+  text-align: center;
+}
+
+.loop-node span {
+  width: 1.55em;
+  height: 1.55em;
+  border-radius: 50%;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: .35em;
+  font-size: .72em;
+}
+
+.loop-node.q span { background: $uncertainty; }
+.loop-node.e span { background: $model; }
+.loop-node.d span { background: $observed; }
+.loop-node.m span { background: $model; }
+.loop-node.dec span { background: $estimate; }
+
+.loop-arrow {
+  text-align: center;
+  color: $muted;
+  font-size: 1em;
+  font-weight: 800;
+}
+
+.loop-return {
+  margin: .9em auto 0;
+  width: fit-content;
+  padding: .24em .8em;
+  border-radius: 999px;
+  background: rgba($uncertainty,.08);
+  color: $uncertainty;
+  border: 1px solid rgba($uncertainty,.18);
+  font-size: .58em;
+  font-weight: 780;
+}
+
+.enzyme-stage {
+  display: grid;
+  grid-template-columns: 1fr .18fr 1fr .18fr 1fr .18fr 1fr;
+  gap: .2em;
+  align-items: stretch;
+}
+
+.enzyme-box {
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 20px;
+  padding: .45em;
+  min-height: 4.1em;
+}
+
+.enzyme-icon {
+  display: inline-block;
+  padding: .18em .48em;
+  border-radius: 999px;
+  background: rgba($model,.1);
+  color: $model;
+  font-size: .38em;
+  font-weight: 820;
+  letter-spacing: .04em;
+}
+
+.enzyme-title {
+  margin-top: .35em;
+  font-size: .58em;
+  font-weight: 790;
+  color: $navy;
+}
+
+.enzyme-text {
+  margin-top: .22em;
+  font-size: .48em;
+  color: $muted;
+  line-height: 1.23;
+}
+
+.enzyme-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $muted;
+  font-size: .9em;
+  font-weight: 800;
+}
+
+.assay-dots {
+  position: relative;
+  height: 3.2em;
+  margin-top: .75em;
+  border-left: 2px solid #98a2b3;
+  border-bottom: 2px solid #98a2b3;
+  background: linear-gradient(180deg, rgba($estimate,.06), transparent);
+}
+
+.assay-dots .blue-dot,
+.assay-dots .green-dot {
+  position: absolute;
+  width: .30em;
+  height: .30em;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(16,24,40,.18);
+}
+.assay-dots .blue-dot { background: $observed; }
+.assay-dots .green-dot { background: $estimate; width: .38em; height: .38em; }
+.assay-xaxis { position: absolute; right: 0; bottom: -1em; font-size: .46em; color: $muted; }
+.assay-yaxis { position: absolute; left: -6em; top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: center center; font-size: .46em; color: $muted; }
+
+.builder-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .45em;
+  margin-top: .55em;
+}
+.builder-card {
+  min-height: 4.8em;
+  border-radius: 20px;
+  background: #fff;
+  border: 1px solid $line;
+  padding: .55em;
+  box-shadow: 0 10px 22px rgba(16,24,40,.05);
+}
+.builder-label {
+  font-size: .36em;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: $muted;
+  font-weight: 800;
+}
+.builder-main { margin-top: .62em; font-size: .72em; font-weight: 760; color: $navy; line-height: 1.12; }
+.outcome-row { display: flex; flex-direction: column; gap: .28em; margin-top: .5em; }
+.outcome-pill {
+  display: inline-block;
+  padding: .22em .44em;
+  border-radius: 999px;
+  background: #f2f4f7;
+  border: 1px solid $line;
+  font-size: .52em;
+  font-weight: 740;
+}
+
+.ingredient-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: .52em;
+  margin-top: .65em;
+}
+.ingredient-card {
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 20px;
+  padding: .62em .55em;
+  min-height: 4.2em;
+  box-shadow: 0 10px 24px rgba(16,24,40,.05);
+}
+.math-symbol { font-size: 1.15em; color: $uncertainty; font-weight: 800; }
+.ingredient-title { margin-top: .25em; font-size: .58em; color: $navy; font-weight: 790; }
+.ingredient-text { margin-top: .28em; color: $muted; font-size: .55em; line-height: 1.22; }
+.definition-box {
+  margin-top: .65em;
+  padding: .35em .65em;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid rgba($uncertainty,.22);
+  box-shadow: 0 8px 22px rgba(16,24,40,.05);
+  text-align: center;
+}
+.large-definition { font-size: 1.05em; }
+
+.coin-layout { display:grid; grid-template-columns: 1fr 1.2fr; gap: .65em; margin-top: .55em; }
+.coin-panel { background:#fff; border:1px solid $line; border-radius:20px; padding:.62em; min-height:5.2em; }
+.coin-title { font-size:.55em; font-weight:800; color:$navy; }
+.coin-space { margin-top:.35em; font-size:.68em; color:$uncertainty; font-weight:720; }
+.coin-row { display:flex; gap:.4em; margin-top:.55em; }
+.coin { width:1.65em; height:1.65em; border-radius:50%; background:rgba($observed,.10); border:2px solid $observed; display:inline-flex; align-items:center; justify-content:center; font-weight:830; color:$observed; }
+.tree-grid { display:grid; grid-template-columns:.5fr .25fr 1fr; gap:.16em .35em; margin-top:.45em; font-size:.52em; color:$navy; }
+.warning-box { padding:.35em .55em; border-radius:16px; background:rgba($warning,.06); border:1px solid rgba($warning,.24); color:$warning; font-weight:720; font-size:.56em; }
+/* Wraps your existing global .coin-row components and stacks them */
+.coin-matrix {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin: 0.55em 0;
+}
+
+.event-board { display:grid; grid-template-columns: repeat(4,1fr); gap:.35em; margin-top:.55em; }
+.outcome-card { border-radius:18px; border:1px solid $line; background:#fff; min-height:2.2em; display:flex; align-items:center; justify-content:center; font-size:.8em; font-weight:820; color:$navy; }
+.outcome-card.highlight { background:rgba($uncertainty,.10); border-color:rgba($uncertainty,.35); color:$uncertainty; }
+.equation-row { display:grid; grid-template-columns: repeat(3,1fr); gap:.35em; margin-top:.55em; }
+.eq-card { background:#fff; border:1px solid $line; border-radius:18px; padding:.42em; text-align:center; font-size:.5em; }
+
+.mini-venn {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 5.2em;
+  margin: 0.6em auto 0;
+  background: #f8fafc;
+  border: 1px dashed $line;
+  border-radius: 14px;
+  padding: 0.3em;
+  box-sizing: border-box;
+
+  /* Label for the Sample Space S */
+  &::before {
+    content: "S";
+    position: absolute;
+    top: 0.3em;
+    left: 0.5em;
+    font-size: 0.45em;
+    font-weight: 800;
+    color: $muted;
+  }
+}
+
+.venn-circle {
+  position: absolute;
+  top: 0.35em;
+  width: 7.2em;
+  height: 7.2em;
+  border-radius: 50%;
+  display: flex;
+  font-size: 0.58em;
+  font-weight: 800;
+  mix-blend-mode: multiply;
+}
+
+/* Move Circle A to the left, align label toward the left outer edge */
+.venn-circle.a {
+  left: 32%;
+  background: rgba($observed, 0.35);
+  border: 2px solid $observed;
+  color: $observed;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 0.4em;
+}
+
+/* Move Circle B to the right, align label toward the right outer edge */
+.venn-circle.b {
+  left: 48%;
+  background: rgba($model, 0.35);
+  border: 2px solid $model;
+  color: $model;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.4em;
+}
+
+.venn-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.2em;
+  text-align: center;
+  font-size: 0.4em;
+  color: $muted;
+  font-style: italic;
+}
+
+.axiom-stack { display:flex; flex-direction:column; gap:.35em; margin-top:.55em; }
+.axiom { background:#fff; border:1px solid $line; border-radius:18px; padding:.36em .52em; font-size:.64em; font-weight:710; color:$navy; }
+.axiom-number { display:inline-flex; align-items:center; justify-content:center; margin-right:.38em; width:1.55em; height:1.55em; border-radius:50%; background:rgba($uncertainty,.12); color:$uncertainty; font-weight:850; font-size:.75em; }
+.prob-bar { display:grid; grid-template-columns:.2fr 1fr .2fr; align-items:center; gap:.3em; margin-top:.75em; font-size:.48em; color:$muted; }
+.prob-bar-fill { height:.42em; border-radius:999px; background:linear-gradient(90deg, rgba($uncertainty,.05), rgba($uncertainty,.95)); }
+
+.rule-grid { display:grid; grid-template-columns:1fr 1.25fr; gap:.55em; margin-top:.6em; }
+.rule-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.56em; min-height:6.2em; }
+.rule-title { font-size:.62em; font-weight:800; color:$navy; }
+.rule-eq { font-size:.64em; color:$uncertainty; }
+.complement-visual { display:grid; grid-template-columns: .35fr .65fr; border-radius:12px; overflow:hidden; margin-top:.35em; height:2em; font-size:.68em; text-align:center; }
+.complement-visual span:first-child { background:rgba($uncertainty,.75); color:#fff; }
+.complement-visual span:last-child { background:#edf1f7; color:$muted; }
+
+/* ---- Axiom & Portrait Layout Grid ----------------------------------- */
+
+.axiom-portrait-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; /* Axioms slightly wider than portraits */
+  gap: 1.5em; /* Space between axioms and portraits */
+  align-items: center; /* Vertically center them relative to each other */
+  margin-bottom: 0.8em; /* Space before the probability bar */
+}
+
+/* Ensure the stack doesn't have extra bottom margin inside the grid */
+.axiom-stack {
+  margin-bottom: 0;
+}
+
+/* ---- Mathematician Gallery ----------------------------------------- */
+
+.mathematician-gallery {
+  display: flex;
+  justify-content: space-between; /* Space them evenly across the right col */
+  gap: 0.6em; /* Minimum space between cards */
+  height: 100%; /* Match height of axiom stack */
+
+  .portrait-card {
+    flex: 1; /* Each card takes equal width */
+    background: #fff;
+    border: 1px solid $line;
+    border-radius: 16px;
+    padding: 0.4em;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    
+    /* Ensure card elements stack vertically */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100%;
+      height: 4.2em; /* Fixed height for consistency */
+      object-fit: cover; /* Crop neatly if aspect ratios differ */
+      border-radius: 10px;
+      margin-bottom: 0.25em;
+      filter: grayscale(30%); /* Subtle stylistic choice for history */
+    }
+
+    .portrait-name {
+      font-size: 0.48em;
+      font-weight: 700;
+      color: $navy;
+      line-height: 1.1;
+      margin-top: auto; /* Push name to bottom of card */
+    }
+  }
+}
+
+/* ---- Visual Equation: A + B = Overlap Diagram --------------------------- */
+.equation-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  margin: 0.8em auto 0;
+  width: 100%;
+  max-width: 780px;
+
+  .math-operator {
+    font-size: 1.2em;
+    font-weight: 800;
+    color: $navy;
+    user-select: none;
+  }
+
+  .single-circle-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid $line;
+    border-radius: 14px;
+    padding: 0.4em;
+    height: 4.8em;
+    width: 4.8em;
+    box-sizing: border-box;
+  }
+
+  .standalone-circle {
+    width: 4.8em;
+    height: 4.8em;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.52em;
+    font-weight: 800;
+
+    &.circle-a {
+      background: rgba($observed, 0.35);
+      border: 2px solid $observed;
+      color: $observed;
+    }
+
+    &.circle-b {
+      background: rgba($model, 0.35);
+      border: 2px solid $model;
+      color: $model;
+    }
+  }
+
+  .overlap-mini {
+    position: relative;
+    flex: 1;
+    max-width: 320px;
+    height: 4.8em;
+    background: #ffffff;
+    border: 1px solid $line;
+    border-radius: 14px;
+    padding: 0.4em;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    .circle {
+      position: absolute;
+      top: 0.5em;
+      width: 4.8em;
+      height: 4.8em;
+      border-radius: 50%;
+      display: flex;
+      font-size: 0.52em;
+      font-weight: 800;
+      mix-blend-mode: multiply;
+    }
+
+    .circle-a {
+      left: 18%;
+      background: rgba($observed, 0.35);
+      border: 2px solid $observed;
+      color: $observed;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 0.6em;
+    }
+
+    .circle-b {
+      left: 38%;
+      background: rgba($model, 0.35);
+      border: 2px solid $model;
+      color: $model;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 0.6em;
+    }
+
+    .double-count-badge {
+      position: absolute;
+      left: 40%;
+      top: 1.1em;
+      padding: 0.15em 0.45em;
+      background: $warning;
+      color: #ffffff;
+      font-size: 0.48em;
+      font-weight: 850;
+      border-radius: 999px;
+      box-shadow: 0 2px 8px rgba($warning, 0.4);
+      z-index: 10;
+    }
+
+    .overlap-warning {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0.35em;
+      text-align: center;
+      font-size: 0.42em;
+      font-weight: 750;
+      color: $warning;
+    }
+  }
+}
+
+/* ---- Patient Universe Container & Layout -------------------------------- */
+.patient-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2em;
+  max-width: 550px;
+  margin: 0.6em auto 0;
+  padding: 0.6em;
+  background: #ffffff;
+  border: 1px solid $line;
+  border-radius: 16px;
+}
+
+/* ---- Dot Grid (5x5) ------------------------------------------------------ */
+.patient-universe {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.35em;
+  width: 11em;
+}
+
+.patient-dot {
+  height: 1.1em;
+  width: 1.1em;
+  margin: auto;
+  border-radius: 50%;
+  border: 3px solid #64748b;        /* Default thick border: Male (Teal/Slate) */
+  background: #e2e8f0;             /* Default fill: Non-responder (Grey) */
+  box-sizing: border-box;
+
+  /* Gender (Border Color) */
+  &.male {
+    border-color: #0284c7;         /* Teal border = Male */
+  }
+
+  &.female {
+    border-color: #e11d48;         /* Reddish border = Female */
+  }
+
+  /* Response Status (Fill Color) */
+  &.resp.male {
+    background: #7dd3fc;           /* Lighter teal fill = Male Responder */
+  }
+
+  &.resp.female {
+    background: #fda4af;           /* Lighter reddish fill = Female Responder */
+  }
+}
+
+/* ---- Legend Section ----------------------------------------------------- */
+.patient-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 0.45em;
+    font-weight: 750;
+    color: $navy;
+  }
+
+  .patient-dot {
+    /* Keep legend dots consistent size without auto margin */
+    margin: 0;
+    flex-shrink: 0;
+  }
+}
+
+/* ---- Condition Cards & Colored Math -------------------------------------- */
+.condition-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.35fr;
+  gap: 0.5em;
+  margin-top: 0.8em;
+}
+
+.condition-card {
+  background: #ffffff;
+  border: 1px solid $line;
+  border-radius: 14px;
+  padding: 0.5em;
+  text-align: center;
+  font-size: 0.55em;
+  font-weight: 750;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Custom math coloring utilities */
+  .color-a { color: $observed; }     /* Event A: Responded */
+  .color-b { color: $model; }        /* Event B: Female */
+  .color-ab { color: $uncertainty; } /* Intersection A ∩ B: Female Responders */
+  
+  .katex, .MathJax {
+      white-space: nowrap !important;
+      font-size: 1.18em !important;
+    }
+}
+
+/* ---- Condition Row Math Fixes ------------------------------------------- */
+
+.condition-row {
+  display: flex;
+  gap: 0.6em;
+  align-items: stretch;
+  margin-top: 0.6em;
+
+  .condition-card {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid $line;
+    border-radius: 12px;
+    padding: 0.6em 0.8em;
+    font-size: 0.52em; /* Slightly enlarged base text */
+    line-height: 1.4;
+    color: $navy;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* Forces LaTeX formulas onto a single line without breaking */
+    .katex, .MathJax {
+      white-space: nowrap !important;
+      font-size: 1.18em !important; /* Larger equation size */
+    }
+
+    &.probability {
+      border-top: 3px solid $model;
+      background: #f8fafc;
+      
+      .katex, .MathJax {
+        font-size: 1.3em !important; /* Extra emphasis for the main Bayes formula */
+      }
+    }
+  }
+}
+
+.independence-grid { display:grid; grid-template-columns:1fr 1fr; gap:.6em; margin-top:.55em; }
+.independence-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.6em; min-height:6.1em; }
+.independence-card.danger { border-color:rgba($warning,.26); background:#fffafa; }
+.independence-title { font-size:.7em; font-weight:830; }
+.independence-eq { font-size:.72em; }
+.independence-example { margin-top:.45em; font-size:.8em; color:$warning; font-weight:760; line-height:1.12; text-align:center; }
+.small-caption { margin-top:.4em; font-size:.48em; color:$muted; }
+.large-equation { font-size:1.25em; }
+
+/* ---- Explanation Cards Formula Block ------------------------------------ */
+
+.explain-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8em;
+  margin-top: 0.6em;
+
+  .explain-card {
+    background: #ffffff;
+    border: 1px solid $line;
+    border-radius: 12px;
+    padding: 0.65em 0.85em;
+    font-size: 0.58em;
+    line-height: 1.4;
+    color: $navy;
+
+    .formula-block {
+      margin: 0.4em 0;
+      text-align: center;
+      
+      .katex, .MathJax {
+        font-size: 1.25em !important;
+        color: $model;
+      }
+    }
+  }
+}
+
+/* ---- Total Probability Partition Visual -------------------------------- */
+.partition-visual {
+  position: relative;
+  height: 5.5em;                   /* Expanded height for structured layers */
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid $line;
+  margin-top: 0.6em;
+  display: grid;
+  grid-template-columns: 0.42fr 0.58fr;
+  background: #ffffff;
+}
+
+.partition-block {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.45em;             /* Pushes labels B and B^c higher up */
+  font-size: 0.85em;
+  font-weight: 850;
+
+  &.b {
+    background: rgba($model, 0.14);
+    color: $model;
+    border-right: 2px dashed rgba($model, 0.4); /* Clear partition line */
+  }
+
+  &.bc {
+    background: #f8fafc;
+    color: $muted;
+  }
+}
+
+/* Event A frames spanning across the partitions */
+.event-slice {
+  position: absolute;
+  bottom: 0.6em;
+  height: 2.2em;
+  border-radius: 10px;
+  border: 2px dashed #94a3b8;      /* Border represents total region A + A^c */
+  background: rgba(241, 245, 249, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  /* Upper region representing A^c inside the partition */
+  .slice-complement {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.38em;
+    font-weight: 750;
+    color: $muted;
+  }
+
+  /* Filled bottom bar representing Event A */
+  .slice-fill {
+    background: rgba($uncertainty, 0.8);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.42em;
+    font-weight: 850;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    transition: height 0.3s ease; /* Optional smooth transition */
+
+    /* Custom height variants (e.g., representing P(A|B) vs P(A|B^c)) */
+    &.high {
+      height: 70%; /* High conditional probability in subgroup B */
+    }
+
+    &.low {
+      height: 30%; /* Low conditional probability in subgroup B^c */
+    }
+  }
+
+  &.slice1 {
+    left: 4%;
+    width: 34%;
+  }
+
+  &.slice2 {
+    left: 46%;
+    width: 48%;
+  }
+}
+
+.direction-grid { display:grid; grid-template-columns:1fr .2fr 1fr; align-items:center; gap:.32em; margin-top:.65em; }
+.direction-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.6em; text-align:center; min-height:4.2em; }
+.direction-label { font-size:.46em; color:$muted; text-transform:uppercase; letter-spacing:.1em; font-weight:800; }
+.direction-eq { font-size:.85em; color:$uncertainty; }
+.direction-symbol { text-align:center; font-size:1.5em; font-weight:900; color:$warning; }
+
+.diagnostic-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:.45em; margin-top:.6em; }
+.diagnostic-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.55em; text-align:center; 
+  .sub-label {
+    font-size: 0.68em;
+    font-weight: 500;
+    color: $muted;
+    line-height: 1.2;
+  }
+}
+.diagnostic-card div { font-size:.42em; text-transform:uppercase; letter-spacing:.1em; color:$muted; font-weight:800; }
+.diagnostic-card strong { display:block; font-size:1.18em; margin-top:.12em; }
+
+.frequency-board { display:flex; flex-direction:column; gap:.32em; margin-top:.55em; }
+.freq-row { display:grid; grid-template-columns:1.1fr 3fr; gap:.38em; align-items:center; }
+.freq-label { font-size:.46em; color:$muted; font-weight:790; }
+.freq-bar { height:1.05em; border-radius:999px; background:#eef2f7; overflow:hidden; display:flex; font-size:.42em; font-weight:780; color:#fff; }
+.freq-bar span { display:flex; align-items:center; justify-content:center; min-width:2em; white-space:nowrap; }
+.observed-bg { background:$observed; }
+.model-bg { background:$model; }
+.neutral-bg { background:#c6ced9; color:#344054 !important; }
+.blank-bg { background:#e2e6ec; color:#344054 !important; }
+.estimate-bg { background:$estimate; }
+.warning-bg { background:$warning; }
+.bayes-labels { display:grid; grid-template-columns:repeat(3,1fr); gap:.42em; margin-top:.55em; }
+.bayes-labels div { background:#fff; border:1px solid $line; border-radius:16px; padding:.38em; text-align:center; font-size:.62em; color:$muted; }
+
+.ojs-note { font-size:.52em; color:$muted; margin-bottom:.35em; }
+.reveal .observablehq { font-size:.48em; }
+.bayes-widget { margin-top:.25em; }
+.bayes-output-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.35em; }
+.bayes-output { background:#fff; border:1px solid $line; border-radius:16px; padding:.35em; text-align:center; }
+.bayes-output span { display:block; font-size:.8em; color:$muted; font-weight:750; }
+.bayes-output strong { display:block; font-size:1.6em; color:$navy; margin-top:.05em; }
+.bayes-output small { display:block; color:$muted; font-size:.75em; }
+.positive-bar { display:flex; height:1.25em; overflow:hidden; border-radius:999px; margin-top:.5em; font-size:.8em; color:#fff; font-weight:780; }
+.positive-bar .tp { background:$estimate; display:flex; align-items:center; justify-content:center; }
+.positive-bar .fp { background:$warning; display:flex; align-items:center; justify-content:center; }
+
+.counting-matrix { display:grid; grid-template-columns:1.1fr 1fr 1fr; border:1px solid $line; border-radius:18px; overflow:hidden; background:#fff; }
+.counting-matrix > div { padding:.5em .38em; border-right:1px solid $line; border-bottom:1px solid $line; text-align:center; font-size:.56em; }
+.counting-matrix > div:nth-child(3n) { border-right:0; }
+.counting-matrix > div:nth-last-child(-n+3) { border-bottom:0; }
+.matrix-head { background:rgba($uncertainty,.08); color:$uncertainty; font-weight:820; }
+.matrix-side { background:#f6f8fb; color:$navy; font-weight:820; 
+  .matrix-sub {font-size: 0.82em; font-weight: 500; color: $muted; margin-top: 0.15em; }
+}
+.counting-examples { display:grid; grid-template-columns:repeat(3,1fr); gap:.35em; margin-top:.55em; }
+.count-example { background:#fff; border:1px solid $line; border-radius:16px; padding:.35em; font-size:.44em; color:$muted; }
+
+.bag-visual { background:#fff; border:1px solid $line; border-radius:20px; padding:.48em; margin-top:.35em; }
+.bag-label { font-size:.52em; color:$navy; font-weight:790; }
+.balls { display:flex; flex-wrap:wrap; gap:.18em; margin-top:.35em; }
+.ball { width:.46em; height:.46em; border-radius:50%; display:inline-block; border:2px solid #98a2b3; }
+.ball.white { background:#fff; }
+.ball.red { background:$warning; border-color:$warning; }
+.exercise-steps { display:grid; grid-template-columns:1fr 1.4fr; gap:.45em; margin-top:.55em; }
+.exercise-card { background:#fff; border:1px solid $line; border-radius:18px; padding:.45em; }
+.exercise-question { font-size:.58em; color:$muted; font-weight:760; }
+.exercise-answer { font-size:.82em; color:$uncertainty; }
+
+.geometry-grid { display:grid; grid-template-columns:1fr 1fr; gap:.75em; align-items:center; }
+.unit-square { position:relative; width:6.1em; height:6.1em; background:#fff; border-left:3px solid $navy; border-bottom:3px solid $navy; margin:0 auto; }
+.triangle-region { position:absolute; inset:0; background:linear-gradient(45deg, rgba($uncertainty,.30) 0 50%, transparent 50%); }
+.diag-line { position:absolute; left:0; top:0; width:141%; height:3px; background:$uncertainty; transform-origin:left top; transform:rotate(45deg); }
+.axis-x { position:absolute; right:-.35em; bottom:-.45em; font-size:.45em; color:$navy; font-weight:800; }
+.axis-y { position:absolute; left:-.45em; top:-.35em; font-size:.45em; color:$navy; font-weight:800; }
+.ineq-label { position:absolute; left:.45em; bottom:1.2em; color:$uncertainty; font-size:.5em; font-weight:800; }
+
+.mc-widget { display:grid; grid-template-columns:1fr .75fr; align-items:center; gap:.6em; }
+.mc-widget svg { width:100%; max-height:8.3em; background:#fff; border:1px solid $line; border-radius:18px; }
+.mc-triangle { fill:rgba($uncertainty,.18); }
+.mc-diagonal { stroke:$uncertainty; stroke-width:1.2; }
+.mc-widget circle.hit { fill:$uncertainty; opacity:.75; }
+.mc-widget circle.miss { fill:#98a2b3; opacity:.55; }
+.mc-result { background:#fff; border:1px solid $line; border-radius:18px; padding:.55em; font-size:1.74em; color:$navy; text-align:center; }
+
+/* ---- Randomness Concept Box ---------------------------------------------- */
+
+.random-concept-box {
+  width: 100%;
+  max-width: 860px;
+  margin: 0.5em auto 0;
+  margin-top: 3.4em;
+  background: #ffffff;
+  border: 1px solid $line;
+  border-left: 4px solid $uncertainty;
+  border-radius: 12px;
+  padding: 0.5em 0.75em;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: 0.55em;
+  line-height: 1.35;
+  color: $navy;
+
+  .concept-title {
+    font-weight: 820;
+    color: $uncertainty;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.3em;
+    font-size: 1.2em;
+  }
+
+  p {margin: 0 0 0.4em 0; }
+
+  .comparison-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6em;
+    margin-top: 0.4em;
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 0.45em 0.6em;
+    border: 1px solid rgba($line, 0.5);
+  }
+
+  .comp-col {
+    .comp-header {
+      display: block;
+      font-weight: 800;
+      color: $navy;
+      margin-bottom: 0.2em;
+      font-size: 1.0em;
+    }
+
+    ul { margin: 0; padding-left: 1.1em; color: $muted;
+      li { margin-bottom: 0.15em;
+        strong { color: $navy; }
+        code { font-size: 1.0em; background: #e2e8f0; padding: 0.1em 0.3em; border-radius: 4px; }
+      }
+    }
+  }
+}
+
+/* ---- Two-Card Probability Interpretation Grid ---------------------------- */
+
+.interpretation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6em;
+  margin-top: 0.6em;
+  width: 100%;
+}
+
+.interp-card {
+  background: #ffffff;
+  border: 1px solid $line;
+  border-radius: 12px;
+  padding: 0.45em 0.65em;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: 0.66em;
+  line-height: 1.3;
+
+  .interp-header {
+    font-weight: 850;
+    font-size: 1.0em;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.2em;
+  }
+
+  .interp-body {
+    color: $muted;
+    strong { color: $navy; }
+  }
+
+  /* Distinct visual identity for each view */
+  &.frequentist {
+    border-left: 4px solid $observed;
+    .interp-header { color: $observed; }
+  }
+
+  &.bayesian {
+    border-left: 4px solid $model;
+    .interp-header { color: $model; }
+  }
+}
+
+.closing-stack { display:flex; flex-direction:column; gap:.36em; margin-top:.6em; }
+.closing-line { background:#fff; border:1px solid $line; border-left:7px solid $uncertainty; border-radius:16px; padding:.38em .55em; font-size:.64em; color:$navy; font-weight:720; }
+.final-question { margin-top:.65em; padding:.48em .65em; border-radius:18px; background:rgba($model,.08); border:1px solid rgba($model,.24); color:$model; font-size:.72em; font-weight:790; text-align:center; }
+
+@media (max-width: 1100px) {
+  .builder-grid, .ingredient-grid, .diagnostic-grid, .bayes-output-grid, .counting-examples { gap: .25em; }
+  .enzyme-stage { gap: .12em; }
+}

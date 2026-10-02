@@ -1,0 +1,819 @@
+/*-- scss:rules --*/
+
+/* ---- cards and grids ---------------------------------------------------- */
+.w5-grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:.55em; align-items:stretch; margin-top:.55em; }
+.w5-grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:.45em; align-items:stretch; margin-top:.55em; }
+.w5-grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:.35em; align-items:stretch; margin-top:.55em; }
+.w5-grid-5 { display:grid; grid-template-columns:repeat(5,1fr); gap:.3em; align-items:stretch; margin-top:.55em; }
+.w5-card, .law-card, .question-card, .match-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.48em; box-shadow:0 8px 20px rgba(16,24,40,.035); box-sizing:border-box; }
+.w5-card-title, .law-title, .question-title { color:$navy; font-weight:850; font-size:.82em; text-align:center; line-height:1.12; }
+.w5-card-sub, .law-sub, .question-text { color:$muted; font-size:.55em; text-align:center; line-height:1.18; margin-top:.28em; }
+.law-question { color:$uncertainty; font-weight:850; text-align:center; font-size:.55em; margin-top:.35em; }
+
+.w5-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.w5-card-figure {
+  width: 100%;
+  margin-top: .35em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 1;
+}
+
+.w5-card-img {
+  display: block;
+
+  width: 100%;
+  height: 4.8em;
+
+  object-fit: contain;
+
+  margin: 0 auto;
+}
+
+/* ---- truth / sampling opening ----------------------------------------- */
+.truth-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2em;
+  margin: .55em 0 .25em;
+  flex-wrap: nowrap;
+}
+
+.truth-orb {
+  width: 4.8em;
+  height: 4.8em;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: .52em;
+  font-weight: 820;
+  line-height: 1.1;
+  box-shadow: 0 10px 22px rgba(16,24,40,.08);
+
+  span {
+    display: block;
+    margin-top: .15em;
+    font-size: 1.45em;
+    font-weight: 900;
+  }
+}
+
+.truth-orb.model {
+  background: linear-gradient(135deg, rgba($model,.14), rgba($estimate,.10));
+  border: 2px solid rgba($model,.45);
+  color: $navy;
+}
+
+.sample-card.observed {
+  min-width: 6.4em;
+  min-height: 4.2em;
+  padding: .65em .8em;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: .5em;
+  font-weight: 820;
+  color: $navy;
+  background: linear-gradient(135deg, rgba($observed,.12), rgba($uncertainty,.08));
+  border: 2px solid rgba($observed,.35);
+  box-shadow: 0 10px 22px rgba(16,24,40,.06);
+}
+
+.sampling-prism {
+  position: relative;
+  width: 8.6em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.prism-svg {
+  display: block;
+  width: 100%;
+  height: 5.8em;
+  overflow: visible;
+}
+
+.prism-label {
+  margin-top: .18em;
+  font-size: .42em;
+  font-weight: 820;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: $navy;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba($line,.9);
+  border-radius: 999px;
+  padding: .22em .55em;
+  box-shadow: 0 4px 12px rgba(16,24,40,.05);
+}
+
+/* SVG styling */
+
+.prism-body {
+  fill: rgba($uncertainty,.12);
+  stroke: rgba($uncertainty,.38);
+  stroke-width: 2.2;
+  filter: drop-shadow(0 6px 12px rgba(16,24,40,.08));
+}
+
+.prism-shine {
+  stroke: rgba(255,255,255,.75);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.truth-beam-in {
+  stroke: url(#beamIn);
+  stroke-width: 5.2;
+  stroke-linecap: round;
+}
+
+.truth-beam-mid {
+  fill: none;
+  stroke: rgba($uncertainty,.92);
+  stroke-width: 4.4;
+  stroke-linecap: round;
+}
+
+.truth-beam-ghost {
+  fill: none;
+  stroke: rgba($warning,.22);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-dasharray: 4 4;
+}
+
+.truth-beam-out {
+  fill: none;
+  stroke: url(#beamOut);
+  stroke-width: 4.8;
+  stroke-linecap: round;
+}
+
+.obs-dot {
+  fill: $observed;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.noise-dot {
+  fill: rgba(255,255,255,.85);
+  stroke: rgba($uncertainty,.32);
+  stroke-width: 1;
+}
+
+/* ---------------------------------------------------------
+   Sampling-error diagram
+   --------------------------------------------------------- */
+
+.sampling-error-stage {
+  display: grid;
+  grid-template-columns: 1fr .15fr 1fr;
+  gap: .3em;
+  align-items: center;
+  position: relative;
+  margin-top: .5em;
+}
+
+
+/* ---------------------------------------------------------
+   Population / sample cards
+   --------------------------------------------------------- */
+
+.sampling-cloud-box {
+  position: relative;
+
+  width: 100%;
+  min-height: 5.8em;
+
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 22px;
+
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+
+/* population gets model identity */
+
+.population-cloud,
+.sample-cloud {
+  position: relative;
+  width: 100%;
+  min-height: 5.8em;
+
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 22px;
+
+  overflow: hidden;
+  box-sizing: border-box;
+
+
+  .dot {
+    position: absolute;
+
+    width: .46em;
+    height: .46em;
+
+    border-radius: 50%;
+
+    background: $model;
+    border: 2.5px solid transparent;
+
+    box-sizing: border-box;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 2;
+  }
+
+
+  /* chosen for the sample, but still part of population */
+
+  .dot.sampled {
+    background: $model;
+    border-color: $observed;
+
+    box-shadow:
+      0 0 0 2px rgba($observed, .10);
+
+    z-index: 3;
+  }
+
+
+  /* same observation, now seen as observed sample */
+
+  .dot.filled {
+    background: $observed;
+    border-color: $observed;
+
+    box-shadow:
+      0 3px 8px rgba($observed, .25);
+
+    z-index: 3;
+  }
+}
+
+.population-cloud {
+  background: rgba($model, .045);
+  border-color: rgba($model, .30);
+}
+
+.sample-cloud {
+  background: rgba($observed, .045);
+  border-color: rgba($observed, .30);
+}
+
+/* ---------------------------------------------------------
+   Labels
+   --------------------------------------------------------- */
+
+.cloud-label {
+  position: absolute;
+  top: .45em;
+  left: .55em;
+
+  z-index: 5;
+
+  font-size: .40em;
+  font-weight: 850;
+
+  letter-spacing: .035em;
+  text-transform: uppercase;
+
+  background: rgba(255,255,255,.88);
+  border-radius: 999px;
+
+  padding: .18em .45em;
+}
+
+.model-label {
+  color: $model;
+}
+
+.observed-label {
+  color: $observed;
+}
+
+.cloud-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.population-badge,
+.statistic-badge {
+  position: absolute;
+  bottom: -.42em;
+
+  background: #fff;
+  border-radius: 999px;
+
+  padding: .2em .6em;
+
+  font-size: .52em;
+  font-weight: 850;
+
+  box-shadow:
+    0 4px 14px rgba(16,24,40,.08);
+
+  z-index: 5;
+}
+
+.population-badge {
+  right: .625em;
+
+  color: $model;
+  border: 1px solid rgba($model,.30);
+}
+
+.statistic-badge {
+  right: .625em;
+
+  color: $estimate;
+  border: 1px solid rgba($estimate,.30);
+}
+
+/* ---------------------------------------------------------
+   ALL dots use identical geometry
+   --------------------------------------------------------- */
+
+.sampling-dot {
+  position: absolute;
+
+  width: .46em;
+  height: .46em;
+
+  border-radius: 50%;
+
+  /*
+   * Critical:
+   * borders do not change the outer dot size.
+   */
+  box-sizing: border-box;
+
+  transform:
+    translate(-50%, -50%);
+
+  z-index: 2;
+}
+
+
+/* ---------------------------------------------------------
+   LEFT: population
+   --------------------------------------------------------- */
+
+.population-dot {
+  background: $model;
+
+  /*
+   * Transparent border means every population dot has
+   * exactly the same dimensions, whether selected or not.
+   */
+  border: 2.5px solid transparent;
+}
+
+
+/*
+ * About-to-be-sampled observations:
+ * still model-colored because they are members of
+ * the population, but outlined in observed blue.
+ */
+.population-dot.selected {
+  background: $model;
+  border-color: $observed;
+
+  box-shadow:
+    0 0 0 2px rgba($observed,.10);
+
+  z-index: 3;
+}
+
+
+/* ---------------------------------------------------------
+   RIGHT: observed sample
+   --------------------------------------------------------- */
+
+.sample-dot {
+  background: $observed;
+  border: 2.5px solid $observed;
+
+  box-shadow:
+    0 3px 8px rgba($observed,.22);
+
+  z-index: 3;
+}
+
+
+/* ---------------------------------------------------------
+   Arrow
+   --------------------------------------------------------- */
+
+.sampling-arrow {
+  text-align: center;
+
+  color: $uncertainty;
+
+  font-size: 1.45em;
+  font-weight: 900;
+}
+
+/* ---------------------------------------------------------
+   Repeated sample mini-clouds
+   --------------------------------------------------------- */
+
+/* ---------------------------------------------------------
+   Repeated sample mini-clouds
+   --------------------------------------------------------- */
+
+.tiny-cloud {
+  position: relative;
+
+  width: 100%;
+  min-height: 4em;
+
+  background: rgba($observed, .035);
+  border: 1px solid rgba($observed, .18);
+  border-radius: 14px;
+
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+
+/* setPopulationDots() generates bare <span> elements */
+.tiny-cloud > span {
+  position: absolute;
+
+  width: .42em;
+  height: .42em;
+
+  background: $observed;
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+
+  box-shadow:
+    0 2px 5px rgba($observed, .18);
+
+  z-index: 2;
+}
+
+
+/* don't distinguish "sampled" points inside these cards */
+.tiny-cloud > span.sampled {
+  background: $observed;
+}
+
+.sample-repeat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.55em; margin-top:.55em; }
+.repeat-sample { background:#fff; border:1px solid $line; border-radius:20px; padding:.45em; }
+.tiny-cloud { min-height:4em; }
+.repeat-stat { text-align:center; color:$estimate; font-weight:850; font-size:.55em; margin-top:.3em; }
+
+/* ---- flows and tables -------------------------------------------------- */
+.sampling-flow {
+  display: grid;
+  grid-template-columns: 1.1fr .2fr 1fr .2fr 1fr;
+  gap: .18em;
+  align-items: center;
+
+  max-width: 30em;
+  margin: .65em auto 0;
+}
+
+.sampling-flow > div {
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 12px;
+
+  padding: .25em;
+
+  text-align: center;
+  font-size: .55em;
+  color: $navy;
+  font-weight: 760;
+}
+
+.sampling-flow > .flow-arrow {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  padding: 0 !important;
+
+  color: $uncertainty !important;
+  font-size: .9em;
+  font-weight: 900 !important;
+}
+
+.sampling-flow > .flow-spacer {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+.sampling-flow > .flow-spacer {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+.sampling-flow-big {
+  display: grid;
+  grid-template-columns: 1fr .18fr 1fr .18fr 1fr;
+  gap: .22em;
+  align-items: center;
+
+  margin-top: .5em;
+}
+
+
+/* real content cards only */
+
+.sampling-flow-big > div:not(.flow-arrow):not(.flow-spacer):not(.flow-dots) {
+  background: #fff;
+  border: 1px solid $line;
+  border-radius: 12px;
+
+  padding: .3em;
+
+  text-align: center;
+  font-size: .55em;
+  color: $navy;
+  font-weight: 760;
+}
+
+
+/* arrows */
+
+.sampling-flow-big > .flow-arrow {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  padding: 0 !important;
+
+  color: $uncertainty !important;
+  font-weight: 900 !important;
+  font-size: .9em;
+}
+
+
+/* invisible alignment cells */
+
+.sampling-flow-big > .flow-spacer {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  padding: 0 !important;
+}
+
+
+/* vertical ellipsis */
+
+.sampling-flow-big > .flow-dots {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  padding: 0 !important;
+
+  color: $muted;
+  font-size: .85em;
+  font-weight: 900;
+}
+
+.dik-flow { display:grid; grid-template-columns:1fr .18fr 1fr .18fr 1fr; gap:.25em; align-items:stretch; margin-top:.65em; }
+.dik-node { background:#fff; border:1px solid $line; border-radius:20px; padding:.5em; text-align:center; }
+.dik-title { color:$navy; font-weight:850; font-size:.62em; }
+.dik-sub { color:$muted; font-size:.42em; margin-top:.25em; line-height:1.18; }
+.dik-arrow { display:flex; align-items:center; justify-content:center; color:$uncertainty; font-size:1.3em; font-weight:900; }
+.lln-clt-table { display:grid; grid-template-columns:1fr 1.25fr 1.25fr; gap:1px; background:$line; border:1px solid $line; border-radius:18px; overflow:hidden; margin-top:.6em; }
+.lln-clt-table div { background:#fff; padding:.35em; font-size:.65em; text-align:center; color:$navy; }
+.lln-clt-table .head { background:$panel; font-weight:850; }
+.dist-family { display:flex; flex-direction:column; gap:.35em; margin-top:.6em; }
+.family-row { display:grid; grid-template-columns:1.4fr .2fr 1fr 1.8fr; gap:.25em; align-items:center; background:#fff; border:1px solid $line; border-radius:18px; padding:.35em .5em; }
+.family-row span { color:$uncertainty; font-size:.78em; font-weight:850; text-align:center; }
+.family-row small { color:$muted; font-size:.42em; }
+
+/* ---- widgets ----------------------------------------------------------- */
+.lln-widget, .clt-widget, .density-widget { background:#fff; border:1px solid $line; border-radius:22px; padding:.55em; box-shadow:0 8px 20px rgba(16,24,40,.04); }
+.w5-control-row { display:grid; grid-template-columns:1fr 1fr .65fr; gap:.45em; margin-bottom:.35em; align-items:end; }
+.w5-control { font-size:.42em; color:$muted; font-weight:780; }
+.w5-control input, .w5-control select { width:100%; margin-top:.12em; accent-color:$uncertainty; box-sizing:border-box; }
+.w5-control select { border:1px solid $line; border-radius:10px; padding:.25em .35em; background:#fff; color:$navy; }
+.w5-output { background:$panel; border:1px solid $line; border-radius:14px; padding:.28em .35em; text-align:center; }
+.w5-output span { display:block; color:$muted; font-size:.42em; font-weight:760; }
+.w5-output strong { display:block; color:$uncertainty; font-size:.72em; font-weight:850; }
+
+.w5-wide-svg {
+  display: block;
+  width: 100%;
+  height: 9em;
+
+  background: #fbfcfe;
+  border: 1px solid #edf1f7;
+  border-radius: 18px;
+}
+
+.w5-axis {
+  stroke: #98a2b3;
+  stroke-width: 2;
+}
+
+.w5-label {
+  fill: $muted;
+  font-size: 14px;
+  font-weight: 760;
+}
+
+.run-line {
+  fill: none;
+  stroke: $observed;
+  stroke-width: 3.8;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.true-line {
+  stroke: $estimate;
+  stroke-width: 3;
+  stroke-dasharray: 8 5;
+}
+
+.current-n-line {
+  stroke: rgba($observed, .28);
+  stroke-width: 1.8;
+  stroke-dasharray: 4 4;
+}
+
+.current-n-dot {
+  fill: $observed;
+  stroke: #fff;
+  stroke-width: 2.2;
+}
+
+.clt-controls {
+  grid-template-columns: 1.2fr .9fr .9fr .85fr;
+  gap: .4em;
+  align-items: end;
+}
+
+.clt-redraw-button {
+  width: 100%;
+
+  padding: .48em .55em;
+
+  background: rgba($uncertainty, .08);
+  border: 1px solid rgba($uncertainty, .30);
+  border-radius: 12px;
+
+  color: $uncertainty;
+
+  font-size: .46em;
+  font-weight: 850;
+
+  cursor: pointer;
+
+  transition:
+    background .15s ease,
+    transform .15s ease;
+}
+
+.clt-redraw-button:hover {
+  background: rgba($uncertainty, .14);
+}
+
+.clt-redraw-button:active {
+  transform: translateY(1px);
+}
+.clt-mean-line {
+  stroke: $model;
+  stroke-width: 2.6;
+  stroke-dasharray: 7 5;
+}
+
+.clt-mean-label {
+  fill: $model;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.clt-panel-row { display:grid; grid-template-columns:1fr 1fr; gap:.45em; }
+.clt-panel { background:#fbfcfe; border:1px solid #edf1f7; border-radius:18px; padding:.25em; }
+.clt-panel svg { width:100%; height:5.6em; display:block; }
+.mini-title { color:$muted; text-align:center; font-size:.42em; font-weight:820; margin-bottom:.1em; }
+.source-path { fill:none; stroke:$model; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+.source-stem { stroke:$model; stroke-width:4; }
+.source-dot { fill:$model; }
+.hist-bar { fill:rgba($uncertainty,.60); stroke:#fff; stroke-width:1; }
+.density-path { fill:none; stroke:$uncertainty; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+.density-ref { fill:none; stroke:$model; stroke-width:2.4; stroke-dasharray:7 5; opacity:.8; }
+
+/* ---- explanation cards ------------------------------------------------- */
+.statement-card { background:#fff; border:1px solid $line; border-left:7px solid $warning; border-radius:20px; padding:.7em .9em; margin:.6em auto; max-width:26em; color:$navy; font-size:.82em; font-weight:780; text-align:center; }
+.two-noises { display:grid; grid-template-columns:1fr 1fr; gap:.55em; max-width:24em; margin:.4em auto 0; }
+.two-noises div { background:#fff; border:1px solid $line; border-radius:18px; padding:.45em; text-align:center; color:$muted; font-size:.48em; }
+.question-split { display:grid; grid-template-columns:1fr 1fr; gap:.65em; margin-top:.65em; }
+.clt-cartoon { display:grid; grid-template-columns:1fr .7fr 1fr; gap:.5em; align-items:center; margin-top:.5em; }
+.source-shape, .sample-means-bell { height:6em; background:#fff; border:1px solid $line; border-radius:22px; position:relative; overflow:hidden; }
+.source-shape::before { content:""; position:absolute; left:10%; bottom:18%; width:75%; height:55%; background:rgba($model,.18); clip-path: polygon(0 100%, 8% 80%, 20% 42%, 33% 20%, 46% 12%, 60% 26%, 78% 62%, 100% 100%); border-bottom:4px solid $model; }
+.sample-means-bell::before { content:""; position:absolute; left:10%; bottom:18%; width:80%; height:62%; background:rgba($uncertainty,.16); clip-path: polygon(0 100%, 10% 88%, 22% 55%, 36% 22%, 50% 10%, 64% 22%, 78% 55%, 90% 88%, 100% 100%); border-bottom:4px solid $uncertainty; }
+.cartoon-arrow { text-align:center; color:$uncertainty; font-size:.52em; font-weight:850; }
+.sqrt-law { display:grid; grid-template-columns:1fr .6fr 1fr; gap:.4em; align-items:center; margin-top:.7em; }
+.sqrt-box { background:#fff; border:1px solid $line; border-radius:20px; padding:.65em; text-align:center; color:$navy; font-size:.8em; font-weight:850; }
+.sqrt-box.warning { border-color:rgba($warning,.35); color:$warning; background:rgba($warning,.07); }
+.sqrt-arrow { color:$muted; text-align:center; font-size:.55em; font-weight:850; }
+.inference-flow { display:flex; flex-direction:column; gap:.25em; max-width:22em; margin:.55em auto; align-items:stretch; }
+.inference-flow div { background:#fff; border:1px solid $line; border-radius:16px; padding:.4em; text-align:center; font-size:.58em; font-weight:820; }
+.inference-flow .flow-arrow { padding:.1em; font-size:.46em; }
+
+.inference-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: $uncertainty;
+  font-size: .48em;
+  font-weight: 800;
+  text-align: center;
+
+  gap: .05em;
+}
+
+.inference-arrow svg {
+  display: block;
+  width: 2.4em;
+  height: 1.25em;
+
+  overflow: visible;
+}
+
+.inference-arrow line,
+.inference-arrow polyline {
+  fill: none;
+  stroke: $uncertainty;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.inference-arrow span {
+  display: block;
+  line-height: 1.15;
+}
+
+.inference-arrow-up line,
+.inference-arrow-up polyline {
+  stroke: $estimate;
+}
+
+.inference-arrow-up {
+  color: $estimate;
+}
+
+.inference-arrow-down line,
+.inference-arrow-down polyline {
+  stroke: $uncertainty;
+}
+
+.inference-arrow-down {
+  color: $uncertainty;
+}
+
+.support-output strong {
+  font-size: 1.4em;
+}
+
+.match-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:.45em; margin-top:.55em; }
+.match-prompt { color:$navy; font-size:.55em; font-weight:820; text-align:center; }
+.match-answer { margin-top:.35em; background:rgba($estimate,.10); color:$estimate; border:1px solid rgba($estimate,.25); border-radius:12px; padding:.3em; text-align:center; font-size:.55em; font-weight:850; }
+
+@media (max-width:1100px){
+  .w5-grid-5 { grid-template-columns:repeat(3,1fr); }
+  .w5-grid-4 { grid-template-columns:repeat(2,1fr); }
+}

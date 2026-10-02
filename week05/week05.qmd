@@ -1,0 +1,2178 @@
+---
+title: "Statistics for Pharmacists"
+subtitle: "Week 5 · Sampling distributions"
+author: "Graduate Pharmaceutical Studies"
+date: ""
+title-slide-attributes:
+  data-footer: ""
+format:
+  revealjs:
+    footer: "Statistics 101 · Week 5"
+    scrollable: false
+    theme:
+      - default
+      - ../assets/scss/course.scss
+      - ../assets/scss/week05.scss
+---
+
+## Sampling distributions {.title-slide}
+
+<div class="eyebrow">Week 5</div>
+
+<div class="concept-line" style="margin-top:1em;">
+How samples become predictable.
+</div>
+
+::: {.notes}
+This week is deliberately shorter because of the midterm exam. The teaching goal is not to overload students, but to make sampling distributions, LLN and CLT feel inevitable after Weeks 1–4.
+:::
+
+## Wouldn't it be nice to observe the truth? {.motivation-slide}
+
+<div class="eyebrow">Opening hook</div>
+
+<div class="truth-stage fragment fade-up">
+  <!-- Truth -->
+  <div class="truth-orb model">
+  truth<br><span>$\theta$</span>
+  </div>
+  <!-- Sampling / noise prism -->
+  <div class="sampling-prism">
+  <svg viewBox="0 0 220 170" class="prism-svg" aria-label="Truth filtered through sampling and noise">
+  <defs>
+  <linearGradient id="prismFill" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0%" stop-color="rgba(123,74,181,0.16)"/>
+  <stop offset="100%" stop-color="rgba(217,119,6,0.18)"/>
+  </linearGradient>
+  <linearGradient id="beamIn" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0%" stop-color="rgba(16,24,40,0.10)"/>
+  <stop offset="100%" stop-color="rgba(123,74,181,0.80)"/>
+  </linearGradient>
+  <linearGradient id="beamOut" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0%" stop-color="rgba(123,74,181,0.85)"/>
+  <stop offset="100%" stop-color="rgba(31,111,235,0.90)"/>
+  </linearGradient>
+  </defs>
+  <!-- incoming beam -->
+  <line x1="8" y1="85" x2="62" y2="85" class="truth-beam-in"/>
+  <!-- prism body -->
+  <polygon
+  points="72,26 138,18 158,142 92,150"
+  class="prism-body"/>
+  <!-- prism highlight -->
+  <line x1="88" y1="32" x2="104" y2="145" class="prism-shine"/>
+  <!-- signal path inside prism -->
+  <path
+  d="M 62 85
+  C 77 84, 88 82, 98 77
+  S 118 69, 130 78
+  S 145 92, 151 96"
+  class="truth-beam-mid"/>
+  <!-- faint possible outputs -->
+  <path d="M 151 96 C 170 84, 184 74, 208 63" class="truth-beam-ghost"/>
+  <path d="M 151 96 C 171 94, 188 96, 208 96" class="truth-beam-ghost"/>
+  <path d="M 151 96 C 172 104, 188 117, 208 130" class="truth-beam-ghost"/>
+  <!-- emphasized observed path -->
+  <path d="M 151 96 C 171 94, 188 96, 208 96" class="truth-beam-out"/>
+  <circle cx="208" cy="96" r="4.5" class="obs-dot"/>
+  <!-- noise particles -->
+  <circle cx="108" cy="56" r="2.3" class="noise-dot"/>
+  <circle cx="122" cy="102" r="2.0" class="noise-dot"/>
+  <circle cx="136" cy="62" r="1.8" class="noise-dot"/>
+  <circle cx="112" cy="124" r="2.1" class="noise-dot"/>
+  </svg>
+  <div class="prism-label">sampling + noise</div>
+  </div>
+  <!-- Observation -->
+  <div class="sample-card observed">
+  one observed statistic<br><span>$\hat\theta$</span>
+  </div>
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">Science usually gives us observations, not direct access to the population truth.</div>
+:::
+
+## Measurement error was already bad enough {.concept-slide}
+
+<div class="eyebrow">Recall from Week 3</div>
+
+<div class="definition-box large-definition fragment fade-up">
+$$
+\text{observation}
+=
+\text{truth}
++
+\text{systematic error}
++
+\text{random error}
+$$
+</div>
+
+<div class="w5-grid-3">
+<div class="w5-card model-border fragment fade-up"><div class="w5-card-title">Truth</div><div class="w5-card-sub">what we wish to know</div></div>
+<div class="w5-card warning-border fragment fade-up"><div class="w5-card-title">Bias</div><div class="w5-card-sub">systematic displacement</div></div>
+<div class="w5-card observed-border fragment fade-up"><div class="w5-card-title">Variance</div><div class="w5-card-sub">random scatter</div></div>
+</div>
+
+## But there is another source of uncertainty {.concept-slide}
+
+<div class="eyebrow">Sampling error</div>
+
+<div class="sampling-error-stage fragment fade-up">
+
+<div class="cloud-wrap">
+<div class="population-cloud" id="popCloudStatic"></div>
+<div class="population-badge">population</div>
+</div>
+
+<div class="sampling-arrow">→</div>
+
+<div class="cloud-wrap">
+<div class="sample-cloud" id="sampleCloudStatic"></div>
+<div class="statistic-badge">sample statistic</div>
+</div>
+
+</div>
+
+<script>
+(function () {
+  const points = [
+  { x: 15, y: 25 },
+  { x: 28, y: 70 },
+  { x: 35, y: 30 },
+  { x: 42, y: 80 },
+  { x: 50, y: 20 },
+  { x: 65, y: 65 },
+  { x: 75, y: 25 },
+  { x: 82, y: 75 },
+  { x: 18, y: 85 },
+  { x: 88, y: 40 },
+  { x: 60, y: 40 },
+  { x: 40, y: 50 },
+
+  { x: 12, y: 50 },
+  { x: 22, y: 38 },
+  { x: 24, y: 62 },
+  { x: 32, y: 88 },
+  { x: 47, y: 42 },
+  { x: 54, y: 75 },
+  { x: 58, y: 28 },
+  { x: 68, y: 48 },
+  { x: 72, y: 86 },
+  { x: 80, y: 55 },
+  { x: 86, y: 18 },
+  { x: 90, y: 88 }
+];
+  const sampleIndices = new Set([1, 4, 6, 9, 11]);
+  function renderClouds() {
+    const popCloud =
+      document.getElementById("popCloudStatic");
+    const sampleCloud =
+      document.getElementById("sampleCloudStatic");
+    if (!popCloud || !sampleCloud) return;
+    /* remove previously generated dots */
+    popCloud.querySelectorAll(".dot").forEach(d => d.remove());
+    sampleCloud.querySelectorAll(".dot").forEach(d => d.remove());
+    points.forEach((pt, index) => {
+      const sampled = sampleIndices.has(index);
+      /* LEFT: full population */
+      const popDot = document.createElement("span");
+      popDot.className =
+        sampled ? "dot sampled" : "dot";
+      popDot.style.left = pt.x + "%";
+      popDot.style.top = pt.y + "%";
+      popCloud.appendChild(popDot);
+      /* RIGHT: sampled subset only */
+      if (sampled) {
+        const sampleDot =
+          document.createElement("span");
+        sampleDot.className =
+          "dot filled";
+        /* EXACT SAME POSITION */
+        sampleDot.style.left = pt.x + "%";
+        sampleDot.style.top = pt.y + "%";
+        sampleCloud.appendChild(sampleDot);
+      }
+    });
+  }
+  /* robust Reveal / Quarto initialization */
+  function init() {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(renderClouds);
+    });
+  }
+  init();
+  document.addEventListener(
+    "DOMContentLoaded",
+    init
+  );
+  window.addEventListener(
+    "load",
+    init
+  );
+  if (
+    window.Reveal &&
+    typeof Reveal.on === "function"
+  ) {
+    Reveal.on("ready", init);
+    Reveal.on("slidechanged", init);
+  }
+})();
+</script>
+
+::: {.fragment .fade-up}
+<div class="concept-line">Even if measurement were perfect, a sample is only part of the population.</div>
+:::
+
+<div class="w5-grid-2">
+<div class="definition-box fragment fade-up"><strong>Population:</strong> the full set/process we want to learn about.</div>
+<div class="definition-box fragment fade-up"><strong>Sample:</strong> the subset of observations we actually collect.</div>
+</div>
+
+## Why not measure everyone? {.concept-slide}
+
+<div class="eyebrow">Feasibility and ethics</div>
+
+<div class="w5-grid-5">
+<div class="w5-card observed-border fragment fade-up"><div class="w5-card-title">Cost</div><div class="w5-card-sub">full measurement may be unrealistic</div></div>
+<div class="w5-card observed-border fragment fade-up"><div class="w5-card-title">Time</div><div class="w5-card-sub">evidence is needed before forever</div></div>
+<div class="w5-card observed-border fragment fade-up"><div class="w5-card-title">Destructive tests</div><div class="w5-card-sub">some measurements consume the sample</div></div>
+<div class="w5-card observed-border fragment fade-up"><div class="w5-card-title">Ethics</div><div class="w5-card-sub">avoid unnecessary exposure or risk</div></div>
+<div class="w5-card observed-border fragment fade-up"><div class="w5-card-title">Infinite process</div><div class="w5-card-sub">sometimes population means all possible outcomes</div></div>
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">Good sampling lets us learn enough without measuring everything.</div>
+:::
+
+## Population can be conceptual {.concept-slide}
+
+<div class="eyebrow">Not always a literal list of people</div>
+
+<div class="w5-grid-3">
+
+<div class="w5-card model-border fragment fade-up">
+<div class="w5-card-title">Clinical population</div>
+<div class="w5-card-sub">patients who could receive a therapy</div>
+<div class="w5-card-figure">
+<img src="figures/pop_clinical.jpg" alt="Clinical population" class="w5-card-img">
+</div>
+</div>
+
+<div class="w5-card model-border fragment fade-up">
+<div class="w5-card-title">Manufacturing process</div>
+<div class="w5-card-sub">all tablets this process could produce</div>
+<div class="w5-card-figure">
+<img src="figures/pop_manufacturing.jpg" alt="Conceptual population of tablets from a manufacturing process" class="w5-card-img">
+</div>
+</div>
+
+<div class="w5-card model-border fragment fade-up">
+<div class="w5-card-title">Idealized population</div>
+<div class="w5-card-sub">e.g., very large population assumption in Hardy–Weinberg reasoning</div>
+<div class="w5-card-figure">
+<img src="figures/pop_idealized.jpg" alt="Idealized very large population" class="w5-card-img">
+</div>
+</div>
+
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">A population often means the data-generating process behind the observations.</div>
+:::
+
+## A sample statistic changes from sample to sample {.concept-slide}
+
+<div class="eyebrow">Same population, different samples</div>
+
+<div class="sample-repeat-grid">
+<div class="repeat-sample fragment fade-up"><div class="tiny-cloud" id="repeatA"></div><div class="repeat-stat">$\bar x_1=7.8$</div></div>
+<div class="repeat-sample fragment fade-up"><div class="tiny-cloud" id="repeatB"></div><div class="repeat-stat">$\bar x_2=8.4$</div></div>
+<div class="repeat-sample fragment fade-up"><div class="tiny-cloud" id="repeatC"></div><div class="repeat-stat">$\bar x_3=8.0$</div></div>
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">A statistic is itself a random quantity before the sample is observed.</div>
+:::
+
+## Sampling distribution {.math-slide}
+
+<div class="eyebrow">The central object of Week 5</div>
+
+<div class="definition-box large-definition fragment fade-up">
+A <strong>sampling distribution</strong> is the distribution of a statistic across repeated samples from the same population.
+</div>
+
+<div class="sampling-flow fragment fade-up">
+
+<div>population</div>
+<div class="flow-arrow">→</div>
+<div>sample 1</div>
+<div class="flow-arrow">→</div>
+<div>$\bar X_1$</div>
+
+<div class="flow-spacer"></div>
+<div class="flow-spacer"></div>
+<div>sample 2</div>
+<div class="flow-arrow">→</div>
+<div>$\bar X_2$</div>
+
+<div class="flow-spacer"></div>
+<div class="flow-spacer"></div>
+<div>sample 3</div>
+<div class="flow-arrow">→</div>
+<div>$\bar X_3$</div>
+
+<div class="flow-spacer"></div>
+<div class="flow-spacer"></div>
+<div>⋮</div>
+<div class="flow-spacer"></div>
+<div>⋮</div>
+
+</div>
+
+## Two laws make repeated sampling well behaved {.concept-slide}
+
+<div class="eyebrow">The big picture</div>
+
+<div class="w5-grid-2">
+<div class="law-card estimate-border fragment fade-up"><div class="law-title">Law of Large Numbers</div><div class="law-question">Where does the estimate go?</div><div class="law-sub">running averages stabilize near the expectation</div></div>
+<div class="law-card probability-border fragment fade-up"><div class="law-title">Central Limit Theorem</div><div class="law-question">How does the estimate vary?</div><div class="law-sub">sample means acquire a predictable shape</div></div>
+</div>
+
+## Law of Large Numbers {.concept-slide}
+
+<div class="eyebrow">Intuition</div>
+
+<div class="definition-box large-definition fragment fade-up">
+As independent observations accumulate, sample averages tend to stabilize near the population expectation.
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">The individual observations remain variable. The running statistic becomes more stable.</div>
+:::
+
+## Try it: LLN for a binary outcome {.exercise-slide}
+
+<div class="try-label">Interactive running proportion</div>
+
+<div class="lln-widget" id="llnBinaryWidget">
+<div class="w5-control-row">
+<label class="w5-control">true probability p<input id="llnBinP" type="range" min="0.05" max="0.95" value="0.30" step="0.05"></label>
+<label class="w5-control">number of trials n<input id="llnBinN" type="range" min="5" max="500" value="200" step="10"></label>
+<div class="w5-output"><span>current p</span><strong id="llnBinPValue">0.30</strong></div>
+</div>
+<svg id="llnBinarySvg" class="w5-wide-svg" viewBox="0 0 760 360" aria-label="Running sample proportion"></svg>
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">The running proportion can jump early, but tends to settle near the true probability.</div>
+:::
+
+## Try it: LLN for continuous measurements {.exercise-slide}
+
+<div class="try-label">Interactive running mean</div>
+
+<div class="lln-widget" id="llnNormalWidget">
+<div class="w5-control-row">
+<label class="w5-control">true mean μ<input id="llnNormMu" type="range" min="8" max="12" value="10" step="0.5"></label>
+<label class="w5-control">number of observations n<input id="llnNormN" type="range" min="5" max="500" value="200" step="10"></label>
+<div class="w5-output"><span>σ fixed</span><strong>2.0</strong></div>
+</div>
+<svg id="llnNormalSvg" class="w5-wide-svg" viewBox="0 0 760 360" aria-label="Running sample mean"></svg>
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">More observations stabilize the mean, not the raw measurements themselves.</div>
+:::
+
+## What LLN does not say {.checkpoint-slide}
+
+<div class="eyebrow">Common misconception</div>
+
+<div class="statement-card fragment fade-up">
+"After enough measurements, individual observations stop being noisy."
+</div>
+
+::: {.fragment .fade-up}
+<div class="warning-box"><strong>False.</strong> Individual observations remain variable. Sample averages become more stable.</div>
+:::
+
+<div class="two-noises fragment fade-up" style="font-size: 1.3em; line-height: 1.3;">
+  <div><span class="observed">$X_i$</span><br>patient-to-patient variation</div>
+  <div><span class="estimate">$\bar X_n$</span><br>estimate-to-estimate variation</div>
+</div>
+
+## Now ask a different question {.concept-slide}
+
+<div class="eyebrow">From LLN to CLT</div>
+
+<div class="question-split">
+<div class="question-card estimate-border fragment fade-up"><div class="question-title">LLN</div><div class="question-text">Where does the average go as observations accumulate?</div></div>
+<div class="question-card probability-border fragment fade-up"><div class="question-title">CLT</div><div class="question-text">What does the distribution of sample averages look like?</div></div>
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line"><strong>Central Limit Theorem:</strong> The population shape can be skewed, discrete or bounded — yet the distribution of sample means often becomes approximately Gaussian.</div>
+:::
+
+## Try it: CLT sampling laboratory {.exercise-slide}
+
+<div class="try-label">Interactive sampling distribution</div>
+
+<div class="clt-widget" id="cltWidget">
+  <div class="w5-control-row clt-controls">
+  <label class="w5-control">
+  source distribution
+  <select id="cltDist">
+  <option value="normal">normal</option>
+  <option value="skew">right-skewed continuous</option>
+  <option value="bernoulli">binary outcome</option>
+  <option value="uniform">uniform</option>
+  </select>
+  </label>
+  <label class="w5-control">
+  sample size n = <strong id="cltNValue">1</strong>
+  <input id="cltN" type="range" min="1" max="80" value="1" step="1">
+  </label>
+  <label class="w5-control">
+  repeated samples k = <strong id="cltKValue">50</strong>
+  <input id="cltK" type="range" min="50" max="800" value="50" step="50">
+  </label>
+  <button id="cltRedraw" class="clt-redraw-button" type="button">
+  Draw new samples
+  </button>
+  </div>
+  <div class="clt-panel-row">
+  <div class="clt-panel">
+  <div class="mini-title">source population</div>
+  <svg id="cltSourceSvg" viewBox="0 0 360 250"></svg>
+  </div>
+  <div class="clt-panel">
+  <div class="mini-title">sampling distribution of means</div>
+  <svg id="cltMeansSvg" viewBox="0 0 360 250"></svg>
+  </div>
+  </div>
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">Change $n$. The means become more bell-shaped and more tightly concentrated.</div>
+:::
+
+## Increase n: two things happen {.concept-slide}
+
+<div class="eyebrow">Shape and width</div>
+
+<div class="w5-grid-2">
+<div class="w5-card probability-border fragment fade-up"><div class="w5-card-title">Shape</div><div class="w5-card-sub">under common conditions, the sampling distribution of $\bar X$ approaches a Normal shape</div></div>
+<div class="w5-card estimate-border fragment fade-up"><div class="w5-card-title">Width</div><div class="w5-card-sub">the distribution becomes narrower as sample size grows</div></div>
+</div>
+
+<div class="definition-box large-definition fragment fade-up">
+$$
+E(\bar X)=\mu,
+\qquad
+SD(\bar X)=\frac{\sigma}{\sqrt n}
+$$
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line"><strong>Standard error</strong> is the standard deviation of the mean estimate.</div>
+:::
+
+<div class="w5-grid-2">
+<div class="w5-card observed-border fragment fade-up"><div class="w5-card-title">Standard deviation</div><div class="w5-card-sub">variation among individual observations</div></div>
+<div class="w5-card estimate-border fragment fade-up"><div class="w5-card-title">Standard error</div><div class="w5-card-sub">variation among estimates across repeated samples</div></div>
+</div>
+
+## The square-root law is expensive {.concept-slide}
+
+<div class="eyebrow">Precision and sample size</div>
+
+<div class="sqrt-law fragment fade-up">
+<div class="sqrt-box">$SE=\sigma/\sqrt n$</div>
+<div class="sqrt-arrow" style="font-size: 0.8em">to halve SE</div>
+<div class="sqrt-box warning">need about $4n$</div>
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">Precision improves with sample size, but not linearly.</div>
+:::
+
+## CLT is powerful, but not magic {.checkpoint-slide}
+
+<div class="eyebrow">Important conditions and caveats</div>
+
+<div class="w5-grid-4">
+<div class="w5-card warning-border fragment fade-up"><div class="w5-card-title">Not raw data</div><div class="w5-card-sub">CLT concerns sums/means, not the distribution of individual observations</div></div>
+<div class="w5-card warning-border fragment fade-up"><div class="w5-card-title">Independence matters</div><div class="w5-card-sub">strong dependence can break simple intuition</div></div>
+<div class="w5-card warning-border fragment fade-up"><div class="w5-card-title">Finite variance</div><div class="w5-card-sub">classical CLT needs well-behaved spread</div></div>
+<div class="w5-card warning-border fragment fade-up"><div class="w5-card-title">Small samples</div><div class="w5-card-sub">very skewed populations may need larger n</div></div>
+</div>
+
+## Why this matters for inference {.concept-slide}
+
+<div class="eyebrow">The payoff</div>
+
+<div class="inference-flow fragment fade-up">
+
+<div class="model">unknown population parameter</div>
+
+<div class="inference-arrow inference-arrow-up">
+<svg viewBox="0 0 80 42" aria-hidden="true">
+<line x1="40" y1="36" x2="40" y2="10"></line>
+<polyline points="31,18 40,9 49,18"></polyline>
+</svg>
+<span>infer</span>
+</div>
+
+<div class="estimate">observed statistic</div>
+
+<div class="inference-arrow inference-arrow-down">
+<svg viewBox="0 0 80 42" aria-hidden="true">
+<line x1="40" y1="6" x2="40" y2="32"></line>
+<polyline points="31,24 40,33 49,24"></polyline>
+</svg>
+<span>understand variability using</span>
+</div>
+
+<div class="probability">sampling distribution</div>
+
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">If we know how an estimator varies across repeated samples, we can quantify uncertainty in our observed estimate.</div>
+:::
+
+## Example: estimating a mean {.concept-slide}
+
+<div class="eyebrow">Dissolution time example</div>
+
+<div class="w5-grid-3">
+<div class="w5-card observed-border fragment fade-up"><div class="w5-card-title">sample</div><div class="w5-card-sub">$n=25$ tablets</div></div>
+<div class="w5-card estimate-border fragment fade-up"><div class="w5-card-title">observed mean</div><div class="w5-card-sub">$\bar x=18.4$ min</div></div>
+<div class="w5-card probability-border fragment fade-up"><div class="w5-card-title">question</div><div class="w5-card-sub">how variable would $\bar X$ be across repeated samples?</div></div>
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">Week 6 turns this idea into confidence intervals and hypothesis tests.</div>
+:::
+
+## What if σ is unknown? {.concept-slide}
+
+<div class="eyebrow">Why Student's t appears</div>
+
+<div class="w5-grid-2">
+<div class="w5-card model-border fragment fade-up"><div class="w5-card-title">Ideal world</div><div class="w5-card-sub" style="font-size: 0.8em">$\sigma$ known, use $\sigma/\sqrt n$</div></div>
+<div class="w5-card warning-border fragment fade-up"><div class="w5-card-title">Real world</div><div class="w5-card-sub" style="font-size: 0.8em">$\sigma$ unknown, estimate it using $s$</div></div>
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">Estimating the denominator adds uncertainty, especially for small samples.</div>
+:::
+
+## Student's t distribution {.math-slide}
+
+<div class="eyebrow">A standardized statistic, not the sample mean itself</div>
+
+<div class="definition-box large-definition fragment fade-up">
+$$
+T=
+\frac{\bar X-\mu}{S/\sqrt n}
+\sim t_{n-1}
+$$
+</div>
+
+::: {.fragment .fade-up}
+<div class="warning-box">The sample mean itself is not Student-$t$. The standardized statistic involving $S$ follows a $t$ distribution under Normal-population assumptions.</div>
+:::
+
+## Try it: Student's t {.exercise-slide}
+
+<div class="try-label">Degrees of freedom</div>
+
+<div class="density-widget" id="tWidget">
+<div class="w5-control-row">
+<label class="w5-control">df ν<input id="tDf" type="range" min="1" max="50" value="5" step="1"></label>
+<div class="w5-output"><span>df</span><strong id="tDfValue">5</strong></div>
+<div class="w5-output"><span>reference</span><strong>Normal</strong></div>
+</div>
+<svg id="tSvg" class="w5-wide-svg" viewBox="0 0 760 300" aria-label="Student t distribution compared to Normal"></svg>
+</div>
+
+## Chi-squared: squared Normal components {.math-slide}
+
+<div class="eyebrow">Where χ² comes from</div>
+
+<div class="definition-box large-definition fragment fade-up">
+$$
+Z_1^2+Z_2^2+\cdots+Z_k^2\sim\chi_k^2
+\qquad
+Z_i\sim N(0,1)
+$$
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">Because variances are built from squared deviations, $\chi^2$ naturally appears when reasoning about spread and fit error.</div>
+:::
+
+## Why χ² matters {.concept-slide}
+
+<div class="eyebrow">Variance estimation</div>
+
+<div class="definition-box large-definition fragment fade-up">
+$$
+\frac{(n-1)S^2}{\sigma^2}
+\sim
+\chi^2_{n-1}
+$$
+</div>
+
+<div class="w5-grid-2">
+<div class="w5-card probability-border fragment fade-up"><div class="w5-card-title">support</div><div class="w5-card-sub">$x\ge0$ because squares cannot be negative</div></div>
+<div class="w5-card probability-border fragment fade-up"><div class="w5-card-title">shape</div><div class="w5-card-sub">right-skewed for low degrees of freedom</div></div>
+</div>
+
+## Try it: chi-squared {.exercise-slide}
+
+<div class="try-label">Degrees of freedom</div>
+
+<div class="density-widget" id="chiWidget">
+<div class="w5-control-row">
+<label class="w5-control">df k<input id="chiDf" type="range" min="1" max="40" value="4" step="1"></label>
+<div class="w5-output"><span>df</span><strong id="chiDfValue">4</strong></div>
+<div class="w5-output support-output"><span>support</span><strong>$x\ge0$</strong></div>
+</div>
+<svg id="chiSvg" class="w5-wide-svg" viewBox="0 0 760 300" aria-label="Chi-squared distribution"></svg>
+</div>
+
+## F distribution: ratio of variances {.math-slide}
+
+<div class="eyebrow">Comparing two sources of variability</div>
+
+<div class="definition-box large-definition fragment fade-up">
+$$
+F=
+\frac{U_1/\nu_1}{U_2/\nu_2},
+\qquad
+U_1\sim\chi^2_{\nu_1},\quad
+U_2\sim\chi^2_{\nu_2}
+$$
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">The $F$ distribution appears when comparing variance-like quantities.</div>
+:::
+
+## Where will F return? {.concept-slide}
+
+<div class="eyebrow">Forward references</div>
+
+<div class="w5-grid-3">
+<div class="w5-card probability-border fragment fade-up"><div class="w5-card-title">variance ratios</div><div class="w5-card-sub">are two populations similarly variable?</div></div>
+<div class="w5-card probability-border fragment fade-up"><div class="w5-card-title">ANOVA</div><div class="w5-card-sub">group differences relative to within-group noise</div></div>
+<div class="w5-card probability-border fragment fade-up"><div class="w5-card-title">regression</div><div class="w5-card-sub">model comparison and explained variability</div></div>
+</div>
+
+## Try it: F distribution {.exercise-slide}
+
+<div class="try-label">Two degrees of freedom</div>
+
+<div class="density-widget" id="fWidget">
+<div class="w5-control-row">
+<label class="w5-control">df₁<input id="fDf1" type="range" min="1" max="30" value="5" step="1"></label>
+<label class="w5-control">df₂<input id="fDf2" type="range" min="1" max="30" value="10" step="1"></label>
+<div class="w5-output"><span>df</span><strong id="fDfValue">5, 10</strong></div>
+</div>
+<svg id="fSvg" class="w5-wide-svg" viewBox="0 0 760 300" aria-label="F distribution"></svg>
+</div>
+
+## Which distribution belongs where? {.exercise-slide}
+
+<div class="try-label">Prediction exercise</div>
+
+<div class="match-grid">
+<div class="match-card fragment fade-up"><div class="match-prompt">$\sigma$ unknown, standardized mean</div><div class="match-answer fragment fade-in">Student's $t$</div></div>
+<div class="match-card fragment fade-up"><div class="match-prompt">variance from Normal data</div><div class="match-answer fragment fade-in">$\chi^2$</div></div>
+<div class="match-card fragment fade-up"><div class="match-prompt">ratio of variance-like quantities</div><div class="match-answer fragment fade-in">$F$</div></div>
+<div class="match-card fragment fade-up"><div class="match-prompt">large-sample mean</div><div class="match-answer fragment fade-in">Normal approximation</div></div>
+</div>
+
+## Prediction: quadruple n {.exercise-slide}
+
+<div class="try-label">Square-root law</div>
+
+<div class="statement-card fragment fade-up">
+If sample size changes from $n$ to $4n$, what happens to
+$$SE=\sigma/\sqrt n?$$
+</div>
+
+::: {.fragment .fade-up}
+<div class="definition-box large-definition">$$SE\rightarrow \frac{SE}{2}$$</div>
+:::
+
+::: {.fragment .fade-up}
+<div class="concept-line">Four times as many observations halves the standard error.</div>
+:::
+
+## Misconception check {.checkpoint-slide}
+
+<div class="eyebrow">CLT does not normalize raw data</div>
+
+<div class="statement-card fragment fade-up">
+"The CLT says all sufficiently large datasets become Normally distributed."
+</div>
+
+::: {.fragment .fade-up}
+<div class="warning-box"><strong>False.</strong> The CLT concerns appropriately standardized sums or means, not necessarily the distribution of the raw observations.</div>
+:::
+
+## One population, many possible samples {.concept-slide}
+
+<div class="eyebrow">The Week 5 synthesis</div>
+
+<div class="sampling-flow-big fragment fade-up">
+
+<div class="model">population</div>
+<div class="flow-arrow">→</div>
+<div class="observed">sample 1</div>
+<div class="flow-arrow">→</div>
+<div class="estimate">statistic 1</div>
+
+<div class="flow-spacer"></div>
+<div class="flow-spacer"></div>
+<div class="observed">sample 2</div>
+<div class="flow-arrow">→</div>
+<div class="estimate">statistic 2</div>
+
+<div class="flow-spacer"></div>
+<div class="flow-spacer"></div>
+<div class="observed">sample 3</div>
+<div class="flow-arrow">→</div>
+<div class="estimate">statistic 3</div>
+
+<div class="flow-spacer"></div>
+<div class="flow-spacer"></div>
+<div class="flow-dots">⋮</div>
+<div class="flow-spacer"></div>
+<div class="flow-dots">⋮</div>
+
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">
+The sample is noisy. The distribution of statistics across samples is the structure we exploit.
+</div>
+:::
+
+## LLN versus CLT {.concept-slide}
+
+<div class="eyebrow">Do not collapse them into one idea</div>
+
+<div class="lln-clt-table fragment fade-up">
+<div class="head"></div><div class="head">LLN</div><div class="head">CLT</div>
+<div>main question</div><div>where does the estimate go?</div><div>how does the estimate vary?</div>
+<div>as n grows</div><div>stabilizes near expectation</div><div>standardized mean tends toward Normality</div>
+<div>key idea</div><div>stability</div><div>sampling distribution</div>
+<div>important quantity</div><div>$\mu$</div><div>$SE=\sigma/\sqrt n$</div>
+</div>
+
+## Bridge to Week 6 {.concept-slide}
+
+<div class="eyebrow">Why this foundation matters</div>
+
+<div class="dik-flow">
+<div class="dik-node data fragment fade-up"><div class="dik-title">Sampling distribution</div><div class="dik-sub">how estimates fluctuate</div></div>
+<div class="dik-arrow fragment fade-in">→</div>
+<div class="dik-node info fragment fade-up"><div class="dik-title">Uncertainty</div><div class="dik-sub">how far an estimate may be from truth</div></div>
+<div class="dik-arrow fragment fade-in">→</div>
+<div class="dik-node know fragment fade-up"><div class="dik-title">Inference</div><div class="dik-sub">confidence intervals and hypothesis tests</div></div>
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">Next week, sampling variability becomes statistical decision-making.</div>
+:::
+
+<script>
+(function () {
+
+/* =========================================================
+   GLOBAL HELPERS
+   ========================================================= */
+
+let cltSeed = 0;
+
+function clamp(x, a, b) {
+  return Math.max(a, Math.min(b, x));
+}
+
+function mulberry32(seed) {
+  return function () {
+    let t = seed += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+function randn(rng) {
+  let u = 0;
+  let v = 0;
+
+  while (u === 0) u = rng();
+  while (v === 0) v = rng();
+
+  return Math.sqrt(-2 * Math.log(u)) *
+    Math.cos(2 * Math.PI * v);
+}
+
+function normPdf(x, mu = 0, sigma = 1) {
+  const z = (x - mu) / sigma;
+
+  return Math.exp(-0.5 * z * z) /
+    (sigma * Math.sqrt(2 * Math.PI));
+}
+
+function logGamma(z) {
+
+  const g = 7;
+
+  const p = [
+    0.99999999999980993,
+    676.5203681218851,
+    -1259.1392167224028,
+    771.32342877765313,
+    -176.61502916214059,
+    12.507343278686905,
+    -0.13857109526572012,
+    9.9843695780195716e-6,
+    1.5056327351493116e-7
+  ];
+
+  if (z < 0.5) {
+    return Math.log(Math.PI) -
+      Math.log(Math.sin(Math.PI * z)) -
+      logGamma(1 - z);
+  }
+
+  z -= 1;
+
+  let x = p[0];
+
+  for (let i = 1; i < p.length; i++) {
+    x += p[i] / (z + i);
+  }
+
+  const t = z + g + 0.5;
+
+  return (
+    0.5 * Math.log(2 * Math.PI) +
+    (z + 0.5) * Math.log(t) -
+    t +
+    Math.log(x)
+  );
+}
+
+function tPdf(x, nu) {
+
+  const a =
+    logGamma((nu + 1) / 2) -
+    logGamma(nu / 2) -
+    0.5 * Math.log(nu * Math.PI);
+
+  return Math.exp(
+    a -
+    ((nu + 1) / 2) *
+    Math.log(1 + x * x / nu)
+  );
+}
+
+function chiPdf(x, k) {
+
+  if (x <= 0) return 0;
+
+  return Math.exp(
+    (k / 2 - 1) * Math.log(x) -
+    x / 2 -
+    (k / 2) * Math.log(2) -
+    logGamma(k / 2)
+  );
+}
+
+function fPdf(x, d1, d2) {
+
+  if (x <= 0) return 0;
+
+  const a = d1 / 2;
+  const b = d2 / 2;
+
+  return Math.exp(
+    a * Math.log(d1 / d2) +
+    (a - 1) * Math.log(x) -
+    logGamma(a) -
+    logGamma(b) +
+    logGamma(a + b) -
+    (a + b) *
+    Math.log(1 + (d1 / d2) * x)
+  );
+}
+
+
+/* =========================================================
+   GENERAL SVG HELPERS
+   ========================================================= */
+
+function axisSvg(x1, y1, x2, y2, cls = "w5-axis") {
+
+  return `
+    <line
+      x1="${x1}"
+      y1="${y1}"
+      x2="${x2}"
+      y2="${y2}"
+      class="${cls}">
+    </line>
+  `;
+}
+
+function polyline(points, cls) {
+
+  const d = points
+    .map((p, i) =>
+      `${i ? "L" : "M"} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`
+    )
+    .join(" ");
+
+  return `
+    <path
+      d="${d}"
+      class="${cls}">
+    </path>
+  `;
+}
+
+
+/* =========================================================
+   STATIC CLOUDS
+   ========================================================= */
+
+function setPopulationDots(id, n, seed) {
+
+  const el = document.getElementById(id);
+
+  if (!el) return;
+
+  const rng = mulberry32(seed);
+
+  let html = "";
+
+  for (let i = 0; i < n; i++) {
+
+    const x = 5 + rng() * 90;
+    const y = 8 + rng() * 78;
+
+    const pick = i < n * 0.18;
+
+    html += `
+      <span
+        class="${pick ? "sampled" : ""}"
+        style="
+          left:${x.toFixed(1)}%;
+          top:${y.toFixed(1)}%;
+        ">
+      </span>
+    `;
+  }
+
+  el.innerHTML = html;
+}
+
+function drawStaticClouds() {
+
+  setPopulationDots("popCloudStatic", 80, 10);
+  setPopulationDots("sampleCloudStatic", 22, 11);
+  setPopulationDots("bigPopulation", 160, 12);
+
+  setPopulationDots("repeatA", 24, 20);
+  setPopulationDots("repeatB", 24, 21);
+  setPopulationDots("repeatC", 24, 22);
+}
+
+
+/* =========================================================
+   LLN
+   ========================================================= */
+
+function drawLinePlot(
+  svgId,
+  values,
+  trueVal,
+  yMin,
+  yMax,
+  labelTrue,
+  maxN = 500
+) {
+
+  const svg = document.getElementById(svgId);
+
+  if (!svg || !values.length) return;
+
+  const left = 58;
+  const right = 730;
+  const top = 28;
+  const base = 305;
+
+  const mapX = n =>
+    left +
+    ((n - 1) / (maxN - 1)) *
+    (right - left);
+
+  const mapY = y =>
+    base -
+    ((y - yMin) / (yMax - yMin)) *
+    (base - top);
+
+
+  const pts = values.map((v, i) => [
+    mapX(i + 1),
+    mapY(v)
+  ]);
+
+
+  const trueY = mapY(trueVal);
+
+  const currentN = values.length;
+  const currentX = mapX(currentN);
+  const currentY = mapY(values[currentN - 1]);
+
+
+  const xTicks = [
+    1,
+    100,
+    200,
+    300,
+    400,
+    500
+  ];
+
+  let ticks = "";
+
+  xTicks.forEach(n => {
+
+    const x = mapX(n);
+
+    ticks += `
+      <line
+        x1="${x}"
+        y1="${base}"
+        x2="${x}"
+        y2="${base + 7}"
+        class="w5-axis">
+      </line>
+
+      <text
+        x="${x}"
+        y="${base + 25}"
+        text-anchor="middle"
+        class="w5-label">
+        ${n}
+      </text>
+    `;
+  });
+
+
+  svg.innerHTML = `
+
+    ${axisSvg(left, base, right, base)}
+    ${axisSvg(left, top, left, base)}
+
+    ${ticks}
+
+    <line
+      x1="${left}"
+      y1="${trueY}"
+      x2="${right}"
+      y2="${trueY}"
+      class="true-line">
+    </line>
+
+    <text
+      x="${right - 5}"
+      y="${trueY - 9}"
+      text-anchor="end"
+      class="w5-label">
+      ${labelTrue}
+    </text>
+
+    <line
+      x1="${currentX}"
+      y1="${top}"
+      x2="${currentX}"
+      y2="${base}"
+      class="current-n-line">
+    </line>
+
+    ${polyline(pts, "run-line")}
+
+    <circle
+      cx="${currentX}"
+      cy="${currentY}"
+      r="5.5"
+      class="current-n-dot">
+    </circle>
+
+    <text
+      x="${currentX}"
+      y="${top + 16}"
+      text-anchor="${currentN > 430 ? "end" : "start"}"
+      class="w5-label">
+      n = ${currentN}
+    </text>
+  `;
+}
+
+
+function renderLLNBinary() {
+
+  const p =
+    Number(
+      document.getElementById("llnBinP")?.value || 0.30
+    );
+
+  const n =
+    Number(
+      document.getElementById("llnBinN")?.value || 200
+    );
+
+  const output =
+    document.getElementById("llnBinPValue");
+
+  if (output) {
+    output.textContent = p.toFixed(2);
+  }
+
+
+  const rng =
+    mulberry32(
+      3000 +
+      Math.round(p * 100)
+    );
+
+
+  let sum = 0;
+
+  const values = [];
+
+  for (let i = 1; i <= n; i++) {
+
+    sum += rng() < p ? 1 : 0;
+
+    values.push(
+      sum / i
+    );
+  }
+
+
+  drawLinePlot(
+    "llnBinarySvg",
+    values,
+    p,
+    0,
+    1,
+    `true p = ${p.toFixed(2)}`,
+    500
+  );
+}
+
+
+function renderLLNNormal() {
+
+  const mu =
+    Number(
+      document.getElementById("llnNormMu")?.value || 10
+    );
+
+  const n =
+    Number(
+      document.getElementById("llnNormN")?.value || 200
+    );
+
+
+  const rng =
+    mulberry32(
+      4000 +
+      Math.round(mu * 10)
+    );
+
+
+  let sum = 0;
+
+  const values = [];
+
+  for (let i = 1; i <= n; i++) {
+
+    const observation =
+      mu +
+      2 * randn(rng);
+
+    sum += observation;
+
+    values.push(
+      sum / i
+    );
+  }
+
+
+  drawLinePlot(
+    "llnNormalSvg",
+    values,
+    mu,
+    mu - 3.5,
+    mu + 3.5,
+    `true μ = ${mu.toFixed(1)}`,
+    500
+  );
+}
+
+
+/* =========================================================
+   CLT SOURCE DISTRIBUTIONS
+   ========================================================= */
+
+function sampleFrom(dist, rng) {
+
+  if (dist === "normal") {
+    return randn(rng);
+  }
+
+  if (dist === "skew") {
+    return -Math.log(
+      Math.max(
+        1e-12,
+        1 - rng()
+      )
+    );
+  }
+
+  if (dist === "bernoulli") {
+    return rng() < 0.25 ? 1 : 0;
+  }
+
+  if (dist === "uniform") {
+    return rng();
+  }
+
+  return 0;
+}
+
+
+function distPdf(dist, x) {
+
+  if (dist === "normal") {
+    return normPdf(x);
+  }
+
+  if (dist === "skew") {
+    return x >= 0
+      ? Math.exp(-x)
+      : 0;
+  }
+
+  if (dist === "uniform") {
+    return (
+      x >= 0 &&
+      x <= 1
+    )
+      ? 1
+      : 0;
+  }
+
+  return 0;
+}
+
+
+function distSupport(dist) {
+
+  if (dist === "normal") {
+    return [-4, 4];
+  }
+
+  if (dist === "skew") {
+    return [0, 6];
+  }
+
+  if (dist === "uniform") {
+    return [0, 1];
+  }
+
+  return [0, 1];
+}
+
+
+function distMean(dist) {
+
+  if (dist === "normal") {
+    return 0;
+  }
+
+  if (dist === "skew") {
+    return 1;
+  }
+
+  if (dist === "bernoulli") {
+    return 0.25;
+  }
+
+  if (dist === "uniform") {
+    return 0.5;
+  }
+
+  return 0;
+}
+
+
+/* =========================================================
+   CLT SOURCE PLOT
+   ========================================================= */
+
+function drawCltSource(svgId, dist) {
+
+  const svg =
+    document.getElementById(svgId);
+
+  if (!svg) return;
+
+
+  const left = 36;
+  const right = 332;
+  const top = 25;
+  const base = 210;
+
+
+  let html =
+    axisSvg(left, base, right, base) +
+    axisSvg(left, top, left, base);
+
+
+  /* Bernoulli: discrete PMF */
+
+  if (dist === "bernoulli") {
+
+    const probabilities = [
+      0.75,
+      0.25
+    ];
+
+    const xs = [
+      0,
+      1
+    ];
+
+    const yMax = 0.8;
+
+
+    xs.forEach((x, i) => {
+
+      const px =
+        left +
+        x * (right - left);
+
+      const py =
+        base -
+        (probabilities[i] / yMax) *
+        (base - top);
+
+
+      html += `
+        <line
+          x1="${px}"
+          y1="${base}"
+          x2="${px}"
+          y2="${py}"
+          class="source-stem">
+        </line>
+
+        <circle
+          cx="${px}"
+          cy="${py}"
+          r="6"
+          class="source-dot">
+        </circle>
+
+        <text
+          x="${px}"
+          y="232"
+          text-anchor="middle"
+          class="w5-label">
+          ${x}
+        </text>
+      `;
+    });
+
+
+    svg.innerHTML = html;
+
+    return;
+  }
+
+
+  const support =
+    distSupport(dist);
+
+
+  const yMax =
+    dist === "normal"
+      ? 0.46
+      : dist === "uniform"
+      ? 1.20
+      : 1.05;
+
+
+  const points = [];
+
+
+  for (let i = 0; i <= 180; i++) {
+
+    const x =
+      support[0] +
+      (i / 180) *
+      (support[1] - support[0]);
+
+
+    const px =
+      left +
+      ((x - support[0]) /
+      (support[1] - support[0])) *
+      (right - left);
+
+
+    const py =
+      base -
+      (distPdf(dist, x) / yMax) *
+      (base - top);
+
+
+    points.push([
+      px,
+      py
+    ]);
+  }
+
+
+  html +=
+    polyline(
+      points,
+      "source-path"
+    );
+
+
+  svg.innerHTML = html;
+}
+
+
+/* =========================================================
+   CLT SAMPLING HISTOGRAM
+   ========================================================= */
+
+function drawCltHistogram(
+  svgId,
+  values,
+  expectedValue
+) {
+
+  const svg =
+    document.getElementById(svgId);
+
+  if (!svg || !values.length) return;
+
+
+  const left = 40;
+  const right = 332;
+  const top = 25;
+  const base = 210;
+
+
+  let min =
+    Math.min(...values);
+
+  let max =
+    Math.max(...values);
+
+
+  min =
+    Math.min(
+      min,
+      expectedValue
+    );
+
+  max =
+    Math.max(
+      max,
+      expectedValue
+    );
+
+
+  let range =
+    max - min;
+
+
+  if (range < 1e-8) {
+    range = 1;
+  }
+
+
+  const pad =
+    range * 0.10;
+
+
+  const x0 =
+    min - pad;
+
+  const x1 =
+    max + pad;
+
+
+  const bins = 18;
+
+  const counts =
+    Array(bins).fill(0);
+
+
+  values.forEach(v => {
+
+    let bin =
+      Math.floor(
+        ((v - x0) /
+        (x1 - x0)) *
+        bins
+      );
+
+
+    bin =
+      clamp(
+        bin,
+        0,
+        bins - 1
+      );
+
+
+    counts[bin]++;
+  });
+
+
+  const countMax =
+    Math.max(
+      ...counts,
+      1
+    );
+
+
+  const mapX = x =>
+    left +
+    ((x - x0) /
+    (x1 - x0)) *
+    (right - left);
+
+
+  let html =
+    axisSvg(left, base, right, base) +
+    axisSvg(left, top, left, base);
+
+
+  for (let i = 0; i < bins; i++) {
+
+    const x =
+      left +
+      (i / bins) *
+      (right - left);
+
+
+    const width =
+      (right - left) /
+      bins -
+      1;
+
+
+    const height =
+      (counts[i] / countMax) *
+      (base - top);
+
+
+    html += `
+      <rect
+        x="${x}"
+        y="${base - height}"
+        width="${width}"
+        height="${height}"
+        class="hist-bar">
+      </rect>
+    `;
+  }
+
+
+  /* theoretical population expectation */
+
+  const meanX =
+    mapX(expectedValue);
+
+
+  html += `
+    <line
+      x1="${meanX}"
+      y1="${top}"
+      x2="${meanX}"
+      y2="${base}"
+      stroke="#c65d09"
+      stroke-width="2.6"
+      stroke-dasharray="7 5">
+    </line>
+
+    <text
+      x="${meanX + 6}"
+      y="${top + 14}"
+      fill="#c65d09"
+      font-size="11"
+      font-weight="850">
+      E(X)
+    </text>
+  `;
+
+
+  svg.innerHTML = html;
+}
+
+
+/* =========================================================
+   CLT MAIN RENDERER
+   ========================================================= */
+
+function renderCLT() {
+
+  const distElement =
+    document.getElementById("cltDist");
+
+  const nElement =
+    document.getElementById("cltN");
+
+  const kElement =
+    document.getElementById("cltK");
+
+
+  if (
+    !distElement ||
+    !nElement ||
+    !kElement
+  ) {
+    return;
+  }
+
+
+  const dist =
+    distElement.value;
+
+  const n =
+    Number(nElement.value);
+
+  const k =
+    Number(kElement.value);
+
+
+  /* live labels */
+
+  const nLabel =
+    document.getElementById(
+      "cltNValue"
+    );
+
+  const kLabel =
+    document.getElementById(
+      "cltKValue"
+    );
+
+
+  if (nLabel) {
+    nLabel.textContent = n;
+  }
+
+  if (kLabel) {
+    kLabel.textContent = k;
+  }
+
+
+  /*
+   * Seed changes only when button is clicked.
+   */
+
+  const distOffset =
+    dist === "normal"
+      ? 0
+      : dist === "skew"
+      ? 100
+      : dist === "uniform"
+      ? 200
+      : 300;
+
+
+  const rng =
+    mulberry32(
+      5000 +
+      distOffset +
+      cltSeed * 1009
+    );
+
+
+  const means = [];
+
+
+  for (let j = 0; j < k; j++) {
+
+    let sum = 0;
+
+
+    for (let i = 0; i < n; i++) {
+
+      sum +=
+        sampleFrom(
+          dist,
+          rng
+        );
+    }
+
+
+    means.push(
+      sum / n
+    );
+  }
+
+
+  drawCltSource(
+    "cltSourceSvg",
+    dist
+  );
+
+
+  drawCltHistogram(
+    "cltMeansSvg",
+    means,
+    distMean(dist)
+  );
+}
+
+
+/* =========================================================
+   t / CHI-SQUARED / F
+   ========================================================= */
+
+function drawDensity(
+  svgId,
+  fn,
+  xMin,
+  xMax,
+  opts = {}
+) {
+
+  const svg =
+    document.getElementById(svgId);
+
+  if (!svg) return;
+
+
+  const left = 48;
+  const right = 730;
+  const top = 22;
+  const base = 255;
+
+
+  const xs = [];
+
+  let yMax = 0;
+
+
+  for (let i = 0; i <= 320; i++) {
+
+    const x =
+      xMin +
+      (i / 320) *
+      (xMax - xMin);
+
+
+    const y =
+      fn(x);
+
+
+    if (Number.isFinite(y)) {
+
+      xs.push([
+        x,
+        y
+      ]);
+
+      yMax =
+        Math.max(
+          yMax,
+          y
+        );
+    }
+
+
+    if (opts.reference) {
+
+      const yr =
+        opts.reference(x);
+
+      if (Number.isFinite(yr)) {
+
+        yMax =
+          Math.max(
+            yMax,
+            yr
+          );
+      }
+    }
+  }
+
+
+  yMax =
+    (opts.yMax || yMax) *
+    1.14;
+
+
+  const mapX = x =>
+    left +
+    ((x - xMin) /
+    (xMax - xMin)) *
+    (right - left);
+
+
+  const mapY = y =>
+    base -
+    (y / yMax) *
+    (base - top);
+
+
+  let html =
+    axisSvg(left, base, right, base) +
+    axisSvg(left, top, left, base);
+
+
+  if (opts.reference) {
+
+    const referencePoints = [];
+
+
+    for (let i = 0; i <= 320; i++) {
+
+      const x =
+        xMin +
+        (i / 320) *
+        (xMax - xMin);
+
+
+      referencePoints.push([
+        mapX(x),
+        mapY(
+          opts.reference(x)
+        )
+      ]);
+    }
+
+
+    html +=
+      polyline(
+        referencePoints,
+        "density-ref"
+      );
+  }
+
+
+  const points =
+    xs.map(([x, y]) => [
+      mapX(x),
+      mapY(y)
+    ]);
+
+
+  html +=
+    polyline(
+      points,
+      "density-path"
+    );
+
+
+  svg.innerHTML = html;
+}
+
+
+function renderT() {
+
+  const nu =
+    Number(
+      document.getElementById("tDf")?.value || 5
+    );
+
+  const output =
+    document.getElementById("tDfValue");
+
+  if (output) {
+    output.textContent = nu;
+  }
+
+
+  drawDensity(
+    "tSvg",
+    x => tPdf(x, nu),
+    -5,
+    5,
+    {
+      reference:
+        x => normPdf(x)
+    }
+  );
+}
+
+
+function renderChi() {
+
+  const k =
+    Number(
+      document.getElementById("chiDf")?.value || 4
+    );
+
+  const output =
+    document.getElementById("chiDfValue");
+
+  if (output) {
+    output.textContent = k;
+  }
+
+
+  const xmax =
+    Math.max(
+      8,
+      k +
+      5 * Math.sqrt(2 * k)
+    );
+
+
+  drawDensity(
+    "chiSvg",
+    x => chiPdf(x, k),
+    0,
+    xmax
+  );
+}
+
+
+function renderF() {
+
+  const d1 =
+    Number(
+      document.getElementById("fDf1")?.value || 5
+    );
+
+  const d2 =
+    Number(
+      document.getElementById("fDf2")?.value || 10
+    );
+
+
+  const output =
+    document.getElementById("fDfValue");
+
+
+  if (output) {
+    output.textContent =
+      `${d1}, ${d2}`;
+  }
+
+
+  drawDensity(
+    "fSvg",
+    x => fPdf(x, d1, d2),
+    0,
+    5
+  );
+}
+
+
+/* =========================================================
+   INITIALIZATION
+   ========================================================= */
+
+function bindInputOnce(
+  id,
+  event,
+  fn
+) {
+
+  const el =
+    document.getElementById(id);
+
+  if (!el) return;
+
+
+  const key =
+    `bound${event}`;
+
+
+  if (el.dataset[key] === "true") {
+    return;
+  }
+
+
+  el.dataset[key] = "true";
+
+  el.addEventListener(
+    event,
+    fn
+  );
+}
+
+
+function initWeek05() {
+
+  drawStaticClouds();
+
+  renderLLNBinary();
+  renderLLNNormal();
+
+  renderCLT();
+
+  renderT();
+  renderChi();
+  renderF();
+
+
+  bindInputOnce(
+    "llnBinP",
+    "input",
+    renderLLNBinary
+  );
+
+  bindInputOnce(
+    "llnBinN",
+    "input",
+    renderLLNBinary
+  );
+
+  bindInputOnce(
+    "llnNormMu",
+    "input",
+    renderLLNNormal
+  );
+
+  bindInputOnce(
+    "llnNormN",
+    "input",
+    renderLLNNormal
+  );
+
+
+  bindInputOnce(
+    "cltDist",
+    "change",
+    renderCLT
+  );
+
+  bindInputOnce(
+    "cltN",
+    "input",
+    renderCLT
+  );
+
+  bindInputOnce(
+    "cltK",
+    "input",
+    renderCLT
+  );
+
+
+  const redrawButton =
+    document.getElementById(
+      "cltRedraw"
+    );
+
+
+  if (
+    redrawButton &&
+    redrawButton.dataset.boundClick !== "true"
+  ) {
+
+    redrawButton.dataset.boundClick =
+      "true";
+
+
+    redrawButton.addEventListener(
+      "click",
+      function () {
+
+        cltSeed++;
+
+        renderCLT();
+      }
+    );
+  }
+
+
+  bindInputOnce(
+    "tDf",
+    "input",
+    renderT
+  );
+
+  bindInputOnce(
+    "chiDf",
+    "input",
+    renderChi
+  );
+
+  bindInputOnce(
+    "fDf1",
+    "input",
+    renderF
+  );
+
+  bindInputOnce(
+    "fDf2",
+    "input",
+    renderF
+  );
+}
+
+
+/* run now */
+initWeek05();
+
+
+/* run once DOM definitely exists */
+document.addEventListener(
+  "DOMContentLoaded",
+  initWeek05
+);
+
+window.addEventListener(
+  "load",
+  initWeek05
+);
+
+
+/* RevealJS */
+if (
+  window.Reveal &&
+  typeof window.Reveal.on === "function"
+) {
+
+  window.Reveal.on(
+    "ready",
+    initWeek05
+  );
+
+  window.Reveal.on(
+    "slidechanged",
+    initWeek05
+  );
+}
+
+})();
+</script>

@@ -1,0 +1,648 @@
+/*-- scss:defaults --*/
+
+// -----------------------------------------------------------------------------
+// Statistics 101 — semantic visual grammar
+// Color encodes meaning. Slide class encodes pedagogical activity.
+// -----------------------------------------------------------------------------
+
+$observed:    #1f6feb; // observed data / sample
+$model:       #c65d09; // population / model / unknown truth
+$estimate:    #18864b; // estimate / result / effect
+$warning:     #c93838; // warning / misconception / error
+$uncertainty: #7b4ab5; // probability / uncertainty
+
+$ink:         #182230;
+$muted:       #667085;
+$paper:       #fbfcfe;
+$panel:       #f3f6fa;
+$line:        #d9e1ea;
+$navy:        #101828;
+
+$body-bg: $paper;
+$body-color: $ink;
+$link-color: $observed;
+$selection-bg: rgba($uncertainty, 0.18);
+
+$font-family-sans-serif: "Aptos", "Segoe UI", Helvetica, Arial, sans-serif;
+$presentation-heading-font: "Aptos Display", "Aptos", "Segoe UI", Helvetica, Arial, sans-serif;
+$presentation-heading-color: $navy;
+$presentation-heading-font-weight: 650;
+$presentation-h1-text-shadow: none;
+$presentation-heading-text-shadow: none;
+$presentation-title-slide-text-align: left;
+$presentation-slide-text-align: left;
+
+$presentation-font-size-root: 38px;
+$presentation-h1-font-size: 2.45em;
+$presentation-h2-font-size: 1.48em;
+$presentation-h3-font-size: 1.05em;
+$presentation-block-margin: 14px;
+$border-radius: 12px;
+$code-block-font-size: 0.52em;
+
+/*-- scss:rules --*/
+
+:root {
+  --observed: #{$observed};
+  --model: #{$model};
+  --estimate: #{$estimate};
+  --warning: #{$warning};
+  --uncertainty: #{$uncertainty};
+  --ink: #{$ink};
+  --muted: #{$muted};
+  --paper: #{$paper};
+  --panel: #{$panel};
+  --line: #{$line};
+  --navy: #{$navy};
+}
+
+/* ---- Global slide geometry ------------------------------------------------ */
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  box-sizing: border-box;
+}
+
+.reveal .slide h2 {
+  margin-bottom: 0.55em;
+  letter-spacing: -0.025em;
+}
+
+.reveal .slide p,
+.reveal .slide li {
+  line-height: 1.28;
+}
+
+.reveal .slide strong {
+  font-weight: 700;
+}
+
+.reveal .slide em {
+  color: #344054;
+}
+
+.reveal .slide .slide-number-a11y {
+  display: none;
+}
+
+/* Smaller, quieter footer. */
+.reveal .footer {
+  font-size: 0.34em !important;
+  color: #98a2b3 !important;
+  letter-spacing: 0.01em;
+}
+
+/* Section change. */
+.reveal .slides section.section-break {
+  background: linear-gradient(135deg, #101828 0%, #231544 100%);
+  color: #ffffff;
+  padding: 1.35em 1.25em;
+  border-radius: 22px;
+}
+
+.reveal .slides section.section-break h2 { display: none; }
+
+.section-kicker {
+  font-size: 0.55em;
+  color: rgba(255,255,255,.65);
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-weight: 800;
+}
+
+.section-title {
+  margin-top: .55em;
+  font-size: 2.05em;
+  line-height: .98;
+  max-width: 12em;
+  font-weight: 780;
+  letter-spacing: -.045em;
+}
+
+.section-subtitle {
+  margin-top: .75em;
+  font-size: .72em;
+  color: rgba(255,255,255,.72);
+}
+
+/* ---- Title slide ---------------------------------------------------------- */
+
+.reveal #title-slide {
+  color: #ffffff;
+  background: $navy;
+  padding: 1.2em 1.3em;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.reveal #title-slide::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 13px;
+  background: linear-gradient(
+    90deg,
+    $observed 0% 20%,
+    $model 20% 40%,
+    $estimate 40% 60%,
+    $warning 60% 80%,
+    $uncertainty 80% 100%
+  );
+}
+
+.reveal #title-slide .title {
+  color: #ffffff;
+  font-size: 2.65em;
+  max-width: 11ch;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  margin-top: 0.9em;
+}
+
+.reveal #title-slide .subtitle {
+  color: #d0d5dd;
+  font-size: 1.02em;
+  margin-top: 0.8em;
+  max-width: 26em;
+}
+
+.reveal #title-slide .author,
+.reveal #title-slide .date {
+  color: #98a2b3;
+  font-size: 0.58em;
+}
+
+/* ---- Semantic text helpers ----------------------------------------------- */
+
+.observed, .observed strong { color: $observed !important; }
+.model, .model strong { color: $model !important; }
+.estimate, .estimate strong { color: $estimate !important; }
+.warning, .warning strong { color: $warning !important; }
+.probability, .probability strong { color: $uncertainty !important; }
+.muted { color: $muted !important; }
+
+.observed-border { border-top: 7px solid $observed !important; }
+.model-border { border-top: 7px solid $model !important; }
+.estimate-border { border-top: 7px solid $estimate !important; }
+.warning-border { border-top: 7px solid $warning !important; }
+.probability-border { border-top: 7px solid $uncertainty !important; }
+
+/* ---- Pedagogical slide types --------------------------------------------- */
+
+.reveal .slides section.motivation-slide h2,
+.reveal .slides section.question-slide h2 {
+  font-size: 1.8em;
+  max-width: 15ch;
+}
+
+.reveal .slides section.concept-slide .concept-line {
+  margin-top: 0.8em;
+  padding-left: 0.8em;
+  border-left: 7px solid $uncertainty;
+  font-size: 1.04em;
+  font-style: italic;
+  color: #344054;
+}
+
+.reveal .slides section.math-slide {
+  background: linear-gradient(135deg, #fbfcfe 0%, #f5f7fb 100%);
+}
+
+.reveal .slides section.example-slide .example-box,
+.reveal .slides section.case-slide .example-box {
+  background: #ffffff;
+  border: 1px solid $line;
+  border-radius: 18px;
+  padding: 0.72em 0.88em;
+  box-shadow: 0 10px 28px rgba(16, 24, 40, 0.06);
+}
+
+.reveal .slides section.checkpoint-slide {
+  background: #fffdf8;
+}
+
+.reveal .slides section.exercise-slide {
+  background: #faf8ff;
+}
+
+/* ---- Reusable components -------------------------------------------------- */
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 0.45em;
+  font-size: 0.42em;
+  font-weight: 760;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: $muted;
+}
+
+.big-question {
+  font-size: 1.65em;
+  line-height: 1.08;
+  font-weight: 720;
+  letter-spacing: -0.035em;
+  color: $navy;
+}
+
+.kicker {
+  font-size: 0.7em;
+  color: $muted;
+  max-width: 34em;
+}
+
+.takeaway {
+  margin-top: 0.65em;
+  font-size: 0.92em;
+  font-style: italic;
+  color: #344054;
+}
+
+.example-label,
+.case-label,
+.try-label,
+.warning-label {
+  display: inline-block;
+  margin-bottom: 0.45em;
+  padding: 0.2em 0.55em;
+  border-radius: 999px;
+  font-size: 0.38em;
+  font-weight: 780;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------
+   Definition box
+   --------------------------------------------------------- */
+
+.definition-box {
+  background: rgba($uncertainty, .06);
+  border: 1px solid rgba($uncertainty, .24);
+  border-left: 5px solid $uncertainty;
+  border-radius: 16px;
+  padding: .45em .6em;
+  margin: .4em 0;
+  color: $ink;
+  box-sizing: border-box;
+}
+
+.definition-box strong {
+  color: $uncertainty;
+  font-weight: 850;
+}
+
+.definition-box p {
+  margin: 0;
+}
+
+.definition-box p + p {
+  margin-top: .35em;
+}
+
+.definition-box .definition-title {
+  color: $uncertainty;
+  font-size: .62em;
+  font-weight: 850;
+  letter-spacing: .02em;
+  margin-bottom: .18em;
+}
+
+.large-definition { font-size:1.05em; }
+
+/* ---------------------------------------------------------
+   Warning box
+   --------------------------------------------------------- */
+
+.warning-box {
+  background: rgba($warning, .07);
+  border: 1px solid rgba($warning, .28);
+  border-left: 5px solid $warning;
+  border-radius: 16px;
+  padding: .45em .6em;
+  margin: .4em 0;
+  color: $ink;
+  box-sizing: border-box;
+}
+
+.warning-box strong {
+  color: $warning;
+  font-weight: 850;
+}
+
+.warning-box p {
+  margin: 0;
+}
+
+.warning-box p + p {
+  margin-top: .35em;
+}
+
+.example-label,
+.case-label {
+  color: $observed;
+  background: rgba($observed, 0.10);
+}
+
+.try-label {
+  color: $uncertainty;
+  background: rgba($uncertainty, 0.10);
+}
+
+.warning-label {
+  color: $warning;
+  background: rgba($warning, 0.10);
+}
+
+.example-box {
+  background: #ffffff;
+  border: 1px solid $line;
+  border-radius: 18px;
+  padding: 0.72em 0.88em;
+}
+
+.concept-line {
+  font-style: italic;
+  color: #344054;
+}
+
+/* Two large comparison cards. */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55em;
+  margin-top: 0.65em;
+}
+
+.metric-card {
+  background: #ffffff;
+  border: 1px solid $line;
+  border-radius: 18px;
+  padding: 0.62em 0.72em;
+  box-shadow: 0 8px 22px rgba(16, 24, 40, 0.055);
+}
+
+.metric-card .metric-label {
+  font-size: 0.48em;
+  color: $muted;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 730;
+}
+
+.metric-card .metric-value {
+  font-size: 1.65em;
+  line-height: 1;
+  margin-top: 0.12em;
+  font-weight: 760;
+  letter-spacing: -0.04em;
+}
+
+.metric-card.observed-card {
+  border-top: 7px solid $observed;
+}
+
+.metric-card.model-card {
+  border-top: 7px solid $model;
+}
+
+/* Decision / learning flow. */
+.flow-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.26em;
+  margin-top: 0.75em;
+}
+
+.flow-node {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9em;
+  padding: 0.35em 0.42em;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid $line;
+  text-align: center;
+  font-size: 0.62em;
+  font-weight: 690;
+  box-shadow: 0 7px 18px rgba(16, 24, 40, 0.045);
+}
+
+.flow-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #98a2b3;
+  font-size: 0.8em;
+  font-weight: 700;
+}
+
+/* Historical mini-timeline. */
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.3em;
+  margin-top: 0.85em;
+}
+
+.timeline-step {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid $line;
+  border-radius: 16px;
+  padding: 0.5em 0.45em;
+  min-height: 4.2em;
+}
+
+.timeline-step .number {
+  font-size: 0.42em;
+  font-weight: 780;
+  color: $uncertainty;
+}
+
+.timeline-step .label {
+  margin-top: 0.45em;
+  font-size: 0.55em;
+  line-height: 1.16;
+  font-weight: 690;
+}
+
+/* ---- 3-Photo Centered Card Layout ----------------------------------------- */
+.timeline2 {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1em;
+  max-width: 900px;
+  margin: 1em auto 0;
+}
+
+.timeline2-step {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid $line;
+  border-radius: 18px;
+  padding: 0.6em;
+  box-shadow: 0 8px 22px rgba(16, 24, 40, 0.055);
+  box-sizing: border-box;
+
+  .label {
+    font-size: 0.58em;
+    font-weight: 780;
+    color: $navy;
+    text-align: center;
+    margin-bottom: 0.5em;
+  }
+
+  /* Image scaling & uniform cropping */
+  img.step-image,
+  img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 10px;
+    display: block;
+  }
+}
+
+/* Everyday-life cards. */
+.life-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45em;
+  margin-top: 0.45em;
+}
+
+.life-card {
+  background: #ffffff;
+  border: 1px solid $line;
+  border-radius: 18px;
+  padding: 0.48em 0.58em;
+  min-height: 3.05em;
+}
+
+.life-card .life-title {
+  font-weight: 760;
+  font-size: 0.62em;
+  color: $navy;
+}
+
+.life-card .life-question {
+  margin-top: 0.22em;
+  font-size: 0.55em;
+  color: $muted;
+}
+
+/* Case-study equation. */
+.case-equation {
+  margin: 0.55em auto;
+  padding: 0.42em 0.58em;
+  max-width: 24em;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid $line;
+  text-align: center;
+  font-size: 0.88em;
+}
+
+.assumption-chip {
+  display: inline-block;
+  margin-top: 0.42em;
+  padding: 0.28em 0.6em;
+  border: 1px solid rgba($warning, 0.35);
+  border-radius: 999px;
+  color: $warning;
+  background: rgba($warning, 0.06);
+  font-size: 0.54em;
+  font-weight: 720;
+}
+
+/* Variation / signal schematic. */
+.response-strip {
+  position: relative;
+  height: 3.4em;
+  margin-top: 0.75em;
+  background:
+    linear-gradient(to right, transparent 0 4%, rgba($model, .10) 4% 96%, transparent 96% 100%);
+  border-bottom: 2px solid #98a2b3;
+}
+
+.response-strip .truth {
+  position: absolute;
+  left: 50%;
+  top: 0.08em;
+  bottom: 0.18em;
+  width: 3px;
+  background: $model;
+}
+
+.response-strip .dot {
+  position: absolute;
+  width: 0.34em;
+  height: 0.34em;
+  margin-left: -0.17em;
+  border-radius: 50%;
+  background: $observed;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.18);
+}
+
+.response-strip .axis-label {
+  position: absolute;
+  right: 0;
+  bottom: -1.25em;
+  color: $muted;
+  font-size: 0.68em;
+}
+
+.response-strip .truth-label {
+  position: absolute;
+  left: calc(50% + 0.35em);
+  top: 0.05em;
+  color: $model;
+  font-size: 0.42em;
+  font-weight: 720;
+}
+
+/* Fragments should feel subtle rather than theatrical. */
+.reveal .fragment {
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.reveal .fragment.fade-up {
+  transform: translateY(10px);
+}
+
+.reveal .fragment.fade-up.visible {
+  transform: translateY(0);
+}
+
+/* Speaker-only helpers / presentation ergonomics. */
+.reveal .slides section .aside,
+.reveal .slides section aside {
+  color: $muted;
+  font-size: 0.42em;
+}
+
+/* Responsive fallback for smaller laptop windows. */
+@media (max-width: 1100px) {
+  .compare-grid,
+  .life-grid {
+    gap: 0.35em;
+  }
+}
+
+.closing-stack { display:flex; flex-direction:column; gap:.36em; margin-top:.6em; }
+.closing-line { background:#fff; border:1px solid $line; border-left:7px solid $uncertainty; border-radius:16px; padding:.38em .55em; font-size:.64em; color:$navy; font-weight:720; }
+.final-question { margin-top:.65em; padding:.48em .65em; border-radius:18px; background:rgba($model,.08); border:1px solid rgba($model,.24); color:$model; font-size:.72em; font-weight:790; text-align:center; }

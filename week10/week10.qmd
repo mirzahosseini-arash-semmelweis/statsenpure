@@ -1,0 +1,17 @@
+---
+title: "Statistics 101"
+subtitle: "Week 10 · Placeholder"
+author: "Graduate Pharmaceutical Studies"
+date: ""
+title-slide-attributes:
+  data-footer: ""
+format:
+  revealjs:
+    footer: "Statistics 101 · Week 10"
+---
+
+## Week 10 {.motivation-slide}
+
+<div class="eyebrow">Course skeleton</div>
+
+<div class="big-question">Content to be developed.</div>

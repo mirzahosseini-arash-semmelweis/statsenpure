@@ -1,0 +1,39 @@
+project:
+  type: default
+  output-dir: _site
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  freeze: auto
+
+format:
+  revealjs:
+    theme:
+      - default
+      - assets/scss/course.scss
+    width: 1600
+    height: 900
+    margin: 0.055
+    center: false
+    transition: fade
+    transition-speed: fast
+    background-transition: fade
+    auto-animate: true
+    auto-animate-duration: 0.55
+    slide-number: c/t
+    hash: true
+    controls: true
+    progress: true
+    menu:
+      side: left
+      numbers: true
+    chalkboard:
+      theme: whiteboard
+      buttons: false
+    preview-links: auto
+    footer: "Statistics 101 · Graduate Pharmaceutical Studies"
+    html-math-method: mathjax
+
+bibliography: references.bib
