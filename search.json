@@ -546,6 +546,20 @@
     "text": "The catch\n\nWeek 2 synthesis\n\n\n\nA distribution describes how probability is allocated.\n\n\nIts shape determines which observations are plausible.\n\n\nDifferent scientific mechanisms generate different distribution families.\n\n\n\n\nBut in real science, the true distribution and its parameters are almost never known.\n\n\n\n\nNext week: how can incomplete observations teach us about the process that generated them?\n\n\n\nEnd with the transition from probability to statistics. Probability assumes a model and asks what observations are likely. Statistics observes data and asks what model or parameter values are plausible."
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Statistics for Pharmaceutical Studies",
+    "section": "",
+    "text": "Probability, statistical inference, data analysis, and modern quantitative methods.\nSelect a week below to open the lecture slides."
+  },
+  {
+    "objectID": "index.html#statistics-101-for-graduate-pharmaceutical-studies",
+    "href": "index.html#statistics-101-for-graduate-pharmaceutical-studies",
+    "title": "Statistics for Pharmaceutical Studies",
+    "section": "",
+    "text": "Probability, statistical inference, data analysis, and modern quantitative methods.\nSelect a week below to open the lecture slides."
+  },
+  {
     "objectID": "week01/week01.html#reasoning-with-data-under-uncertainty",
     "href": "week01/week01.html#reasoning-with-data-under-uncertainty",
     "title": "Statistics for Pharmacists",
