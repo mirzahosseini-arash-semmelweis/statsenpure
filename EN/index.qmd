@@ -1,0 +1,177 @@
+---
+title: "Statistics for Pharmaceutical Studies"
+subtitle: "Graduate course in statistical reasoning"
+author: "Arash Mirzahosseini"
+format:
+  html:
+    toc: false
+    page-layout: full
+---
+
+<style>
+.course-intro {
+  max-width: 900px;
+  margin: 1.5rem auto 2.5rem auto;
+  text-align: center;
+}
+
+.course-intro h2 {
+  margin-bottom: .5rem;
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.week-card {
+  display: block;
+  padding: 1.2rem 1.3rem;
+  border: 1px solid #d9e1ea;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #182230;
+  text-decoration: none !important;
+  box-shadow: 0 4px 14px rgba(16, 24, 40, .05);
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease,
+    border-color .15s ease;
+}
+
+.week-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(16, 24, 40, .10);
+  border-color: #1f6feb;
+}
+
+.week-number {
+  display: block;
+  margin-bottom: .3rem;
+  color: #667085;
+  font-size: .85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.week-title {
+  display: block;
+  color: #101828;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.week-desc {
+  display: block;
+  margin-top: .4rem;
+  color: #667085;
+  font-size: .92rem;
+  line-height: 1.4;
+}
+
+.course-footer {
+  max-width: 900px;
+  margin: 3rem auto 1rem auto;
+  padding-top: 1rem;
+  border-top: 1px solid #d9e1ea;
+  text-align: center;
+  color: #667085;
+  font-size: .9rem;
+}
+</style>
+
+<div class="course-intro">
+
+## Statistics 101 for Graduate Pharmaceutical Studies
+
+Probability, statistical inference, data analysis, and modern quantitative methods.
+
+Select a week below to open the lecture slides.
+
+</div>
+
+<div class="week-grid">
+
+<a class="week-card" href="week01/week01.html">
+<span class="week-number">Week 01</span>
+<span class="week-title">Probability foundations</span>
+<span class="week-desc">Probability, events, conditional probability, independence, and Bayes' rule.</span>
+</a>
+
+<a class="week-card" href="week02/week02.html">
+<span class="week-number">Week 02</span>
+<span class="week-title">Probability distributions</span>
+<span class="week-desc">Random variables, discrete and continuous distributions, expectation, and variance.</span>
+</a>
+
+<a class="week-card" href="week03/week03.html">
+<span class="week-number">Week 03</span>
+<span class="week-title">From probability to data</span>
+<span class="week-desc">Estimation, likelihood, study design, bias, causality, and descriptive statistics.</span>
+</a>
+
+<a class="week-card" href="week04/week04.html">
+<span class="week-number">Week 04</span>
+<span class="week-title">Understanding data</span>
+<span class="week-desc">Information, data structures, transformations, missingness, and visualization.</span>
+</a>
+
+<a class="week-card" href="week05/week05.html">
+<span class="week-number">Week 05</span>
+<span class="week-title">Sampling distributions</span>
+<span class="week-desc">Law of large numbers, central limit theorem, t, chi-squared, and F distributions.</span>
+</a>
+
+<a class="week-card" href="week06/week06.html">
+<span class="week-number">Week 06</span>
+<span class="week-title">Statistical inference</span>
+<span class="week-desc">Confidence intervals, hypothesis testing, errors, power, and multiplicity.</span>
+</a>
+
+<a class="week-card" href="week07/week07.html">
+<span class="week-number">Week 07</span>
+<span class="week-title">Comparing groups</span>
+<span class="week-desc">Categorical tests, t tests, ANOVA, interactions, equivalence, and agreement.</span>
+</a>
+
+<a class="week-card" href="week08/week08.html">
+<span class="week-number">Week 08</span>
+<span class="week-title">Association and regression</span>
+<span class="week-desc">Correlation, linear regression, and foundations of generalized linear models.</span>
+</a>
+
+<a class="week-card" href="week09/week09.html">
+<span class="week-number">Week 09</span>
+<span class="week-title">Generalized models</span>
+<span class="week-desc">Odds, logistic models, generalized linear models, and nonparametric methods.</span>
+</a>
+
+<a class="week-card" href="week10/week10.html">
+<span class="week-number">Week 10</span>
+<span class="week-title">Applications in pharmaceutical science</span>
+<span class="week-desc">Epidemiology, diagnostics, clinical trials, toxicology, and meta-analysis.</span>
+</a>
+
+<a class="week-card" href="week11/week11.html">
+<span class="week-number">Week 11</span>
+<span class="week-title">Time and prediction</span>
+<span class="week-desc">Signals, time series, survival analysis, missing data, and prediction.</span>
+</a>
+
+<a class="week-card" href="week12/week12.html">
+<span class="week-number">Week 12</span>
+<span class="week-title">Multivariate and machine learning methods</span>
+<span class="week-desc">PCA, factor analysis, clustering, multivariate methods, and machine learning.</span>
+</a>
+
+</div>
+
+<div class="course-footer">
+
+Semmelweis University · Graduate Pharmaceutical Studies
+
+</div>
