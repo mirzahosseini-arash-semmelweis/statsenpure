@@ -1,0 +1,1311 @@
+[
+  {
+    "objectID": "week12/week12.html#week-12",
+    "href": "week12/week12.html#week-12",
+    "title": "Statistics 101",
+    "section": "Week 12",
+    "text": "Week 12\n\nCourse skeleton\n\n\nContent to be developed."
+  },
+  {
+    "objectID": "week10/week10.html#week-10",
+    "href": "week10/week10.html#week-10",
+    "title": "Statistics 101",
+    "section": "Week 10",
+    "text": "Week 10\n\nCourse skeleton\n\n\nContent to be developed."
+  },
+  {
+    "objectID": "week08/week08.html#week-8",
+    "href": "week08/week08.html#week-8",
+    "title": "Statistics 101",
+    "section": "Week 8",
+    "text": "Week 8\n\nCourse skeleton\n\n\nContent to be developed."
+  },
+  {
+    "objectID": "week06/week06.html#week-6",
+    "href": "week06/week06.html#week-6",
+    "title": "Statistics 101",
+    "section": "Week 6",
+    "text": "Week 6\n\nCourse skeleton\n\n\nContent to be developed."
+  },
+  {
+    "objectID": "week04/week04.html#understanding-data",
+    "href": "week04/week04.html#understanding-data",
+    "title": "Statistics for Pharmacists",
+    "section": "Understanding data",
+    "text": "Understanding data\n\nWeek 4\n\n\nFrom recorded values to usable information.\n\n\nThis week is a data-literacy pivot. Students now assume that a study has produced observations; the lecture asks how values become usable information, how data are structured and cleaned, and how visualization guides exploratory analysis."
+  },
+  {
+    "objectID": "week04/week04.html#from-last-week-to-this-week",
+    "href": "week04/week04.html#from-last-week-to-this-week",
+    "title": "Statistics for Pharmacists",
+    "section": "From last week to this week",
+    "text": "From last week to this week\n\nRetrieval\n\n\n\n\nStudy design\n\n\nhow observations are generated\n\n\n\n→\n\n\n\nData\n\n\nrecorded observations\n\n\n\n→\n\n\n\nDecisions\n\n\nonly as credible as the data-generating process\n\n\n\n\n\nCareful planning creates data we can trust. Now we ask how to understand those data."
+  },
+  {
+    "objectID": "week04/week04.html#now-we-have-the-data.-where-do-we-start",
+    "href": "week04/week04.html#now-we-have-the-data.-where-do-we-start",
+    "title": "Statistics for Pharmacists",
+    "section": "Now we have the data. Where do we start?",
+    "text": "Now we have the data. Where do we start?\n\nOpening hook\n\n\n21242631485255 41387276806358 5198103110877970 65605789939678\n\n\n\nWhat do these numbers suggest?\n\n\n\n\nRaw numbers rarely tell their story by themselves."
+  },
+  {
+    "objectID": "week04/week04.html#humans-see-patterns-before-they-calculate-them",
+    "href": "week04/week04.html#humans-see-patterns-before-they-calculate-them",
+    "title": "Statistics for Pharmacists",
+    "section": "Humans see patterns before they calculate them",
+    "text": "Humans see patterns before they calculate them\n\nExploratory analysis starts visually\n\n\n\n\n\n\n\n\n\n\n\n\nBefore formal analysis, inspect the shape of the data.\n\n\n\n\nSynthetic teaching example: the graphic illustrates statistical reasoning, not a claim about any real pandemic policy or intervention."
+  },
+  {
+    "objectID": "week04/week04.html#visual-pattern-hypothesis-evidence",
+    "href": "week04/week04.html#visual-pattern-hypothesis-evidence",
+    "title": "Statistics for Pharmacists",
+    "section": "Visual pattern → hypothesis → evidence",
+    "text": "Visual pattern → hypothesis → evidence\n\nA bridge back to causality: Pattern recognition is the beginning, not the conclusion\n\n\n\n\nVisual pattern\n\n\nsomething appears structured\n\n\n\n→\n\n\n\nHypothesis\n\n\na possible explanation\n\n\n\n→\n\n\n\nEvidence\n\n\nstudy design + analysis test the explanation\n\n\n\n\n\nVisualization can generate questions. It does not, by itself, prove causes."
+  },
+  {
+    "objectID": "week04/week04.html#data-are-recorded-values",
+    "href": "week04/week04.html#data-are-recorded-values",
+    "title": "Statistics for Pharmacists",
+    "section": "Data are recorded values",
+    "text": "Data are recorded values\n\nWithout context, values are disconnected from the world\n\n\n\n\n37.8\n\n\nvalue only\n\n\n\n\n120\n\n\nvalue only\n\n\n\n\nF\n\n\nsymbol only\n\n\n\n\nStage 2\n\n\nlabel only\n\n\n\n\n\nA number becomes useful only when we know what it represents."
+  },
+  {
+    "objectID": "week04/week04.html#context-turns-data-into-information",
+    "href": "week04/week04.html#context-turns-data-into-information",
+    "title": "Statistics for Pharmacists",
+    "section": "Context turns data into information",
+    "text": "Context turns data into information\n\nSame values, now connected to meaning\n\n\n\n\n37.8 °C\n\n\nbody temperature\n\n\n\n\n120 mmHg\n\n\nsystolic blood pressure\n\n\n\n\nF\n\n\nsex variable\n\n\n\n\nStage 2\n\n\ndisease stage\n\n\n\n\n\nInformation is data interpreted in context."
+  },
+  {
+    "objectID": "week04/week04.html#data-information-knowledge",
+    "href": "week04/week04.html#data-information-knowledge",
+    "title": "Statistics for Pharmacists",
+    "section": "Data, information, knowledge",
+    "text": "Data, information, knowledge\n\nThree levels of use\n\n\n\n\nData\n\n\n\n\n\nrecorded values, symbols or measurements\n\n\n\n→\n\n\n\nInformation\n\n\n\n\n\ndata plus context and meaning\n\n\n\n→\n\n\n\nKnowledge\n\n\n\n\n\ninformation connected, interpreted and used\n\n\n\n\n\nStatistics helps us move from recorded values toward usable knowledge."
+  },
+  {
+    "objectID": "week04/week04.html#information-as-surprise",
+    "href": "week04/week04.html#information-as-surprise",
+    "title": "Statistics for Pharmacists",
+    "section": "Information as surprise",
+    "text": "Information as surprise\n\nA short information-theory side-track\n\n\n\\[\nI(x)=-\\log_2 \\mathbb{P}(x)\n\\]\n\n\n\n\n\\(P(x)=1\\)\n\n\n0 bits\n\n\n\n\n\\(P(x)=1/2\\)\n\n\n1 bit\n\n\n\n\n\\(P(x)=1/8\\)\n\n\n3 bits\n\n\n\n\n\nRare events are more surprising, so observing them carries more information."
+  },
+  {
+    "objectID": "week04/week04.html#try-it-probability-and-surprise",
+    "href": "week04/week04.html#try-it-probability-and-surprise",
+    "title": "Statistics for Pharmacists",
+    "section": "Try it: probability and surprise",
+    "text": "Try it: probability and surprise\n\nInteractive concept slide\n\n\n\nEvent probability p\n\nprobability0.50\n\n\nsurprise1.00 bits\n\n\n\n\n\n\n\n\n\n\nAs probability goes down, surprise goes up."
+  },
+  {
+    "objectID": "week04/week04.html#entropy-is-expected-surprise",
+    "href": "week04/week04.html#entropy-is-expected-surprise",
+    "title": "Statistics for Pharmacists",
+    "section": "Entropy is expected surprise",
+    "text": "Entropy is expected surprise\n\nAverage information content\n\n\n\\[\nH(X)=-\\sum_i \\mathbb{P}(x_i)\\log_2 \\mathbb{P}(x_i)\n\\]\n\n\n\n\nPredictable source\n\n\nAAAAAAAAABAAAAAA\n\n\nlow entropy\n\n\n\n\nLess predictable source\n\n\nABBAABAABBABBAAB\n\n\nhigher entropy"
+  },
+  {
+    "objectID": "week04/week04.html#entropy-and-randomness",
+    "href": "week04/week04.html#entropy-and-randomness",
+    "title": "Statistics for Pharmacists",
+    "section": "Entropy and randomness",
+    "text": "Entropy and randomness\n\nShared mathematics across information and physical states\n\n\n\n\nShannon entropy\n\n\nuncertainty over possible messages or symbols\n\n\nhigh entropy → hard to predict\n\n\n\n\nStatistical-mechanical entropy\n\n\nuncertainty over possible microstates\n\n\nshared mathematical structure\n\n\n\n\n\nBoth quantify uncertainty over possible states.\n\n\n\n\n\nClaude Elwood Shannon"
+  },
+  {
+    "objectID": "week04/week04.html#types-of-variables",
+    "href": "week04/week04.html#types-of-variables",
+    "title": "Statistics for Pharmacists",
+    "section": "Types of variables",
+    "text": "Types of variables\n\nPart II\n\n\nTypes of variables\n\n\nWe now see the different data types and their characteristics."
+  },
+  {
+    "objectID": "week04/week04.html#first-question-what-kind-of-variable-is-it",
+    "href": "week04/week04.html#first-question-what-kind-of-variable-is-it",
+    "title": "Statistics for Pharmacists",
+    "section": "First question: what kind of variable is it?",
+    "text": "First question: what kind of variable is it?\n\nData types determine meaningful summaries and plots\n\n\n\n\nCategorical\n\n\n\nNominalnames, no order\n\n\nOrdinalordered categories\n\n\n\n\n\nNumerical\n\n\n\nIntervaldifferences meaningful\n\n\nRatioratios meaningful\n\n\n\n\n\n\nThe data type tells us what operations make sense."
+  },
+  {
+    "objectID": "week04/week04.html#nominal-and-ordinal-examples",
+    "href": "week04/week04.html#nominal-and-ordinal-examples",
+    "title": "Statistics for Pharmacists",
+    "section": "Nominal and ordinal examples",
+    "text": "Nominal and ordinal examples\n\nCategorical variables\n\n\n\n\nNominal\n\n\nformulation type · sex · genotype · adverse-event category\n\n\nno intrinsic order\n\n\n\n\nOrdinal\n\n\ndisease stage · toxicity grade · response category · pain scale\n\n\nordered categories\n\n\n\n\n\nNominal categories of “A”, “B”, “0” blood group have no inherent order or distance.\n\n\n\n\nOrdinal categories of “severe”, “normal”, “moderate” still have no inherent distance (difference and sum are not meaningful), but there is inherent order."
+  },
+  {
+    "objectID": "week04/week04.html#interval-and-ratio-examples",
+    "href": "week04/week04.html#interval-and-ratio-examples",
+    "title": "Statistics for Pharmacists",
+    "section": "Interval and ratio examples",
+    "text": "Interval and ratio examples\n\nNumerical variables\n\n\n\n\nInterval\n\n\ntemperature in °C · calendar year\n\n\ndifferences meaningful\n\n\n\n\nRatio\n\n\nmass · concentration · dose · time · Kelvin temperature\n\n\ndifferences and ratios meaningful\n\n\nabsolute zero exists\n\n\n\n\n\nA temperature of 20 °C is not “twice as hot” as 10 °C; a 20 mg dose is twice a 10 mg dose.\n\n\n\n\nNote how Celsius scale has no absolute zero point (it can be positive and negative), while Kelvin has an absolute zero.\n\n\n\n\nBut not every value that can be negative is automatically interval: for electric charge the negative does not signify magnitude, but rather direction, so it is still ratio."
+  },
+  {
+    "objectID": "week04/week04.html#which-summaries-make-sense",
+    "href": "week04/week04.html#which-summaries-make-sense",
+    "title": "Statistics for Pharmacists",
+    "section": "Which summaries make sense?",
+    "text": "Which summaries make sense?\n\nA bridge back to Week 3\n\n\n\nVariable type\n\n\nFrequency\n\n\nMode\n\n\nMedian\n\n\nMean\n\n\nNominal\n\n\n✓\n\n\n✓\n\n\n—\n\n\n—\n\n\nOrdinal\n\n\n✓\n\n\n✓\n\n\n✓\n\n\nusually no\n\n\nNumerical\n\n\n✓\n\n\n✓\n\n\n✓\n\n\n✓"
+  },
+  {
+    "objectID": "week04/week04.html#try-it-classify-the-variable",
+    "href": "week04/week04.html#try-it-classify-the-variable",
+    "title": "Statistics for Pharmacists",
+    "section": "Try it: classify the variable",
+    "text": "Try it: classify the variable\n\nInteractive data-type checkpoint\n\n\n\nblood group\n\n\n\nNominal\n\n\nOrdinal\n\n\nInterval\n\n\nRatio\n\n\n\nChoose the best type."
+  },
+  {
+    "objectID": "week04/week04.html#data-structure",
+    "href": "week04/week04.html#data-structure",
+    "title": "Statistics for Pharmacists",
+    "section": "Data structure",
+    "text": "Data structure\n\nPart III\n\n\nData structure\n\n\nWe now see how data should be structured."
+  },
+  {
+    "objectID": "week04/week04.html#structured-and-unstructured-data",
+    "href": "week04/week04.html#structured-and-unstructured-data",
+    "title": "Statistics for Pharmacists",
+    "section": "Structured and unstructured data",
+    "text": "Structured and unstructured data\n\nThis course mostly uses structured tabular data\n\n\n\n\n\nStructured\n\n\n\n\n\n\npatient table\n\n\nlaboratory results table\n\n\nclinical-trial spreadsheet\n\n\n\n\n\n\nUnstructured\n\n\n\n\n\n\nfree-text clinical note\n\n\nimage\n\n\naudio / scanned report"
+  },
+  {
+    "objectID": "week04/week04.html#anatomy-of-a-data-table",
+    "href": "week04/week04.html#anatomy-of-a-data-table",
+    "title": "Statistics for Pharmacists",
+    "section": "Anatomy of a data table",
+    "text": "Anatomy of a data table\n\nRows, columns and cells\n\n\n\npatientID\n\n\nsex\n\n\nstage\n\n\ndiabetes\n\n\nweight_kg\n\n\nheight_cm\n\n\nbp_mmHg\n\n\nbodyT_C\n\n\nP01\n\n\nF\n\n\n1\n\n\nfalse\n\n\n58\n\n\n164\n\n\n118\n\n\n36.8\n\n\nP02\n\n\nM\n\n\n2\n\n\nfalse\n\n\n82\n\n\n180\n\n\n142\n\n\n37.1\n\n\nP03\n\n\nF\n\n\n3\n\n\ntrue\n\n\n72\n\n\n169\n\n\n155\n\n\n38.0\n\n\n\n\nRows are observations; columns are variables; cells are values.\n\n\n\n\nWe will reuse this type of structure throughout Week 4."
+  },
+  {
+    "objectID": "week04/week04.html#wide-format-long-format",
+    "href": "week04/week04.html#wide-format-long-format",
+    "title": "Statistics for Pharmacists",
+    "section": "Wide format → Long format",
+    "text": "Wide format → Long format\n\nHumans often like reading repeated measurements side-by-side → Long format often makes grouping and plotting easier\n\n\n\n\npatient\n\n\nday1\n\n\nday2\n\n\nday3\n\n\nP01\n\n\n120\n\n\n124\n\n\n122\n\n\nP02\n\n\n142\n\n\n139\n\n\n137\n\n\n\n→\n\n\n\npatient\n\n\nday\n\n\nbp_mmHg\n\n\nP01\n\n\n1\n\n\n120\n\n\nP01\n\n\n2\n\n\n124\n\n\nP01\n\n\n3\n\n\n122\n\n\nP02\n\n\n1\n\n\n142\n\n\nP02\n\n\n2\n\n\n139\n\n\nP02\n\n\n3\n\n\n137\n\n\n\n\n\nWide format keeps multiple measurement occasions in separate columns."
+  },
+  {
+    "objectID": "week04/week04.html#transformation-creates-derived-variables",
+    "href": "week04/week04.html#transformation-creates-derived-variables",
+    "title": "Statistics for Pharmacists",
+    "section": "Transformation creates derived variables",
+    "text": "Transformation creates derived variables\n\nRaw variables can create new variables\n\n\n\nweight = 72 kg\n\n\nheight = 1.78 m\n\n\n→\n\n\nBMI = 22.7\n\n\n\n\\[\nBMI=\\frac{\\mathrm{weight}_{kg}}{\\mathrm{height}_m^2}\n\\]"
+  },
+  {
+    "objectID": "week04/week04.html#transformation-changes-representation",
+    "href": "week04/week04.html#transformation-changes-representation",
+    "title": "Statistics for Pharmacists",
+    "section": "Transformation changes representation",
+    "text": "Transformation changes representation\n\nThe patient does not change; the data representation changes\n\n\n\n\nUnits\n\n\nkg → g\n\n\n\n\nTemperature scale\n\n\n°C → K\n\n\n\n\nLog scale\n\n\nconcentration → log concentration\n\n\n\n\nDerived variable\n\n\nweight + height → BMI"
+  },
+  {
+    "objectID": "week04/week04.html#why-log-transform",
+    "href": "week04/week04.html#why-log-transform",
+    "title": "Statistics for Pharmacists",
+    "section": "Why log-transform?",
+    "text": "Why log-transform?\n\nMultiplicative variation can become additive structure\n\n\n\nRaw scale\n\n\n1101001000\n\n\n\n\nlog10 scale\n\n\n0123"
+  },
+  {
+    "objectID": "week04/week04.html#missing-values-are-not-just-empty-cells",
+    "href": "week04/week04.html#missing-values-are-not-just-empty-cells",
+    "title": "Statistics for Pharmacists",
+    "section": "Missing values are not just empty cells",
+    "text": "Missing values are not just empty cells\n\nMissingness has causes\n\n\n\npatient\n\n\nvisit\n\n\nbp_mmHg\n\n\ntemp_C\n\n\nreason?\n\n\nP01\n\n\n1\n\n\n118\n\n\n36.8\n\n\nobserved\n\n\nP01\n\n\n2\n\n\nNA\n\n\n37.0\n\n\n?\n\n\nP02\n\n\n1\n\n\n142\n\n\nNA\n\n\n?\n\n\n\n\nmeasurement failed\n\n\npatient skipped visit\n\n\nnot applicable\n\n\ndata-entry loss\n\n\ndropout"
+  },
+  {
+    "objectID": "week04/week04.html#handling-missing-values",
+    "href": "week04/week04.html#handling-missing-values",
+    "title": "Statistics for Pharmacists",
+    "section": "Handling missing values",
+    "text": "Handling missing values\n\nNo method is automatically safe\n\n\n\n\n\nDelete rows\n\n\n\n\n\nsimple, but can discard information or bias results\n\n\n\n\n\nSimple imputation\n\n\n\n\n\nmean · median · mode\n\n\n\n\n\nSimilarity/model-based\n\n\n\n\n\nuse related variables or similar records\n\n\n\n\n\nCarry forward\n\n\n\n\n\nuseful for time-series data\n\n\n\n\n\nThe reason values are missing matters as much as the replacement rule."
+  },
+  {
+    "objectID": "week04/week04.html#tiny-imputation-demonstration",
+    "href": "week04/week04.html#tiny-imputation-demonstration",
+    "title": "Statistics for Pharmacists",
+    "section": "Tiny imputation demonstration",
+    "text": "Tiny imputation demonstration\n\nThe chosen rule changes the inserted value\n\n\n\n\nObserved series\n\n\n5, 6, NA, 7, 20\n\n\n\n\nMean imputation\n\n\nNA → 9.5\n\n\npulled by the outlier\n\n\n\n\nMedian imputation\n\n\nNA → 6.5\n\n\nmore robust here"
+  },
+  {
+    "objectID": "week04/week04.html#databases",
+    "href": "week04/week04.html#databases",
+    "title": "Statistics for Pharmacists",
+    "section": "Databases",
+    "text": "Databases\n\nPart IV\n\n\nDatabases\n\n\nWe now see how data is stored and retrieved from databases."
+  },
+  {
+    "objectID": "week04/week04.html#queries-are-set-operations",
+    "href": "week04/week04.html#queries-are-set-operations",
+    "title": "Statistics for Pharmacists",
+    "section": "Queries are set operations",
+    "text": "Queries are set operations\n\nDatabase logic returns to Week 1 set theory\n\n\n\n\n\nA: diabetes\n\n\nB: high BP\n\n\n\n\n\n\nAND\n\n\n\\(A\\cap B\\)\n\n\npatients satisfying both filters\n\n\n\n\nOR\n\n\n\\(A\\cup B\\)\n\n\npatients satisfying either filters"
+  },
+  {
+    "objectID": "week04/week04.html#patient-search-dashboard",
+    "href": "week04/week04.html#patient-search-dashboard",
+    "title": "Statistics for Pharmacists",
+    "section": "Patient search dashboard",
+    "text": "Patient search dashboard\n\nInteractive data-query exercise\n\n\n\ndiabetesanytruefalse sexanyFM BP statusanylownormalhigh stageany123 height ≥ 150 cm combineANDOR\n\n\n\nmatched—patients"
+  },
+  {
+    "objectID": "week04/week04.html#joining-tables-left-join",
+    "href": "week04/week04.html#joining-tables-left-join",
+    "title": "Statistics for Pharmacists",
+    "section": "Joining tables: left join",
+    "text": "Joining tables: left join\n\nAttach matching information while keeping the left table\n\n\n\n\n\nID\n\n\nsex\n\n\nstage\n\n\nP01\n\n\nF\n\n\n1\n\n\nP02\n\n\nM\n\n\n2\n\n\nP03\n\n\nF\n\n\n3\n\n\n\npatients\n\n\n\n\n\nID\n\n\nlab_value\n\n\nP01\n\n\n32\n\n\nP03\n\n\n51\n\n\n\nlabs\n\n\n\n→\n\n\n\n\nID\n\n\nsex\n\n\nstage\n\n\nlab_value\n\n\nP01\n\n\nF\n\n\n1\n\n\n32\n\n\nP02\n\n\nM\n\n\n2\n\n\nNA\n\n\nP03\n\n\nF\n\n\n3\n\n\n51\n\n\n\nleft join"
+  },
+  {
+    "objectID": "week04/week04.html#joining-tables-full-join",
+    "href": "week04/week04.html#joining-tables-full-join",
+    "title": "Statistics for Pharmacists",
+    "section": "Joining tables: full join",
+    "text": "Joining tables: full join\n\nKeep every record from both sides\n\n\n\n\n\nID\n\n\nsex\n\n\nstage\n\n\nP01\n\n\nF\n\n\n1\n\n\nP02\n\n\nM\n\n\n2\n\n\n\npatients\n\n\n\n\n\nID\n\n\nlab_value\n\n\nP01\n\n\n32\n\n\nP03\n\n\n51\n\n\n\nlabs\n\n\n\n→\n\n\n\n\nID\n\n\nsex\n\n\nstage\n\n\nlab_value\n\n\nP01\n\n\nF\n\n\n1\n\n\n32\n\n\nP02\n\n\nM\n\n\n2\n\n\nNA\n\n\nP03\n\n\nNA\n\n\nNA\n\n\n51\n\n\n\nfull join"
+  },
+  {
+    "objectID": "week04/week04.html#graphs",
+    "href": "week04/week04.html#graphs",
+    "title": "Statistics for Pharmacists",
+    "section": "Graphs",
+    "text": "Graphs\n\nPart V\n\n\nThe second ingredient to descriptive statistics\n\n\nWe now see how data are visualized."
+  },
+  {
+    "objectID": "week04/week04.html#visualization-depends-on-variable-types",
+    "href": "week04/week04.html#visualization-depends-on-variable-types",
+    "title": "Statistics for Pharmacists",
+    "section": "Visualization depends on variable types",
+    "text": "Visualization depends on variable types\n\nMain concept of the week\n\n\n\n\nSelection\n\n\nUseful view\n\n\n1 categorical\n\n\nfrequency table + bar plot\n\n\n2 categorical\n\n\ncontingency table + stacked bar plot\n\n\n1 numerical\n\n\nsummary + histogram + boxplot\n\n\n2 numerical\n\n\nscatter plot\n\n\ncategorical + numerical\n\n\ngrouped boxplot\n\n\n\n\nRule of thumb\n\n\nFirst identify variable types, then choose the graphical encoding."
+  },
+  {
+    "objectID": "week04/week04.html#try-it-choose-what-to-visualize",
+    "href": "week04/week04.html#try-it-choose-what-to-visualize",
+    "title": "Statistics for Pharmacists",
+    "section": "Try it: choose what to visualize",
+    "text": "Try it: choose what to visualize\n\nInteractive visualization laboratory\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nsex disease_stage bp_mmHg bodyT_C\n\n\n\nSelect one or more variables."
+  },
+  {
+    "objectID": "week04/week04.html#the-same-data-can-tell-different-visual-stories",
+    "href": "week04/week04.html#the-same-data-can-tell-different-visual-stories",
+    "title": "Statistics for Pharmacists",
+    "section": "The same data can tell different visual stories",
+    "text": "The same data can tell different visual stories\n\nAxis choices matter\n\n\n\n\n\naxis starts at 0\n\n\n\n\n\ntruncated y-axis exaggerates differences"
+  },
+  {
+    "objectID": "week04/week04.html#visualization-is-analysis-not-decoration",
+    "href": "week04/week04.html#visualization-is-analysis-not-decoration",
+    "title": "Statistics for Pharmacists",
+    "section": "Visualization is analysis, not decoration",
+    "text": "Visualization is analysis, not decoration\n\nChoose encodings that match the data and question\n\n\n\n\nToo many pie slices\n\n\nhard to compare 18 categories\n\n\n\n\n\n\n\nLine plot for unordered categories\n\n\nimplies continuity or order that may not exist\n\n\n\n\n\n\n\n3D bars\n\n\nperspective distorts values\n\n\n\n\n\n\n\n\nA plot is an analytical choice, not decoration."
+  },
+  {
+    "objectID": "week04/week04.html#exercise-what-data-type-is-this",
+    "href": "week04/week04.html#exercise-what-data-type-is-this",
+    "title": "Statistics for Pharmacists",
+    "section": "Exercise: what data type is this?",
+    "text": "Exercise: what data type is this?\n\n\nDisease stage I, II, III is best described as…\n\n\n\nNominal\n\n\nOrdinal\n\n\nInterval\n\n\nRatio\n\n\n\nChoose an answer."
+  },
+  {
+    "objectID": "week04/week04.html#exercise-what-should-you-plot",
+    "href": "week04/week04.html#exercise-what-should-you-plot",
+    "title": "Statistics for Pharmacists",
+    "section": "Exercise: what should you plot?",
+    "text": "Exercise: what should you plot?\n\n\nCompare systolic BP distributions between disease stages.\n\n\n\nPie chart\n\n\nScatter plot only\n\n\nGrouped boxplot\n\n\n3D bar chart\n\n\n\nChoose an answer."
+  },
+  {
+    "objectID": "week04/week04.html#exercise-what-does-this-query-return",
+    "href": "week04/week04.html#exercise-what-does-this-query-return",
+    "title": "Statistics for Pharmacists",
+    "section": "Exercise: what does this query return?",
+    "text": "Exercise: what does this query return?\n\n\ndiabetes = TRUE AND BP = high returns…\n\n\n\nonly patients satisfying both conditions\n\n\npatients satisfying either condition\n\n\nall diabetic patients regardless of BP\n\n\nall high-BP patients regardless of diabetes\n\n\n\nChoose an answer."
+  },
+  {
+    "objectID": "week04/week04.html#exercise-what-went-wrong",
+    "href": "week04/week04.html#exercise-what-went-wrong",
+    "title": "Statistics for Pharmacists",
+    "section": "Exercise: what went wrong?",
+    "text": "Exercise: what went wrong?\n\nData cleaning checkpoint\n\n\n\npatient\n\n\nsex\n\n\nstage\n\n\nbp\n\n\ntemp\n\n\nproblem?\n\n\nP01\n\n\nF\n\n\n1\n\n\n118\n\n\n36.8\n\n\n—\n\n\nP02\n\n\nM\n\n\n2\n\n\nhigh\n\n\n37.1\n\n\ntext in numeric column\n\n\nP03\n\n\nF\n\n\n3\n\n\n155\n\n\n999\n\n\ncoded missing value\n\n\nP03\n\n\nF\n\n\n3\n\n\n155\n\n\n38.0\n\n\nduplicate patient\n\n\nP04\n\n\nM\n\n\n1\n\n\n126\n\n\n24.0\n\n\nimpossible value?"
+  },
+  {
+    "objectID": "week04/week04.html#what-did-we-learn",
+    "href": "week04/week04.html#what-did-we-learn",
+    "title": "Statistics for Pharmacists",
+    "section": "What did we learn?",
+    "text": "What did we learn?\n\nWeek 4 synthesis\n\n\n\nGood data begin with a credible data-generating process.\n\n\nStructure makes data usable: rows, columns, variables and values.\n\n\nCleaning and transformation change what later analysis can mean.\n\n\nVisualization exposes shape, patterns and problems before formal inference.\n\n\n\n\nNext week: why averages and distributions become predictable when samples grow."
+  },
+  {
+    "objectID": "week02/week02.html#probability-distributions",
+    "href": "week02/week02.html#probability-distributions",
+    "title": "Statistics for Pharmacists",
+    "section": "Probability distributions",
+    "text": "Probability distributions\n\nWeek 2\n\n\nThe shape of probability."
+  },
+  {
+    "objectID": "week02/week02.html#what-did-probability-give-us",
+    "href": "week02/week02.html#what-did-probability-give-us",
+    "title": "Statistics for Pharmacists",
+    "section": "What did probability give us?",
+    "text": "What did probability give us?\n\nRecall from Week 1\n\n\n\nExperiment\n\n\n→\n\n\nPossible outcomes\n\n\n→\n\n\nEvents\n\n\n→\n\n\nNumbers\n\n\n\n\n\\[\nA \\subseteq \\Omega \\quad\\Longrightarrow\\quad \\mathbb{P}(A)\\in[0,1]\n\\]\n\n\n\n\nProbability gives numerical structure to uncertainty.\n\n\n\nUse this slide to reconnect students to Week 1 without spending too much time reviewing formal probability spaces."
+  },
+  {
+    "objectID": "week02/week02.html#outcomes-do-not-all-occur-equally-often",
+    "href": "week02/week02.html#outcomes-do-not-all-occur-equally-often",
+    "title": "Statistics for Pharmacists",
+    "section": "Outcomes do not all occur equally often",
+    "text": "Outcomes do not all occur equally often\n\nTwo pharmaceutical motivations\n\n\n\n\nTablet press\n\n\nThe nominal target is 2.000 g. But every tablet is not exactly 2.000 g.\n\n\n\n\n\n\n\nAutomatic camera inspection\n\n\nA faulty tablet is expected in 0.1% of presses. How long can the line run without seeing a rejection?\n\n\n\\(0.999^{1,000}\\)  vs.  \\(0.999^{1,000,000}\\)\n\n\n\n\n\n\n\n\nA distribution describes how probability is spread across possible outcomes.\n\n\n\nThese examples foreshadow both continuous and discrete distributions. Tablet mass is continuous. Fault/no fault per press is binary, and the waiting time until first failure is discrete.\nDo not calculate yet. Use these as curiosity hooks."
+  },
+  {
+    "objectID": "week02/week02.html#a-distribution-is-the-shape-of-uncertainty",
+    "href": "week02/week02.html#a-distribution-is-the-shape-of-uncertainty",
+    "title": "Statistics for Pharmacists",
+    "section": "A distribution is the shape of uncertainty",
+    "text": "A distribution is the shape of uncertainty\n\nFrom isolated events to a whole pattern\n\n\n\n\nOne event\n\n\nA single probability question:\n\n\n\\(\\mathbb{P}(A)=0.30\\)\n\n\n\n\nMany possible outcomes\n\n\nProbability is allocated across the entire outcome space.\n\n\n\n1\n\n\n2\n\n\n3\n\n\n4\n\n\n5\n\n\n\n\n\n\nThe same probability rules still apply — but now we study the whole shape.\n\n\n\nThis slide introduces the word “shape” intentionally. Students should begin to imagine a distribution as the pattern of probability weights over possible values."
+  },
+  {
+    "objectID": "week02/week02.html#two-fundamentally-different-worlds",
+    "href": "week02/week02.html#two-fundamentally-different-worlds",
+    "title": "Statistics for Pharmacists",
+    "section": "Two fundamentally different worlds",
+    "text": "Two fundamentally different worlds\n\nDiscrete versus continuous\n\n\n\n\n\nDiscrete random variable\n\n\nPossible values are separated. Individual values can have positive probability.\n\n\n\n \n\n\n\nFair die: \\(X\\in\\{1,2,3,4,5,6\\}\\)\n\n\n\n\n\n\n\n\n\nContinuous random variable\n\n\nPossible values fill an interval. Probability belongs to ranges, not exact points.\n\n\n\n\n\n\n\nRandom number: \\(X\\in[0,1]\\)\n\n\n\n  \n\n\n\n\n\nDiscrete probability lives on values. Continuous probability lives over intervals.\n\n\n\nUse a fair die rather than a coin as the flagship discrete-uniform example. Reserve the coin for Bernoulli.\nThe main conceptual target: for continuous variables, asking for exactly one value is not the same kind of question as for discrete variables."
+  },
+  {
+    "objectID": "week02/week02.html#probability-mass-versus-probability-density",
+    "href": "week02/week02.html#probability-mass-versus-probability-density",
+    "title": "Statistics for Pharmacists",
+    "section": "Probability mass versus probability density",
+    "text": "Probability mass versus probability density\n\nThe height means different things\n\n\n\n\n\nProbability mass function (PMF)\n\n\nThe bar height is the exact probability of that point.\n\n\n\\(p(x) = \\mathbb{P}(X=x)\\)\n\n\n\n\n\n1\n\n\n2\n\n\n3\n\n\n1/6 4\n\n\n5\n\n\n6\n\n\n\n\n\\(\\mathbb{P}(X=4) = 1/6 \\approx 0.167\\)\n\n\n\n\n\nProbability density function (PDF)\n\n\nCurve height is density. Area under the curve is probability.\n\n\n\\(\\mathbb{P}(a &lt; X &lt; b) = \\int_a^b f(x)\\,dx\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nArea = 0.20\n\n\n\n0 0.4 0.6 1\n\n\n\n\n\\(\\mathbb{P}(X=0.5) = 0 \\quad \\text{vs.} \\\\ \\mathbb{P}(0.4 &lt; X &lt; 0.6) = 0.20\\)\n\n\n\n\n\nFor continuous variables, probability requires width — an interval, not a single point.\n\n\n\nThis is one of the most important conceptual slides of Week 2. Let students sit with the paradox: a possible exact value has probability zero under a continuous distribution.\nUse the phrase: “A point has no width, so it has no area.”"
+  },
+  {
+    "objectID": "week02/week02.html#where-can-the-variable-live",
+    "href": "week02/week02.html#where-can-the-variable-live",
+    "title": "Statistics for Pharmacists",
+    "section": "Where can the variable live?",
+    "text": "Where can the variable live?\n\nSupport\n\n\n\n\nFair die\n\n\nOnly six possible values.\n\n\n123456\n\n\n\n\nUniform number\n\n\nAny real value between 0 and 1.\n\n\n0\\([0,1]\\)1\n\n\n\n\nWaiting time\n\n\nCannot be negative, but can be arbitrarily long.\n\n\n0\\([0,\\infty)\\)∞\n\n\n\n\n\nThe support of a distribution is the set of values the random variable can take.\n\n\n\nSupport is useful vocabulary. Tie it to biological and pharmaceutical constraints: concentrations cannot be negative; proportions are between 0 and 1; counts are nonnegative integers."
+  },
+  {
+    "objectID": "week02/week02.html#everything-must-add-up-to-one",
+    "href": "week02/week02.html#everything-must-add-up-to-one",
+    "title": "Statistics for Pharmacists",
+    "section": "Everything must add up to one",
+    "text": "Everything must add up to one\n\nThe same conservation rule in two forms\n\n\n\n\\[\n  \\sum_x p(x)=1\n  \\]\n\n\n\\[\n  \\int_{-\\infty}^{\\infty} f(x)\\,dx=1\n  \\]\n\n\n\n\n        \n\ndiscrete pieces add\n\n\n\n    \n\ncontinuous area integrates\n\n\n\n\nThis slide reinforces a single intuitive conservation law: all probability goes somewhere. In discrete cases, add the pieces; in continuous cases, integrate the area."
+  },
+  {
+    "objectID": "week02/week02.html#one-definition-unifies-both-worlds",
+    "href": "week02/week02.html#one-definition-unifies-both-worlds",
+    "title": "Statistics for Pharmacists",
+    "section": "One definition unifies both worlds",
+    "text": "One definition unifies both worlds\n\nCumulative distribution function\n\n\n\\[\nF(x)=\\mathbb{P}(X\\leq x)\n\\]\n\n\n\n   \n\ndiscrete CDF jumps\n\n\n\n   \n\ncontinuous CDF flows\n\n\n\n\n\nThe CDF always answers the same question: how much probability has accumulated up to this point?\n\n\n\nStress that the CDF is often easier to use for “at most” or “less than” questions. It will become crucial for p-values, quantiles and confidence intervals later."
+  },
+  {
+    "objectID": "week02/week02.html#watch-probability-accumulate",
+    "href": "week02/week02.html#watch-probability-accumulate",
+    "title": "Statistics for Pharmacists",
+    "section": "Watch probability accumulate",
+    "text": "Watch probability accumulate\n\n\nInteractive concept slide\n\n\nMove the cutoff. Probability to the left becomes the CDF value.\n\n\n\nCutoff x  \n\nDistribution\n\nStandard Normal\n\n\n\nCDF value F(x)\n\n0.500\n\n\n\n \n\n\nThis widget is intentionally simple: a standard normal curve, a vertical cutoff, and the shaded probability to the left. It visually links the PDF to the CDF."
+  },
+  {
+    "objectID": "week02/week02.html#what-probability-are-you-asking-for",
+    "href": "week02/week02.html#what-probability-are-you-asking-for",
+    "title": "Statistics for Pharmacists",
+    "section": "What probability are you asking for?",
+    "text": "What probability are you asking for?\n\nThe wording determines the area\n\n\n\n\nExactly\n\n\n\\(\\mathbb{P}(X=x)\\)\n\n\nmeaningful for discrete values\n\n\n\n\nAt most\n\n\n\\(\\mathbb{P}(X\\leq x)\\)\n\n\nlower cumulative probability\n\n\n\n\nAt least\n\n\n\\(\\mathbb{P}(X\\geq x)\\)\n\n\nupper tail probability\n\n\n\n\nBetween\n\n\n\\(\\mathbb{P}(a&lt;X&lt;b)\\)\n\n\ninterval probability\n\n\n\n\n\n“Exactly”, “at most”, “at least” and “between” are different probability questions.\n\n\n\nThis slide prepares the tablet mass widget. Emphasize how often students answer the wrong probability question because the wording is imprecise."
+  },
+  {
+    "objectID": "week02/week02.html#tablet-press-laboratory",
+    "href": "week02/week02.html#tablet-press-laboratory",
+    "title": "Statistics for Pharmacists",
+    "section": "Tablet press laboratory",
+    "text": "Tablet press laboratory\n\nInteractive slide for students at home\n\n\n\n Question  lower ≤ X ≤ upper X ≤ cutoff X ≥ cutoff    Lower bound, g    Upper bound, g  \n\n \n\n\nmodel \\(X\\sim \\mathcal{N}(2.000,0.008^2)\\)\n\n\nregion 1.990–2.010 g\n\n\nprobability 0.789\n\n\n\n\n\nUse this as the central interactive slide for Week 2. The key message is not numerical precision; it is that the probability question determines which area under the curve is relevant.\nSuggested live sequence: ask for between 1.99 and 2.01, then switch to at least 1.99. Same bound, completely different probability question."
+  },
+  {
+    "objectID": "week02/week02.html#meet-the-normal-distribution",
+    "href": "week02/week02.html#meet-the-normal-distribution",
+    "title": "Statistics for Pharmacists",
+    "section": "Meet the normal distribution",
+    "text": "Meet the normal distribution\n\nAfter the intuition, the notation\n\n\n\n\nNotation\n\n\n\\(X\\sim \\mathcal{N}(\\mu,\\sigma^2)\\)\n\n\nTwo parameters uniquely define the model: location and spread.\n\n\n\n\nDensity\n\n\n\\[f(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}\\,e^{-\\frac12\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}\\]\n\n\nRecognize the formula. Do not memorize it.\n\n\n\n\n\nFor the Gaussian model, \\(\\mu\\) moves the center and \\(\\sigma\\) controls the spread.\n\n\nWhy Gaussian normal distribution is so common in nature: it models an outcome that is the sum of many tiny independent contributions.\n\n\n\nTell students that formula recognition is enough here. They should understand what the parameters do and how to interpret probability regions."
+  },
+  {
+    "objectID": "week02/week02.html#what-do-μ-and-σ-actually-do",
+    "href": "week02/week02.html#what-do-μ-and-σ-actually-do",
+    "title": "Statistics for Pharmacists",
+    "section": "What do μ and σ actually do?",
+    "text": "What do μ and σ actually do?\n\nInteractive parameter intuition\n\n\n\nMean μ SD σ\n\nCurrent model\n\n𝒩(0, 1²)\n\n\n\n\n\n\n  \n\n\nDemonstrate μ first while keeping σ fixed: the curve slides. Then demonstrate σ while keeping μ fixed: the curve spreads and flattens."
+  },
+  {
+    "objectID": "week02/week02.html#the-empirical-rule",
+    "href": "week02/week02.html#the-empirical-rule",
+    "title": "Statistics for Pharmacists",
+    "section": "The empirical rule",
+    "text": "The empirical rule\n\nA useful landmark for Gaussian variation\n\n\n\n \n\n\n\n68.3% inside \\(\\mu\\pm1\\sigma\\)\n\n\n95.4% inside \\(\\mu\\pm2\\sigma\\)\n\n\n99.7% inside \\(\\mu\\pm3\\sigma\\)\n\n\n\n\nSay “roughly 68–95–99.7” when speaking. These percentages apply specifically to the normal distribution, not every bell-shaped curve."
+  },
+  {
+    "objectID": "week02/week02.html#moments-and-distribution-characteristics",
+    "href": "week02/week02.html#moments-and-distribution-characteristics",
+    "title": "Statistics for Pharmacists",
+    "section": "Moments and distribution characteristics",
+    "text": "Moments and distribution characteristics\n\nPart II\n\n\nThe parameters of probability distributions\n\n\nWe now see what numbers characterize the distributions."
+  },
+  {
+    "objectID": "week02/week02.html#quantiles-cut-probability-not-distance",
+    "href": "week02/week02.html#quantiles-cut-probability-not-distance",
+    "title": "Statistics for Pharmacists",
+    "section": "Quantiles cut probability, not distance",
+    "text": "Quantiles cut probability, not distance\n\nPercentiles and inverse CDF thinking\n\n\n\n \n\n\n\n5th percentile 5% of probability lies below it.\n\n\nMedian 50% below and 50% above.\n\n\n95th percentile 95% lies below it.\n\n\n\n\n\nA quantile is a value chosen by accumulated probability.\n\n\n\nThis prepares later confidence intervals, reference ranges, p-values and percentile-based clinical interpretation."
+  },
+  {
+    "objectID": "week02/week02.html#mean-where-is-the-distribution-centered",
+    "href": "week02/week02.html#mean-where-is-the-distribution-centered",
+    "title": "Statistics for Pharmacists",
+    "section": "Mean: where is the distribution centered?",
+    "text": "Mean: where is the distribution centered?\n\nExpected value as a balance point\n\n\n\\[\nE[X] = \\sum_x x\\,p(x) \\quad\\text{or}\\quad E[X]=\\int x f(x)\\,dx\n\\]\n\n\n\n\n\n\n\n      \n\n\n\n\n\\(E[X]\\)\n\n\n\n\nThe expected value (mean, also called first moment) is the balancing point of the probability distribution.\n\n\n\nUse this as a physical metaphor, then remind students that the mean can be pulled by long tails. That sets up skewness."
+  },
+  {
+    "objectID": "week02/week02.html#variance-how-far-do-values-wander",
+    "href": "week02/week02.html#variance-how-far-do-values-wander",
+    "title": "Statistics for Pharmacists",
+    "section": "Variance: how far do values wander?",
+    "text": "Variance: how far do values wander?\n\nSecond central moment\n\n\n\\[\n\\operatorname{Var}(X)=E[(X-\\mu)^2], \\qquad SD(X)=\\sqrt{\\operatorname{Var}(X)}\n\\]\n\n\n\n\n\n\n\n\n\n     \n\n\n\nVariance (also called second central moment) measures spread around the mean using squared deviations.\n\n\n\nStudents should know variance is in squared units and standard deviation returns to original units. Use tablet mass: variance in g² is less intuitive than SD in g."
+  },
+  {
+    "objectID": "week02/week02.html#symmetry-and-skewness",
+    "href": "week02/week02.html#symmetry-and-skewness",
+    "title": "Statistics for Pharmacists",
+    "section": "Symmetry and skewness",
+    "text": "Symmetry and skewness\n\nMean, median and mode can separate\n\n\n\nMean\n\n\nMedian\n\n\nMode\n\n\n\n\n\nLeft-skewed\n\n      \n\n\n\nSymmetric\n\n    \n\n\n\nRight-skewed\n\n      \n\n\n\n\nFor right-skewed shapes, the mean is often pulled toward the long right tail.\n\n\nSkewness can be characterized with the third central moment.\n\n\n\nState the mean/median/mode order as a visual heuristic, not a theorem for every possible distribution.\nUse examples: concentrations, residence times, income and many biological measurements can be right-skewed."
+  },
+  {
+    "objectID": "week02/week02.html#why-tails-matter",
+    "href": "week02/week02.html#why-tails-matter",
+    "title": "Statistics for Pharmacists",
+    "section": "Why tails matter",
+    "text": "Why tails matter\n\nKurtosis as extreme-event propensity\n\n\n\n \n\n\n\nSame center, very different probability of distant values.\n\n\nKurtosis is best remembered here as tail/extreme-value behavior.\n\n\nOutliers may be surprising under one model and ordinary under another.\n\n\n\n\nAvoid the common oversimplification “kurtosis equals peakedness.” For this course, emphasize heavy tails and extreme values."
+  },
+  {
+    "objectID": "week02/week02.html#the-cauchy-surprise",
+    "href": "week02/week02.html#the-cauchy-surprise",
+    "title": "Statistics for Pharmacists",
+    "section": "The Cauchy surprise",
+    "text": "The Cauchy surprise\n\nNot every distribution behaves politely\n\n\n  \n\n\n\n\\(E[X]\\) is not defined\n\n\n\\(\\operatorname{Var}(X)\\) is not defined\n\n\n\n\nThe Gaussian is friendly. The Cauchy reminds us that not all distributions have familiar summaries.\n\n\n\nThis slide uses a CSS/SVG animation as the default. It is also an excellent candidate for a future Manim animation because the continuous motion carries mathematical meaning.\nThe rigorous idea: if an angle is uniform and the intersection coordinate is tan(theta), the resulting distribution is Cauchy-like."
+  },
+  {
+    "objectID": "week02/week02.html#a-map-of-named-distributions",
+    "href": "week02/week02.html#a-map-of-named-distributions",
+    "title": "Statistics for Pharmacists",
+    "section": "A map of named distributions",
+    "text": "A map of named distributions\n\nLearn mechanisms before formulas\n\n\n\n\nDiscrete mechanisms\n\n\n\nDegenerateno uncertainty\n\n\nUniformfinite equal chances\n\n\nBernoullione yes/no trial\n\n\nBinomialsuccesses in n trials\n\n\nGeometrictrials until first success\n\n\nHypergeometricwithout replacement\n\n\nPoissonevents in an interval\n\n\n\n\n\nContinuous mechanisms\n\n\n\nDiracpoint mass idealization\n\n\nUniformbounded equal density\n\n\nExponentialwaiting for one event\n\n\nGammawaiting for several events\n\n\nGaussianadditive variation\n\n\nLog-normalmultiplicative positive variation\n\n\nParetoscaling/heavy tail\n\n\nCauchyvery heavy symmetric tails\n\n\n\n\n\nThis replaces an encyclopedia of formulas with a map. Students should first learn which real-world mechanism each distribution represents."
+  },
+  {
+    "objectID": "week02/week02.html#discrete-one-trial-to-many-trials",
+    "href": "week02/week02.html#discrete-one-trial-to-many-trials",
+    "title": "Statistics for Pharmacists",
+    "section": "Discrete: one trial to many trials",
+    "text": "Discrete: one trial to many trials\n\nBinary and finite equal-chance mechanisms\n\n\n\n\nDegenerate\n\n\nThe outcome is fixed.\n\n\n\\(\\mathbb{P}(X=c)=1\\)\n\n\n\n\n\nDiscrete uniform\n\n\nFinite outcomes equally likely.\n\n\n\\(\\mathbb{P}(X=x)=1/k\\)\n\nk = 6   \n\n\n\nBernoulli\n\n\nOne yes/no experiment.\n\n\n\\(\\mathbb{P}(X=1)=p\\)\n\np = 0.50   \n\n\n\nBinomial\n\n\nSuccesses in \\(n\\) independent Bernoulli trials.\n\n\n\\(\\mathbb{P}(X=k)=\\binom nkp^k(1-p)^{n-k}\\)\n\n\nn = 6   p = 0.50  \n\n\n\n\n\n\nCoin toss: Bernoulli. Fair die: discrete uniform. Repeated responses: binomial.\n\n\n\nDo not spend time deriving each formula. The story/mechanism is the learning target. The binomial formula will be used in exercises."
+  },
+  {
+    "objectID": "week02/week02.html#discrete-counting-and-sampling",
+    "href": "week02/week02.html#discrete-counting-and-sampling",
+    "title": "Statistics for Pharmacists",
+    "section": "Discrete: counting and sampling",
+    "text": "Discrete: counting and sampling\n\nDifferent sampling mechanisms create different distributions\n\n\n\n\nGeometric\n\n\nTrials until the first success.\n\n\n\\(\\mathbb{P}(T=t)=(1-p)^{t-1}p\\)\n\n p = 0.30   \n\n\n\nHypergeometric\n\n\nSampling from a finite batch without replacement.\n\n\n\\(\\mathbb{P}(X=k)=\\frac{\\binom Kk\\binom{N-K}{n-k}}{\\binom Nn}\\)\n\n\n N = 20    K = 8    n = 5  \n\n\n\n\n\nPoisson\n\n\nCount events in a fixed exposure interval.\n\n\n\\(\\mathbb{P}(X=k)=e^{-\\lambda}\\frac{\\lambda^k}{k!}\\)\n\n λ = 3.0   \n\n\n\n\nBefore calculating, identify the experiment that generated the count.\n\n\n\nUse the tablet press example for geometric, batch sampling for hypergeometric, and dispensing errors or adverse events per exposure interval for Poisson."
+  },
+  {
+    "objectID": "week02/week02.html#continuous-waiting-and-positive-quantities",
+    "href": "week02/week02.html#continuous-waiting-and-positive-quantities",
+    "title": "Statistics for Pharmacists",
+    "section": "Continuous: waiting and positive quantities",
+    "text": "Continuous: waiting and positive quantities\n\nSupport and mechanism matter\n\n\n\n\nDirac delta\n\n\nPoint mass in continuous mathematics; not an ordinary PDF.\n\n\narea = 1\n\n\n\n\n\n\n\n\nContinuous uniform\n\n\nEqual density on a bounded interval.\n\n\n\\(f(x)=1/(b-a)\\)\n\n\n a = 0.0    b = 4.0  \n\n\n\n\n\nExponential\n\n\nWaiting time until first event under constant rate.\n\n\n\\(f(t)=\\lambda e^{-\\lambda t}\\)\n\n λ = 1.0   \n\n\n\nGamma\n\n\nWaiting time until several events; flexible positive skew.\n\n\n\\(X&gt;0\\)\n\n\n k = 3    λ = 1.0  \n\n\n\n\n\nKeep the Dirac delta simple: a mathematical idealization of all mass at one point. Do not teach generalized functions."
+  },
+  {
+    "objectID": "week02/week02.html#continuous-shapes-seen-in-real-data",
+    "href": "week02/week02.html#continuous-shapes-seen-in-real-data",
+    "title": "Statistics for Pharmacists",
+    "section": "Continuous: shapes seen in real data",
+    "text": "Continuous: shapes seen in real data\n\nAdditive, multiplicative and heavy-tail behavior\n\n\n\n\nGaussian\n\n\nAdditive variation around a center.\n\n\n\\(\\mathcal{N}(\\mu,\\sigma^2)\\)\n\n\n μ = 0.0    σ = 1.0  \n\n\n\n\n\nLog-normal\n\n\nPositive values with multiplicative variability.\n\n\n\\(\\log X\\sim\\mathcal{N}(\\mu_{\\log},\\sigma_{\\log}^2)\\)\n\n\n μlog = 0.00    σlog = 0.60  \n\n\n\n\n\nPareto\n\n\nScaling behavior; few very large values.\n\n\nheavy right tail\n\n α = 2.0   \n\n\n\nCauchy\n\n\nVery heavy symmetric tails; mean/variance undefined.\n\n\n\\(\\operatorname{Cauchy}(x_0,\\gamma)\\)\n\n\n x₀ = 0.0    γ = 1.0  \n\n\n\n\n\n\nReal scientific data often choose the distribution for us: counts, proportions, positive times, concentrations, extremes.\n\n\n\nPharmaceutical examples: concentration and clearance often right-skew; assay errors may be approximately Gaussian after calibration; adverse event counts may use Poisson-like models; extreme values require caution."
+  },
+  {
+    "objectID": "week02/week02.html#which-distribution-describes-the-experiment",
+    "href": "week02/week02.html#which-distribution-describes-the-experiment",
+    "title": "Statistics for Pharmacists",
+    "section": "Which distribution describes the experiment?",
+    "text": "Which distribution describes the experiment?\n\nCheckpoint before calculation\n\n\n\n\nA. 20 patients each respond or do not respond.\n\n\nB. Count dispensing errors during an 8-hour shift.\n\n\nC. Inspect 5 tablets from a finite batch containing 3 known defects.\n\n\nD. Count presses until the first camera rejection.\n\n\nE. Measure time until the first degradation event.\n\n\n\n\nA → Binomial\n\n\nB → Poisson\n\n\nC → Hypergeometric\n\n\nD → Geometric\n\n\nE → Exponential\n\n\n\n\nLet students answer before revealing the right side. The major skill is matching question to distribution, not formula recall."
+  },
+  {
+    "objectID": "week02/week02.html#probability-laboratory",
+    "href": "week02/week02.html#probability-laboratory",
+    "title": "Statistics for Pharmacists",
+    "section": "Probability laboratory",
+    "text": "Probability laboratory\n\nGuided exercises\n\n\n\n\nGeometric tablet-camera example\n\n\nFault probability per press is \\(p=0.001\\). Probability of \\(1000\\) error-free presses?\n\n\n\\(0.999^{1000}\\approx0.368\\)\n\n\n\n\nBinomial patient group\n\n\n\\(X\\sim\\operatorname{Binomial}(20,0.30)\\). What is the probability of (i) exactly, (ii) at most and (iii) at least 5 responses?\n\n\npoint vs cumulative probability\n\n\n\n\nHypergeometric batch sample\n\n\nA batch has 20 tablets, 3 defective. Sample 5 without replacement.\n\n\nfinite population + no replacement\n\n\n\n\nNormal tablet mass\n\n\n\\(X\\sim \\mathcal{N}(2.000,0.008^2)\\). Probability between 1.99 and 2.01 g?\n\n\narea under density\n\n\n\n\nThis slide is meant as a menu of short calculations. Work one or two live depending on time. The others can be take-home practice."
+  },
+  {
+    "objectID": "week02/week02.html#point-and-cumulative-binomial-probabilities",
+    "href": "week02/week02.html#point-and-cumulative-binomial-probabilities",
+    "title": "Statistics for Pharmacists",
+    "section": "Point and cumulative binomial probabilities",
+    "text": "Point and cumulative binomial probabilities\n\nInteractive calculation intuition\n\n\n\nn patients response probability p questionexactly kat most kat least k\n\n\nk\n\nModel\n\nBinomial(20, 0.30)\n\n\n\nProbability\n\n—\n\n\n\n\n\n\n\nUse exactly, then at most, then at least for the same k. The bars should make the probability question visually unambiguous."
+  },
+  {
+    "objectID": "week02/week02.html#the-catch",
+    "href": "week02/week02.html#the-catch",
+    "title": "Statistics for Pharmacists",
+    "section": "The catch",
+    "text": "The catch\n\nWeek 2 synthesis\n\n\n\nA distribution describes how probability is allocated.\n\n\nIts shape determines which observations are plausible.\n\n\nDifferent scientific mechanisms generate different distribution families.\n\n\n\n\nBut in real science, the true distribution and its parameters are almost never known.\n\n\n\n\nNext week: how can incomplete observations teach us about the process that generated them?\n\n\n\nEnd with the transition from probability to statistics. Probability assumes a model and asks what observations are likely. Statistics observes data and asks what model or parameter values are plausible."
+  },
+  {
+    "objectID": "week01/week01.html#reasoning-with-data-under-uncertainty",
+    "href": "week01/week01.html#reasoning-with-data-under-uncertainty",
+    "title": "Statistics for Pharmacists",
+    "section": "Reasoning with data under uncertainty",
+    "text": "Reasoning with data under uncertainty\n\nWeek 1\n\n\nIntroduction to statistics."
+  },
+  {
+    "objectID": "week01/week01.html#would-you-approve-this-drug",
+    "href": "week01/week01.html#would-you-approve-this-drug",
+    "title": "Statistics for Pharmacists",
+    "section": "Would you approve this drug?",
+    "text": "Would you approve this drug?\n\nFirst decision\n\n\n\n\nNew drug · response\n\n\n72%\n\n\n\n\nStandard treatment · response\n\n\n65%\n\n\n\n\nApprove?\n\n\n\nSuppose there were only 8 patients in each group.\n\n\n\n\nNow suppose there were 8,000 patients in each group.\n\n\n\n\nThe percentages did not change. The evidence did.\n\n\n\nDo not define statistics yet. Ask for a show of hands after the two percentages.\nAfter revealing n = 8, ask what additional information students now want. Typical answers: sample size, randomization, patient selection, uncertainty, side effects, effect size.\nThen reveal n = 8,000. Emphasize that the same point estimate can carry very different evidential weight.\nTeaching target: students should spontaneously discover that a number without context is insufficient."
+  },
+  {
+    "objectID": "week01/week01.html#so-what-is-statistics",
+    "href": "week01/week01.html#so-what-is-statistics",
+    "title": "Statistics for Pharmacists",
+    "section": "So what is statistics?",
+    "text": "So what is statistics?\n\nA working definition for this course\n\n\n\nDATA\n\n\n→\n\n\nUNCERTAINTY\n\n\n→\n\n\nLEARNING\n\n\n→\n\n\nDECISION\n\n\n\n\nStatistics is the science of learning from data in the presence of uncertainty.\n\n\n\n\nThis course is not about memorizing a catalogue of tests. It is about learning how to ask what the data can — and cannot — tell us.\n\n\n\n\n\nJacob Bernoulli\n\n\n\n\n\nCarl Friedrich Gauss\n\n\n\n\n\nRonald Aylmer Fisher\n\n\n\n\n\nThis is the semester-long working definition. Return to it in Week 12.\nPoint explicitly to the color grammar for the first time: - blue = what we observed, - purple = uncertainty/probability, - green = what we learned/estimated.\nDo not yet explain orange/red in detail; they will appear naturally later."
+  },
+  {
+    "objectID": "week01/week01.html#where-did-statistics-come-from",
+    "href": "week01/week01.html#where-did-statistics-come-from",
+    "title": "Statistics for Pharmacists",
+    "section": "Where did statistics come from?",
+    "text": "Where did statistics come from?\n\nA 60-second historical aside\n\n\nWhen states began systematically collecting information, data became a source of power.\n\n\n\n\n01\n\n\nPopulation & resources\n\n\n\n\n\n02\n\n\nCensus & records\n\n\n\n\n\n03\n\n\nStore & summarize\n\n\n\n\n\n04\n\n\nCompare & detect patterns\n\n\n\n\n\n05\n\n\nDecide & govern\n\n\n\n\n\n\nThe word statistics historically comes from German Statistik: knowledge about the affairs of a state.\n\n\n\nKeep this short. The goal is not etymology; the goal is the durable idea that organized data collection changes what institutions can know and decide."
+  },
+  {
+    "objectID": "week01/week01.html#statistics-is-already-in-your-life",
+    "href": "week01/week01.html#statistics-is-already-in-your-life",
+    "title": "Statistics for Pharmacists",
+    "section": "Statistics is already in your life",
+    "text": "Statistics is already in your life\n\nBefore pharmacy, before research\n\n\n\n\nIncome\n\n\nMean or median — and why does the choice matter?\n\n\n\n\nA health headline\n\n\n“A study found…” — in how many people, and compared with what?\n\n\n\n\nInsurance\n\n\nWhat risk are you transferring, and what are you paying for it?\n\n\n\n\nRelative risk\n\n\n“50% higher risk” — 50% higher than what baseline?\n\n\n\n\n\nStatistical literacy is partly the ability to ask the missing question.\n\n\n\nDo not answer these questions fully. They are previews of later weeks.\nPossible verbal examples: - mean vs median income → Week 3 descriptive statistics; - “study found” → sampling and design; - insurance → expected value and decision theory; - relative risk → Week 10 epidemiology.\nThis slide creates retrieval hooks that can be revisited later."
+  },
+  {
+    "objectID": "week01/week01.html#when-bad-statistics-has-consequences",
+    "href": "week01/week01.html#when-bad-statistics-has-consequences",
+    "title": "Statistics for Pharmacists",
+    "section": "When bad statistics has consequences",
+    "text": "When bad statistics has consequences\n\nCase study · Sally Clark\n\n\nA figure presented in court for the probability of a sudden infant death in a family like Clark’s was approximately\n\n\\[P(\\text{one SIDS death}) \\approx \\frac{1}{8543}\\]\n\n\nThe probability of two deaths was then presented by multiplying the number by itself:\n\n\\[\\frac{1}{8543}\\times\\frac{1}{8543}\\approx\\frac{1}{73\\,000\\,000}\\]\n\n\n\n\n\nWhat assumption is hiding inside that multiplication?\n\n\n\n\nDo not solve this yet — we return to it after independence.\n\n\n\nThis is deliberately unresolved. The case will return after the independence slide later in Week 1.\nAvoid turning this into a legal-history digression. The statistical point is that multiplication of probabilities encodes assumptions.\nThe Royal Statistical Society later criticized the calculation because independence was not justified and also warned against confusing P(evidence | hypothesis) with P(hypothesis | evidence).\nSource for lecturer reference: https://rss.org.uk/RSS/media/File-library/Membership/Sections/2020/Sally-Clark-RSS-letter-2002.pdf"
+  },
+  {
+    "objectID": "week01/week01.html#science-needs-statistics",
+    "href": "week01/week01.html#science-needs-statistics",
+    "title": "Statistics for Pharmacists",
+    "section": "Science needs statistics",
+    "text": "Science needs statistics\n\nSame nominal condition ≠ same observed outcome\n\n\nGive the same treatment under the same nominal conditions. Why are the measured responses not identical?\n\n\n\n\n\n\nunderlying target / model\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmeasured response →\n\n\n\n\nBiological variability\n\n\nMeasurement error\n\n\nEnvironment\n\n\nUnknown factors\n\n\n\n\nScientific observations contain both signal and uncertainty.\n\n\n\nUse a pharmaceutical example verbally: plasma concentration, clearance, blood-pressure response, dissolution time, assay signal, etc.\nImportant distinction: statistical uncertainty is not motivated primarily through the Heisenberg uncertainty principle, which is quantum-mechanical uncertainty and is not the same concept as biological variability, sampling variation, measurement error or incomplete knowledge.\nThis slide prepares the transition to probability."
+  },
+  {
+    "objectID": "week01/week01.html#the-scientific-learning-loop",
+    "href": "week01/week01.html#the-scientific-learning-loop",
+    "title": "Statistics for Pharmacists",
+    "section": "The scientific learning loop",
+    "text": "The scientific learning loop\n\nReasoning under uncertainty is iterative\n\n\n\n1Question\n\n\n→\n\n\n2Experiment\n\n\n→\n\n\n3Data\n\n\n→\n\n\n4Model\n\n\n→\n\n\n5Decision\n\n\n\n\nDecision → new question → new data\n\n\n\n\nStatistics sits inside the loop: it connects uncertain observations to defensible decisions.\n\n\n\nThis is the course-level mental model.\nStress that the loop is not perfectly clean in real research. There are failed assays, noisy measurements, unexpected constraints, and judgment calls."
+  },
+  {
+    "objectID": "week01/week01.html#enzyme-engineering-as-a-learning-loop",
+    "href": "week01/week01.html#enzyme-engineering-as-a-learning-loop",
+    "title": "Statistics for Pharmacists",
+    "section": "Enzyme engineering as a learning loop",
+    "text": "Enzyme engineering as a learning loop\n\nPharmacy-adjacent example\n\n\n\n\nPET\n\n\nProblem\n\n\nNatural enzymes degrade PET too slowly.\n\n\n\n→\n\n\n\nMUT\n\n\nGenerate variants\n\n\nMutate enzyme sequence.\n\n\n\n→\n\n\n\nASSAY\n\n\nObserve\n\n\nMeasure activity for many variants.\n\n\n\n→\n\n\n\nTOP 5%\n\n\nSelect\n\n\nKeep the best performers.\n\n\n\n\n    \n\nenzyme variant rank →\n\n\nenzyme efficacy →\n\n\n\n\nObserve → select → update → repeat.\n\n\n\nUse this as an intuitive example of iterative empirical optimization. Do not over-teach enzyme engineering; the statistical idea is enough.\nThe key point is that noisy data still supports useful decisions when the process is structured."
+  },
+  {
+    "objectID": "week01/week01.html#probability",
+    "href": "week01/week01.html#probability",
+    "title": "Statistics for Pharmacists",
+    "section": "Probability",
+    "text": "Probability\n\nPart II\n\n\nThe mathematical language of uncertainty\n\n\nWe now formalize the word “possible.”\n\n\nPause here. Tell students that the course now becomes a little more technical, but the symbols will always refer to concrete objects."
+  },
+  {
+    "objectID": "week01/week01.html#experiment-outcomes-events-probability",
+    "href": "week01/week01.html#experiment-outcomes-events-probability",
+    "title": "Statistics for Pharmacists",
+    "section": "Experiment → outcomes → events → probability",
+    "text": "Experiment → outcomes → events → probability\n\nStart with one clinical experiment\n\n\n\n\nExperiment\n\n\nAdminister treatment\n\n\n\n\nPossible outcomes\n\n\nResponse No response\n\n\n\n\nEvent\n\n\n\\(A = \\{\\text{response}\\}\\)\n\n\n\n\nProbability\n\n\n\\(\\mathbb{P}(A) = 0.70\\)\n\n\n\n\n\nProbability is a rule for assigning numbers to events before the uncertain outcome is observed.\n\n\n\nDo not start with coins. Start with a pharmacy-relevant two-outcome situation.\nClarify that response/no response is a simplification. Real clinical endpoints can be continuous, ordinal, binary, time-to-event, etc. We start binary because it lets us see the structure."
+  },
+  {
+    "objectID": "week01/week01.html#a-probability-space",
+    "href": "week01/week01.html#a-probability-space",
+    "title": "Statistics for Pharmacists",
+    "section": "A probability space",
+    "text": "A probability space\n\nThe ingredients\n\n\n\n\n\\(\\Omega\\)\n\n\nSample space\n\n\nall possible elementary outcomes\n\n\n\n\n\\(\\mathcal{F}\\)\n\n\nEvents\n\n\nquestions we can ask about outcomes\n\n\n\n\n\\(\\mathbb{P}\\)\n\n\nProbability measure\n\n\na rule assigning probabilities to events\n\n\n\n\n\n\\[\n\\mathbb{P}:\\mathcal{F} \\rightarrow [0,1]\n\\]\n\n\n\nKeep sigma-algebra details out of the lecture. Say: in advanced probability, the event system has additional technical requirements; in this course, think of F as the events to which probabilities are assigned.\nThe message is: probability needs a universe of possible outcomes, a set of events, and a consistent assignment rule."
+  },
+  {
+    "objectID": "week01/week01.html#the-sample-space",
+    "href": "week01/week01.html#the-sample-space",
+    "title": "Statistics for Pharmacists",
+    "section": "The sample space",
+    "text": "The sample space\n\nCoin tosses: a clean toy model\n\n\n\n\nOne toss\n\n\n\\(\\Omega = \\{\\text{H},\\text{T}\\}\\)\n\n\n\nH\n\n\nT\n\n\n\n\n\nTwo tosses\n\n\n\\(\\Omega = \\{\\text{HH},\\text{HT},\\text{TH},\\text{TT}\\}\\)\n\n\n\nH→HH\n\n\nH→HT\n\n\nT→TH\n\n\nT→TT\n\n\n\n\n\n\nFor the first example, avoid adding “impossible” outcomes. Start with the outcomes the experiment actually defines.\n\n\n\nThis cleans up the earlier draft idea. For one coin toss, Ω = {H, T}. For two coin tosses, Ω = {HH, HT, TH, TT}. Impossible outcomes and probability-zero events are more subtle and belong later when discussing continuous distributions."
+  },
+  {
+    "objectID": "week01/week01.html#events-are-sets",
+    "href": "week01/week01.html#events-are-sets",
+    "title": "Statistics for Pharmacists",
+    "section": "Events are sets",
+    "text": "Events are sets\n\nSet-theoretic relations, made visible\n\n\n\nHH\n\n\nHT\n\n\nTH\n\n\nTT\n\n\n\n\n\\(A = \\{\\text{at least one head}\\}\\)\n\n\n\\(A = \\{\\text{HH},\\text{HT},\\text{TH}\\}\\)\n\n\n\\(A^c = \\{\\text{TT}\\}\\)\n\n\n\n\n\nA\n\n\nB\n\n\nunion, intersection, complement are operations on events\n\n\n\n\nThe outcomes appear one by one. The first three are highlighted as event A. Then A and A complement are named.\nDefine union/intersection verbally with the Venn visual: A or B; A and B; not A."
+  },
+  {
+    "objectID": "week01/week01.html#three-rules-are-enough-to-start",
+    "href": "week01/week01.html#three-rules-are-enough-to-start",
+    "title": "Statistics for Pharmacists",
+    "section": "Three rules are enough to start",
+    "text": "Three rules are enough to start\n\nKolmogorov axioms, introductory version\n\n\n\n\n\n1 \\(0 \\leq \\mathbb{P}(A) \\leq 1\\)\n\n\n2 \\(\\mathbb{P}(\\Omega)=1\\)\n\n\n3 If \\(A\\) and \\(B\\) are disjoint: \\(\\mathbb{P}(A\\cup B)=\\mathbb{P}(A)+\\mathbb{P}(B)\\)\n\n\n\n\n\n\n\nPafnuty Chebyshev\n\n\n\n\n\nAndrey Markov\n\n\n\n\n\nAndrey Kolmogorov\n\n\n\n\n\n0\n\n\n\n1\n\n\n\nThe full axiom is countable additivity; today, the finite version is enough for intuition.\n\n\n\n\nFrequentist View\n\n\nRelative Frequency: The long-run proportion of times an event \\(A\\) occurs over infinitely repeated trials.\n\n\n\n\nBayesian / Propensity View\n\n\nDegree of Belief: The quantifiable certainty or intrinsic propensity of event \\(A\\) occurring given current evidence.\n\n\n\n\n\nThe goal is to make the axioms feel like sanity rules: probabilities are bounded, the whole universe has probability one, and non-overlapping pieces add.\nDo not get stuck on measure theory."
+  },
+  {
+    "objectID": "week01/week01.html#useful-rules-follow-automatically",
+    "href": "week01/week01.html#useful-rules-follow-automatically",
+    "title": "Statistics for Pharmacists",
+    "section": "Useful rules follow automatically",
+    "text": "Useful rules follow automatically\n\nFrom axioms to working tools\n\n\n\n\nComplement\n\n\n\\(\\mathbb{P}(A^c)=1-\\mathbb{P}(A)\\)\n\n\nAAᶜ\n\n\n\n\nUnion\n\n\n\\(\\mathbb{P}(A\\cup B)=\\mathbb{P}(A)+\\mathbb{P}(B)-\\mathbb{P}(A\\cap B)\\)\n\n\n\n\nA\n\n\n\n+\n\n\n\nB\n\n\n\n=\n\n\n\nA\n\n\nB\n\n\n×2\n\n\nDouble-counted intersection \\(A \\cap B\\)\n\n\n\n\n\n\n\nMost probability formulas are bookkeeping: which regions have we counted once, twice, or not at all?\n\n\n\nStudents often experience these as arbitrary formulas. Teach them as area bookkeeping. If time permits, draw a Venn diagram live with the chalkboard tool."
+  },
+  {
+    "objectID": "week01/week01.html#conditional-probability-changes-the-universe",
+    "href": "week01/week01.html#conditional-probability-changes-the-universe",
+    "title": "Statistics for Pharmacists",
+    "section": "Conditional probability changes the universe",
+    "text": "Conditional probability changes the universe\n\nSubgroups and new information\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMale Non-responder\n\n\n\n\n\nMale Responder\n\n\n\n\n\nFemale Non-responder\n\n\n\n\n\nFemale Responder (\\(A \\cap B\\))\n\n\n\n\n\nResponders among all patients: \\(\\mathbb{P}({\\color{#1f6feb}A})\\)\n\n\nResponders among female subgroup: \\(\\mathbb{P}({\\color{#1f6feb}A} \\mid {\\color{#c65d09}B})\\)\n\n\n\\(\\mathbb{P}({\\color{#1f6feb}A} \\mid {\\color{#c65d09}B}) = \\frac{\\mathbb{P}({\\color{#7b4ab5}A \\cap B})}{\\mathbb{P}({\\color{#c65d09}B})}\\)\n\n\n\n\nConditional probability changes the universe we are considering.\n\n\n\nStress that the denominator P(B) is not a trick; it is the size of the new universe."
+  },
+  {
+    "objectID": "week01/week01.html#independence-is-a-scientific-assumption",
+    "href": "week01/week01.html#independence-is-a-scientific-assumption",
+    "title": "Statistics for Pharmacists",
+    "section": "Independence is a scientific assumption",
+    "text": "Independence is a scientific assumption\n\nWhen learning B tells us nothing about A\n\n\n\n\nIndependent\n\n\n\\(\\mathbb{P}(A\\mid B)=\\mathbb{P}(A)\\)\n\n\n\\(\\mathbb{P}(A\\cap B)=\\mathbb{P}(A)\\cdot\\mathbb{P}(B)\\)\n\n\nKnowing \\(B\\) does not change the probability of \\(A\\).\n\n\n\n\nDependent\n\n\nAdverse effectandrenal impairment\n\n\nKnowing \\(B\\) may strongly change the probability of \\(A\\).\n\n\n\n\n\nMultiplication is only justified after the independence assumption is justified.\n\n\n\nThis is a major conceptual slide. Make students say the scientific assumption aloud: are these events independent in the real world?\nExamples: two fair coin tosses are often modeled as independent; adverse effect and organ function are usually not safe to assume independent."
+  },
+  {
+    "objectID": "week01/week01.html#return-to-the-court-case",
+    "href": "week01/week01.html#return-to-the-court-case",
+    "title": "Statistics for Pharmacists",
+    "section": "Return to the court case",
+    "text": "Return to the court case\n\nThe hidden assumption\n\n\n\\[\n\\frac{1}{8543}\\times\\frac{1}{8543}\n\\]\n\n\n\nThis multiplication assumes independence.\n\n\n\n\n\nSiblings may share genetic and environmental risk factors.\n\n\nThe calculation also confused:\n\n\\[\\mathbb{P}(\\text{evidence} \\mid \\text{hypothesis})\\]\n\nwith:\n\n\\[\\mathbb{P}(\\text{hypothesis} \\mid \\text{evidence})\\]\n\n\n\n\n\n\nIndependence is not a default setting. It is a claim about how the world works.\n\n\n\nThis is the payoff from the earlier unresolved mystery. Do not spend long on legal details.\nSay clearly: even if a probability number is correct in one context, combining it with another probability can become invalid when assumptions are unjustified."
+  },
+  {
+    "objectID": "week01/week01.html#total-probability-divide-and-rebuild",
+    "href": "week01/week01.html#total-probability-divide-and-rebuild",
+    "title": "Statistics for Pharmacists",
+    "section": "Total probability: divide and rebuild",
+    "text": "Total probability: divide and rebuild\n\nA population can be built from subgroups\n\n\n\n\\(B\\)\n\n\n\\(B^c\\)\n\n\n\n\\(A^c \\cap B\\)\n\n\n\\(A \\cap B\\)\n\n\n\n\n\\(A^c \\cap B^c\\)\n\n\n\\(A \\cap B^c\\)\n\n\n\n\n\\[\n\\mathbb{P}(A) = \\mathbb{P}(A\\mid B)\\cdot\\mathbb{P}(B) + \\mathbb{P}(A\\mid B^c)\\cdot\\mathbb{P}(B^c)\n\\]\n\n\n\nCalculate within simpler subgroups, then combine them according to subgroup size.\n\n\n\nThis will return in epidemiology, diagnostic testing, and mixture distributions.\nUse an example verbally: probability of a positive diagnostic test = positives among diseased + positives among healthy."
+  },
+  {
+    "objectID": "week01/week01.html#the-direction-matters",
+    "href": "week01/week01.html#the-direction-matters",
+    "title": "Statistics for Pharmacists",
+    "section": "The direction matters",
+    "text": "The direction matters\n\nA common diagnostic mistake\n\n\n\n\nTest performance\n\n\n\\(\\mathbb{P}(+\\mid\\text{Disease})\\)\n\n\n\n≠\n\n\n\nPatient question\n\n\n\\(\\mathbb{P}(\\text{Disease}\\mid +)\\)\n\n\n\n\n\nNot the same question.\n\n\n\nAsk students: a test has 90% sensitivity. Does a positive result mean the patient has a 90% probability of disease?\nLet them answer before the red warning appears."
+  },
+  {
+    "objectID": "week01/week01.html#a-diagnostic-test-puzzle",
+    "href": "week01/week01.html#a-diagnostic-test-puzzle",
+    "title": "Statistics for Pharmacists",
+    "section": "A diagnostic-test puzzle",
+    "text": "A diagnostic-test puzzle\n\nTry to guess before calculating\n\n\n\n\nPrevalence\n\n1% disease in population\n\n\n\nSensitivity\n\n90% correctly identified sick people\n\n\n\nSpecificity\n\n95% correctly identified healthy people\n\n\n\nSomeone tests positive. What is the probability that the person actually has the disease?\n\n\n\nCommit to a number before the next slide.\n\n\n\nMost students will guess near 90%. Do not correct them yet. The next slide should be a surprise.\nThese numbers are deliberately round and pedagogical; this is not tied to a specific disease."
+  },
+  {
+    "objectID": "week01/week01.html#count-people-not-abstract-probabilities",
+    "href": "week01/week01.html#count-people-not-abstract-probabilities",
+    "title": "Statistics for Pharmacists",
+    "section": "Count people, not abstract probabilities",
+    "text": "Count people, not abstract probabilities\n\nNatural frequencies make Bayes intuitive\n\n\n\n\nStart with\n\n\n1000 people\n\n\n\n\nDisease\n\n\n10990 without disease\n\n\n\n\nTrue positives\n\n\n9\n\n\n\n\nFalse positives\n\n\n50\n\n\n\n\n\n\\[\n\\mathbb{P}(\\text{Disease}\\mid +) \\approx \\frac{9}{9+50}\\approx 15\\%\n\\]\n\n\n\nThis should feel surprising. Emphasize that the test did not become bad; rather, rare disease plus imperfect specificity creates many false positives.\nUse this to create intuition before Bayes’ theorem appears as a formula."
+  },
+  {
+    "objectID": "week01/week01.html#bayes-theorem",
+    "href": "week01/week01.html#bayes-theorem",
+    "title": "Statistics for Pharmacists",
+    "section": "Bayes’ theorem",
+    "text": "Bayes’ theorem\n\nThe formula compresses the counting logic\n\n\n\\[\n\\mathbb{P}(D\\mid +)=\\frac{\\mathbb{P}(+\\mid D)\\cdot \\mathbb{P}(D)}{\\mathbb{P}(+)}\n\\]\n\n\n\\[\n\\mathbb{P}(+)=\\mathbb{P}(+\\mid D)\\cdot \\mathbb{P}(D)+\\mathbb{P}(+\\mid D^c)\\cdot \\mathbb{P}(D^c)\n\\]\n\n\n\npriorHow common is disease?\n\n\nevidence modelHow does the test behave?\n\n\nposteriorWhat should we believe after observing \\(+\\)?\n\n\n\n\nBayes’ theorem is a mathematical model for updating probabilities when new evidence arrives.\n\n\n\nAvoid saying Bayes is the entire foundation of the scientific method. Say it formalizes an important type of evidence updating.\nConnect it to the learning loop: prior state of knowledge → new data → updated state of knowledge."
+  },
+  {
+    "objectID": "week01/week01.html#bayes-laboratory",
+    "href": "week01/week01.html#bayes-laboratory",
+    "title": "Statistics for Pharmacists",
+    "section": "Bayes laboratory",
+    "text": "Bayes laboratory\n\nInteractive slide for students at home\n\n\nMove the sliders. Watch what happens when the disease becomes rare or specificity improves.\n\n\nviewof prev = Inputs.range([0.1, 30], {value: 1, step: 0.1, label: \"Disease prevalence (%)\"})\n\n\n\n\n\n\n\nviewof sens = Inputs.range([50, 100], {value: 90, step: 1, label: \"Sensitivity (%)\"})\n\n\n\n\n\n\n\nviewof spec = Inputs.range([50, 100], {value: 95, step: 1, label: \"Specificity (%)\"})\n\n\n\n\n\n\n\nbayesCalc = {\n  const N = 1000;\n  const diseased = N * prev / 100;\n  const healthy = N - diseased;\n  const tp = diseased * sens / 100;\n  const fp = healthy * (100 - spec) / 100;\n  const ppv = tp / (tp + fp);\n  const widthTP = 100 * tp / Math.max(tp + fp, 1);\n  const widthFP = 100 - widthTP;\n  return html`&lt;div class=\"bayes-widget\"&gt;\n    &lt;div class=\"bayes-output-grid\"&gt;\n      &lt;div class=\"bayes-output\"&gt;&lt;span&gt;Disease&lt;/span&gt;&lt;strong&gt;${diseased.toFixed(1)}&lt;/strong&gt;&lt;small&gt;per 1000&lt;/small&gt;&lt;/div&gt;\n      &lt;div class=\"bayes-output\"&gt;&lt;span&gt;True +&lt;/span&gt;&lt;strong&gt;${tp.toFixed(1)}&lt;/strong&gt;&lt;small&gt;per 1000&lt;/small&gt;&lt;/div&gt;\n      &lt;div class=\"bayes-output\"&gt;&lt;span&gt;False +&lt;/span&gt;&lt;strong&gt;${fp.toFixed(1)}&lt;/strong&gt;&lt;small&gt;per 1000&lt;/small&gt;&lt;/div&gt;\n      &lt;div class=\"bayes-output\"&gt;&lt;span&gt;P(Disease | +)&lt;/span&gt;&lt;strong&gt;${(100 * ppv).toFixed(1)}%&lt;/strong&gt;&lt;small&gt;positive predictive value&lt;/small&gt;&lt;/div&gt;\n    &lt;/div&gt;\n    &lt;div class=\"positive-bar\"&gt;\n      &lt;div class=\"tp\" style=\"width:${widthTP}%\"&gt;true positives&lt;/div&gt;\n      &lt;div class=\"fp\" style=\"width:${widthFP}%\"&gt;false positives&lt;/div&gt;\n    &lt;/div&gt;\n  &lt;/div&gt;`\n}\n\n\n\n\n\n\n\nThe key exploration questions: 1. Keep sensitivity and specificity fixed; decrease prevalence. What happens to P(Disease | +)? 2. Keep prevalence rare; improve specificity. What happens? 3. Which parameter matters most when screening rare disease?\nThis is browser-side Observable JS, not Shiny. Students can use it from the HTML output without running R."
+  },
+  {
+    "objectID": "week01/week01.html#how-many-ways",
+    "href": "week01/week01.html#how-many-ways",
+    "title": "Statistics for Pharmacists",
+    "section": "How many ways?",
+    "text": "How many ways?\n\nCounting supports probability\n\n\nBefore choosing a formula, answer two design questions.\n\n\n\n\n\n\nWithout replacement\n\n\nWith replacement\n\n\nPermutation Arrangement of objects (Order matters)\n\n\n\\(\\displaystyle n!\\)\n\n\n\\(\\displaystyle \\frac{n!}{k_1!k_2!\\cdots k_r!}\\)\n\n\nCombination Selection of objects (Order does not matter)\n\n\n\\(\\displaystyle {n\\choose k}\\)\n\n\n\\(\\displaystyle {n+k-1\\choose k}\\)\n\n\nVariation Arrangement of selected objects (Order matters)\n\n\n\\(\\displaystyle \\frac{n!}{(n-k)!}\\)\n\n\n\\(\\displaystyle n^k\\)\n\n\n\nThe matrix is more important than the names. Many students memorize “permutation/combination/variation” without knowing which question each answers.\nUse small visual examples verbally: arrange three capsules; choose two patients; assign three doses from a dose list; choose flavors with repetition allowed."
+  },
+  {
+    "objectID": "week01/week01.html#discrete-probability-by-counting",
+    "href": "week01/week01.html#discrete-probability-by-counting",
+    "title": "Statistics for Pharmacists",
+    "section": "Discrete probability by counting",
+    "text": "Discrete probability by counting\n\nGuided exercise\n\n\n\nBag: 5 white balls + 8 red balls\n\n\n \n\n\n\n\n\nOne draw: probability of red?\n\n\n\\(\\mathbb{P}(\\text{red})=\\frac{8}{13}\\)\n\n\n\n\nTwo draws without replacement: both red?\n\n\n\\(\\frac{8}{13}\\cdot\\frac{7}{12}=\\frac{\\binom82}{\\binom{13}2}\\)\n\n\n\n\nSolve first by sequential probability, then by counting combinations. The equivalence is the teaching point: probability often has multiple representations.\nAsk what changes if we replace the first ball before the second draw."
+  },
+  {
+    "objectID": "week01/week01.html#continuous-probability-as-geometry",
+    "href": "week01/week01.html#continuous-probability-as-geometry",
+    "title": "Statistics for Pharmacists",
+    "section": "Continuous probability as geometry",
+    "text": "Continuous probability as geometry\n\nA probability without counting objects\n\n\n\n\nChoose two random real numbers \\(X,Y\\in[0,1]\\). What is \\(\\mathbb{P}(X+Y&lt;1)\\)?\n\n\n\\[\n  X,Y\\sim \\mathcal{U}(0,1)\n  \\]\n\n\n\n\n\n\n\n\n\n\nx\n\n\ny\n\n\n\\(x+y&lt;1\\)\n\n\n\n\n\n\\[\n\\mathbb{P}(X+Y&lt;1)=\\frac{\\text{area of triangle}}{\\text{area of square}}=\\frac12\n\\]\n\n\n\nThis is the students’ first taste of continuous probability. Emphasize that for continuous variables, probability is not counting points. It can be area, volume, or more generally probability mass under a density."
+  },
+  {
+    "objectID": "week01/week01.html#try-it-simulation-meets-geometry",
+    "href": "week01/week01.html#try-it-simulation-meets-geometry",
+    "title": "Statistics for Pharmacists",
+    "section": "Try it: simulation meets geometry",
+    "text": "Try it: simulation meets geometry\n\nInteractive slide for students at home\n\n\nIncrease the number of random points. The empirical proportion should drift toward \\(1/2\\).\n\n\nviewof mc_n = Inputs.range([20, 1000], {value: 200, step: 20, label: \"Number of random points\"})\n\n\n\n\n\n\n\nmcPlot = {\n  const pts = Array.from({length: mc_n}, () =&gt; ({x: Math.random(), y: Math.random()}));\n  const hits = pts.filter(d =&gt; d.x + d.y &lt; 1).length;\n  const ratio = (hits / mc_n).toFixed(3);\n  \n  const circles = pts.map(d =&gt; {\n    const cls = d.x + d.y &lt; 1 ? \"hit\" : \"miss\";\n    return `&lt;circle class=\"${cls}\" cx=\"${d.x*100}\" cy=\"${100-d.y*100}\" r=\"1.15\" /&gt;`;\n  }).join(\"\");\n\n  return html`&lt;div class=\"mc-widget\"&gt;\n    &lt;svg viewBox=\"0 0 100 100\" role=\"img\" aria-label=\"Monte Carlo points in unit square\"&gt;\n      &lt;polygon points=\"0,100 0,0 100,100\" class=\"mc-triangle\"&gt;&lt;/polygon&gt;\n      &lt;line x1=\"0\" y1=\"0\" x2=\"100\" y2=\"100\" class=\"mc-diagonal\"&gt;&lt;/line&gt;\n      ${circles}\n    &lt;/svg&gt;\n    &lt;div class=\"mc-result\"&gt;\n      ${tex`\\hat{\\mathbb{P}} = \\frac{${hits}}{${mc_n}} =${ratio}`}\n    &lt;/div&gt;\n  &lt;/div&gt;`;\n}\n\n\n\n\n\n\n\n\nStatistical Concept: Continuous Uniform Randomness\n\n\n\nA true uniform random variable \\(X \\sim \\mathcal{U}(0,1)\\) guarantees that every numerical value in \\([0,1]\\) has an equal probability of being selected.\n\n\n\nTrue Randomness\n\n\nGenerated by physical processes (e.g., thermal noise, radioactive decay)\n\n\nCompletely unpredictable with zero repeating patterns\n\n\n\n\nPseudo-Randomness\n\n\nGenerated by deterministic algorithms (by computer)\n\n\nPractically indistinguishable from true random\n\n\n\n\n\n\n\nThis foreshadows the Law of Large Numbers without naming it as the main object yet. You can say: later in the course we will make precise why this stabilizes.\nDo not let the interactive slide consume too much lecture time. It is especially useful for students revisiting the HTML at home."
+  },
+  {
+    "objectID": "week01/week01.html#what-did-we-really-learn",
+    "href": "week01/week01.html#what-did-we-really-learn",
+    "title": "Statistics for Pharmacists",
+    "section": "What did we really learn?",
+    "text": "What did we really learn?\n\nWeek 1 synthesis\n\n\n\nProbability is a mathematical language for uncertainty.\n\n\n\\(\\mathbb{P}(A\\mid B)\\neq \\mathbb{P}(B\\mid A)\\)\n\n\nIndependence is an assumption about the world — not permission to multiply numbers.\n\n\n\n\nIf probability describes uncertain processes, how can data teach us which probabilities or models are plausible?\n\n\n\n\nNext: probability distributions — the shapes uncertainty can take.\n\n\n\nEnd by returning to the course definition: reasoning with data under uncertainty.\nThe final question sets up Week 2 and Week 3: distributions describe uncertain outcomes, and estimation uses data to learn model parameters."
+  },
+  {
+    "objectID": "week03/week03.html#from-probability-to-data",
+    "href": "week03/week03.html#from-probability-to-data",
+    "title": "Statistics for Pharmacists",
+    "section": "From probability to data",
+    "text": "From probability to data\n\nWeek 3\n\n\nSource of data and how to interpret them."
+  },
+  {
+    "objectID": "week03/week03.html#what-can-10-out-of-100-tell-us",
+    "href": "week03/week03.html#what-can-10-out-of-100-tell-us",
+    "title": "Statistics for Pharmacists",
+    "section": "What can 10 out of 100 tell us?",
+    "text": "What can 10 out of 100 tell us?\n\nOpening hook\n\n\n\n\n10 / 100\n\n\npatients with hypersensitivity\n\n\n\n\n?\n\n\npopulation trait probability\n\n\n\n\n\n\nDistribution?\n\n\nWhat model describes the count?\n\n\n\n\nParameter?\n\n\nWhat is the unknown quantity?\n\n\n\n\nBest guess?\n\n\nWhere should the model live?\n\n\n\n\n\nWe observed data. Now the parameter is the unknown object.\n\n\n\nLet students answer verbally before revealing the binomial model. They should recall Week 2: a binary trait counted across fixed patients suggests a binomial model.\nThe intuitive estimate is 10/100 = 0.10, but the goal is to make that intuition feel principled rather than merely obvious."
+  },
+  {
+    "objectID": "week03/week03.html#turn-the-question-around",
+    "href": "week03/week03.html#turn-the-question-around",
+    "title": "Statistics for Pharmacists",
+    "section": "Turn the question around",
+    "text": "Turn the question around\n\nProbability and statistics use the same mathematics in opposite directions\n\n\n\n\nProbability theory\n\n\nmodel + parameter→ possible data\n\n\n\n↔︎\n\n\n\nStatistics\n\n\nobserved data→ plausible parameter/model\n\n\n\n\n\n\\[\nX\\sim \\operatorname{Binomial}(100,p),\\qquad X_{obs}=10\n\\]\n\n\n\n\nStatistics begins when we ask what the observations say about the data-generating process.\n\n\n\nEmphasize the direction of the question. In probability, p is known and X is uncertain. In statistics, X has been observed and p is uncertain."
+  },
+  {
+    "objectID": "week03/week03.html#maximum-likelihood-laboratory",
+    "href": "week03/week03.html#maximum-likelihood-laboratory",
+    "title": "Statistics for Pharmacists",
+    "section": "Maximum likelihood laboratory",
+    "text": "Maximum likelihood laboratory\n\nInteractive parameter intuition\n\n\n\nCandidate trait probability p  \n\ncurrent p0.050\n\n\nrelative likelihood—\n\n\n\n\n\n\n\nThe parameter value that makes the observed data most compatible with the model has the highest likelihood.\n\n\n\nHave students move p until the highlighted likelihood dot reaches the top. The maximum should be near p=0.10.\nUse the left panel to show probability of possible counts under a proposed p. Use the right panel to show likelihood as a function of p with the observed count fixed at 10."
+  },
+  {
+    "objectID": "week03/week03.html#maximum-likelihood-in-one-sentence",
+    "href": "week03/week03.html#maximum-likelihood-in-one-sentence",
+    "title": "Statistics for Pharmacists",
+    "section": "Maximum likelihood in one sentence",
+    "text": "Maximum likelihood in one sentence\n\nA general estimation principle\n\n\n\\[\n\\hat\\theta_{\\mathrm{MLE}}\n=\n\\arg\\max_\\theta \\mathcal{L}(\\theta\\mid x)\n\\]\n\n\n\n\n\nModel family\n\n\ne.g. binomial with fixed \\(n=100\\)\n\n\n\n\nObserved data\n\n\n\\(x=10\\) hypersensitivity cases\n\n\n\n\nBest-fitting parameter\n\n\n\\(\\hat p=10/100=0.10\\)\n\n\n\n\n\n\nLikelihood is not the probability that the parameter is true. It is a compatibility score for parameter values given the observed data.\n\n\n\nUse the definition but do not derive it. The priority is the inversion of the problem: p becomes the input to a function after data are observed."
+  },
+  {
+    "objectID": "week03/week03.html#continuous-data-likelihood-uses-density",
+    "href": "week03/week03.html#continuous-data-likelihood-uses-density",
+    "title": "Statistics for Pharmacists",
+    "section": "Continuous data: likelihood uses density",
+    "text": "Continuous data: likelihood uses density\n\nDo not confuse density with point probability\n\n\n\nCandidate mean μ  \n\nobserved tablet2.014 g\n\n\ndensity at observation—\n\n\n\n\n\n\n\n\\[\nP(X=2.014)=0\\quad\\text{but}\\quad \\mathcal{L}(\\mu\\mid x)\\propto f(x\\mid\\mu)\n\\]\n\n\n\nThis is just a conceptual preview. Students do not need continuous likelihood theory yet. The point is that likelihood for continuous data comes from density values, not point probabilities."
+  },
+  {
+    "objectID": "week03/week03.html#the-bridge-so-far",
+    "href": "week03/week03.html#the-bridge-so-far",
+    "title": "Statistics for Pharmacists",
+    "section": "The bridge so far",
+    "text": "The bridge so far\n\nOpening synthesis\n\n\n\nProbability models describe possible data\n\n\n→\n\n\nData arrive from a study\n\n\n→\n\n\nEstimation asks which model parameters are plausible\n\n\n→\n\n\nStudy design determines whether the answer is credible\n\n\n\n\nBefore analyzing data, ask how the data were generated.\n\n\n\nThis slide pivots from likelihood to study design. The second half of the lecture is about how data can be trustworthy or misleading before any statistical test is performed."
+  },
+  {
+    "objectID": "week03/week03.html#study-design",
+    "href": "week03/week03.html#study-design",
+    "title": "Statistics for Pharmacists",
+    "section": "Study design",
+    "text": "Study design\n\nPart II\n\n\nHow data are generated\n\n\nWe now see how reliable data generating processes are."
+  },
+  {
+    "objectID": "week03/week03.html#study-design-tree",
+    "href": "week03/week03.html#study-design-tree",
+    "title": "Statistics for Pharmacists",
+    "section": "Study-design tree",
+    "text": "Study-design tree\n\nWas exposure or treatment assigned by the investigator?\n\n\n\n\n\n\nStudy design\n\n\n\n\n\nObservational\n\n\nresearcher observes exposure/outcome as they occur\n\n\n\n\nExperimental\n\n\nresearcher assigns intervention or condition\n\n\n\n\n\nDescriptive\n\n\ndescribe frequency, distribution, case patterns\n\n\n\n\nAnalytical observational\n\n\ncross-sectional · cohort · case-control\n\n\n\n\nClinical / interventional\n\n\ncontrol, randomization, blinding, endpoint definition\n\n\n\n\n\nDesign goal\n\n\nmake comparisons interpretable\n\n\n\n\n\nThe key first branch is assignment. If the investigator assigns exposure/treatment, it is experimental. Otherwise it is observational, even if the analysis is complex."
+  },
+  {
+    "objectID": "week03/week03.html#three-observational-directions",
+    "href": "week03/week03.html#three-observational-directions",
+    "title": "Statistics for Pharmacists",
+    "section": "Three observational directions",
+    "text": "Three observational directions\n\nFor analytical observations: Direction of observation matters\n\n\n\n\nCross-sectional\n\n\nmeasure exposure and outcome at one snapshot\n\n\nexposure ↔︎ outcome\n\n\n\n\nCohort\n\n\nclassify by exposure, then follow outcomes\n\n\nexposure → outcome\n\n\n\n\nCase-control\n\n\nstart from outcome status, look backward for exposure\n\n\noutcome → exposure history\n\n\n\n\n\n\n\nKeep the examples pharmaceutical: drug exposure and adverse event; smoking and lung disease; genotype and hypersensitivity."
+  },
+  {
+    "objectID": "week03/week03.html#experimental-studies-assign-intervention",
+    "href": "week03/week03.html#experimental-studies-assign-intervention",
+    "title": "Statistics for Pharmacists",
+    "section": "Experimental studies assign intervention",
+    "text": "Experimental studies assign intervention\n\nFor clinical trials: Assignment is the defining move\n\n\n\n\nEligible patients\n\n\ndefined inclusion/exclusion criteria\n\n\n\n→\n\n\n\nTreatment assignment\n\n\nideally randomized\n\n\n\n→\n\n\n\nEndpoint measurement\n\n\npredefined outcome\n\n\n\n\n\nClinical experiments try to make treatment groups comparable except for the intervention.\n\n\n\nDo not yet dive into p-values. The point is that experimental design creates the conditions under which a comparison may support causal interpretation."
+  },
+  {
+    "objectID": "week03/week03.html#parallel-and-crossover-trials",
+    "href": "week03/week03.html#parallel-and-crossover-trials",
+    "title": "Statistics for Pharmacists",
+    "section": "Parallel and crossover trials",
+    "text": "Parallel and crossover trials\n\nTwo common clinical structures\n\n\n\n\nParallel design\n\n\nrandomize→Drug A→outcome\n\n\nrandomize→Drug B→outcome\n\n\n\n\nCrossover design\n\n\nDrug A→washout→Drug B\n\n\nDrug B→washout→Drug A\n\n\n\n\n\nCrossover studies can be efficient, but require attention to carryover and washout.\n\n\n\nMention that crossover is not suitable when disease changes rapidly, treatment has lasting effects, or cure/outcome cannot be reset."
+  },
+  {
+    "objectID": "week03/week03.html#clinical-trial-design-levers",
+    "href": "week03/week03.html#clinical-trial-design-levers",
+    "title": "Statistics for Pharmacists",
+    "section": "Clinical trial design levers",
+    "text": "Clinical trial design levers\n\nSmall design choices can change interpretation\n\n\n\n\nComparator\n\n\nplacebo, standard therapy, dose group, active control\n\n\n\n\nRandomization\n\n\nprotects against systematic allocation differences\n\n\n\n\nBlinding\n\n\nreduces expectation and observation effects\n\n\n\n\nEndpoint\n\n\nmust be clinically meaningful and measurable\n\n\n\n\n\nThe data are only as interpretable as the comparison the design created.\n\n\n\nMention double-dummy designs verbally: used when interventions look different, such as tablet versus injection, to preserve blinding."
+  },
+  {
+    "objectID": "week03/week03.html#evidence-depends-on-the-question",
+    "href": "week03/week03.html#evidence-depends-on-the-question",
+    "title": "Statistics for Pharmacists",
+    "section": "Evidence depends on the question",
+    "text": "Evidence depends on the question\n\nA cautious hierarchy for causal treatment questions\n\n\n\n\nDescriptive\n\n\nwhat appears to be happening?\n\n\n\n→\n\n\n\nObservational analytical\n\n\nassociations under real-world conditions\n\n\n\n→\n\n\n\nRandomized comparative experiment\n\n\nstronger protection against confounding\n\n\n\n\n\n∑\n\n\nMeta-analysis & Systematic Review Synthesizes and pools evidence across all available studies\n\n\n\n\nStronger design does not automatically mean better evidence: execution, relevance, measurement quality and bias still matter.\n\n\n\nAvoid teaching a rigid evidence pyramid. The best evidence depends on the question: efficacy, safety, rare adverse events, mechanism, diagnostic performance, or real-world utilization."
+  },
+  {
+    "objectID": "week03/week03.html#correlation-is-not-causation",
+    "href": "week03/week03.html#correlation-is-not-causation",
+    "title": "Statistics for Pharmacists",
+    "section": "Correlation is not causation",
+    "text": "Correlation is not causation\n\nA hidden common cause can structure the comparison\n\n\n                \n\nDisease severity\n\n\nDrug choice\n\n\nOutcome\n\n\n\n\nIf sicker patients are more likely to receive the strongest drug, crude outcomes can confuse treatment effect with baseline risk.\n\n\n\nUse the phrase confounding by indication: the reason a patient receives a treatment is itself related to prognosis."
+  },
+  {
+    "objectID": "week03/week03.html#why-randomization-helps",
+    "href": "week03/week03.html#why-randomization-helps",
+    "title": "Statistics for Pharmacists",
+    "section": "Why randomization helps",
+    "text": "Why randomization helps\n\nNot magic, but a powerful design principle\n\n\n\n\nWithout randomization\n\n\nclinician choice, patient preference, disease severity and access can all influence treatment group membership\n\n\n\n\nWith randomization\n\n\ntreatment assignment is independent of baseline characteristics in expectation\n\n\n\n\n\n\\[\n\\text{randomization} \\;\n\\not\\Rightarrow\\; \\text{identical groups}\n\\]\n\n\n\n\nRandomization protects against systematic confounding; chance imbalance can still occur.\n\n\n\nThis corrects the common misconception that randomization guarantees balanced groups in a particular trial. It balances on average over repeated randomizations."
+  },
+  {
+    "objectID": "week03/week03.html#observational-causal-reasoning",
+    "href": "week03/week03.html#observational-causal-reasoning",
+    "title": "Statistics for Pharmacists",
+    "section": "Observational causal reasoning",
+    "text": "Observational causal reasoning\n\nBradford Hill considerations help structure judgment\n\n\n\n\nTemporality\n\n\ncause precedes effect\n\n\n\n\nDose-response\n\n\nstronger exposure, stronger effect?\n\n\n\n\nPlausibility\n\n\ncompatible with biological mechanism?\n\n\n\n\nConsistency\n\n\nseen across settings and methods?\n\n\n\n\n\nThese are considerations, not a checklist that proves causality.\n\n\n\nMention confounding control as an analytic requirement: stratification, matching, regression adjustment, propensity scores later if relevant. Keep this introductory."
+  },
+  {
+    "objectID": "week03/week03.html#stratification-can-reveal-the-hidden-structure",
+    "href": "week03/week03.html#stratification-can-reveal-the-hidden-structure",
+    "title": "Statistics for Pharmacists",
+    "section": "Stratification can reveal the hidden structure",
+    "text": "Stratification can reveal the hidden structure\n\nSimpson’s paradox: Compare like with like\n\n\n\nTreatment\n\n\nLower-risk\n\n\nHigher-risk\n\n\nOverall\n\n\nDrug A success rate\n\n\n81/87 = 93%\n\n\n192/263 = 73%\n\n\n273/350 = 78%\n\n\nDrug B success rate\n\n\n234/270 = 87%\n\n\n55/80 = 69%\n\n\n289/350 = 83%\n\n\n\n\nWithin both risk strata, A looks better. In the aggregate, B looks better.\n\n\n\n\nThe same reversal can occur with continuous variables. Positive association within every subgroup, but negative association after aggregation.\n\n\n\n   Predictor X   Response Y           Stratum 1          Stratum 2          Stratum 3     within strata: positive   pooled: negative \n\n\n\n\nAggregation can hide the variable that structures the comparison.\n\n\n\nThis is a Simpson’s paradox example. Focus on the reversal: the group composition differs. Treatment A contains more high-risk patients overall."
+  },
+  {
+    "objectID": "week03/week03.html#bias-can-enter-at-several-stages",
+    "href": "week03/week03.html#bias-can-enter-at-several-stages",
+    "title": "Statistics for Pharmacists",
+    "section": "Bias can enter at several stages",
+    "text": "Bias can enter at several stages\n\nA lifecycle view of bias\n\n\n\n\n1\n\n\nWho enters?\n\n\nselection · survivorship\n\n\n\n\n2\n\n\nWhat is measured?\n\n\ncalibration · device bias\n\n\n\n\n3\n\n\nHow do people respond?\n\n\nrecall · social desirability · Hawthorne\n\n\n\n\n4\n\n\nHow is it recorded?\n\n\nrounding · input errors · default choices\n\n\n\n\n5\n\n\nWhat gets reported?\n\n\npublication · selective reporting\n\n\n\n\n\nBias is not one thing. It is a family of systematic ways the data can become distorted.\n\n\n\nConnect each category to pharmacy examples: poorly calibrated balances, patient recall of OTC medications, selection into studies, default questionnaire choices, publication of positive results."
+  },
+  {
+    "objectID": "week03/week03.html#a-practical-bias-taxonomy",
+    "href": "week03/week03.html#a-practical-bias-taxonomy",
+    "title": "Statistics for Pharmacists",
+    "section": "A practical bias taxonomy",
+    "text": "A practical bias taxonomy\n\nCategorize before memorizing names\n\n\n\n\nSelection\n\n\n\nselection bias\n\n\nsurvivorship bias\n\n\n\n\n\nMeasurement / recording\n\n\n\ndevice calibration\n\n\nobserver bias\n\n\nrounding and input errors\n\n\n\n\n\nParticipant / response\n\n\n\nwhite-coat effect\n\n\nHawthorne effect\n\n\nrecall bias\n\n\nsocial desirability\n\n\nextreme / middle / default response styles\n\n\n\n\n\nReporting\n\n\n\npublication bias\n\n\nselective reporting\n\n\nexpectancy-driven emphasis\n\n\n\n\n\nWhite-coat and Hawthorne are related to observation context but not identical. White-coat can be a physiological response; Hawthorne is behavior change due to being observed."
+  },
+  {
+    "objectID": "week03/week03.html#spot-the-bias",
+    "href": "week03/week03.html#spot-the-bias",
+    "title": "Statistics for Pharmacists",
+    "section": "Spot the bias",
+    "text": "Spot the bias\n\nPrediction checkpoint\n\n\n\nA blood-pressure device systematically reads 8 mmHg too high. Where did the bias enter?\n\n\n\nSelection\n\n\nMeasurement / device\n\n\nPublication\n\n\nSocial desirability\n\n\n\nCorrect: this is a measurement problem. The device produces systematically displaced observations.\n\n\n\nUse this to make students practice categorization rather than memorization. The interaction works in the rendered HTML output."
+  },
+  {
+    "objectID": "week03/week03.html#design-of-experiments",
+    "href": "week03/week03.html#design-of-experiments",
+    "title": "Statistics for Pharmacists",
+    "section": "Design of Experiments",
+    "text": "Design of Experiments\n\nPart III\n\n\nHow to plan an experiment\n\n\nWe now see the different ways experiments can be setup for the same question."
+  },
+  {
+    "objectID": "week03/week03.html#experimental-design-asks-what-to-run",
+    "href": "week03/week03.html#experimental-design-asks-what-to-run",
+    "title": "Statistics for Pharmacists",
+    "section": "Experimental design asks what to run",
+    "text": "Experimental design asks what to run\n\nFactors, levels, response\n\n\n\n\nFactor\n\n\nan experimental input we deliberately vary\n\n\ntemperature\n\n\n\n\nLevel\n\n\na chosen setting of a factor\n\n\n40°C vs 60°C\n\n\n\n\nResponse\n\n\nthe measured outcome\n\n\ndissolution rate\n\n\n\n\n\nDesign of experiments asks which combinations of factor levels give interpretable information efficiently.\n\n\n\nUse a pharmaceutical technology example: mixing time, compression force, excipient concentration, drying temperature."
+  },
+  {
+    "objectID": "week03/week03.html#full-factorial-design",
+    "href": "week03/week03.html#full-factorial-design",
+    "title": "Statistics for Pharmacists",
+    "section": "Full factorial design",
+    "text": "Full factorial design\n\nRun every combination\n\n\n\nlow  temp · short  mix\n\n\nhigh  temp · short  mix\n\n\nlow  temp · long  mix\n\n\nhigh  temp · long  mix\n\n\n\n\nFull factorial designs estimate main effects and interactions, but the number of runs grows quickly.\n\n\n\nUse this as a conceptual design pattern, not a full DOE course. Main effect: changing one factor. Interaction: the effect of one factor depends on another."
+  },
+  {
+    "objectID": "week03/week03.html#latin-square-design",
+    "href": "week03/week03.html#latin-square-design",
+    "title": "Statistics for Pharmacists",
+    "section": "Latin square design",
+    "text": "Latin square design\n\nBlocking two nuisance sources of variation simultaneously\n\n\n\n\n\n\nMix time ↓ Temp →\n\n\nLow Temp\n\n\nMedium Temp\n\n\nHigh Temp\n\n\n\n\n\n\nShort mix\n\n\nDrug A\n\n\nDrug B\n\n\nDrug C\n\n\n\n\nMedium mix\n\n\nDrug B\n\n\nDrug C\n\n\nDrug A\n\n\n\n\nLong mix\n\n\nDrug C\n\n\nDrug A\n\n\nDrug B\n\n\n\n\n\n\n\nEach drug appears exactly once in every row (mix duration) and column (temperature level).\n\n\n\nRows and columns can represent nuisance dimensions such as day and operator, position and batch, or sequence and period."
+  },
+  {
+    "objectID": "week03/week03.html#robust-design-and-taguchi-thinking",
+    "href": "week03/week03.html#robust-design-and-taguchi-thinking",
+    "title": "Statistics for Pharmacists",
+    "section": "Robust design and Taguchi thinking",
+    "text": "Robust design and Taguchi thinking\n\nGood performance under unavoidable noise\n\n\n\n\nControllable factors\n\n\nformulation, process settings, excipient ratio\n\n\n\n→\n\n\n\nProduct response\n\n\ndissolution, stability, assay value\n\n\n\n\n\nNoise factors still act: humidity, raw-material variation, storage conditions, operator differences.\n\n\n\n\nRobust design seeks settings whose performance changes little under noise.\n\n\n\nMention Taguchi as an engineering philosophy for robust design. Do not teach orthogonal arrays in detail here."
+  },
+  {
+    "objectID": "week03/week03.html#bias-and-variability-are-different-failures",
+    "href": "week03/week03.html#bias-and-variability-are-different-failures",
+    "title": "Statistics for Pharmacists",
+    "section": "Bias and variability are different failures",
+    "text": "Bias and variability are different failures\n\nSystematic displacement versus scatter\n\n\n\\[\n\\text{error}\\;=\\;\\text{systematic component}\\; + \\;\\text{random component}\n\\]\n\n\n\n\nBias\n\n\nsystematic displacement from the truth or target\n\n\n\n\nVariance / imprecision\n\n\nscatter of repeated observations around their average\n\n\n\n\n\nA measurement system can be repeatable and still be systematically wrong.\n\n\n\nConnect to tablet mass, assay calibration, dissolution testing. Repeatability is consistency; accuracy needs closeness to truth."
+  },
+  {
+    "objectID": "week03/week03.html#accuracy-precision",
+    "href": "week03/week03.html#accuracy-precision",
+    "title": "Statistics for Pharmacists",
+    "section": "Accuracy × precision",
+    "text": "Accuracy × precision\n\nFour measurement patterns\n\n\n\n\nlow bias · low variance\n\n\n\n\n\n\n\nhigh bias · low variance\n\n\n\n\n\n\n\nlow bias · high variance\n\n\n\n\n\n\n\nhigh bias · high variance\n\n\n\n\n\n\n\n\nBeyond Bias & Variance: Key Related Measurement Concepts\n\n\n\n\n\n\n🎯\n\nAgreement & Alignment\n\n\n\n\nAssociation: Asks if measurements are informative about a benchmark. A perfect monotonic relationship can exist even with massive systematic bias.\n\n\nConsensus / Concordance: Asks if two datasets coincide directly (either exactly or within tolerance)—i.e., whether overall total error is low.\n\n\nInterchangeability: Asks if measurement differences are small enough that two quantitative methods can replace one another in practice.\n\n\n\n\n\n\n🔄\n\nThe “R” Metrics (Variability-Focused)\n\n\n\n\nThese address variability under varying conditions—saying nothing about bias.\n\n\n\nReliability / Repeatability: Same operator, same instrument, same objects under identical conditions.\n\n\nReplicability & Reproducibility: Relaxes strict constraints by introducing different objects or operators.\n\n\nRobustness: Resistance when a justifiably similar but distinct method/instrument is used.\n\n\nRuggedness: Resistance of measurement precision to minor, unguided environmental fluctuations.\n\n\n\n\n\n\nUse the target as a visual metaphor. The orange crosshair is truth/target. Blue dots are repeated measurements. Students usually grasp accuracy/precision quickly through this image."
+  },
+  {
+    "objectID": "week03/week03.html#biasvariance-decomposition",
+    "href": "week03/week03.html#biasvariance-decomposition",
+    "title": "Statistics for Pharmacists",
+    "section": "Bias–variance decomposition",
+    "text": "Bias–variance decomposition\n\nA compact error accounting identity\n\n\n\\[\n\\operatorname{MSE}(\\hat\\theta)\n=\n\\operatorname{Bias}(\\hat\\theta)^2\n+\n\\operatorname{Var}(\\hat\\theta)\n\\]\n\n\n\n\n\nMSE\n\n\noverall average squared error\n\n\n\n\nBias²\n\n\nsystematically wrong\n\n\n\n\nVariance\n\n\nunstable across repetitions\n\n\n\n\n\n\nOverall estimation error can arise from being systematically wrong, unstable, or both.\n\n\n\nThis is the only formal math needed here. It prepares students for later discussions of modeling, prediction, overfitting and machine learning."
+  },
+  {
+    "objectID": "week03/week03.html#summary-statistics",
+    "href": "week03/week03.html#summary-statistics",
+    "title": "Statistics for Pharmacists",
+    "section": "Summary statistics",
+    "text": "Summary statistics\n\nPart IV\n\n\nThe first ingredient to descriptive statistics\n\n\nWe now see what numbers summarize the data in a clear interpretive way."
+  },
+  {
+    "objectID": "week03/week03.html#one-dataset-many-summaries",
+    "href": "week03/week03.html#one-dataset-many-summaries",
+    "title": "Statistics for Pharmacists",
+    "section": "One dataset, many summaries",
+    "text": "One dataset, many summaries\n\nIf you may report only two numbers, which two?\n\n\n\n\n\n     \n\n\n\n\nmedian\n\n\n\n\n\nmean\n\n\n\n\nA summary statistic compresses data. Compression always loses some information.\n\n\n\nThe red observation is an outlier. The mean shifts toward it; the median is more stable. Use this to motivate robust summaries."
+  },
+  {
+    "objectID": "week03/week03.html#mean-median-mode",
+    "href": "week03/week03.html#mean-median-mode",
+    "title": "Statistics for Pharmacists",
+    "section": "Mean, median, mode",
+    "text": "Mean, median, mode\n\nDifferent answers to “where is the center?”\n\n\n\n\nMean\n\n\n\\(\\bar x=\\frac1n\\sum x_i\\)\n\n\nbalance point; sensitive to extreme values\n\n\n\n\nMedian\n\n\nmiddle ordered value\n\n\nhalf the data below, half above; robust to outliers\n\n\n\n\nMode\n\n\nmost frequent value\n\n\nespecially natural for categorical or discrete data\n\n\n\n\n\n\n\n\n\nSample A\n\n\nSample B (with outlier)\n\n\n\n\n\n\n\\(8, 8, 10, 11, 12\\)\n\n\n\\(8, 8, 10, 11, 80\\)\n\n\n\n\nMean: \\(9.8\\) Median: \\(10\\) Mode: \\(8\\)\n\n\nMean: \\(23.4\\) Median: \\(10\\) Mode: \\(8\\)\n\n\n\n\n\n\n\n\nThe mean moves. The median barely does.\n\n\n\nUse the example verbally: mean changes from 10 to 23.6; median remains 10. This is a nice quick mental arithmetic exercise."
+  },
+  {
+    "objectID": "week03/week03.html#arithmetic-weighted-and-geometric-means",
+    "href": "week03/week03.html#arithmetic-weighted-and-geometric-means",
+    "title": "Statistics for Pharmacists",
+    "section": "Arithmetic, weighted and geometric means",
+    "text": "Arithmetic, weighted and geometric means\n\nThree ways to average, three different meanings\n\n\n\n\nArithmetic mean\n\n\n\\(\\bar x=\\frac1n\\sum x_i\\)\n\n\nordinary average for additive measurements\n\n\n\n\nWeighted mean\n\n\n\\(\\bar x_w=\\frac{\\sum w_i x_i}{\\sum w_i}\\)\n\n\nbatch means should account for batch size\n\n\n\n\nGeometric mean\n\n\n\\(G=\\exp\\left(\\frac1n\\sum\\log x_i\\right)\\)\n\n\nuseful for positive multiplicative quantities\n\n\n\n\n\nOn the log scale, multiplication becomes addition.\n\n\n\nPharmaceutical examples: exposure measures, concentration ratios, fold changes, log-normal pharmacokinetic variables such as AUC or Cmax."
+  },
+  {
+    "objectID": "week03/week03.html#variance-and-standard-deviation",
+    "href": "week03/week03.html#variance-and-standard-deviation",
+    "title": "Statistics for Pharmacists",
+    "section": "Variance and standard deviation",
+    "text": "Variance and standard deviation\n\nQuantifying scatter around the mean\n\n\n\\[\n\\text{var}=s^2=\\frac{1}{n-1}\\sum_{i=1}^n(x_i-\\bar x)^2\\]\n\n\n\n\n\nVariance\n\n\naverage squared deviation; units are squared\n\n\n\n\nStandard deviation\n\n\nsquare root of variance; returns to original units\n\n\n\n\n\n\nThe sample variance uses \\(n-1\\); we will return to why later.\n\n\n\nDon’t overteach degrees of freedom here. They will revisit sampling distributions and inference later."
+  },
+  {
+    "objectID": "week03/week03.html#robust-spread-iqr-and-mad",
+    "href": "week03/week03.html#robust-spread-iqr-and-mad",
+    "title": "Statistics for Pharmacists",
+    "section": "Robust spread: IQR and MAD",
+    "text": "Robust spread: IQR and MAD\n\nWhen outliers or skewness matter\n\n\n\n\nInterquartile range\n\n\n\\(IQR=Q_3-Q_1\\)\n\n\nwidth of the middle 50% of the data\n\n\n \n\n\n\n\nMedian absolute deviation\n\n\n\\(MAD=\\operatorname{median}\\{|x_i-\\operatorname{median}(x)|\\}\\)\n\n\ntypical absolute distance from the median\n\n\n \n\n\n\n\n\n\nMedian + IQR/MAD is often more stable when data are skewed or contaminated by extreme observations.\n\n\n\nUse the same outlier example from mean/median. Don’t make this a computational lecture; make it a reporting-choice lecture."
+  },
+  {
+    "objectID": "week03/week03.html#which-summary-fits-the-shape",
+    "href": "week03/week03.html#which-summary-fits-the-shape",
+    "title": "Statistics for Pharmacists",
+    "section": "Which summary fits the shape?",
+    "text": "Which summary fits the shape?\n\nChoose a center and a spread\n\n\n\nA positive assay measure is strongly right-skewed with a few extreme high values. Which summary pair is usually more stable for a typical value?\n\n\n\nmean + standard deviation\n\n\nmode + variance\n\n\nmedian + IQR or MAD\n\n\nminimum + maximum only\n\n\n\nCorrect: skewness and extreme values often motivate robust summaries such as the median and IQR/MAD.\n\n\n\nFrame this as a rule of thumb, not an absolute law. Reporting depends on scientific context, audience, and convention."
+  },
+  {
+    "objectID": "week03/week03.html#quick-check-mle",
+    "href": "week03/week03.html#quick-check-mle",
+    "title": "Statistics for Pharmacists",
+    "section": "Quick check: MLE",
+    "text": "Quick check: MLE\n\nPrediction exercise\n\n\n\n24 hypersensitivity reactions are observed among 200 treated patients. Where should the binomial likelihood peak?\n\n\n\n0.024\n\n\n0.12\n\n\n0.24\n\n\n1.20\n\n\n\nCorrect: the binomial maximum-likelihood estimate is \\(\\hat p=k/n=24/200=0.12\\).\n\n\n\nThis retrieves the opening idea. Students should be able to answer this without calculation beyond division."
+  },
+  {
+    "objectID": "week03/week03.html#quick-check-study-design",
+    "href": "week03/week03.html#quick-check-study-design",
+    "title": "Statistics for Pharmacists",
+    "section": "Quick check: study design",
+    "text": "Quick check: study design\n\nPrediction exercise\n\n\n\nPatients are classified by current drug exposure and blood pressure is measured today. No treatment is assigned. What design is this?\n\n\n\nrandomized clinical trial\n\n\ncrossover trial\n\n\ncross-sectional observational study\n\n\nLatin square experiment\n\n\n\nCorrect: exposure and outcome are measured at one time point, and the investigator did not assign treatment.\n\n\n\nReinforce: no assignment means observational, regardless of how many variables are measured."
+  },
+  {
+    "objectID": "week03/week03.html#quick-check-confounding",
+    "href": "week03/week03.html#quick-check-confounding",
+    "title": "Statistics for Pharmacists",
+    "section": "Quick check: confounding",
+    "text": "Quick check: confounding\n\nPrediction exercise\n\n\n\nPatients receiving the strongest drug also have the most severe disease. Outcomes are worse in that group. What should you worry about first?\n\n\n\nconfounding by disease severity\n\n\nPoisson variation\n\n\ngeometric waiting time\n\n\nDirac delta behavior\n\n\n\nCorrect: the apparent treatment-outcome association may reflect baseline severity rather than a causal drug effect.\n\n\n\nThis retrieves the causal diagram and confounding by indication."
+  },
+  {
+    "objectID": "week03/week03.html#quick-check-robust-center",
+    "href": "week03/week03.html#quick-check-robust-center",
+    "title": "Statistics for Pharmacists",
+    "section": "Quick check: robust center",
+    "text": "Quick check: robust center\n\nPrediction exercise\n\n\n\nFor the data \\(5.1, 5.2, 5.2, 5.3, 19.8\\), which center best represents the typical observation?\n\n\n\narithmetic mean\n\n\nmedian\n\n\nmaximum\n\n\nvariance\n\n\n\nCorrect: the median is resistant to the extreme high value and remains close to the main cluster.\n\n\n\nThis prepares students for Week 4 visualization and data inspection."
+  },
+  {
+    "objectID": "week03/week03.html#what-did-this-bridge-week-do",
+    "href": "week03/week03.html#what-did-this-bridge-week-do",
+    "title": "Statistics for Pharmacists",
+    "section": "What did this bridge week do?",
+    "text": "What did this bridge week do?\n\nWeek 3 synthesis\n\n\n\nProbability model\n\n\n→\n\n\nObserved data\n\n\n→\n\n\nStudy design determines credibility\n\n\n→\n\n\nSummaries describe what happened\n\n\n\n\nWe now know why and how data are generated. Next week we start working with data as objects.\n\n\n\nClose the loop to Week 1/2: probability models describe uncertain processes; data are generated through studies; statistics uses data to learn about the process, but only if design and measurement are credible."
+  },
+  {
+    "objectID": "week05/week05.html#sampling-distributions",
+    "href": "week05/week05.html#sampling-distributions",
+    "title": "Statistics for Pharmacists",
+    "section": "Sampling distributions",
+    "text": "Sampling distributions\n\nWeek 5\n\n\nHow samples become predictable.\n\n\nThis week is deliberately shorter because of the midterm exam. The teaching goal is not to overload students, but to make sampling distributions, LLN and CLT feel inevitable after Weeks 1–4."
+  },
+  {
+    "objectID": "week05/week05.html#wouldnt-it-be-nice-to-observe-the-truth",
+    "href": "week05/week05.html#wouldnt-it-be-nice-to-observe-the-truth",
+    "title": "Statistics for Pharmacists",
+    "section": "Wouldn’t it be nice to observe the truth?",
+    "text": "Wouldn’t it be nice to observe the truth?\n\nOpening hook\n\n\n\n\ntruth\\(\\theta\\)\n\n\n\n                                   \n\nsampling + noise\n\n\n\n\none observed statistic\\(\\hat\\theta\\)\n\n\n\n\nScience usually gives us observations, not direct access to the population truth."
+  },
+  {
+    "objectID": "week05/week05.html#measurement-error-was-already-bad-enough",
+    "href": "week05/week05.html#measurement-error-was-already-bad-enough",
+    "title": "Statistics for Pharmacists",
+    "section": "Measurement error was already bad enough",
+    "text": "Measurement error was already bad enough\n\nRecall from Week 3\n\n\n\\[\n\\text{observation}\n=\n\\text{truth}\n+\n\\text{systematic error}\n+\n\\text{random error}\n\\]\n\n\n\n\nTruth\n\n\nwhat we wish to know\n\n\n\n\nBias\n\n\nsystematic displacement\n\n\n\n\nVariance\n\n\nrandom scatter"
+  },
+  {
+    "objectID": "week05/week05.html#but-there-is-another-source-of-uncertainty",
+    "href": "week05/week05.html#but-there-is-another-source-of-uncertainty",
+    "title": "Statistics for Pharmacists",
+    "section": "But there is another source of uncertainty",
+    "text": "But there is another source of uncertainty\n\nSampling error\n\n\n\n\n\n\n\npopulation\n\n\n\n→\n\n\n\n\n\n\nsample statistic\n\n\n\n\n\n\nEven if measurement were perfect, a sample is only part of the population.\n\n\n\n\nPopulation: the full set/process we want to learn about.\n\n\nSample: the subset of observations we actually collect."
+  },
+  {
+    "objectID": "week05/week05.html#why-not-measure-everyone",
+    "href": "week05/week05.html#why-not-measure-everyone",
+    "title": "Statistics for Pharmacists",
+    "section": "Why not measure everyone?",
+    "text": "Why not measure everyone?\n\nFeasibility and ethics\n\n\n\n\nCost\n\n\nfull measurement may be unrealistic\n\n\n\n\nTime\n\n\nevidence is needed before forever\n\n\n\n\nDestructive tests\n\n\nsome measurements consume the sample\n\n\n\n\nEthics\n\n\navoid unnecessary exposure or risk\n\n\n\n\nInfinite process\n\n\nsometimes population means all possible outcomes\n\n\n\n\n\nGood sampling lets us learn enough without measuring everything."
+  },
+  {
+    "objectID": "week05/week05.html#population-can-be-conceptual",
+    "href": "week05/week05.html#population-can-be-conceptual",
+    "title": "Statistics for Pharmacists",
+    "section": "Population can be conceptual",
+    "text": "Population can be conceptual\n\nNot always a literal list of people\n\n\n\n\nClinical population\n\n\npatients who could receive a therapy\n\n\n\n\n\n\n\nManufacturing process\n\n\nall tablets this process could produce\n\n\n\n\n\n\n\nIdealized population\n\n\ne.g., very large population assumption in Hardy–Weinberg reasoning\n\n\n\n\n\n\n\n\nA population often means the data-generating process behind the observations."
+  },
+  {
+    "objectID": "week05/week05.html#a-sample-statistic-changes-from-sample-to-sample",
+    "href": "week05/week05.html#a-sample-statistic-changes-from-sample-to-sample",
+    "title": "Statistics for Pharmacists",
+    "section": "A sample statistic changes from sample to sample",
+    "text": "A sample statistic changes from sample to sample\n\nSame population, different samples\n\n\n\n\n\n\n\n\\(\\bar x_1=7.8\\)\n\n\n\n\n\n\n\n\\(\\bar x_2=8.4\\)\n\n\n\n\n\n\n\n\\(\\bar x_3=8.0\\)\n\n\n\n\n\nA statistic is itself a random quantity before the sample is observed."
+  },
+  {
+    "objectID": "week05/week05.html#sampling-distribution",
+    "href": "week05/week05.html#sampling-distribution",
+    "title": "Statistics for Pharmacists",
+    "section": "Sampling distribution",
+    "text": "Sampling distribution\n\nThe central object of Week 5\n\n\nA sampling distribution is the distribution of a statistic across repeated samples from the same population.\n\n\n\npopulation\n\n\n→\n\n\nsample 1\n\n\n→\n\n\n\\(\\bar X_1\\)\n\n\n\n\n\n\n\n\nsample 2\n\n\n→\n\n\n\\(\\bar X_2\\)\n\n\n\n\n\n\n\n\nsample 3\n\n\n→\n\n\n\\(\\bar X_3\\)\n\n\n\n\n\n\n\n\n⋮\n\n\n\n\n\n⋮"
+  },
+  {
+    "objectID": "week05/week05.html#two-laws-make-repeated-sampling-well-behaved",
+    "href": "week05/week05.html#two-laws-make-repeated-sampling-well-behaved",
+    "title": "Statistics for Pharmacists",
+    "section": "Two laws make repeated sampling well behaved",
+    "text": "Two laws make repeated sampling well behaved\n\nThe big picture\n\n\n\n\nLaw of Large Numbers\n\n\nWhere does the estimate go?\n\n\nrunning averages stabilize near the expectation\n\n\n\n\nCentral Limit Theorem\n\n\nHow does the estimate vary?\n\n\nsample means acquire a predictable shape"
+  },
+  {
+    "objectID": "week05/week05.html#law-of-large-numbers",
+    "href": "week05/week05.html#law-of-large-numbers",
+    "title": "Statistics for Pharmacists",
+    "section": "Law of Large Numbers",
+    "text": "Law of Large Numbers\n\nIntuition\n\n\nAs independent observations accumulate, sample averages tend to stabilize near the population expectation.\n\n\n\nThe individual observations remain variable. The running statistic becomes more stable."
+  },
+  {
+    "objectID": "week05/week05.html#try-it-lln-for-a-binary-outcome",
+    "href": "week05/week05.html#try-it-lln-for-a-binary-outcome",
+    "title": "Statistics for Pharmacists",
+    "section": "Try it: LLN for a binary outcome",
+    "text": "Try it: LLN for a binary outcome\n\nInteractive running proportion\n\n\n\ntrue probability p number of trials n\n\ncurrent p0.30\n\n\n\n\n\n\n\nThe running proportion can jump early, but tends to settle near the true probability."
+  },
+  {
+    "objectID": "week05/week05.html#try-it-lln-for-continuous-measurements",
+    "href": "week05/week05.html#try-it-lln-for-continuous-measurements",
+    "title": "Statistics for Pharmacists",
+    "section": "Try it: LLN for continuous measurements",
+    "text": "Try it: LLN for continuous measurements\n\nInteractive running mean\n\n\n\ntrue mean μ number of observations n\n\nσ fixed2.0\n\n\n\n\n\n\n\nMore observations stabilize the mean, not the raw measurements themselves."
+  },
+  {
+    "objectID": "week05/week05.html#what-lln-does-not-say",
+    "href": "week05/week05.html#what-lln-does-not-say",
+    "title": "Statistics for Pharmacists",
+    "section": "What LLN does not say",
+    "text": "What LLN does not say\n\nCommon misconception\n\n\n“After enough measurements, individual observations stop being noisy.”\n\n\n\nFalse. Individual observations remain variable. Sample averages become more stable.\n\n\n\n\n\\(X_i\\)patient-to-patient variation\n\n\n\\(\\bar X_n\\)estimate-to-estimate variation"
+  },
+  {
+    "objectID": "week05/week05.html#now-ask-a-different-question",
+    "href": "week05/week05.html#now-ask-a-different-question",
+    "title": "Statistics for Pharmacists",
+    "section": "Now ask a different question",
+    "text": "Now ask a different question\n\nFrom LLN to CLT\n\n\n\n\nLLN\n\n\nWhere does the average go as observations accumulate?\n\n\n\n\nCLT\n\n\nWhat does the distribution of sample averages look like?\n\n\n\n\n\nCentral Limit Theorem: The population shape can be skewed, discrete or bounded — yet the distribution of sample means often becomes approximately Gaussian."
+  },
+  {
+    "objectID": "week05/week05.html#try-it-clt-sampling-laboratory",
+    "href": "week05/week05.html#try-it-clt-sampling-laboratory",
+    "title": "Statistics for Pharmacists",
+    "section": "Try it: CLT sampling laboratory",
+    "text": "Try it: CLT sampling laboratory\n\nInteractive sampling distribution\n\n\n\n source distribution  normal right-skewed continuous binary outcome uniform    sample size n = 1    repeated samples k = 50    Draw new samples \n\n\n\n\nsource population\n\n\n\n\n\nsampling distribution of means\n\n\n\n\n\n\n\nChange \\(n\\). The means become more bell-shaped and more tightly concentrated."
+  },
+  {
+    "objectID": "week05/week05.html#increase-n-two-things-happen",
+    "href": "week05/week05.html#increase-n-two-things-happen",
+    "title": "Statistics for Pharmacists",
+    "section": "Increase n: two things happen",
+    "text": "Increase n: two things happen\n\nShape and width\n\n\n\n\nShape\n\n\nunder common conditions, the sampling distribution of \\(\\bar X\\) approaches a Normal shape\n\n\n\n\nWidth\n\n\nthe distribution becomes narrower as sample size grows\n\n\n\n\n\\[\nE(\\bar X)=\\mu,\n\\qquad\nSD(\\bar X)=\\frac{\\sigma}{\\sqrt n}\n\\]\n\n\n\nStandard error is the standard deviation of the mean estimate.\n\n\n\n\n\nStandard deviation\n\n\nvariation among individual observations\n\n\n\n\nStandard error\n\n\nvariation among estimates across repeated samples"
+  },
+  {
+    "objectID": "week05/week05.html#the-square-root-law-is-expensive",
+    "href": "week05/week05.html#the-square-root-law-is-expensive",
+    "title": "Statistics for Pharmacists",
+    "section": "The square-root law is expensive",
+    "text": "The square-root law is expensive\n\nPrecision and sample size\n\n\n\n\\(SE=\\sigma/\\sqrt n\\)\n\n\nto halve SE\n\n\nneed about \\(4n\\)\n\n\n\n\nPrecision improves with sample size, but not linearly."
+  },
+  {
+    "objectID": "week05/week05.html#clt-is-powerful-but-not-magic",
+    "href": "week05/week05.html#clt-is-powerful-but-not-magic",
+    "title": "Statistics for Pharmacists",
+    "section": "CLT is powerful, but not magic",
+    "text": "CLT is powerful, but not magic\n\nImportant conditions and caveats\n\n\n\n\nNot raw data\n\n\nCLT concerns sums/means, not the distribution of individual observations\n\n\n\n\nIndependence matters\n\n\nstrong dependence can break simple intuition\n\n\n\n\nFinite variance\n\n\nclassical CLT needs well-behaved spread\n\n\n\n\nSmall samples\n\n\nvery skewed populations may need larger n"
+  },
+  {
+    "objectID": "week05/week05.html#why-this-matters-for-inference",
+    "href": "week05/week05.html#why-this-matters-for-inference",
+    "title": "Statistics for Pharmacists",
+    "section": "Why this matters for inference",
+    "text": "Why this matters for inference\n\nThe payoff\n\n\n\nunknown population parameter\n\n\n\n \n\ninfer\n\n\nobserved statistic\n\n\n\n \n\nunderstand variability using\n\n\nsampling distribution\n\n\n\n\nIf we know how an estimator varies across repeated samples, we can quantify uncertainty in our observed estimate."
+  },
+  {
+    "objectID": "week05/week05.html#example-estimating-a-mean",
+    "href": "week05/week05.html#example-estimating-a-mean",
+    "title": "Statistics for Pharmacists",
+    "section": "Example: estimating a mean",
+    "text": "Example: estimating a mean\n\nDissolution time example\n\n\n\n\nsample\n\n\n\\(n=25\\) tablets\n\n\n\n\nobserved mean\n\n\n\\(\\bar x=18.4\\) min\n\n\n\n\nquestion\n\n\nhow variable would \\(\\bar X\\) be across repeated samples?\n\n\n\n\n\nWeek 6 turns this idea into confidence intervals and hypothesis tests."
+  },
+  {
+    "objectID": "week05/week05.html#what-if-σ-is-unknown",
+    "href": "week05/week05.html#what-if-σ-is-unknown",
+    "title": "Statistics for Pharmacists",
+    "section": "What if σ is unknown?",
+    "text": "What if σ is unknown?\n\nWhy Student’s t appears\n\n\n\n\nIdeal world\n\n\n\\(\\sigma\\) known, use \\(\\sigma/\\sqrt n\\)\n\n\n\n\nReal world\n\n\n\\(\\sigma\\) unknown, estimate it using \\(s\\)\n\n\n\n\n\nEstimating the denominator adds uncertainty, especially for small samples."
+  },
+  {
+    "objectID": "week05/week05.html#students-t-distribution",
+    "href": "week05/week05.html#students-t-distribution",
+    "title": "Statistics for Pharmacists",
+    "section": "Student’s t distribution",
+    "text": "Student’s t distribution\n\nA standardized statistic, not the sample mean itself\n\n\n\\[\nT=\n\\frac{\\bar X-\\mu}{S/\\sqrt n}\n\\sim t_{n-1}\n\\]\n\n\n\nThe sample mean itself is not Student-\\(t\\). The standardized statistic involving \\(S\\) follows a \\(t\\) distribution under Normal-population assumptions."
+  },
+  {
+    "objectID": "week05/week05.html#try-it-students-t",
+    "href": "week05/week05.html#try-it-students-t",
+    "title": "Statistics for Pharmacists",
+    "section": "Try it: Student’s t",
+    "text": "Try it: Student’s t\n\nDegrees of freedom\n\n\n\ndf ν\n\ndf5\n\n\nreferenceNormal"
+  },
+  {
+    "objectID": "week05/week05.html#chi-squared-squared-normal-components",
+    "href": "week05/week05.html#chi-squared-squared-normal-components",
+    "title": "Statistics for Pharmacists",
+    "section": "Chi-squared: squared Normal components",
+    "text": "Chi-squared: squared Normal components\n\nWhere χ² comes from\n\n\n\\[\nZ_1^2+Z_2^2+\\cdots+Z_k^2\\sim\\chi_k^2\n\\qquad\nZ_i\\sim N(0,1)\n\\]\n\n\n\nBecause variances are built from squared deviations, \\(\\chi^2\\) naturally appears when reasoning about spread and fit error."
+  },
+  {
+    "objectID": "week05/week05.html#why-χ²-matters",
+    "href": "week05/week05.html#why-χ²-matters",
+    "title": "Statistics for Pharmacists",
+    "section": "Why χ² matters",
+    "text": "Why χ² matters\n\nVariance estimation\n\n\n\\[\n\\frac{(n-1)S^2}{\\sigma^2}\n\\sim\n\\chi^2_{n-1}\n\\]\n\n\n\n\nsupport\n\n\n\\(x\\ge0\\) because squares cannot be negative\n\n\n\n\nshape\n\n\nright-skewed for low degrees of freedom"
+  },
+  {
+    "objectID": "week05/week05.html#try-it-chi-squared",
+    "href": "week05/week05.html#try-it-chi-squared",
+    "title": "Statistics for Pharmacists",
+    "section": "Try it: chi-squared",
+    "text": "Try it: chi-squared\n\nDegrees of freedom\n\n\n\ndf k\n\ndf4\n\n\nsupport\\(x\\ge0\\)"
+  },
+  {
+    "objectID": "week05/week05.html#f-distribution-ratio-of-variances",
+    "href": "week05/week05.html#f-distribution-ratio-of-variances",
+    "title": "Statistics for Pharmacists",
+    "section": "F distribution: ratio of variances",
+    "text": "F distribution: ratio of variances\n\nComparing two sources of variability\n\n\n\\[\nF=\n\\frac{U_1/\\nu_1}{U_2/\\nu_2},\n\\qquad\nU_1\\sim\\chi^2_{\\nu_1},\\quad\nU_2\\sim\\chi^2_{\\nu_2}\n\\]\n\n\n\nThe \\(F\\) distribution appears when comparing variance-like quantities."
+  },
+  {
+    "objectID": "week05/week05.html#where-will-f-return",
+    "href": "week05/week05.html#where-will-f-return",
+    "title": "Statistics for Pharmacists",
+    "section": "Where will F return?",
+    "text": "Where will F return?\n\nForward references\n\n\n\n\nvariance ratios\n\n\nare two populations similarly variable?\n\n\n\n\nANOVA\n\n\ngroup differences relative to within-group noise\n\n\n\n\nregression\n\n\nmodel comparison and explained variability"
+  },
+  {
+    "objectID": "week05/week05.html#try-it-f-distribution",
+    "href": "week05/week05.html#try-it-f-distribution",
+    "title": "Statistics for Pharmacists",
+    "section": "Try it: F distribution",
+    "text": "Try it: F distribution\n\nTwo degrees of freedom\n\n\n\ndf₁ df₂\n\ndf5, 10"
+  },
+  {
+    "objectID": "week05/week05.html#which-distribution-belongs-where",
+    "href": "week05/week05.html#which-distribution-belongs-where",
+    "title": "Statistics for Pharmacists",
+    "section": "Which distribution belongs where?",
+    "text": "Which distribution belongs where?\n\nPrediction exercise\n\n\n\n\n\\(\\sigma\\) unknown, standardized mean\n\n\nStudent’s \\(t\\)\n\n\n\n\nvariance from Normal data\n\n\n\\(\\chi^2\\)\n\n\n\n\nratio of variance-like quantities\n\n\n\\(F\\)\n\n\n\n\nlarge-sample mean\n\n\nNormal approximation"
+  },
+  {
+    "objectID": "week05/week05.html#prediction-quadruple-n",
+    "href": "week05/week05.html#prediction-quadruple-n",
+    "title": "Statistics for Pharmacists",
+    "section": "Prediction: quadruple n",
+    "text": "Prediction: quadruple n\n\nSquare-root law\n\n\nIf sample size changes from \\(n\\) to \\(4n\\), what happens to \\[SE=\\sigma/\\sqrt n?\\]\n\n\n\n\\[SE\\rightarrow \\frac{SE}{2}\\]\n\n\n\n\nFour times as many observations halves the standard error."
+  },
+  {
+    "objectID": "week05/week05.html#misconception-check",
+    "href": "week05/week05.html#misconception-check",
+    "title": "Statistics for Pharmacists",
+    "section": "Misconception check",
+    "text": "Misconception check\n\nCLT does not normalize raw data\n\n\n“The CLT says all sufficiently large datasets become Normally distributed.”\n\n\n\nFalse. The CLT concerns appropriately standardized sums or means, not necessarily the distribution of the raw observations."
+  },
+  {
+    "objectID": "week05/week05.html#one-population-many-possible-samples",
+    "href": "week05/week05.html#one-population-many-possible-samples",
+    "title": "Statistics for Pharmacists",
+    "section": "One population, many possible samples",
+    "text": "One population, many possible samples\n\nThe Week 5 synthesis\n\n\n\npopulation\n\n\n→\n\n\nsample 1\n\n\n→\n\n\nstatistic 1\n\n\n\n\n\n\n\n\nsample 2\n\n\n→\n\n\nstatistic 2\n\n\n\n\n\n\n\n\nsample 3\n\n\n→\n\n\nstatistic 3\n\n\n\n\n\n\n\n\n⋮\n\n\n\n\n\n⋮\n\n\n\n\nThe sample is noisy. The distribution of statistics across samples is the structure we exploit."
+  },
+  {
+    "objectID": "week05/week05.html#lln-versus-clt",
+    "href": "week05/week05.html#lln-versus-clt",
+    "title": "Statistics for Pharmacists",
+    "section": "LLN versus CLT",
+    "text": "LLN versus CLT\n\nDo not collapse them into one idea\n\n\n\n\n\n\nLLN\n\n\nCLT\n\n\nmain question\n\n\nwhere does the estimate go?\n\n\nhow does the estimate vary?\n\n\nas n grows\n\n\nstabilizes near expectation\n\n\nstandardized mean tends toward Normality\n\n\nkey idea\n\n\nstability\n\n\nsampling distribution\n\n\nimportant quantity\n\n\n\\(\\mu\\)\n\n\n\\(SE=\\sigma/\\sqrt n\\)"
+  },
+  {
+    "objectID": "week05/week05.html#bridge-to-week-6",
+    "href": "week05/week05.html#bridge-to-week-6",
+    "title": "Statistics for Pharmacists",
+    "section": "Bridge to Week 6",
+    "text": "Bridge to Week 6\n\nWhy this foundation matters\n\n\n\n\nSampling distribution\n\n\nhow estimates fluctuate\n\n\n\n→\n\n\n\nUncertainty\n\n\nhow far an estimate may be from truth\n\n\n\n→\n\n\n\nInference\n\n\nconfidence intervals and hypothesis tests\n\n\n\n\n\nNext week, sampling variability becomes statistical decision-making."
+  },
+  {
+    "objectID": "week07/week07.html#week-7",
+    "href": "week07/week07.html#week-7",
+    "title": "Statistics 101",
+    "section": "Week 7",
+    "text": "Week 7\n\nCourse skeleton\n\n\nContent to be developed."
+  },
+  {
+    "objectID": "week09/week09.html#week-9",
+    "href": "week09/week09.html#week-9",
+    "title": "Statistics 101",
+    "section": "Week 9",
+    "text": "Week 9\n\nCourse skeleton\n\n\nContent to be developed."
+  },
+  {
+    "objectID": "week11/week11.html#week-11",
+    "href": "week11/week11.html#week-11",
+    "title": "Statistics 101",
+    "section": "Week 11",
+    "text": "Week 11\n\nCourse skeleton\n\n\nContent to be developed."
+  }
+]

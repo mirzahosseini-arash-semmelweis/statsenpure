@@ -1,0 +1,4069 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
+
+  <meta name="author" content="Graduate Pharmaceutical Studies">
+  <title>Statistics for Pharmacists</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-20a2b14e39b1069e298e1d6689f79ac4.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-footer="" class="quarto-title-block center">
+  <h1 class="title">Statistics for Pharmacists</h1>
+  <p class="subtitle">Week 2 · Probability distributions</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Graduate Pharmaceutical Studies
+</div>
+</div>
+</div>
+
+</section>
+<section id="probability-distributions" class="slide level2 title-slide center">
+<h2>Probability distributions</h2>
+<div class="eyebrow">
+Week 2
+</div>
+<div class="concept-line" style="margin-top:1em;">
+<p>The shape of probability.</p>
+</div>
+</section>
+<section id="what-did-probability-give-us" class="slide level2 concept-slide">
+<h2>What did probability give us?</h2>
+<div class="eyebrow">
+Recall from Week 1
+</div>
+<div class="flow-row">
+<div class="flow-node">
+Experiment
+</div>
+<div class="flow-arrow">
+→
+</div>
+<div class="flow-node observed">
+Possible outcomes
+</div>
+<div class="flow-arrow">
+→
+</div>
+<div class="flow-node probability">
+Events
+</div>
+<div class="flow-arrow">
+→
+</div>
+<div class="flow-node estimate">
+Numbers
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="definition-box large-definition">
+<p><span class="math display">\[
+A \subseteq \Omega \quad\Longrightarrow\quad \mathbb{P}(A)\in[0,1]
+\]</span></p>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>Probability gives numerical structure to uncertainty.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Use this slide to reconnect students to Week 1 without spending too much time reviewing formal probability spaces.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="outcomes-do-not-all-occur-equally-often" class="slide level2 motivation-slide">
+<h2>Outcomes do not all occur equally often</h2>
+<div class="eyebrow">
+Two pharmaceutical motivations
+</div>
+<div class="dist-grid-2">
+<div class="dist-card model-border fragment fade-up">
+<div class="dist-title">
+Tablet press
+</div>
+<div class="dist-sub">
+The nominal target is 2.000 g. But every tablet is not exactly 2.000 g.
+</div>
+<div class="weight-row">
+<img src="figures/tablet.jpg" alt="tablet" class="step-image">
+</div>
+</div>
+<div class="dist-card warning-border fragment fade-up">
+<div class="dist-title">
+Automatic camera inspection
+</div>
+<div class="dist-sub">
+A faulty tablet is expected in 0.1% of presses. How long can the line run without seeing a rejection?
+</div>
+<div class="dist-eq">
+<span class="math inline">\(0.999^{1,000}\)</span> &nbsp;vs.&nbsp; <span class="math inline">\(0.999^{1,000,000}\)</span>
+</div>
+<div class="weight-row">
+<img src="figures/machine_vision.jpg" alt="machinevision" class="step-image">
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>A distribution describes how probability is spread across possible outcomes.</p>
+</div>
+</div>
+<aside class="notes">
+<p>These examples foreshadow both continuous and discrete distributions. Tablet mass is continuous. Fault/no fault per press is binary, and the waiting time until first failure is discrete.</p>
+<p>Do not calculate yet. Use these as curiosity hooks.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="a-distribution-is-the-shape-of-uncertainty" class="slide level2 concept-slide">
+<h2>A distribution is the shape of uncertainty</h2>
+<div class="eyebrow">
+From isolated events to a whole pattern
+</div>
+<div class="dist-grid-2">
+<div class="dist-card fragment fade-up">
+<div class="dist-title">
+One event
+</div>
+<div class="dist-sub">
+A single probability question:
+</div>
+<div class="dist-eq" style="--eq-size: 2em;">
+<span class="math inline">\(\mathbb{P}(A)=0.30\)</span>
+</div>
+</div>
+<div class="dist-card fragment fade-up probability-border">
+<div class="dist-title">
+Many possible outcomes
+</div>
+<div class="dist-sub">
+Probability is allocated across the entire outcome space.
+</div>
+<div class="weight-row">
+<div class="weight-bar" style="height:25%;">
+<span>1</span>
+</div>
+<div class="weight-bar" style="height:42%;">
+<span>2</span>
+</div>
+<div class="weight-bar" style="height:76%;">
+<span>3</span>
+</div>
+<div class="weight-bar" style="height:56%;">
+<span>4</span>
+</div>
+<div class="weight-bar" style="height:31%;">
+<span>5</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="takeaway">
+The same probability rules still apply — but now we study the whole shape.
+</div>
+</div>
+<aside class="notes">
+<p>This slide introduces the word “shape” intentionally. Students should begin to imagine a distribution as the pattern of probability weights over possible values.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="two-fundamentally-different-worlds" class="slide level2 concept-slide">
+<h2>Two fundamentally different worlds</h2>
+<div class="eyebrow">
+Discrete versus continuous
+</div>
+<div class="discrete-continuous">
+<!-- Left Card: Discrete -->
+<div class="dist-card observed-border fragment fade-up">
+<div class="dist-title">
+Discrete random variable
+</div>
+<div class="dist-sub">
+Possible values are separated. Individual values can have positive probability.
+</div>
+<div class="mini-axis">
+<div class="die-bars">
+<span data-x="1"></span><span data-x="2"></span><span data-x="3"></span> <span data-x="4"></span><span data-x="5"></span><span data-x="6"></span>
+</div>
+</div>
+<div class="dist-eq">
+Fair die: <span class="math inline">\(X\in\{1,2,3,4,5,6\}\)</span>
+</div>
+<!-- Enclosed Image Container -->
+<div class="media-container">
+<img src="figures/dice.jpg" alt="dice" class="step-image">
+</div>
+</div>
+<!-- Right Card: Continuous -->
+<div class="dist-card model-border fragment fade-up">
+<div class="dist-title">
+Continuous random variable
+</div>
+<div class="dist-sub">
+Possible values fill an interval. Probability belongs to ranges, not exact points.
+</div>
+<div class="mini-axis">
+<div class="uniform-fill">
+
+</div>
+</div>
+<div class="dist-eq">
+Random number: <span class="math inline">\(X\in[0,1]\)</span>
+</div>
+<!-- Enclosed Video Container (Same size as Image Container) -->
+<div class="media-container">
+<video data-autoplay="" muted="" loop="" playsinline=""> <source src="figures/uniform_01_samples.mp4" type="video/mp4"> </video>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>Discrete probability lives on values. Continuous probability lives over intervals.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Use a fair die rather than a coin as the flagship discrete-uniform example. Reserve the coin for Bernoulli.</p>
+<p>The main conceptual target: for continuous variables, asking for exactly one value is not the same kind of question as for discrete variables.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="probability-mass-versus-probability-density" class="slide level2 math-slide">
+<h2>Probability mass versus probability density</h2>
+<div class="eyebrow">
+The height means different things
+</div>
+<div class="dist-grid-2">
+<!-- DISCRETE CARD -->
+<div class="dist-card observed-border fragment fade-up">
+<div class="dist-title">
+Probability mass function (PMF)
+</div>
+<div class="dist-sub">
+The bar height is the exact probability of that point.
+</div>
+<div class="definition-box">
+<span class="math inline">\(p(x) = \mathbb{P}(X=x)\)</span>
+</div>
+<!-- Visual: Fair Die PMF with X=4 Highlighted -->
+<div class="visual-container">
+<div class="pmf-axis">
+<div class="pmf-bar" style="--h: 60%;">
+<span class="x-val">1</span>
+</div>
+<div class="pmf-bar" style="--h: 60%;">
+<span class="x-val">2</span>
+</div>
+<div class="pmf-bar" style="--h: 60%;">
+<span class="x-val">3</span>
+</div>
+<div class="pmf-bar active" style="--h: 60%;">
+<span class="prob-tag">1/6</span> <span class="x-val">4</span>
+</div>
+<div class="pmf-bar" style="--h: 60%;">
+<span class="x-val">5</span>
+</div>
+<div class="pmf-bar" style="--h: 60%;">
+<span class="x-val">6</span>
+</div>
+</div>
+</div>
+<div class="definition-box probability">
+<span class="math inline">\(\mathbb{P}(X=4) = 1/6 \approx 0.167\)</span>
+</div>
+</div>
+<!-- CONTINUOUS CARD -->
+<div class="dist-card model-border fragment fade-up">
+<div class="dist-title">
+Probability density function (PDF)
+</div>
+<div class="dist-sub">
+Curve height is density. Area under the curve is probability.
+</div>
+<div class="definition-box">
+<span class="math inline">\(\mathbb{P}(a &lt; X &lt; b) = \int_a^b f(x)\,dx\)</span>
+</div>
+<!-- Visual: Uniform PDF [0,1] with Interval [0.4, 0.6] Highlighted -->
+<div class="visual-container">
+<div class="pdf-axis">
+<!-- Subtle background fill across the entire uniform density [0,1] -->
+<div class="pdf-background-fill">
+
+</div>
+<!-- Density line f(x) = 1 -->
+<div class="pdf-density-line">
+
+</div>
+<!-- Shaded region for [0.4, 0.6] -->
+<div class="pdf-interval-fill">
+<span class="area-tag">Area = 0.20</span>
+</div>
+<!-- Axis Ticks placed inside the container -->
+<div class="axis-ticks">
+<span style="left: 0%;">0</span> <span class="tick-active" style="left: 40%;">0.4</span> <span class="tick-active" style="left: 60%;">0.6</span> <span style="left: 100%;">1</span>
+</div>
+</div>
+</div>
+<div class="definition-box warning">
+<span class="math inline">\(\mathbb{P}(X=0.5) = 0 \quad \text{vs.} \\ \mathbb{P}(0.4 &lt; X &lt; 0.6) = 0.20\)</span>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>For continuous variables, probability requires width — an interval, not a single point.</p>
+</div>
+</div>
+<aside class="notes">
+<p>This is one of the most important conceptual slides of Week 2. Let students sit with the paradox: a possible exact value has probability zero under a continuous distribution.</p>
+<p>Use the phrase: “A point has no width, so it has no area.”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="where-can-the-variable-live" class="slide level2 concept-slide">
+<h2>Where can the variable live?</h2>
+<div class="eyebrow">
+Support
+</div>
+<div class="dist-grid-3">
+<div class="dist-card fragment fade-up observed-border">
+<div class="dist-title">
+Fair die
+</div>
+<div class="dist-sub">
+Only six possible values.
+</div>
+<div class="support-line">
+<span class="support-pill">1</span><span class="support-pill">2</span><span class="support-pill">3</span><span class="support-pill">4</span><span class="support-pill">5</span><span class="support-pill">6</span>
+</div>
+</div>
+<div class="dist-card fragment fade-up model-border">
+<div class="dist-title">
+Uniform number
+</div>
+<div class="dist-sub">
+Any real value between 0 and 1.
+</div>
+<div class="support-range">
+<span>0</span><span><span class="math inline">\([0,1]\)</span></span><span>1</span>
+</div>
+</div>
+<div class="dist-card fragment fade-up probability-border">
+<div class="dist-title">
+Waiting time
+</div>
+<div class="dist-sub">
+Cannot be negative, but can be arbitrarily long.
+</div>
+<div class="support-range">
+<span>0</span><span><span class="math inline">\([0,\infty)\)</span></span><span>∞</span>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>The support of a distribution is the set of values the random variable can take.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Support is useful vocabulary. Tie it to biological and pharmaceutical constraints: concentrations cannot be negative; proportions are between 0 and 1; counts are nonnegative integers.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="everything-must-add-up-to-one" class="slide level2 math-slide">
+<h2>Everything must add up to one</h2>
+<div class="eyebrow">
+The same conservation rule in two forms
+</div>
+<div class="sum-integral-row">
+<div class="definition-box fragment fade-up">
+<span class="math display">\[
+  \sum_x p(x)=1
+  \]</span>
+</div>
+<div class="definition-box fragment fade-up">
+<span class="math display">\[
+  \int_{-\infty}^{\infty} f(x)\,dx=1
+  \]</span>
+</div>
+</div>
+<div class="dist-grid-2" style="margin-top:.6em;">
+<div class="cdf-panel fragment fade-up">
+<svg viewbox="0 0 300 160" aria-label="Discrete probabilities add to one"> <line x1="25" y1="135" x2="280" y2="135" class="cdf-axis"></line> <rect x="45" y="70" width="26" height="65" fill="rgba(123,74,181,.7)"></rect> <rect x="82" y="55" width="26" height="80" fill="rgba(123,74,181,.7)"></rect> <rect x="119" y="88" width="26" height="47" fill="rgba(123,74,181,.7)"></rect> <rect x="156" y="42" width="26" height="93" fill="rgba(123,74,181,.7)"></rect> <rect x="193" y="96" width="26" height="39" fill="rgba(123,74,181,.7)"></rect> <rect x="230" y="82" width="26" height="53" fill="rgba(123,74,181,.7)"></rect> </svg>
+<div class="cdf-caption">
+discrete pieces add
+</div>
+</div>
+<div class="cdf-panel fragment fade-up">
+<svg viewbox="0 0 300 160" aria-label="Continuous density integrates to one"> <line x1="25" y1="135" x2="280" y2="135" class="cdf-axis"></line> <path d="M25,135 C70,135 85,20 150,20 C215,20 230,135 280,135 L25,135 Z" fill="rgba(123,74,181,.20)"></path> <path d="M25,135 C70,135 85,20 150,20 C215,20 230,135 280,135" class="widget-path"></path> </svg>
+<div class="cdf-caption">
+continuous area integrates
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>This slide reinforces a single intuitive conservation law: all probability goes somewhere. In discrete cases, add the pieces; in continuous cases, integrate the area.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="one-definition-unifies-both-worlds" class="slide level2 math-slide">
+<h2>One definition unifies both worlds</h2>
+<div class="eyebrow">
+Cumulative distribution function
+</div>
+<div class="definition-box large-definition fragment fade-up">
+<p><span class="math display">\[
+F(x)=\mathbb{P}(X\leq x)
+\]</span></p>
+</div>
+<div class="dist-grid-2" style="margin-top:.55em;">
+<div class="cdf-panel fragment fade-up">
+<svg viewbox="0 0 300 160" aria-label="Step CDF"> <line x1="25" y1="135" x2="280" y2="135" class="cdf-axis"></line><line x1="25" y1="135" x2="25" y2="20" class="cdf-axis"></line> <path d="M25,135 L62,135 L62,116 L99,116 L99,97 L136,97 L136,78 L173,78 L173,59 L210,59 L210,40 L247,40 L247,21 L280,21" class="cdf-step"></path> </svg>
+<div class="cdf-caption">
+discrete CDF jumps
+</div>
+</div>
+<div class="cdf-panel fragment fade-up">
+<svg viewbox="0 0 300 160" aria-label="Smooth CDF"> <line x1="25" y1="135" x2="280" y2="135" class="cdf-axis"></line><line x1="25" y1="135" x2="25" y2="20" class="cdf-axis"></line> <path d="M25,132 C70,130 88,116 108,93 C130,68 143,50 165,39 C190,28 225,25 280,23" class="cdf-curve"></path> </svg>
+<div class="cdf-caption">
+continuous CDF flows
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>The CDF always answers the same question: how much probability has accumulated up to this point?</p>
+</div>
+</div>
+<aside class="notes">
+<p>Stress that the CDF is often easier to use for “at most” or “less than” questions. It will become crucial for p-values, quantiles and confidence intervals later.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="watch-probability-accumulate" class="slide level2 exercise-slide">
+<h2>Watch probability accumulate</h2>
+<script>
+(function () {
+
+  function initCDFWidget() {
+    const input = document.getElementById("cdfX");
+    const valueDisplay = document.getElementById("cdfValue");
+    const svg = document.getElementById("cdfSvg");
+    if (!input || !valueDisplay || !svg) return;
+    // Prevent duplicate listeners if Reveal re-enters/reinitializes.
+    if (svg.dataset.initialized === "true") {
+      render();
+      return;
+    }
+    svg.dataset.initialized = "true";
+    function pdf(x) {
+      return Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
+    }
+    // Abramowitz-Stegun approximation to standard Normal CDF
+    function cdf(x) {
+      const z = Math.abs(x);
+      const t = 1 / (1 + 0.2316419 * z);
+      const d = 0.3989422804014327 * Math.exp(-0.5 * z * z);
+      const tail =
+        d * t *
+        (
+          0.319381530 +
+          t * (
+            -0.356563782 +
+            t * (
+              1.781477937 +
+              t * (
+                -1.821255978 +
+                t * 1.330274429
+              )
+            )
+          )
+        );
+      return x >= 0 ? 1 - tail : tail;
+    }
+    // ------------------------------------------------------------
+    // Coordinate mappings
+    // ------------------------------------------------------------
+    const xMin = -3.5;
+    const xMax =  3.5;
+    const plotLeft  = 60;
+    const plotRight = 660;
+    const plotWidth = plotRight - plotLeft;
+    const mapX = x =>
+      plotLeft + ((x - xMin) / (xMax - xMin)) * plotWidth;
+    // PDF panel
+    const pdfTop = 35;
+    const pdfBottom = 175;
+    const mapYPdf = y =>
+      pdfBottom - (y / 0.42) * (pdfBottom - pdfTop);
+    // CDF panel
+    const cdfTop = 235;
+    const cdfBottom = 390;
+    const mapYCdf = y =>
+      cdfBottom - y * (cdfBottom - cdfTop);
+    function samplePath(fn, from, to, mapY, step = 0.035) {
+      const pts = [];
+      for (let x = from; x <= to + 1e-9; x += step) {
+        pts.push([
+          mapX(x),
+          mapY(fn(x))
+        ]);
+      }
+      // Make sure exact endpoint is included.
+      if (pts.length === 0 || from < to) {
+        pts.push([
+          mapX(to),
+          mapY(fn(to))
+        ]);
+      }
+      return pts;
+    }
+    function pathFromPoints(points) {
+      if (!points.length) return "";
+      return points
+        .map((p, i) =>
+          `${i === 0 ? "M" : "L"} ${p[0].toFixed(2)} ${p[1].toFixed(2)}`
+        )
+        .join(" ");
+    }
+    function render() {
+      const currentX = Number(input.value);
+      const currentCDF = cdf(currentX);
+      valueDisplay.textContent = currentCDF.toFixed(3);
+      // ----------------------------------------------------------
+      // PDF paths
+      // ----------------------------------------------------------
+      const pdfPoints = samplePath(
+        pdf,
+        xMin,
+        xMax,
+        mapYPdf
+      );
+      const shadedPdfPoints = samplePath(
+        pdf,
+        xMin,
+        currentX,
+        mapYPdf
+      );
+      let areaPath =
+        `M ${mapX(xMin)} ${pdfBottom} ` +
+        shadedPdfPoints
+          .map(p => `L ${p[0].toFixed(2)} ${p[1].toFixed(2)}`)
+          .join(" ") +
+        ` L ${mapX(currentX)} ${pdfBottom} Z`;
+      // ----------------------------------------------------------
+      // CDF paths
+      // ----------------------------------------------------------
+      const fullCdfPoints = samplePath(
+        cdf,
+        xMin,
+        xMax,
+        mapYCdf
+      );
+      const activeCdfPoints = samplePath(
+        cdf,
+        xMin,
+        currentX,
+        mapYCdf
+      );
+      const currentPX = mapX(currentX);
+      const currentPY = mapYCdf(currentCDF);
+      svg.innerHTML = `
+        <!-- ==================== PDF ==================== -->
+        <text x="60" y="25" class="panel-label">
+          PDF: density f(x); shaded area = F(x)
+        </text>
+        <path
+          d="${areaPath}"
+          class="widget-area">
+        </path>
+        <path
+          d="${pathFromPoints(pdfPoints)}"
+          class="widget-path">
+        </path>
+        <line
+          x1="${plotLeft}" y1="${pdfBottom}"
+          x2="${plotRight}" y2="${pdfBottom}"
+          class="widget-axis">
+        </line>
+        <line
+          x1="${currentPX}" y1="${pdfTop}"
+          x2="${currentPX}" y2="${pdfBottom}"
+          class="widget-line">
+        </line>
+        <text
+          x="${currentPX}"
+          y="${pdfBottom + 18}"
+          class="widget-label active"
+          text-anchor="middle">
+          ${currentX.toFixed(2)}
+        </text>
+        <!-- Divider -->
+        <line
+          x1="45" y1="205"
+          x2="675" y2="205"
+          class="panel-divider">
+        </line>
+        <!-- ==================== CDF ==================== -->
+        <text x="60" y="226" class="panel-label">
+          CDF: F(x) = P(X ≤ x)
+        </text>
+        <path
+          d="${pathFromPoints(fullCdfPoints)}"
+          class="widget-path-faint">
+        </path>
+        <path
+          d="${pathFromPoints(activeCdfPoints)}"
+          class="widget-path-blue">
+        </path>
+        <line
+          x1="${plotLeft}" y1="${cdfBottom}"
+          x2="${plotRight}" y2="${cdfBottom}"
+          class="widget-axis">
+        </line>
+        <line
+          x1="${plotLeft}" y1="${currentPY}"
+          x2="${currentPX}" y2="${currentPY}"
+          class="widget-line-horizontal">
+        </line>
+        <line
+          x1="${currentPX}" y1="${cdfBottom}"
+          x2="${currentPX}" y2="${currentPY}"
+          class="widget-line">
+        </line>
+        <circle
+          cx="${currentPX}"
+          cy="${currentPY}"
+          r="6"
+          class="cdf-tracker-point">
+        </circle>
+        <!-- X axis labels -->
+        <text x="${mapX(-3)}" y="413"
+          class="widget-label"
+          text-anchor="middle">−3</text>
+        <text x="${mapX(0)}" y="413"
+          class="widget-label"
+          text-anchor="middle">0</text>
+        <text x="${mapX(3)}" y="413"
+          class="widget-label"
+          text-anchor="middle">3</text>
+        <!-- Y axis labels -->
+        <text x="50" y="${mapYCdf(0) + 4}"
+          class="widget-label"
+          text-anchor="end">0</text>
+        <text x="50" y="${mapYCdf(0.5) + 4}"
+          class="widget-label"
+          text-anchor="end">0.5</text>
+        <text x="50" y="${mapYCdf(1) + 4}"
+          class="widget-label"
+          text-anchor="end">1</text>
+      `;
+    }
+    input.addEventListener("input", render);
+    // Initial drawing
+    render();
+  }
+
+  // The markup above this script already exists, so initialize now.
+  initCDFWidget();
+
+  // Fallback if Quarto/Reveal timing differs.
+  window.addEventListener("load", initCDFWidget);
+
+  // RevealJS fallback when revisiting the slide.
+  if (window.Reveal) {
+    Reveal.on("ready", initCDFWidget);
+    Reveal.on("slidechanged", initCDFWidget);
+  }
+
+})();
+</script>
+<div class="try-label">
+Interactive concept slide
+</div>
+<div class="ojs-note">
+Move the cutoff. Probability to the left becomes the CDF value.
+</div>
+<div id="cdfWidget" class="cdf-widget">
+<div class="week02-control-row">
+<label class="week02-control">Cutoff x <input id="cdfX" type="range" min="-3" max="3" value="0" step="0.05"> </label>
+<div class="week02-control">
+Distribution
+<div>
+<strong class="model">Standard Normal</strong>
+</div>
+</div>
+<div class="week02-control">
+CDF value F(x)
+<div>
+<strong id="cdfValue" class="probability">0.500</strong>
+</div>
+</div>
+</div>
+<p><svg id="cdfSvg" class="week02-svg dual-panel" viewbox="0 0 700 430" aria-label="Interactive Normal PDF and CDF"> </svg></p>
+</div>
+<aside class="notes">
+<p>This widget is intentionally simple: a standard normal curve, a vertical cutoff, and the shaded probability to the left. It visually links the PDF to the CDF.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-probability-are-you-asking-for" class="slide level2 concept-slide">
+<h2>What probability are you asking for?</h2>
+<div class="eyebrow">
+The wording determines the area
+</div>
+<div class="question-types">
+<div class="qtype-card fragment fade-up">
+<div class="qtype-title">
+Exactly
+</div>
+<div class="qtype-eq">
+<span class="math inline">\(\mathbb{P}(X=x)\)</span>
+</div>
+<div class="qtype-note">
+meaningful for discrete values
+</div>
+</div>
+<div class="qtype-card fragment fade-up">
+<div class="qtype-title">
+At most
+</div>
+<div class="qtype-eq">
+<span class="math inline">\(\mathbb{P}(X\leq x)\)</span>
+</div>
+<div class="qtype-note">
+lower cumulative probability
+</div>
+</div>
+<div class="qtype-card fragment fade-up">
+<div class="qtype-title">
+At least
+</div>
+<div class="qtype-eq">
+<span class="math inline">\(\mathbb{P}(X\geq x)\)</span>
+</div>
+<div class="qtype-note">
+upper tail probability
+</div>
+</div>
+<div class="qtype-card fragment fade-up">
+<div class="qtype-title">
+Between
+</div>
+<div class="qtype-eq">
+<span class="math inline">\(\mathbb{P}(a&lt;X&lt;b)\)</span>
+</div>
+<div class="qtype-note">
+interval probability
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>“Exactly”, “at most”, “at least” and “between” are different probability questions.</p>
+</div>
+</div>
+<aside class="notes">
+<p>This slide prepares the tablet mass widget. Emphasize how often students answer the wrong probability question because the wording is imprecise.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="tablet-press-laboratory" class="slide level2 exercise-slide">
+<h2>Tablet press laboratory</h2>
+<div class="try-label">
+Interactive slide for students at home
+</div>
+<div id="tabletWidget" class="tablet-widget">
+<div class="week02-control-row">
+<label class="week02-control"> Question <select id="tabletMode"> <option value="between">lower ≤ X ≤ upper</option> <option value="below">X ≤ cutoff</option> <option value="above">X ≥ cutoff</option> </select> </label> <label class="week02-control" id="tabletLowerControl"> <span id="tabletLowerLabel">Lower bound, g</span> <input id="tabletLower" type="range" min="1.96" max="2.04" value="1.99" step="0.001"> </label> <label class="week02-control" id="tabletUpperControl"> <span id="tabletUpperLabel">Upper bound, g</span> <input id="tabletUpper" type="range" min="1.96" max="2.04" value="2.01" step="0.001"> </label>
+</div>
+<svg id="tabletSvg" class="week02-svg" viewbox="0 0 700 260" aria-label="Tablet mass normal probability explorer"> </svg>
+<div class="week02-output">
+<div class="out">
+<span>model</span> <strong><span class="math inline">\(X\sim \mathcal{N}(2.000,0.008^2)\)</span></strong>
+</div>
+<div class="out">
+<span>region</span> <strong id="tabletBounds">1.990–2.010 g</strong>
+</div>
+<div class="out">
+<span>probability</span> <strong id="tabletProb" class="probability">0.789</strong>
+</div>
+</div>
+</div>
+<script>
+(function () {
+
+  const widget = document.getElementById("tabletWidget");
+  if (!widget) return;
+
+  const modeInput = document.getElementById("tabletMode");
+  const lowerInput = document.getElementById("tabletLower");
+  const upperInput = document.getElementById("tabletUpper");
+
+  const lowerControl = document.getElementById("tabletLowerControl");
+  const upperControl = document.getElementById("tabletUpperControl");
+
+  const lowerLabel = document.getElementById("tabletLowerLabel");
+  const upperLabel = document.getElementById("tabletUpperLabel");
+
+  const boundsDisplay = document.getElementById("tabletBounds");
+  const probDisplay = document.getElementById("tabletProb");
+  const svg = document.getElementById("tabletSvg");
+
+  if (!modeInput || !lowerInput || !upperInput || !svg) return;
+
+  const mu = 2.000;
+  const sigma = 0.008;
+
+  // Plot range extends beyond slider bounds so tails remain visible.
+  const xMin = 1.96;
+  const xMax = 2.04;
+
+  const left = 45;
+  const right = 665;
+
+  const baseline = 225;
+  const top = 20;
+
+  // ------------------------------------------------------------
+  // Normal PDF / CDF
+  // ------------------------------------------------------------
+
+  function pdf(x) {
+    const z = (x - mu) / sigma;
+    return (
+      Math.exp(-0.5 * z * z) /
+      (sigma * Math.sqrt(2 * Math.PI))
+    );
+  }
+  function standardNormalCDF(z) {
+    const a = Math.abs(z);
+    const t = 1 / (1 + 0.2316419 * a);
+    const d =
+      0.3989422804014327 *
+      Math.exp(-0.5 * a * a);
+    const tail =
+      d * t *
+      (
+        0.319381530 +
+        t * (
+          -0.356563782 +
+          t * (
+            1.781477937 +
+            t * (
+              -1.821255978 +
+              t * 1.330274429
+            )
+          )
+        )
+      );
+    return z >= 0 ? 1 - tail : tail;
+  }
+
+  function cdf(x) {
+    return standardNormalCDF((x - mu) / sigma);
+  }
+
+  // ------------------------------------------------------------
+  // Coordinate mapping
+  // ------------------------------------------------------------
+
+  function mapX(x) {
+    return left + ((x - xMin) / (xMax - xMin)) * (right - left);
+  }
+
+  // Maximum Normal density occurs at mu
+  const pdfMax = pdf(mu);
+
+  function mapY(y) {
+    return baseline - (y / pdfMax) * (baseline - top);
+  }
+
+  // ------------------------------------------------------------
+  // Curve construction
+  // ------------------------------------------------------------
+
+  function curvePoints(from, to, step = 0.0002) {
+    const pts = [];
+    if (to < from) return pts;
+    for (let x = from; x < to; x += step) {
+      pts.push([mapX(x), mapY(pdf(x))]);
+    }
+    // Exact endpoint
+    pts.push([mapX(to), mapY(pdf(to))]);
+    return pts;
+  }
+
+  function pointsToLines(points) {
+    return points
+      .map(([x, y]) => `L ${x.toFixed(2)} ${y.toFixed(2)}`)
+      .join(" ");
+  }
+
+  // ------------------------------------------------------------
+  // Correct probability-area polygons
+  // ------------------------------------------------------------
+
+  function areaBetween(lower, upper) {
+    const pts = curvePoints(lower, upper);
+    return [
+      // Start ON THE BASELINE under lower bound
+      `M ${mapX(lower)} ${baseline}`,
+      // Rise vertically to curve
+      `L ${mapX(lower)} ${mapY(pdf(lower))}`,
+      // Follow curve from lower -> upper
+      pointsToLines(pts.slice(1)),
+      // Drop vertically to baseline
+      `L ${mapX(upper)} ${baseline}`,
+      // Close along baseline
+      "Z"
+    ].join(" ");
+  }
+
+  function areaBelow(cutoff) {
+    const pts = curvePoints(xMin, cutoff);
+    return [
+      // Start on baseline at left edge
+      `M ${mapX(xMin)} ${baseline}`,
+      // Rise to curve
+      `L ${mapX(xMin)} ${mapY(pdf(xMin))}`,
+      // Follow curve left -> cutoff
+      pointsToLines(pts.slice(1)),
+      // Drop vertically at cutoff
+      `L ${mapX(cutoff)} ${baseline}`,
+      // Close along baseline
+      "Z"
+    ].join(" ");
+  }
+
+  function areaAbove(cutoff) {
+    const pts = curvePoints(cutoff, xMax);
+    return [
+      // Start on baseline directly under cutoff
+      `M ${mapX(cutoff)} ${baseline}`,
+      // Rise vertically to curve at cutoff
+      `L ${mapX(cutoff)} ${mapY(pdf(cutoff))}`,
+      // Follow curve cutoff -> right edge
+      pointsToLines(pts.slice(1)),
+      // Drop vertically at right edge
+      `L ${mapX(xMax)} ${baseline}`,
+      // Close along baseline
+      "Z"
+    ].join(" ");
+  }
+
+  // ------------------------------------------------------------
+  // Full density curve
+  // ------------------------------------------------------------
+
+  function fullCurvePath() {
+    const pts = curvePoints(xMin, xMax);
+    if (!pts.length) return "";
+    const [firstX, firstY] = pts[0];
+    return (
+      `M ${firstX.toFixed(2)} ${firstY.toFixed(2)} ` +
+      pointsToLines(pts.slice(1))
+    );
+  }
+
+  // ------------------------------------------------------------
+  // Rendering
+  // ------------------------------------------------------------
+
+  function render() {
+    let lower = Number(lowerInput.value);
+    let upper = Number(upperInput.value);
+    const mode = modeInput.value;
+    if (mode === "between") {
+      lowerInput.disabled = false;
+      upperInput.disabled = false;
+      lowerLabel.textContent = "Lower bound, g";
+      upperLabel.textContent = "Upper bound, g";
+    } else if (mode === "below") {
+      lowerInput.disabled = false;
+      upperInput.disabled = true;
+      lowerLabel.textContent = "Cutoff, g";
+      upperLabel.textContent = "Not used";
+    } else if (mode === "above") {
+      lowerInput.disabled = true;
+      upperInput.disabled = false;
+      lowerLabel.textContent = "Not used";
+      upperLabel.textContent = "Cutoff, g";
+    }
+    // Prevent inverted interval.
+    if (lower > upper) {
+      if (document.activeElement === lowerInput) {
+        upper = lower;
+        upperInput.value = upper;
+      } else {
+        lower = upper;
+        lowerInput.value = lower;
+      }
+    }
+    let probability;
+    let areaPath;
+    let boundsText;
+    if (mode === "between") {
+      probability =
+        cdf(upper) - cdf(lower);
+      areaPath =
+        areaBetween(lower, upper);
+      boundsText =
+        `${lower.toFixed(3)}–${upper.toFixed(3)} g`;
+    } else if (mode === "below") {
+      probability =
+        cdf(lower);
+      areaPath =
+        areaBelow(lower);
+      boundsText =
+        `X ≤ ${lower.toFixed(3)} g`;
+    } else {
+      probability =
+        1 - cdf(upper);
+      areaPath =
+        areaAbove(upper);
+      boundsText =
+        `X ≥ ${upper.toFixed(3)} g`;
+    }
+    boundsDisplay.textContent = boundsText;
+    probDisplay.textContent = probability.toFixed(3);
+    // ----------------------------------------------------------
+    // Boundary lines
+    // ----------------------------------------------------------
+    let boundaryLines = "";
+    if (mode === "between") {
+      boundaryLines = `
+        <line
+          x1="${mapX(lower)}"
+          y1="${mapY(pdf(lower))}"
+          x2="${mapX(lower)}"
+          y2="${baseline}"
+          class="widget-line">
+        </line>
+        <line
+          x1="${mapX(upper)}"
+          y1="${mapY(pdf(upper))}"
+          x2="${mapX(upper)}"
+          y2="${baseline}"
+          class="widget-line">
+        </line>
+      `;
+    } else if (mode === "below") {
+      boundaryLines = `
+        <line
+          x1="${mapX(lower)}"
+          y1="${mapY(pdf(lower))}"
+          x2="${mapX(lower)}"
+          y2="${baseline}"
+          class="widget-line">
+        </line>
+      `;
+    } else {
+      boundaryLines = `
+        <line
+          x1="${mapX(upper)}"
+          y1="${mapY(pdf(upper))}"
+          x2="${mapX(upper)}"
+          y2="${baseline}"
+          class="widget-line">
+        </line>
+      `;
+    }
+    svg.innerHTML = `
+      <!-- probability area -->
+      <path
+        d="${areaPath}"
+        class="widget-area">
+      </path>
+      <!-- complete normal density -->
+      <path
+        d="${fullCurvePath()}"
+        class="widget-path">
+      </path>
+      <!-- x-axis -->
+      <line
+        x1="${left}"
+        y1="${baseline}"
+        x2="${right}"
+        y2="${baseline}"
+        class="widget-axis">
+      </line>
+      ${boundaryLines}
+      <!-- mean -->
+      <line
+        x1="${mapX(mu)}"
+        y1="${mapY(pdf(mu))}"
+        x2="${mapX(mu)}"
+        y2="${baseline}"
+        class="tablet-mean-line">
+      </line>
+      <text
+        x="${mapX(mu)}"
+        y="${baseline + 21}"
+        class="widget-label"
+        text-anchor="middle">
+        2.000
+      </text>
+      <text
+        x="${mapX(1.96)}"
+        y="${baseline + 21}"
+        class="widget-label"
+        text-anchor="middle">
+        1.96
+      </text>
+      <text
+        x="${mapX(2.04)}"
+        y="${baseline + 21}"
+        class="widget-label"
+        text-anchor="middle">
+        2.04
+      </text>
+    `;
+  }
+
+  // ------------------------------------------------------------
+  // Controls
+  // ------------------------------------------------------------
+
+  modeInput.addEventListener("change", render);
+  lowerInput.addEventListener("input", render);
+  upperInput.addEventListener("input", render);
+
+  render();
+
+})();
+</script>
+<aside class="notes">
+<p>Use this as the central interactive slide for Week 2. The key message is not numerical precision; it is that the probability question determines which area under the curve is relevant.</p>
+<p>Suggested live sequence: ask for between 1.99 and 2.01, then switch to at least 1.99. Same bound, completely different probability question.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="meet-the-normal-distribution" class="slide level2 math-slide">
+<h2>Meet the normal distribution</h2>
+<div class="eyebrow">
+After the intuition, the notation
+</div>
+<div class="dist-grid-2">
+<div class="dist-card model-border fragment fade-up">
+<div class="dist-title">
+Notation
+</div>
+<div class="definition-box large-definition">
+<span class="math inline">\(X\sim \mathcal{N}(\mu,\sigma^2)\)</span>
+</div>
+<div class="dist-sub">
+Two parameters uniquely define the model: location and spread.
+</div>
+</div>
+<div class="dist-card fragment fade-up">
+<div class="dist-title">
+Density
+</div>
+<div class="definition-box" style="font-size:.62em;">
+<span class="math display">\[f(x)=\frac{1}{\sigma\sqrt{2\pi}}\,e^{-\frac12\left(\frac{x-\mu}{\sigma}\right)^2}\]</span>
+</div>
+<div class="dist-sub">
+Recognize the formula. Do not memorize it.
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>For the Gaussian model, <span class="math inline">\(\mu\)</span> moves the center and <span class="math inline">\(\sigma\)</span> controls the spread.</p>
+</div>
+<div class="concept-line">
+<p>Why Gaussian normal distribution is so common in nature: it models an outcome that is the sum of many tiny independent contributions.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Tell students that formula recognition is enough here. They should understand what the parameters do and how to interpret probability regions.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-do-μ-and-σ-actually-do" class="slide level2 exercise-slide">
+<h2>What do μ and σ actually do?</h2>
+<div class="try-label">
+Interactive parameter intuition
+</div>
+<div id="normalWidget" class="normal-widget">
+<div class="week02-control-row">
+<label class="week02-control">Mean μ<input id="normalMu" type="range" min="-2" max="2" value="0" step="0.1"></label> <label class="week02-control">SD σ<input id="normalSigma" type="range" min="0.4" max="2.2" value="1" step="0.05"></label>
+<div class="week02-control">
+Current model
+<div>
+<strong id="normalParams" class="model">𝒩(0, 1²)</strong>
+</div>
+</div>
+</div>
+<svg id="normalSvg" class="week02-svg" viewbox="0 0 700 260" aria-label="Normal distribution parameter explorer"></svg>
+</div>
+<div class="normal-manim fragment fade-up">
+<p><video data-autoplay="" muted="" loop="" playsinline=""> <source src="figures/dartboard_gaussian.mp4" type="video/mp4"> </video></p>
+</div>
+<aside class="notes">
+<p>Demonstrate μ first while keeping σ fixed: the curve slides. Then demonstrate σ while keeping μ fixed: the curve spreads and flattens.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-empirical-rule" class="slide level2 concept-slide">
+<h2>The empirical rule</h2>
+<div class="eyebrow">
+A useful landmark for Gaussian variation
+</div>
+<div class="empirical-stack">
+<div class="normal-mini fragment fade-up">
+<svg id="empiricalSvg" class="empirical-rule-svg" viewbox="0 0 700 220" preserveaspectratio="xMidYMid meet" aria-label="Normal distribution empirical rule"> </svg>
+</div>
+<div class="empirical-row">
+<div class="empirical-card fragment fade-up">
+<strong>68.3%</strong> <span>inside <span class="math inline">\(\mu\pm1\sigma\)</span></span>
+</div>
+<div class="empirical-card fragment fade-up">
+<strong>95.4%</strong> <span>inside <span class="math inline">\(\mu\pm2\sigma\)</span></span>
+</div>
+<div class="empirical-card fragment fade-up">
+<strong>99.7%</strong> <span>inside <span class="math inline">\(\mu\pm3\sigma\)</span></span>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Say “roughly 68–95–99.7” when speaking. These percentages apply specifically to the normal distribution, not every bell-shaped curve.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="moments-and-distribution-characteristics" class="slide level2 section-break">
+<h2>Moments and distribution characteristics</h2>
+<div class="section-kicker">
+Part II
+</div>
+<div class="section-title">
+The parameters of probability distributions
+</div>
+<div class="section-subtitle">
+We now see what numbers characterize the distributions.
+</div>
+</section>
+<section id="quantiles-cut-probability-not-distance" class="slide level2 concept-slide">
+<h2>Quantiles cut probability, not distance</h2>
+<div class="eyebrow">
+Percentiles and inverse CDF thinking
+</div>
+<div class="quantile-stack">
+<div class="normal-mini fragment fade-up">
+<svg id="quantileSvg" class="empirical-rule-svg" viewbox="0 0 700 220" preserveaspectratio="xMidYMid meet" aria-label="Normal distribution quantiles"> </svg>
+</div>
+<div class="quantile-markers">
+<div class="quantile-mark fragment fade-up">
+<strong>5th percentile</strong> <span>5% of probability lies below it.</span>
+</div>
+<div class="quantile-mark fragment fade-up">
+<strong>Median</strong> <span>50% below and 50% above.</span>
+</div>
+<div class="quantile-mark fragment fade-up">
+<strong>95th percentile</strong> <span>95% lies below it.</span>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>A quantile is a value chosen by accumulated probability.</p>
+</div>
+</div>
+<aside class="notes">
+<p>This prepares later confidence intervals, reference ranges, p-values and percentile-based clinical interpretation.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="mean-where-is-the-distribution-centered" class="slide level2 concept-slide">
+<h2>Mean: where is the distribution centered?</h2>
+<div class="eyebrow">
+Expected value as a balance point
+</div>
+<div class="definition-box fragment fade-up">
+<p><span class="math display">\[
+E[X] = \sum_x x\,p(x) \quad\text{or}\quad E[X]=\int x f(x)\,dx
+\]</span></p>
+</div>
+<style>
+/* 1. Animate the main beam to balance/teeter around its center */
+@keyframes beamTeeter {
+  0%   { transform: rotate(0deg) translateY(0px); }
+  25%  { transform: rotate(-1.8deg) translateY(-2px); }
+  50%  { transform: rotate(0.8deg) translateY(1px); }
+  75%  { transform: rotate(-0.8deg) translateY(-1px); }
+  100% { transform: rotate(0deg) translateY(0px); }
+}
+
+/* 2. Optional gentle bounce for the dots to feel organic */
+@keyframes dotJiggle {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-1.5px); }
+}
+
+/* Apply animations to classes */
+.moment-beam {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* Ensure the rotation pivot point is centered around the beam/fulcrum */
+  transform-origin: 50% 50%;
+  animation: beamTeeter 4.5s ease-in-out infinite;
+}
+
+/* Mass dots styling + subtle float */
+.mass-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #2563eb; /* Blue points */
+  border-radius: 50%;
+  animation: dotJiggle 2.5s ease-in-out infinite alternate;
+}
+
+/* Fulcrum (Green Triangle/Point) */
+.balance-point {
+  /* ... your existing styling ... */
+  border-bottom-color: #16a34a; /* Green fulcrum */
+}
+</style>
+<!-- Your existing HTML structure -->
+<div class="moment-beam fragment fade-up">
+<div class="beam-line">
+
+</div>
+<span class="mass-dot" style="left:18%; animation-delay: 0.1s;"></span> <span class="mass-dot" style="left:29%; animation-delay: 0.3s;"></span> <span class="mass-dot" style="left:36%; animation-delay: 0.2s;"></span> <span class="mass-dot" style="left:48%; animation-delay: 0.5s;"></span> <span class="mass-dot" style="left:58%; animation-delay: 0.4s;"></span> <span class="mass-dot" style="left:66%; animation-delay: 0.2s;"></span> <span class="mass-dot" style="left:75%; animation-delay: 0.6s;"></span>
+<div class="balance-point">
+
+</div>
+<div class="balance-label">
+<span class="math inline">\(E[X]\)</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>The expected value (mean, also called <strong>first moment</strong>) is the balancing point of the probability distribution.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Use this as a physical metaphor, then remind students that the mean can be pulled by long tails. That sets up skewness.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="variance-how-far-do-values-wander" class="slide level2 math-slide">
+<h2>Variance: how far do values wander?</h2>
+<div class="eyebrow">
+Second central moment
+</div>
+<div class="definition-box fragment fade-up">
+<p><span class="math display">\[
+\operatorname{Var}(X)=E[(X-\mu)^2], \qquad SD(X)=\sqrt{\operatorname{Var}(X)}
+\]</span></p>
+</div>
+<style>
+@keyframes arrowStretch {
+  0%, 100% { transform: scaleX(1); }
+  50%      { transform: scaleX(1.25); }
+}
+
+.dev.animated {
+  transform-origin: 50% 50%;
+  animation: arrowStretch 3s ease-in-out infinite;
+}
+</style>
+<div class="variance-lines fragment fade-up">
+<div class="axis">
+
+</div>
+<div class="mu-line">
+
+</div>
+<p><span class="v-dot" style="left:18%;"></span> <span class="v-dot" style="left:35%;"></span> <span class="v-dot" style="left:57%;"></span> <span class="v-dot" style="left:78%;"></span> <!-- Added "animated" class --> <span class="dev longest animated" style="left:18%; width:60%;"></span></p>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>Variance (also called <strong>second central moment</strong>) measures spread around the mean using squared deviations.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Students should know variance is in squared units and standard deviation returns to original units. Use tablet mass: variance in g² is less intuitive than SD in g.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="symmetry-and-skewness" class="slide level2 concept-slide">
+<h2>Symmetry and skewness</h2>
+<div class="eyebrow">
+Mean, median and mode can separate
+</div>
+<div class="skew-legend fragment fade-up">
+<div>
+<span class="legend-line mean"></span>Mean
+</div>
+<div>
+<span class="legend-line median"></span>Median
+</div>
+<div>
+<span class="legend-line mode"></span>Mode
+</div>
+</div>
+<div class="skew-grid">
+<div class="skew-card fragment fade-up">
+<div class="skew-title">
+Left-skewed
+</div>
+<svg viewbox="0 0 300 150"> <path d="M25,125
+  C55,124 75,118 95,108
+  C115,97 132,78 150,57
+  C164,41 180,31 198,35
+  C218,40 234,62 245,87
+  C253,104 258,117 260,125
+  L25,125 Z" fill="rgba(123,74,181,.17)"></path> <path d="M25,125
+  C55,124 75,118 95,108
+  C115,97 132,78 150,57
+  C164,41 180,31 198,35
+  C218,40 234,62 245,87
+  C253,104 258,117 260,125" class="widget-path"></path> <line x1="115" y1="28" x2="115" y2="125" class="marker-mean"></line> <line x1="155" y1="28" x2="155" y2="125" class="marker-median"></line> <line x1="190" y1="28" x2="190" y2="125" class="marker-mode"></line> </svg>
+</div>
+<div class="skew-card fragment fade-up">
+<div class="skew-title">
+Symmetric
+</div>
+<svg viewbox="0 0 300 150"> <path d="M25,125
+  C65,124 88,111 105,81
+  C120,55 132,35 150,32
+  C168,35 180,55 195,81
+  C212,111 235,124 275,125
+  L25,125 Z" fill="rgba(123,74,181,.17)"></path> <path d="M25,125
+  C65,124 88,111 105,81
+  C120,55 132,35 150,32
+  C168,35 180,55 195,81
+  C212,111 235,124 275,125" class="widget-path"></path> <line x1="150" y1="25" x2="150" y2="125" class="marker-all"></line> </svg>
+</div>
+<div class="skew-card fragment fade-up">
+<div class="skew-title">
+Right-skewed
+</div>
+<svg viewbox="0 0 300 150"> <path d="M40,125
+  C42,117 47,104 55,87
+  C66,62 82,40 102,35
+  C120,31 136,41 150,57
+  C168,78 185,97 205,108
+  C225,118 245,124 275,125
+  L40,125 Z" fill="rgba(123,74,181,.17)"></path> <path d="M40,125
+  C42,117 47,104 55,87
+  C66,62 82,40 102,35
+  C120,31 136,41 150,57
+  C168,78 185,97 205,108
+  C225,118 245,124 275,125" class="widget-path"></path> <line x1="108" y1="28" x2="108" y2="125" class="marker-mode"></line> <line x1="145" y1="28" x2="145" y2="125" class="marker-median"></line> <line x1="185" y1="28" x2="185" y2="125" class="marker-mean"></line> </svg>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="takeaway">
+For right-skewed shapes, the mean is often pulled toward the long right tail.
+</div>
+<div class="takeaway">
+Skewness can be characterized with the <strong>third central moment</strong>.
+</div>
+</div>
+<aside class="notes">
+<p>State the mean/median/mode order as a visual heuristic, not a theorem for every possible distribution.</p>
+<p>Use examples: concentrations, residence times, income and many biological measurements can be right-skewed.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="why-tails-matter" class="slide level2 concept-slide">
+<h2>Why tails matter</h2>
+<div class="eyebrow">
+Kurtosis as extreme-event propensity
+</div>
+<div class="tail-compare">
+<div class="normal-mini fragment fade-up">
+<svg id="tailCompareSvg" class="empirical-rule-svg" viewbox="0 0 700 220" preserveaspectratio="xMidYMid meet" aria-label="Normal versus heavy tail"> </svg>
+</div>
+<div class="tail-legend">
+<div class="tail-legend-item fragment fade-up">
+<strong>Same center</strong>, very different probability of distant values.
+</div>
+<div class="tail-legend-item fragment fade-up">
+<strong>Kurtosis</strong> is best remembered here as tail/extreme-value behavior.
+</div>
+<div class="tail-legend-item fragment fade-up">
+<strong>Outliers</strong> may be surprising under one model and ordinary under another.
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Avoid the common oversimplification “kurtosis equals peakedness.” For this course, emphasize heavy tails and extreme values.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-cauchy-surprise" class="slide level2 concept-slide">
+<h2>The Cauchy surprise</h2>
+<div class="eyebrow">
+Not every distribution behaves politely
+</div>
+<div class="cauchy-video fragment fade-up">
+<p><video data-autoplay="" muted="" loop="" playsinline=""> <source src="figures/cauchy_surprise.mp4" type="video/mp4"> </video></p>
+</div>
+<div class="dist-grid-2" style="margin-top:.35em;">
+<div class="definition-box fragment fade-up warning">
+<span class="math inline">\(E[X]\)</span> is not defined
+</div>
+<div class="definition-box fragment fade-up warning">
+<span class="math inline">\(\operatorname{Var}(X)\)</span> is not defined
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>The Gaussian is friendly. The Cauchy reminds us that not all distributions have familiar summaries.</p>
+</div>
+</div>
+<aside class="notes">
+<p>This slide uses a CSS/SVG animation as the default. It is also an excellent candidate for a future Manim animation because the continuous motion carries mathematical meaning.</p>
+<p>The rigorous idea: if an angle is uniform and the intersection coordinate is tan(theta), the resulting distribution is Cauchy-like.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="a-map-of-named-distributions" class="slide level2 concept-slide">
+<h2>A map of named distributions</h2>
+<div class="eyebrow">
+Learn mechanisms before formulas
+</div>
+<div class="family-map">
+<div class="family-column fragment fade-up">
+<div class="family-heading observed">
+Discrete mechanisms
+</div>
+<div class="family-list">
+<div class="family-pill">
+<strong>Degenerate</strong>no uncertainty
+</div>
+<div class="family-pill">
+<strong>Uniform</strong>finite equal chances
+</div>
+<div class="family-pill">
+<strong>Bernoulli</strong>one yes/no trial
+</div>
+<div class="family-pill">
+<strong>Binomial</strong>successes in n trials
+</div>
+<div class="family-pill">
+<strong>Geometric</strong>trials until first success
+</div>
+<div class="family-pill">
+<strong>Hypergeometric</strong>without replacement
+</div>
+<div class="family-pill">
+<strong>Poisson</strong>events in an interval
+</div>
+</div>
+</div>
+<div class="family-column fragment fade-up">
+<div class="family-heading model">
+Continuous mechanisms
+</div>
+<div class="family-list">
+<div class="family-pill">
+<strong>Dirac</strong>point mass idealization
+</div>
+<div class="family-pill">
+<strong>Uniform</strong>bounded equal density
+</div>
+<div class="family-pill">
+<strong>Exponential</strong>waiting for one event
+</div>
+<div class="family-pill">
+<strong>Gamma</strong>waiting for several events
+</div>
+<div class="family-pill">
+<strong>Gaussian</strong>additive variation
+</div>
+<div class="family-pill">
+<strong>Log-normal</strong>multiplicative positive variation
+</div>
+<div class="family-pill">
+<strong>Pareto</strong>scaling/heavy tail
+</div>
+<div class="family-pill">
+<strong>Cauchy</strong>very heavy symmetric tails
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>This replaces an encyclopedia of formulas with a map. Students should first learn which real-world mechanism each distribution represents.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="discrete-one-trial-to-many-trials" class="slide level2 math-slide">
+<h2>Discrete: one trial to many trials</h2>
+<div class="eyebrow">
+Binary and finite equal-chance mechanisms
+</div>
+<div class="dist-grid-4">
+<div class="dist-card observed-border fragment fade-up">
+<div class="dist-title">
+Degenerate
+</div>
+<div class="dist-sub">
+The outcome is fixed.
+</div>
+<div class="dist-eq">
+<span class="math inline">\(\mathbb{P}(X=c)=1\)</span>
+</div>
+<svg id="degeneratePmf" class="mini-pmf" viewbox="0 0 240 135"></svg>
+</div>
+<div class="dist-card observed-border fragment fade-up">
+<div class="dist-title">
+Discrete uniform
+</div>
+<div class="dist-sub">
+Finite outcomes equally likely.
+</div>
+<div class="dist-eq">
+<span class="math inline">\(\mathbb{P}(X=x)=1/k\)</span>
+</div>
+<label class="mini-control">k = <strong id="uniformKValue">6</strong> <input id="uniformK" type="range" min="1" max="10" value="6" step="1"> </label> <svg id="uniformPmf" class="mini-pmf" viewbox="0 0 240 135"></svg>
+</div>
+<div class="dist-card probability-border fragment fade-up">
+<div class="dist-title">
+Bernoulli
+</div>
+<div class="dist-sub">
+One yes/no experiment.
+</div>
+<div class="dist-eq">
+<span class="math inline">\(\mathbb{P}(X=1)=p\)</span>
+</div>
+<label class="mini-control">p = <strong id="bernoulliPValue">0.50</strong> <input id="bernoulliP" type="range" min="0" max="1" value="0.5" step="0.05"> </label> <svg id="bernoulliPmf" class="mini-pmf" viewbox="0 0 240 135"></svg>
+</div>
+<div class="dist-card probability-border fragment fade-up">
+<div class="dist-title">
+Binomial
+</div>
+<div class="dist-sub">
+Successes in <span class="math inline">\(n\)</span> independent Bernoulli trials.
+</div>
+<div class="dist-eq">
+<span class="math inline">\(\mathbb{P}(X=k)=\binom nkp^k(1-p)^{n-k}\)</span>
+</div>
+<div class="mini-control-row">
+<label class="mini-control">n = <strong id="binomialNValue">6</strong> <input id="binomialN" type="range" min="1" max="10" value="6" step="1"> </label> <label class="mini-control">p = <strong id="binomialPValue">0.50</strong> <input id="binomialP" type="range" min="0" max="1" value="0.5" step="0.05"> </label>
+</div>
+<svg id="binomialPmf" class="mini-pmf" viewbox="0 0 240 135"></svg>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="takeaway">
+Coin toss: Bernoulli. Fair die: discrete uniform. Repeated responses: binomial.
+</div>
+</div>
+<aside class="notes">
+<p>Do not spend time deriving each formula. The story/mechanism is the learning target. The binomial formula will be used in exercises.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="discrete-counting-and-sampling" class="slide level2 math-slide">
+<h2>Discrete: counting and sampling</h2>
+<div class="eyebrow">
+Different sampling mechanisms create different distributions
+</div>
+<div class="dist-grid-3">
+<div class="dist-card probability-border fragment fade-up">
+<div class="dist-title">
+Geometric
+</div>
+<div class="dist-sub">
+Trials until the first success.
+</div>
+<div class="dist-eq">
+<span class="math inline">\(\mathbb{P}(T=t)=(1-p)^{t-1}p\)</span>
+</div>
+<label class="mini-control"> p = <strong id="geometricPValue">0.30</strong> <input id="geometricP" type="range" min="0.05" max="0.95" value="0.30" step="0.05"> </label> <svg id="geometricPmf" class="mini-pmf" viewbox="0 0 240 135"></svg>
+</div>
+<div class="dist-card observed-border fragment fade-up">
+<div class="dist-title">
+Hypergeometric
+</div>
+<div class="dist-sub">
+Sampling from a finite batch without replacement.
+</div>
+<div class="dist-eq">
+<span class="math inline">\(\mathbb{P}(X=k)=\frac{\binom Kk\binom{N-K}{n-k}}{\binom Nn}\)</span>
+</div>
+<div class="mini-control-row-3">
+<label class="mini-control"> N = <strong id="hyperNValue">20</strong> <input id="hyperN" type="range" min="5" max="30" value="20" step="1"> </label> <label class="mini-control"> K = <strong id="hyperKValue">8</strong> <input id="hyperK" type="range" min="1" max="19" value="8" step="1"> </label> <label class="mini-control"> n = <strong id="hyperSampleValue">5</strong> <input id="hyperSample" type="range" min="1" max="20" value="5" step="1"> </label>
+</div>
+<svg id="hypergeometricPmf" class="mini-pmf" viewbox="0 0 240 135"></svg>
+</div>
+<div class="dist-card model-border fragment fade-up">
+<div class="dist-title">
+Poisson
+</div>
+<div class="dist-sub">
+Count events in a fixed exposure interval.
+</div>
+<div class="dist-eq">
+<span class="math inline">\(\mathbb{P}(X=k)=e^{-\lambda}\frac{\lambda^k}{k!}\)</span>
+</div>
+<label class="mini-control"> λ = <strong id="poissonLambdaValue">3.0</strong> <input id="poissonLambda" type="range" min="0.5" max="8" value="3" step="0.5"> </label> <svg id="poissonPmf" class="mini-pmf" viewbox="0 0 240 135"></svg>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>Before calculating, identify the experiment that generated the count.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Use the tablet press example for geometric, batch sampling for hypergeometric, and dispensing errors or adverse events per exposure interval for Poisson.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="continuous-waiting-and-positive-quantities" class="slide level2 math-slide">
+<h2>Continuous: waiting and positive quantities</h2>
+<div class="eyebrow">
+Support and mechanism matter
+</div>
+<div class="dist-grid-4">
+<div class="dist-card warning-border fragment fade-up">
+<div class="dist-title">
+Dirac delta
+</div>
+<div class="dist-sub">
+Point mass in continuous mathematics; not an ordinary PDF.
+</div>
+<div class="dist-eq">
+area = 1
+</div>
+<div class="mini-control-spacer">
+
+</div>
+<svg id="diracDensity" class="mini-density" viewbox="0 0 240 135"></svg>
+</div>
+<div class="dist-card model-border fragment fade-up">
+<div class="dist-title">
+Continuous uniform
+</div>
+<div class="dist-sub">
+Equal density on a bounded interval.
+</div>
+<div class="dist-eq">
+<span class="math inline">\(f(x)=1/(b-a)\)</span>
+</div>
+<div class="mini-control-row">
+<label class="mini-control"> a = <strong id="uniformAValue">0.0</strong> <input id="uniformA" type="range" min="-2" max="2" value="0" step="0.5"> </label> <label class="mini-control"> b = <strong id="uniformBValue">4.0</strong> <input id="uniformB" type="range" min="0.5" max="5" value="4" step="0.5"> </label>
+</div>
+<svg id="continuousUniformDensity" class="mini-density" viewbox="0 0 240 135"></svg>
+</div>
+<div class="dist-card probability-border fragment fade-up">
+<div class="dist-title">
+Exponential
+</div>
+<div class="dist-sub">
+Waiting time until first event under constant rate.
+</div>
+<div class="dist-eq">
+<span class="math inline">\(f(t)=\lambda e^{-\lambda t}\)</span>
+</div>
+<label class="mini-control"> λ = <strong id="exponentialLambdaValue">1.0</strong> <input id="exponentialLambda" type="range" min="0.25" max="2.5" value="1" step="0.25"> </label> <svg id="exponentialDensity" class="mini-density" viewbox="0 0 240 135"></svg>
+</div>
+<div class="dist-card probability-border fragment fade-up">
+<div class="dist-title">
+Gamma
+</div>
+<div class="dist-sub">
+Waiting time until several events; flexible positive skew.
+</div>
+<div class="dist-eq">
+<span class="math inline">\(X&gt;0\)</span>
+</div>
+<div class="mini-control-row">
+<label class="mini-control"> k = <strong id="gammaKValue">3</strong> <input id="gammaK" type="range" min="1" max="8" value="3" step="1"> </label> <label class="mini-control"> λ = <strong id="gammaLambdaValue">1.0</strong> <input id="gammaLambda" type="range" min="0.5" max="2" value="1" step="0.25"> </label>
+</div>
+<svg id="gammaDensity" class="mini-density" viewbox="0 0 240 135"></svg>
+</div>
+</div>
+<aside class="notes">
+<p>Keep the Dirac delta simple: a mathematical idealization of all mass at one point. Do not teach generalized functions.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="continuous-shapes-seen-in-real-data" class="slide level2 math-slide">
+<h2>Continuous: shapes seen in real data</h2>
+<div class="eyebrow">
+Additive, multiplicative and heavy-tail behavior
+</div>
+<div class="dist-grid-4">
+<div class="dist-card model-border fragment fade-up">
+<div class="dist-title">
+Gaussian
+</div>
+<div class="dist-sub">
+Additive variation around a center.
+</div>
+<div class="dist-eq">
+<span class="math inline">\(\mathcal{N}(\mu,\sigma^2)\)</span>
+</div>
+<div class="mini-control-row">
+<label class="mini-control"> μ = <strong id="gaussianMuValue">0.0</strong> <input id="gaussianMu" type="range" min="-2" max="2" value="0" step="0.25"> </label> <label class="mini-control"> σ = <strong id="gaussianSigmaValue">1.0</strong> <input id="gaussianSigma" type="range" min="0.5" max="2" value="1" step="0.25"> </label>
+</div>
+<svg id="gaussianDensity" class="mini-density" viewbox="0 0 240 135"></svg>
+</div>
+<div class="dist-card estimate-border fragment fade-up">
+<div class="dist-title">
+Log-normal
+</div>
+<div class="dist-sub">
+Positive values with multiplicative variability.
+</div>
+<div class="dist-eq">
+<span class="math inline">\(\log X\sim\mathcal{N}(\mu_{\log},\sigma_{\log}^2)\)</span>
+</div>
+<div class="mini-control-row">
+<label class="mini-control"> μ<sub>log</sub> = <strong id="lognormalMuValue">0.00</strong> <input id="lognormalMu" type="range" min="-1" max="1" value="0" step="0.1"> </label> <label class="mini-control"> σ<sub>log</sub> = <strong id="lognormalSigmaValue">0.60</strong> <input id="lognormalSigma" type="range" min="0.25" max="1.2" value="0.6" step="0.05"> </label>
+</div>
+<svg id="lognormalDensity" class="mini-density" viewbox="0 0 240 135"></svg>
+</div>
+<div class="dist-card warning-border fragment fade-up">
+<div class="dist-title">
+Pareto
+</div>
+<div class="dist-sub">
+Scaling behavior; few very large values.
+</div>
+<div class="dist-eq">
+heavy right tail
+</div>
+<label class="mini-control"> α = <strong id="paretoAlphaValue">2.0</strong> <input id="paretoAlpha" type="range" min="0.75" max="4" value="2" step="0.25"> </label> <svg id="paretoDensity" class="mini-density" viewbox="0 0 240 135"></svg>
+</div>
+<div class="dist-card warning-border fragment fade-up">
+<div class="dist-title">
+Cauchy
+</div>
+<div class="dist-sub">
+Very heavy symmetric tails; mean/variance undefined.
+</div>
+<div class="dist-eq">
+<span class="math inline">\(\operatorname{Cauchy}(x_0,\gamma)\)</span>
+</div>
+<div class="mini-control-row">
+<label class="mini-control"> x₀ = <strong id="cauchyX0Value">0.0</strong> <input id="cauchyX0" type="range" min="-2" max="2" value="0" step="0.25"> </label> <label class="mini-control"> γ = <strong id="cauchyGammaValue">1.0</strong> <input id="cauchyGamma" type="range" min="0.5" max="2" value="1" step="0.25"> </label>
+</div>
+<svg id="cauchyDensity" class="mini-density" viewbox="0 0 240 135"></svg>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="takeaway">
+Real scientific data often choose the distribution for us: counts, proportions, positive times, concentrations, extremes.
+</div>
+</div>
+<aside class="notes">
+<p>Pharmaceutical examples: concentration and clearance often right-skew; assay errors may be approximately Gaussian after calibration; adverse event counts may use Poisson-like models; extreme values require caution.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="which-distribution-describes-the-experiment" class="slide level2 checkpoint-slide">
+<h2>Which distribution describes the experiment?</h2>
+<div class="try-label">
+Checkpoint before calculation
+</div>
+<div class="matching-grid">
+<div class="scenario-list">
+<div class="scenario-item fragment fade-up">
+A. 20 patients each respond or do not respond.
+</div>
+<div class="scenario-item fragment fade-up">
+B. Count dispensing errors during an 8-hour shift.
+</div>
+<div class="scenario-item fragment fade-up">
+C. Inspect 5 tablets from a finite batch containing 3 known defects.
+</div>
+<div class="scenario-item fragment fade-up">
+D. Count presses until the first camera rejection.
+</div>
+<div class="scenario-item fragment fade-up">
+E. Measure time until the first degradation event.
+</div>
+</div>
+<div class="scenario-list">
+<div class="scenario-answer fragment fade-up">
+A → Binomial
+</div>
+<div class="scenario-answer fragment fade-up">
+B → Poisson
+</div>
+<div class="scenario-answer fragment fade-up">
+C → Hypergeometric
+</div>
+<div class="scenario-answer fragment fade-up">
+D → Geometric
+</div>
+<div class="scenario-answer fragment fade-up">
+E → Exponential
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Let students answer before revealing the right side. The major skill is matching question to distribution, not formula recall.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="probability-laboratory" class="slide level2 exercise-slide">
+<h2>Probability laboratory</h2>
+<div class="try-label">
+Guided exercises
+</div>
+<div class="calc-grid">
+<div class="calc-card fragment fade-up">
+<div class="calc-title">
+Geometric tablet-camera example
+</div>
+<div class="calc-question">
+Fault probability per press is <span class="math inline">\(p=0.001\)</span>. Probability of <span class="math inline">\(1000\)</span> error-free presses?
+</div>
+<div class="calc-answer">
+<span class="math inline">\(0.999^{1000}\approx0.368\)</span>
+</div>
+</div>
+<div class="calc-card fragment fade-up">
+<div class="calc-title">
+Binomial patient group
+</div>
+<div class="calc-question">
+<span class="math inline">\(X\sim\operatorname{Binomial}(20,0.30)\)</span>. What is the probability of (i) exactly, (ii) at most and (iii) at least 5 responses?
+</div>
+<div class="calc-answer">
+point vs cumulative probability
+</div>
+</div>
+<div class="calc-card fragment fade-up">
+<div class="calc-title">
+Hypergeometric batch sample
+</div>
+<div class="calc-question">
+A batch has 20 tablets, 3 defective. Sample 5 without replacement.
+</div>
+<div class="calc-answer">
+finite population + no replacement
+</div>
+</div>
+<div class="calc-card fragment fade-up">
+<div class="calc-title">
+Normal tablet mass
+</div>
+<div class="calc-question">
+<span class="math inline">\(X\sim \mathcal{N}(2.000,0.008^2)\)</span>. Probability between 1.99 and 2.01 g?
+</div>
+<div class="calc-answer">
+area under density
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>This slide is meant as a menu of short calculations. Work one or two live depending on time. The others can be take-home practice.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="point-and-cumulative-binomial-probabilities" class="slide level2 exercise-slide">
+<h2>Point and cumulative binomial probabilities</h2>
+<div class="try-label">
+Interactive calculation intuition
+</div>
+<div id="binomWidget" class="binomial-widget">
+<div class="week02-control-row">
+<p><label class="week02-control">n patients<input id="binomN" type="range" min="5" max="50" value="20" step="1"></label> <label class="week02-control">response probability p<input id="binomP" type="range" min="0.05" max="0.95" value="0.30" step="0.01"></label> <label class="week02-control">question<select id="binomMode"><option value="eq">exactly k</option><option value="le">at most k</option><option value="ge">at least k</option></select></label></p>
+</div>
+<div class="week02-control-row" style="grid-template-columns:1fr 1fr 1fr;">
+<label class="week02-control">k<input id="binomK" type="range" min="0" max="20" value="5" step="1"></label>
+<div class="week02-control">
+Model
+<div>
+<strong id="binomModel" class="model">Binomial(20, 0.30)</strong>
+</div>
+</div>
+<div class="week02-control">
+Probability
+<div>
+<strong id="binomProb" class="probability">—</strong>
+</div>
+</div>
+</div>
+<svg id="binomSvg" class="week02-svg" viewbox="0 0 700 260" aria-label="Binomial probability explorer">
+</svg>
+</div>
+<aside class="notes">
+<p>Use exactly, then at most, then at least for the same k. The bars should make the probability question visually unambiguous.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-catch" class="slide level2 concept-slide">
+<h2>The catch</h2>
+<div class="eyebrow">
+Week 2 synthesis
+</div>
+<div class="recursive-stack">
+<div class="recursive-line fragment fade-up">
+A distribution describes how probability is allocated.
+</div>
+<div class="recursive-line fragment fade-up">
+Its shape determines which observations are plausible.
+</div>
+<div class="recursive-line fragment fade-up">
+Different scientific mechanisms generate different distribution families.
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="cliffhanger">
+<p>But in real science, the true distribution and its parameters are almost never known.</p>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="final-question">
+<p>Next week: how can incomplete observations teach us about the process that generated them?</p>
+</div>
+</div>
+<aside class="notes">
+<p>End with the transition from probability to statistics. Probability assumes a model and asks what observations are likely. Statistics observes data and asks what model or parameter values are plausible.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<script>
+(function(){
+function normPdf(x, mu = 0, s = 1) {
+  return Math.exp(-0.5 * Math.pow((x - mu) / s, 2)) / (s * Math.sqrt(2 * Math.PI));
+}
+
+function drawNormalSvg(svg, mu, s) {
+  if (!svg) return;
+
+  const W = 700, H = 260, pad = 36;
+  const xMin = -4, xMax = 4;
+  const yMax = 1.05; // Fixed height so curve dynamically grows/flattens with sigma
+  const baseline = H - pad;
+
+  const mapX = (x) => pad + ((x - xMin) / (xMax - xMin)) * (W - 2 * pad);
+  const mapY = (y) => baseline - (y / yMax) * (H - 2 * pad);
+
+  // Generate main curve points
+  const step = 0.02;
+  let pdfPath = `M ${mapX(xMin).toFixed(1)} ${mapY(normPdf(xMin, mu, s)).toFixed(1)}`;
+  for (let x = xMin + step; x <= xMax; x += step) {
+    pdfPath += ` L ${mapX(x).toFixed(1)} ${mapY(normPdf(x, mu, s)).toFixed(1)}`;
+  }
+
+  // ------------------------------------------------------------
+  // Correctly Grounded Polygon for μ ± 1σ
+  // ------------------------------------------------------------
+  const sigmaLower = Math.max(xMin, mu - s);
+  const sigmaUpper = Math.min(xMax, mu + s);
+
+  // 1. Start ON BASELINE at lower bound
+  let sigmaPath = `M ${mapX(sigmaLower).toFixed(1)} ${baseline}`;
+  // 2. Rise vertically to the curve
+  sigmaPath += ` L ${mapX(sigmaLower).toFixed(1)} ${mapY(normPdf(sigmaLower, mu, s)).toFixed(1)}`;
+
+  // 3. Follow the PDF curve up to upper bound
+  for (let x = sigmaLower + step; x <= sigmaUpper; x += step) {
+    sigmaPath += ` L ${mapX(x).toFixed(1)} ${mapY(normPdf(x, mu, s)).toFixed(1)}`;
+  }
+  sigmaPath += ` L ${mapX(sigmaUpper).toFixed(1)} ${mapY(normPdf(sigmaUpper, mu, s)).toFixed(1)}`;
+
+  // 4. Drop vertically down to baseline
+  sigmaPath += ` L ${mapX(sigmaUpper).toFixed(1)} ${baseline}`;
+  // 5. Close path along baseline
+  sigmaPath += ` Z`;
+
+  // ------------------------------------------------------------
+  // SVG Construction
+  // ------------------------------------------------------------
+  let html = '';
+
+  // Faint ±1σ Shaded Area
+  html += `<path d="${sigmaPath}" class="widget-sigma-area"/>`;
+
+  // Full Normal PDF Curve
+  html += `<path d="${pdfPath}" class="widget-path"/>`;
+
+  // Baseline X-axis
+  html += `<line x1="${pad}" y1="${baseline}" x2="${W - pad}" y2="${baseline}" class="widget-axis"/>`;
+
+  // Dashed Center Line at μ
+  const muX = mapX(mu);
+  html += `<line x1="${muX}" y1="${pad}" x2="${muX}" y2="${baseline}" class="widget-line"/>`;
+
+  // Dashed Boundary Lines at μ - 1σ and μ + 1σ
+  const leftSigmaX = mapX(mu - s);
+  const rightSigmaX = mapX(mu + s);
+
+  if (leftSigmaX >= pad && leftSigmaX <= W - pad) {
+    html += `<line x1="${leftSigmaX}" y1="${mapY(normPdf(mu - s, mu, s))}" x2="${leftSigmaX}" y2="${baseline}" class="widget-line-sigma"/>`;
+  }
+  if (rightSigmaX >= pad && rightSigmaX <= W - pad) {
+    html += `<line x1="${rightSigmaX}" y1="${mapY(normPdf(mu + s, mu, s))}" x2="${rightSigmaX}" y2="${baseline}" class="widget-line-sigma"/>`;
+  }
+
+  // Label at μ
+  html += `<text x="${muX}" y="${baseline + 20}" text-anchor="middle" class="widget-label active">μ = ${mu.toFixed(1)}</text>`;
+
+  svg.innerHTML = html;
+}
+
+function initNormal() {
+  const svg = document.getElementById('normalSvg');
+  const mu = document.getElementById('normalMu');
+  const sig = document.getElementById('normalSigma');
+  const lab = document.getElementById('normalParams');
+
+  if (!svg || !mu || !sig) return;
+
+  function update() {
+    const m = +mu.value;
+    const s = +sig.value;
+    drawNormalSvg(svg, m, s);
+    if (lab) {
+      lab.textContent = `𝒩(${m.toFixed(1)}, ${s.toFixed(2)}²)`;
+    }
+  }
+
+  mu.addEventListener('input', update);
+  sig.addEventListener('input', update);
+  update();
+}
+
+function drawEmpiricalRuleSvg(svgId) {
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+
+  const W = 700, H = 220, pad = 45;
+  const mu = 0, s = 1;
+  
+  // 1. WIDEN X-RANGE: [-4.2, 4.2] zooms out horizontally
+  const xMin = -4.2, xMax = 4.2;
+  const baseline = H - pad; // y = 175
+
+  const mapX = (x) => pad + ((x - xMin) / (xMax - xMin)) * (W - 2 * pad);
+  
+  // 2. INCREASE HEADROOM: yMax = 0.52 zooms out vertically
+  const yMax = 0.52; 
+  const mapY = (y) => baseline - (y / yMax) * (baseline - 25);
+
+  function buildGroundedAreaPath(a, b, step = 0.02) {
+    const startX = Math.max(xMin, a);
+    const endX = Math.min(xMax, b);
+    let path = `M ${mapX(startX).toFixed(1)} ${baseline}`;
+    path += ` L ${mapX(startX).toFixed(1)} ${mapY(normPdf(startX, mu, s)).toFixed(1)}`;
+    for (let x = startX + step; x <= endX; x += step) {
+      path += ` L ${mapX(x).toFixed(1)} ${mapY(normPdf(x, mu, s)).toFixed(1)}`;
+    }
+    path += ` L ${mapX(endX).toFixed(1)} ${mapY(normPdf(endX, mu, s)).toFixed(1)}`;
+    path += ` L ${mapX(endX).toFixed(1)} ${baseline} Z`;
+    return path;
+  }
+
+  const step = 0.02;
+  let pdfPath = `M ${mapX(xMin).toFixed(1)} ${mapY(normPdf(xMin, mu, s)).toFixed(1)}`;
+  for (let x = xMin + step; x <= xMax; x += step) {
+    pdfPath += ` L ${mapX(x).toFixed(1)} ${mapY(normPdf(x, mu, s)).toFixed(1)}`;
+  }
+
+  let html = '';
+
+  // Empirical Rule Shaded Fills
+  html += `<path d="${buildGroundedAreaPath(-3, 3)}" fill="rgba(123, 74, 181, 0.08)"/>`;
+  html += `<path d="${buildGroundedAreaPath(-2, 2)}" fill="rgba(123, 74, 181, 0.14)"/>`;
+  html += `<path d="${buildGroundedAreaPath(-1, 1)}" fill="rgba(123, 74, 181, 0.22)"/>`;
+
+  // Normal PDF Curve
+  html += `<path d="${pdfPath}" class="widget-path"/>`;
+
+  // Baseline X-Axis
+  html += `<line x1="${pad}" y1="${baseline}" x2="${W - pad}" y2="${baseline}" class="widget-axis"/>`;
+
+  // Mean μ Line
+  const muX = mapX(mu);
+  html += `<line x1="${muX}" y1="${mapY(normPdf(0, mu, s))}" x2="${muX}" y2="${baseline}" class="widget-line"/>`;
+
+  // Axis Labels
+  const labels = [
+    { x: -3, text: "−3σ" },
+    { x: -2, text: "−2σ" },
+    { x: -1, text: "−1σ" },
+    { x:  0, text: "μ" },
+    { x:  1, text: "+1σ" },
+    { x:  2, text: "+2σ" },
+    { x:  3, text: "+3σ" }
+  ];
+
+  labels.forEach(lbl => {
+    html += `<text x="${mapX(lbl.x)}" y="${baseline + 20}" text-anchor="middle" class="widget-label">${lbl.text}</text>`;
+  });
+
+  svg.innerHTML = html;
+}
+
+// Render on page load
+document.addEventListener("DOMContentLoaded", () => {
+  drawEmpiricalRuleSvg("empiricalSvg");
+});
+
+function drawQuantileSvg(svgId) {
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+
+  const W = 700;
+  const H = 220;
+
+  const leftPad = 38;
+  const rightPad = 38;
+  const topPad = 18;
+  const bottomPad = 32;
+
+  const mu = 0;
+  const s = 1;
+
+  const xMin = -4.2;
+  const xMax = 4.2;
+
+  const baseline = H - bottomPad;
+
+  const mapX = (x) =>
+    leftPad +
+    ((x - xMin) / (xMax - xMin)) *
+    (W - leftPad - rightPad);
+
+  const yMax = 0.46;
+
+  const mapY = (y) =>
+    baseline -
+    (y / yMax) *
+    (baseline - topPad);
+
+  // ------------------------------------------------------------
+  // Build normal PDF
+  // ------------------------------------------------------------
+
+  const step = 0.02;
+
+  let pdfPath =
+    `M ${mapX(xMin).toFixed(1)} ` +
+    `${mapY(normPdf(xMin, mu, s)).toFixed(1)}`;
+
+  for (let x = xMin + step; x <= xMax; x += step) {
+    pdfPath +=
+      ` L ${mapX(x).toFixed(1)} ` +
+      `${mapY(normPdf(x, mu, s)).toFixed(1)}`;
+  }
+
+  // ------------------------------------------------------------
+  // Grounded probability-area helper
+  // ------------------------------------------------------------
+
+  function buildGroundedAreaPath(a, b) {
+    const startX = Math.max(xMin, a);
+    const endX = Math.min(xMax, b);
+    let path =
+      `M ${mapX(startX).toFixed(1)} ${baseline}`;
+    path +=
+      ` L ${mapX(startX).toFixed(1)} ` +
+      `${mapY(normPdf(startX, mu, s)).toFixed(1)}`;
+    for (let x = startX + step; x <= endX; x += step) {
+      path +=
+        ` L ${mapX(x).toFixed(1)} ` +
+        `${mapY(normPdf(x, mu, s)).toFixed(1)}`;
+    }
+    path +=
+      ` L ${mapX(endX).toFixed(1)} ` +
+      `${mapY(normPdf(endX, mu, s)).toFixed(1)}`;
+    path +=
+      ` L ${mapX(endX).toFixed(1)} ${baseline} Z`;
+    return path;
+  }
+
+  // ------------------------------------------------------------
+  // Normal quantiles
+  //
+  // q05 ≈ -1.64485
+  // q50 = 0
+  // q95 ≈ +1.64485
+  // ------------------------------------------------------------
+
+  const q05 = -1.644854;
+  const q50 = 0;
+  const q95 = 1.644854;
+
+  let html = "";
+
+  // ------------------------------------------------------------
+  // 5% accumulated probability
+  // ------------------------------------------------------------
+
+  html += `
+    <path
+      d="${buildGroundedAreaPath(xMin, q05)}"
+      class="widget-area">
+    </path>
+  `;
+
+  // ------------------------------------------------------------
+  // Full normal density
+  // ------------------------------------------------------------
+
+  html += `
+    <path
+      d="${pdfPath}"
+      class="widget-path">
+    </path>
+  `;
+
+  // ------------------------------------------------------------
+  // Baseline
+  // ------------------------------------------------------------
+
+  html += `
+    <line
+      x1="${leftPad}"
+      y1="${baseline}"
+      x2="${W - rightPad}"
+      y2="${baseline}"
+      class="widget-axis">
+    </line>
+  `;
+
+  // ------------------------------------------------------------
+  // Quantile lines
+  // ------------------------------------------------------------
+
+  const quantiles = [
+    {
+      x: q05,
+      label: "5%",
+      value: "q₀.₀₅"
+    },
+    {
+      x: q50,
+      label: "50%",
+      value: "q₀.₅₀"
+    },
+    {
+      x: q95,
+      label: "95%",
+      value: "q₀.₉₅"
+    }
+  ];
+
+  quantiles.forEach(q => {
+    const px = mapX(q.x);
+    const py = mapY(normPdf(q.x, mu, s));
+    html += `
+      <line
+        x1="${px}"
+        y1="${py}"
+        x2="${px}"
+        y2="${baseline}"
+        class="widget-line">
+      </line>
+    `;
+    html += `
+      <circle
+        cx="${px}"
+        cy="${py}"
+        r="4"
+        class="quantile-point">
+      </circle>
+    `;
+    html += `
+      <text
+        x="${px}"
+        y="${baseline + 17}"
+        text-anchor="middle"
+        class="widget-label">
+        ${q.label}
+      </text>
+    `;
+    html += `
+      <text
+        x="${px}"
+        y="${baseline + 31}"
+        text-anchor="middle"
+        class="quantile-symbol">
+        ${q.value}
+      </text>
+    `;
+  });
+
+  svg.innerHTML = html;
+}
+
+// Render on page load
+document.addEventListener("DOMContentLoaded", () => {
+  drawQuantileSvg("quantileSvg");
+});
+
+function cauchyPdf(x, x0 = 0, gamma = 1) {
+  return 1 / (Math.PI * gamma * (1 + ((x - x0) / gamma) ** 2));
+}
+
+function drawTailCompareSvg(svgId) {
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+
+  const W = 700;
+  const H = 220;
+
+  const leftPad = 38;
+  const rightPad = 38;
+  const topPad = 18;
+  const bottomPad = 32;
+
+  const baseline = H - bottomPad;
+
+  const xMin = -4.2;
+  const xMax = 4.2;
+
+  const mapX = (x) =>
+    leftPad +
+    ((x - xMin) / (xMax - xMin)) *
+    (W - leftPad - rightPad);
+
+  // Use a shared y scale based on the larger peak
+  const normalPeak = normPdf(0, 0, 1);         // ~0.399
+  const cauchyPeak = cauchyPdf(0, 0, 1);       // ~0.318
+  const yMax = Math.max(normalPeak, cauchyPeak) * 1.15;
+
+  const mapY = (y) =>
+    baseline -
+    (y / yMax) *
+    (baseline - topPad);
+
+  function buildCurvePath(pdfFn, step = 0.02) {
+    let path =
+      `M ${mapX(xMin).toFixed(1)} ${mapY(pdfFn(xMin)).toFixed(1)}`;
+    for (let x = xMin + step; x <= xMax; x += step) {
+      path += ` L ${mapX(x).toFixed(1)} ${mapY(pdfFn(x)).toFixed(1)}`;
+    }
+    return path;
+  }
+
+  const normalPath = buildCurvePath(x => normPdf(x, 0, 1));
+  const cauchyPath = buildCurvePath(x => cauchyPdf(x, 0, 1));
+
+  let html = "";
+
+  // axis
+  html += `
+    <line
+      x1="${leftPad}"
+      y1="${baseline}"
+      x2="${W - rightPad}"
+      y2="${baseline}"
+      class="widget-axis">
+    </line>
+  `;
+
+  // mean/center reference line
+  html += `
+    <line
+      x1="${mapX(0)}"
+      y1="${topPad}"
+      x2="${mapX(0)}"
+      y2="${baseline}"
+      class="tail-center-line">
+    </line>
+  `;
+
+  // normal
+  html += `
+    <path
+      d="${normalPath}"
+      class="widget-path">
+    </path>
+  `;
+
+  // cauchy / heavy tail
+  html += `
+    <path
+      d="${cauchyPath}"
+      class="widget-path-blue">
+    </path>
+  `;
+
+  // labels near curves
+  html += `
+    <text
+      x="${mapX(2.15)}"
+      y="${mapY(normPdf(2.15, 0, 1)) - 10}"
+      class="tail-label tail-label-normal">
+      normal
+    </text>
+  `;
+
+  html += `
+    <text
+      x="${mapX(2.6)}"
+      y="${mapY(cauchyPdf(2.6, 0, 1)) - 2}"
+      class="tail-label tail-label-cauchy">
+      Cauchy / heavy tail
+    </text>
+  `;
+
+  // x-axis tick labels
+  [-3, -2, -1, 0, 1, 2, 3].forEach(x => {
+    html += `
+      <text
+        x="${mapX(x)}"
+        y="${baseline + 18}"
+        text-anchor="middle"
+        class="widget-label">
+        ${x === 0 ? "0" : x}
+      </text>
+    `;
+  });
+
+  svg.innerHTML = html;
+}
+
+// Render on page load
+document.addEventListener("DOMContentLoaded", () => {
+  drawTailCompareSvg("tailCompareSvg");
+});
+
+function drawMiniPmf(svgId, values, probs, yMax = 1) {
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+
+  const W = 240;
+  const H = 135;
+
+  const left = 18;
+  const right = 222;
+  const top = 12;
+  const baseline = 108;
+
+  const mapY = p =>
+    baseline - (p / yMax) * (baseline - top);
+
+  const n = values.length;
+
+  const mapIndex = i => {
+    if (n === 1) return W / 2;
+    return left + i / (n - 1) * (right - left);
+  };
+
+  let html = `
+    <line
+      x1="${left}"
+      y1="${baseline}"
+      x2="${right}"
+      y2="${baseline}"
+      class="mini-pmf-axis">
+    </line>
+  `;
+
+  values.forEach((value, i) => {
+    const x = mapIndex(i);
+    const y = mapY(probs[i]);
+    html += `
+      <line
+        x1="${x}"
+        y1="${baseline}"
+        x2="${x}"
+        y2="${y}"
+        class="mini-pmf-stem">
+      </line>
+      <circle
+        cx="${x}"
+        cy="${y}"
+        r="4"
+        class="mini-pmf-dot">
+      </circle>
+      <text
+        x="${x}"
+        y="${baseline + 15}"
+        text-anchor="middle"
+        class="mini-pmf-label">
+        ${value}
+      </text>
+    `;
+  });
+
+  svg.innerHTML = html;
+}
+
+function drawDegenerate() {
+  drawMiniPmf(
+    "degeneratePmf",
+    ["c"],
+    [1]
+  );
+}
+
+function drawDiscreteUniform() {
+  const slider = document.getElementById("uniformK");
+  const output = document.getElementById("uniformKValue");
+
+  const k = Number(slider.value);
+
+  output.textContent = k;
+
+  const values =
+    Array.from({ length: k }, (_, i) => i + 1);
+
+  const probs =
+    Array(k).fill(1 / k);
+
+  drawMiniPmf(
+    "uniformPmf",
+    values,
+    probs
+  );
+}
+
+function drawBernoulli() {
+  const slider = document.getElementById("bernoulliP");
+  const output = document.getElementById("bernoulliPValue");
+
+  const p = Number(slider.value);
+
+  output.textContent = p.toFixed(2);
+
+  drawMiniPmf(
+    "bernoulliPmf",
+    [0, 1],
+    [1 - p, p]
+  );
+}
+
+function choose(n, k) {
+  if (k < 0 || k > n) return 0;
+
+  let result = 1;
+
+  for (let i = 1; i <= k; i++) {
+    result *= (n - i + 1) / i;
+  }
+
+  return result;
+}
+
+function drawBinomial() {
+  const nSlider = document.getElementById("binomialN");
+  const pSlider = document.getElementById("binomialP");
+
+  const nOutput = document.getElementById("binomialNValue");
+  const pOutput = document.getElementById("binomialPValue");
+
+  const n = Number(nSlider.value);
+  const p = Number(pSlider.value);
+
+  nOutput.textContent = n;
+  pOutput.textContent = p.toFixed(2);
+
+  const values =
+    Array.from({ length: n + 1 }, (_, k) => k);
+
+  const probs =
+    values.map(k =>
+      choose(n, k) *
+      p ** k *
+      (1 - p) ** (n - k)
+    );
+
+  drawMiniPmf(
+    "binomialPmf",
+    values,
+    probs
+  );
+}
+
+function drawGeometric() {
+  const slider = document.getElementById("geometricP");
+  const output = document.getElementById("geometricPValue");
+
+  const p = Number(slider.value);
+
+  output.textContent = p.toFixed(2);
+
+  const values = Array.from({ length: 10 }, (_, i) => i + 1);
+
+  const probs = values.map(t =>
+    (1 - p) ** (t - 1) * p
+  );
+
+  drawMiniPmf(
+    "geometricPmf",
+    values,
+    probs,
+    Math.max(...probs) * 1.08
+  );
+}
+
+function drawHypergeometric() {
+  const nPopSlider = document.getElementById("hyperN");
+  const kSuccessSlider = document.getElementById("hyperK");
+  const sampleSlider = document.getElementById("hyperSample");
+
+  const nOut = document.getElementById("hyperNValue");
+  const kOut = document.getElementById("hyperKValue");
+  const sampleOut = document.getElementById("hyperSampleValue");
+
+  let N = Number(nPopSlider.value);
+  let K = Number(kSuccessSlider.value);
+  let n = Number(sampleSlider.value);
+
+  // enforce valid parameter combinations
+  K = Math.min(K, N);
+  n = Math.min(n, N);
+
+  kSuccessSlider.max = N;
+  sampleSlider.max = N;
+
+  kSuccessSlider.value = K;
+  sampleSlider.value = n;
+
+  nOut.textContent = N;
+  kOut.textContent = K;
+  sampleOut.textContent = n;
+
+  const kMin = Math.max(0, n - (N - K));
+  const kMax = Math.min(n, K);
+
+  const values =
+    Array.from(
+      { length: kMax - kMin + 1 },
+      (_, i) => kMin + i
+    );
+
+  const denom = choose(N, n);
+
+  const probs = values.map(k =>
+    choose(K, k) *
+    choose(N - K, n - k) /
+    denom
+  );
+
+  drawMiniPmf(
+    "hypergeometricPmf",
+    values,
+    probs,
+    Math.max(...probs) * 1.08
+  );
+}
+
+function factorial(k) {
+  let result = 1;
+
+  for (let i = 2; i <= k; i++) {
+    result *= i;
+  }
+
+  return result;
+}
+
+function drawPoisson() {
+  const slider = document.getElementById("poissonLambda");
+  const output = document.getElementById("poissonLambdaValue");
+
+  const lambda = Number(slider.value);
+
+  output.textContent = lambda.toFixed(1);
+
+  // Enough support to show nearly all visible mass
+  const kMax = Math.max(
+    8,
+    Math.ceil(lambda + 3 * Math.sqrt(lambda))
+  );
+
+  const values =
+    Array.from({ length: kMax + 1 }, (_, k) => k);
+
+  const probs = values.map(k =>
+    Math.exp(-lambda) *
+    lambda ** k /
+    factorial(k)
+  );
+
+  drawMiniPmf(
+    "poissonPmf",
+    values,
+    probs,
+    Math.max(...probs) * 1.08
+  );
+}
+
+drawDegenerate();
+drawDiscreteUniform();
+drawBernoulli();
+drawBinomial();
+drawGeometric();
+drawHypergeometric();
+drawPoisson();
+
+document
+  .getElementById("uniformK")
+  .addEventListener("input", drawDiscreteUniform);
+
+document
+  .getElementById("bernoulliP")
+  .addEventListener("input", drawBernoulli);
+
+document
+  .getElementById("binomialN")
+  .addEventListener("input", drawBinomial);
+
+document
+  .getElementById("binomialP")
+  .addEventListener("input", drawBinomial);
+  
+document
+  .getElementById("geometricP")
+  .addEventListener("input", drawGeometric);
+
+document
+  .getElementById("hyperN")
+  .addEventListener("input", drawHypergeometric);
+
+document
+  .getElementById("hyperK")
+  .addEventListener("input", drawHypergeometric);
+
+document
+  .getElementById("hyperSample")
+  .addEventListener("input", drawHypergeometric);
+
+document
+  .getElementById("poissonLambda")
+  .addEventListener("input", drawPoisson);
+  
+function drawMiniDensity(svgId, pdf, xMin, xMax, options = {}) {
+  const svg = document.getElementById(svgId);
+  if (!svg) return;
+
+  const W = 240;
+  const H = 135;
+
+  const left = 18;
+  const right = 222;
+  const top = 12;
+  const baseline = 108;
+
+  const steps = 180;
+
+  const points = [];
+
+  for (let i = 0; i <= steps; i++) {
+    const x = xMin + (i / steps) * (xMax - xMin);
+    const y = pdf(x);
+    if (Number.isFinite(y)) {
+      points.push([x, y]);
+    }
+  }
+
+  const observedMax = Math.max(
+    ...points.map(p => p[1]),
+    0.001
+  );
+
+  const yMax = options.yMax || observedMax * 1.12;
+
+  const mapX = x =>
+    left +
+    ((x - xMin) / (xMax - xMin)) *
+    (right - left);
+
+  const mapY = y =>
+    baseline -
+    (y / yMax) *
+    (baseline - top);
+
+  let curvePath = "";
+
+  points.forEach(([x, y], i) => {
+    curvePath +=
+      `${i === 0 ? "M" : "L"} ` +
+      `${mapX(x).toFixed(1)} ${mapY(y).toFixed(1)} `;
+  });
+
+  let areaPath =
+    `M ${mapX(points[0][0]).toFixed(1)} ${baseline} `;
+
+  points.forEach(([x, y]) => {
+    areaPath +=
+      `L ${mapX(x).toFixed(1)} ${mapY(y).toFixed(1)} `;
+  });
+
+  areaPath +=
+    `L ${mapX(points[points.length - 1][0]).toFixed(1)} ${baseline} Z`;
+
+  let html = `
+    <path
+      d="${areaPath}"
+      class="mini-density-fill">
+    </path>
+    <path
+      d="${curvePath}"
+      class="mini-density-path">
+    </path>
+    <line
+      x1="${left}"
+      y1="${baseline}"
+      x2="${right}"
+      y2="${baseline}"
+      class="mini-density-axis">
+    </line>
+  `;
+
+  if (options.zeroLabel !== false) {
+    html += `
+      <text
+        x="${mapX(0)}"
+        y="${baseline + 15}"
+        text-anchor="middle"
+        class="mini-density-label">
+        0
+      </text>
+    `;
+  }
+
+  svg.innerHTML = html;
+}
+
+function drawDirac() {
+  const svg = document.getElementById("diracDensity");
+  if (!svg) return;
+
+  const baseline = 108;
+  const center = 120;
+
+  svg.innerHTML = `
+    <line
+      x1="18"
+      y1="${baseline}"
+      x2="222"
+      y2="${baseline}"
+      class="mini-density-axis">
+    </line>
+    <line
+      x1="${center}"
+      y1="${baseline}"
+      x2="${center}"
+      y2="25"
+      class="dirac-stem">
+    </line>
+    <polygon
+      points="${center - 6},31 ${center},18 ${center + 6},31"
+      class="dirac-arrow">
+    </polygon>
+    <text
+      x="${center}"
+      y="${baseline + 15}"
+      text-anchor="middle"
+      class="mini-density-label">
+      c
+    </text>
+    <text
+      x="${center + 11}"
+      y="30"
+      class="dirac-area-label">
+      area = 1
+    </text>
+  `;
+}
+
+function drawContinuousUniform() {
+  const aSlider = document.getElementById("uniformA");
+  const bSlider = document.getElementById("uniformB");
+
+  const aOut = document.getElementById("uniformAValue");
+  const bOut = document.getElementById("uniformBValue");
+
+  let a = Number(aSlider.value);
+  let b = Number(bSlider.value);
+
+  // Keep a < b
+  if (a >= b) {
+    if (document.activeElement === aSlider) {
+      a = b - 0.5;
+      aSlider.value = a;
+    } else {
+      b = a + 0.5;
+      bSlider.value = b;
+    }
+  }
+
+  aOut.textContent = a.toFixed(1);
+  bOut.textContent = b.toFixed(1);
+
+  const height = 1 / (b - a);
+
+  drawMiniDensity(
+    "continuousUniformDensity",
+    x => (x >= a && x <= b ? height : 0),
+    -2.5,
+    5.5,
+    {
+      yMax: Math.max(height * 1.2, 0.35)
+    }
+  );
+}
+
+function drawExponential() {
+  const slider =
+    document.getElementById("exponentialLambda");
+
+  const output =
+    document.getElementById("exponentialLambdaValue");
+
+  const lambda = Number(slider.value);
+
+  output.textContent = lambda.toFixed(2);
+
+  drawMiniDensity(
+    "exponentialDensity",
+    t =>
+      t >= 0
+        ? lambda * Math.exp(-lambda * t)
+        : 0,
+    0,
+    8
+  );
+}
+
+function drawGamma() {
+  const kSlider =
+    document.getElementById("gammaK");
+
+  const lambdaSlider =
+    document.getElementById("gammaLambda");
+
+  const kOut =
+    document.getElementById("gammaKValue");
+
+  const lambdaOut =
+    document.getElementById("gammaLambdaValue");
+
+  const k = Number(kSlider.value);
+  const lambda = Number(lambdaSlider.value);
+
+  kOut.textContent = k;
+  lambdaOut.textContent = lambda.toFixed(2);
+
+  const gammaPdf = t => {
+    if (t < 0) return 0;
+    return (
+      lambda ** k *
+      t ** (k - 1) *
+      Math.exp(-lambda * t) /
+      factorial(k - 1)
+    );
+  };
+
+  // Wide enough to show the distribution as k changes.
+  const xMax = Math.max(
+    6,
+    (k + 4 * Math.sqrt(k)) / lambda
+  );
+
+  drawMiniDensity(
+    "gammaDensity",
+    gammaPdf,
+    0,
+    xMax
+  );
+}
+
+function drawGaussianDensity() {
+  const muSlider =
+    document.getElementById("gaussianMu");
+
+  const sigmaSlider =
+    document.getElementById("gaussianSigma");
+
+  const muOut =
+    document.getElementById("gaussianMuValue");
+
+  const sigmaOut =
+    document.getElementById("gaussianSigmaValue");
+
+  const mu = Number(muSlider.value);
+  const sigma = Number(sigmaSlider.value);
+
+  muOut.textContent = mu.toFixed(1);
+  sigmaOut.textContent = sigma.toFixed(1);
+
+  drawMiniDensity(
+    "gaussianDensity",
+    x => normPdf(x, mu, sigma),
+    -5,
+    5,
+    {
+      zeroLabel: true
+    }
+  );
+}
+
+function lognormalPdf(x, muLog = 0, sigmaLog = 1) {
+  if (x <= 0) return 0;
+
+  return (
+    Math.exp(
+      -((Math.log(x) - muLog) ** 2) /
+      (2 * sigmaLog ** 2)
+    ) /
+    (
+      x *
+      sigmaLog *
+      Math.sqrt(2 * Math.PI)
+    )
+  );
+}
+
+function drawLognormalDensity() {
+  const muSlider =
+    document.getElementById("lognormalMu");
+
+  const sigmaSlider =
+    document.getElementById("lognormalSigma");
+
+  const muOut =
+    document.getElementById("lognormalMuValue");
+
+  const sigmaOut =
+    document.getElementById("lognormalSigmaValue");
+
+  const muLog = Number(muSlider.value);
+  const sigmaLog = Number(sigmaSlider.value);
+
+  muOut.textContent = muLog.toFixed(2);
+  sigmaOut.textContent = sigmaLog.toFixed(2);
+
+  drawMiniDensity(
+    "lognormalDensity",
+    x => lognormalPdf(x, muLog, sigmaLog),
+    0,
+    12,
+    {
+      zeroLabel: true
+    }
+  );
+}
+
+function paretoPdf(x, xm = 1, alpha = 2) {
+  if (x < xm) return 0;
+
+  return (
+    alpha *
+    xm ** alpha /
+    x ** (alpha + 1)
+  );
+}
+
+function drawParetoDensity() {
+  const slider =
+    document.getElementById("paretoAlpha");
+
+  const output =
+    document.getElementById("paretoAlphaValue");
+
+  const alpha = Number(slider.value);
+
+  output.textContent = alpha.toFixed(2);
+
+  drawMiniDensity(
+    "paretoDensity",
+    x => paretoPdf(x, 1, alpha),
+    0,
+    8,
+    {
+      zeroLabel: true
+    }
+  );
+}
+
+function drawCauchyDensity() {
+  const x0Slider =
+    document.getElementById("cauchyX0");
+
+  const gammaSlider =
+    document.getElementById("cauchyGamma");
+
+  const x0Out =
+    document.getElementById("cauchyX0Value");
+
+  const gammaOut =
+    document.getElementById("cauchyGammaValue");
+
+  const x0 = Number(x0Slider.value);
+  const gamma = Number(gammaSlider.value);
+
+  x0Out.textContent = x0.toFixed(1);
+  gammaOut.textContent = gamma.toFixed(1);
+
+  drawMiniDensity(
+    "cauchyDensity",
+    x => cauchyPdf(x, x0, gamma),
+    -8,
+    8,
+    {
+      zeroLabel: true
+    }
+  );
+}
+
+drawDirac();
+drawContinuousUniform();
+drawExponential();
+drawGamma();
+drawGaussianDensity();
+drawLognormalDensity();
+drawParetoDensity();
+drawCauchyDensity();
+
+document
+  .getElementById("uniformA")
+  .addEventListener("input", drawContinuousUniform);
+
+document
+  .getElementById("uniformB")
+  .addEventListener("input", drawContinuousUniform);
+
+document
+  .getElementById("exponentialLambda")
+  .addEventListener("input", drawExponential);
+
+document
+  .getElementById("gammaK")
+  .addEventListener("input", drawGamma);
+
+document
+  .getElementById("gammaLambda")
+  .addEventListener("input", drawGamma);
+
+document
+  .getElementById("gaussianMu")
+  .addEventListener("input", drawGaussianDensity);
+
+document
+  .getElementById("gaussianSigma")
+  .addEventListener("input", drawGaussianDensity);
+
+document
+  .getElementById("lognormalMu")
+  .addEventListener("input", drawLognormalDensity);
+
+document
+  .getElementById("lognormalSigma")
+  .addEventListener("input", drawLognormalDensity);
+
+document
+  .getElementById("paretoAlpha")
+  .addEventListener("input", drawParetoDensity);
+
+document
+  .getElementById("cauchyX0")
+  .addEventListener("input", drawCauchyDensity);
+
+document
+  .getElementById("cauchyGamma")
+  .addEventListener("input", drawCauchyDensity);
+
+function choose(n,k){ if(k<0||k>n) return 0; k=Math.min(k,n-k); let r=1; for(let i=1;i<=k;i++) r=r*(n-k+i)/i; return r; }
+function binomPmf(n,p,k){ return choose(n,k)*(p**k)*((1-p)**(n-k)); }
+function initBinom(){
+const svg=document.getElementById('binomSvg'), nEl=document.getElementById('binomN'), pEl=document.getElementById('binomP'), mode=document.getElementById('binomMode'), kEl=document.getElementById('binomK'), probEl=document.getElementById('binomProb'), model=document.getElementById('binomModel');
+if(!svg||!nEl||!pEl||!mode||!kEl) return;
+function update(){
+const n=+nEl.value,p=+pEl.value; kEl.max=n; let k=Math.min(+kEl.value,n); kEl.value=k;
+const vals=Array.from({length:n+1},(_,i)=>binomPmf(n,p,i)); const max=Math.max(...vals);
+let prob=0; vals.forEach((v,i)=>{ if((mode.value==='eq'&&i===k)||(mode.value==='le'&&i<=k)||(mode.value==='ge'&&i>=k)) prob+=v; });
+const W=700,H=260,pad=36,barW=(W-2*pad)/(n+1)*.78, gap=(W-2*pad)/(n+1)*.22;
+let html=`<line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${H-pad}" class="widget-axis"/>`;
+vals.forEach((v,i)=>{ const active=(mode.value==='eq'&&i===k)||(mode.value==='le'&&i<=k)||(mode.value==='ge'&&i>=k); const x=pad+i*(barW+gap+((W-2*pad)-(n+1)*(barW+gap))/(n+1)); const h=v/max*(H-2*pad); html+=`<rect x="${x}" y="${H-pad-h}" width="${barW}" height="${h}" fill="${active?'rgba(123,74,181,.75)':'rgba(152,162,179,.35)'}" rx="4"/>`; });
+html+=`<text x="350" y="28" text-anchor="middle" class="widget-label">highlighted bars = selected probability question</text>`;
+svg.innerHTML=html; probEl.textContent=prob.toFixed(3); model.textContent=`Binomial(${n}, ${p.toFixed(2)})`;
+}
+[nEl,pEl,mode,kEl].forEach(el=>el.addEventListener('input',update)); update();
+}
+document.addEventListener('DOMContentLoaded',function(){ initNormal(); drawEmpiricalRuleSvg(); initBinom(); });
+if(window.Reveal){ Reveal.on('ready',function(){ initNormal(); drawEmpiricalRuleSvg(); initBinom(); }); }
+})();
+</script>
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Statistics 101 · Week 2</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 0.55,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"numbers":true},
+'chalkboard': {"buttons":false,"theme":"whiteboard"},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'fast',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.5e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

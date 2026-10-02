@@ -1,0 +1,2487 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
+
+  <meta name="author" content="Graduate Pharmaceutical Studies">
+  <title>Statistics for Pharmacists</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-edc44120696fd3b6cba9961d9c448417.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+  <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-footer="" class="quarto-title-block center">
+  <h1 class="title">Statistics for Pharmacists</h1>
+  <p class="subtitle">Week 1 · Reasoning with data under uncertainty</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Graduate Pharmaceutical Studies
+</div>
+</div>
+</div>
+
+</section>
+<section id="reasoning-with-data-under-uncertainty" class="slide level2 title-slide center">
+<h2>Reasoning with data under uncertainty</h2>
+<div class="eyebrow">
+Week 1
+</div>
+<div class="concept-line" style="margin-top:1em;">
+<p>Introduction to statistics.</p>
+</div>
+</section>
+<section id="would-you-approve-this-drug" class="slide level2 motivation-slide question-slide">
+<h2>Would you approve this drug?</h2>
+<div class="eyebrow">
+First decision
+</div>
+<div class="compare-grid">
+<div class="metric-card observed-card">
+<div class="metric-label">
+New drug · response
+</div>
+<div class="metric-value observed">
+72%
+</div>
+</div>
+<div class="metric-card model-card">
+<div class="metric-label">
+Standard treatment · response
+</div>
+<div class="metric-value model">
+65%
+</div>
+</div>
+</div>
+<div class="big-question" style="margin-top:0.55em;">
+Approve?
+</div>
+<div class="fragment fade-up">
+<div class="kicker">
+<strong>Suppose there were only 8 patients in each group.</strong>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="kicker">
+<strong>Now suppose there were 8,000 patients in each group.</strong>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="takeaway">
+The percentages did not change. The evidence did.
+</div>
+</div>
+<aside class="notes">
+<p>Do not define statistics yet. Ask for a show of hands after the two percentages.</p>
+<p>After revealing n = 8, ask what additional information students now want. Typical answers: sample size, randomization, patient selection, uncertainty, side effects, effect size.</p>
+<p>Then reveal n = 8,000. Emphasize that the same point estimate can carry very different evidential weight.</p>
+<p>Teaching target: students should spontaneously discover that a number without context is insufficient.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="so-what-is-statistics" class="slide level2 concept-slide">
+<h2>So what is statistics?</h2>
+<div class="eyebrow">
+A working definition for this course
+</div>
+<div class="flow-row">
+<div class="flow-node observed">
+DATA
+</div>
+<div class="flow-arrow">
+→
+</div>
+<div class="flow-node probability">
+UNCERTAINTY
+</div>
+<div class="flow-arrow">
+→
+</div>
+<div class="flow-node estimate">
+LEARNING
+</div>
+<div class="flow-arrow">
+→
+</div>
+<div class="flow-node">
+DECISION
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>Statistics is the science of <strong>learning from data</strong> in the presence of <strong>uncertainty</strong>.</p>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="kicker" style="margin-top:0.8em;">
+<p>This course is not about memorizing a catalogue of tests. It is about learning how to ask what the data can — and cannot — tell us.</p>
+</div>
+</div>
+<div class="timeline2">
+<div class="timeline2-step fragment fade-up">
+<div class="label">
+Jacob Bernoulli
+</div>
+<img src="figures/Bernoulli.jpg" alt="Jacob Bernoulli" class="step-image">
+</div>
+<div class="timeline2-step fragment fade-up">
+<div class="label">
+Carl Friedrich Gauss
+</div>
+<img src="figures/Gauss.jpg" alt="Carl Friedrich Gauss" class="step-image">
+</div>
+<div class="timeline2-step fragment fade-up">
+<div class="label">
+Ronald Aylmer Fisher
+</div>
+<img src="figures/Fisher.jpg" alt="Ronald Aylmer Fisher" class="step-image">
+</div>
+</div>
+<aside class="notes">
+<p>This is the semester-long working definition. Return to it in Week 12.</p>
+<p>Point explicitly to the color grammar for the first time: - blue = what we observed, - purple = uncertainty/probability, - green = what we learned/estimated.</p>
+<p>Do not yet explain orange/red in detail; they will appear naturally later.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="where-did-statistics-come-from" class="slide level2 concept-slide">
+<h2>Where did statistics come from?</h2>
+<div class="eyebrow">
+A 60-second historical aside
+</div>
+<div class="big-question" style="font-size:1.18em; max-width:26ch;">
+<p>When states began systematically collecting information, data became a source of power.</p>
+</div>
+<div class="timeline">
+<div class="timeline-step fragment fade-up">
+<div class="number">
+01
+</div>
+<div class="label">
+Population &amp; resources
+</div>
+<img src="figures/crowded-city.jpg" alt="Population" class="step-image">
+</div>
+<div class="timeline-step fragment fade-up">
+<div class="number">
+02
+</div>
+<div class="label">
+Census &amp; records
+</div>
+<img src="figures/census-questionnaire.jpg" alt="Census" class="step-image">
+</div>
+<div class="timeline-step fragment fade-up">
+<div class="number">
+03
+</div>
+<div class="label">
+Store &amp; summarize
+</div>
+<img src="figures/store-summarize.jpg" alt="Storage" class="step-image">
+</div>
+<div class="timeline-step fragment fade-up">
+<div class="number">
+04
+</div>
+<div class="label">
+Compare &amp; detect patterns
+</div>
+<img src="figures/data-trend.jpg" alt="Trends" class="step-image">
+</div>
+<div class="timeline-step fragment fade-up">
+<div class="number">
+05
+</div>
+<div class="label">
+Decide &amp; govern
+</div>
+<img src="figures/decide-govern.jpg" alt="Decisions" class="step-image">
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="takeaway">
+<p>The word <em>statistics</em> historically comes from German <em>Statistik</em>: knowledge about the affairs of a state.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Keep this short. The goal is not etymology; the goal is the durable idea that organized data collection changes what institutions can know and decide.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="statistics-is-already-in-your-life" class="slide level2 example-slide">
+<h2>Statistics is already in your life</h2>
+<div class="eyebrow">
+Before pharmacy, before research
+</div>
+<div class="life-grid">
+<div class="life-card fragment fade-up">
+<div class="life-title">
+Income
+</div>
+<div class="life-question">
+Mean or median — and why does the choice matter?
+</div>
+</div>
+<div class="life-card fragment fade-up">
+<div class="life-title">
+A health headline
+</div>
+<div class="life-question">
+“A study found…” — in how many people, and compared with what?
+</div>
+</div>
+<div class="life-card fragment fade-up">
+<div class="life-title">
+Insurance
+</div>
+<div class="life-question">
+What risk are you transferring, and what are you paying for it?
+</div>
+</div>
+<div class="life-card fragment fade-up">
+<div class="life-title">
+Relative risk
+</div>
+<div class="life-question">
+“50% higher risk” — 50% higher than what baseline?
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line" style="margin-top:0.65em;">
+<p>Statistical literacy is partly the ability to ask the missing question.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Do not answer these questions fully. They are previews of later weeks.</p>
+<p>Possible verbal examples: - mean vs median income → Week 3 descriptive statistics; - “study found” → sampling and design; - insurance → expected value and decision theory; - relative risk → Week 10 epidemiology.</p>
+<p>This slide creates retrieval hooks that can be revisited later.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="when-bad-statistics-has-consequences" class="slide level2 case-slide checkpoint-slide">
+<h2>When bad statistics has consequences</h2>
+<div class="warning-label">
+Case study · Sally Clark
+</div>
+<div class="example-box">
+<p>A figure presented in court for the probability of a sudden infant death in a family like Clark’s was approximately</p>
+<div class="case-equation probability">
+<p><span class="math display">\[P(\text{one SIDS death}) \approx \frac{1}{8543}\]</span></p>
+</div>
+<div class="fragment fade-up">
+<p>The probability of two deaths was then presented by multiplying the number by itself:</p>
+<div class="case-equation">
+<p><span class="math display">\[\frac{1}{8543}\times\frac{1}{8543}\approx\frac{1}{73\,000\,000}\]</span></p>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="big-question" style="font-size:1.05em; margin-top:0.38em;">
+What assumption is hiding inside that multiplication?
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="assumption-chip">
+Do not solve this yet — we return to it after independence.
+</div>
+</div>
+<aside class="notes">
+<p>This is deliberately unresolved. The case will return after the independence slide later in Week 1.</p>
+<p>Avoid turning this into a legal-history digression. The statistical point is that multiplication of probabilities encodes assumptions.</p>
+<p>The Royal Statistical Society later criticized the calculation because independence was not justified and also warned against confusing P(evidence | hypothesis) with P(hypothesis | evidence).</p>
+<p>Source for lecturer reference: https://rss.org.uk/RSS/media/File-library/Membership/Sections/2020/Sally-Clark-RSS-letter-2002.pdf</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="science-needs-statistics" class="slide level2 concept-slide">
+<h2>Science needs statistics</h2>
+<div class="eyebrow">
+Same nominal condition ≠ same observed outcome
+</div>
+<div class="big-question" style="font-size:1.12em; max-width:28ch;">
+<p>Give the same treatment under the same nominal conditions. Why are the measured responses not identical?</p>
+</div>
+<div class="response-strip" aria-label="Observed responses vary around an underlying model value">
+<div class="truth">
+
+</div>
+<div class="truth-label">
+underlying target / model
+</div>
+<div class="dot fragment fade-in" style="left:34%; top:30%;">
+
+</div>
+<div class="dot fragment fade-in" style="left:53%; top:42%;">
+
+</div>
+<div class="dot fragment fade-in" style="left:43%; top:76%;">
+
+</div>
+<div class="dot fragment fade-in" style="left:29%; top:70%;">
+
+</div>
+<div class="dot fragment fade-in" style="left:18%; top:64%;">
+
+</div>
+<div class="dot fragment fade-in" style="left:79%; top:45%;">
+
+</div>
+<div class="dot fragment fade-in" style="left:70%; top:37%;">
+
+</div>
+<div class="dot fragment fade-in" style="left:50%; top:60%;">
+
+</div>
+<div class="dot fragment fade-in" style="left:39%; top:55%;">
+
+</div>
+<div class="dot fragment fade-in" style="left:47%; top:34%;">
+
+</div>
+<div class="dot fragment fade-in" style="left:65%; top:57%;">
+
+</div>
+<div class="dot fragment fade-in" style="left:57%; top:72%;">
+
+</div>
+<div class="dot fragment fade-in" style="left:61%; top:28%;">
+
+</div>
+<div class="dot fragment fade-in" style="left:24%; top:40%;">
+
+</div>
+<div class="dot fragment fade-in" style="left:74%; top:67%;">
+
+</div>
+<div class="axis-label">
+measured response →
+</div>
+</div>
+<div class="flow-row" style="margin-top:1.1em;">
+<div class="flow-node fragment fade-up">
+Biological variability
+</div>
+<div class="flow-node fragment fade-up">
+Measurement error
+</div>
+<div class="flow-node fragment fade-up">
+Environment
+</div>
+<div class="flow-node fragment fade-up">
+Unknown factors
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line" style="margin-top:0.62em;">
+<p>Scientific observations contain both <span class="estimate"><strong>signal</strong></span> and <span class="probability"><strong>uncertainty</strong></span>.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Use a pharmaceutical example verbally: plasma concentration, clearance, blood-pressure response, dissolution time, assay signal, etc.</p>
+<p>Important distinction: statistical uncertainty is not motivated primarily through the Heisenberg uncertainty principle, which is quantum-mechanical uncertainty and is not the same concept as biological variability, sampling variation, measurement error or incomplete knowledge.</p>
+<p>This slide prepares the transition to probability.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-scientific-learning-loop" class="slide level2 concept-slide">
+<h2>The scientific learning loop</h2>
+<div class="eyebrow">
+Reasoning under uncertainty is iterative
+</div>
+<div class="loop-diagram">
+<div class="loop-node q fragment fade-up">
+<span>1</span>Question
+</div>
+<div class="loop-arrow fragment fade-in">
+→
+</div>
+<div class="loop-node e fragment fade-up">
+<span>2</span>Experiment
+</div>
+<div class="loop-arrow fragment fade-in">
+→
+</div>
+<div class="loop-node d fragment fade-up">
+<span>3</span>Data
+</div>
+<div class="loop-arrow fragment fade-in">
+→
+</div>
+<div class="loop-node m fragment fade-up">
+<span>4</span>Model
+</div>
+<div class="loop-arrow fragment fade-in">
+→
+</div>
+<div class="loop-node dec fragment fade-up">
+<span>5</span>Decision
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="loop-return">
+Decision → new question → new data
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>Statistics sits inside the loop: it connects uncertain observations to defensible decisions.</p>
+</div>
+</div>
+<aside class="notes">
+<p>This is the course-level mental model.</p>
+<p>Stress that the loop is not perfectly clean in real research. There are failed assays, noisy measurements, unexpected constraints, and judgment calls.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="enzyme-engineering-as-a-learning-loop" class="slide level2 example-slide">
+<h2>Enzyme engineering as a learning loop</h2>
+<div class="example-label">
+Pharmacy-adjacent example
+</div>
+<div class="enzyme-stage">
+<div class="enzyme-box fragment fade-up">
+<div class="enzyme-icon">
+PET
+</div>
+<div class="enzyme-title">
+Problem
+</div>
+<div class="enzyme-text">
+Natural enzymes degrade PET too slowly.
+</div>
+</div>
+<div class="enzyme-arrow fragment fade-in">
+→
+</div>
+<div class="enzyme-box fragment fade-up">
+<div class="enzyme-icon model">
+MUT
+</div>
+<div class="enzyme-title">
+Generate variants
+</div>
+<div class="enzyme-text">
+Mutate enzyme sequence.
+</div>
+</div>
+<div class="enzyme-arrow fragment fade-in">
+→
+</div>
+<div class="enzyme-box fragment fade-up">
+<div class="enzyme-icon observed">
+ASSAY
+</div>
+<div class="enzyme-title">
+Observe
+</div>
+<div class="enzyme-text">
+Measure activity for many variants.
+</div>
+</div>
+<div class="enzyme-arrow fragment fade-in">
+→
+</div>
+<div class="enzyme-box fragment fade-up">
+<div class="enzyme-icon estimate">
+TOP 5%
+</div>
+<div class="enzyme-title">
+Select
+</div>
+<div class="enzyme-text">
+Keep the best performers.
+</div>
+</div>
+</div>
+<div class="assay-dots" aria-label="Assay results with top performers highlighted">
+<span class="blue-dot" style="left:3%; bottom:18%;"></span><span class="blue-dot" style="left:8%; bottom:24%;"></span><span class="blue-dot" style="left:12%; bottom:15%;"></span><span class="blue-dot" style="left:17%; bottom:34%;"></span> <span class="blue-dot" style="left:21%; bottom:27%;"></span><span class="blue-dot" style="left:26%; bottom:42%;"></span><span class="blue-dot" style="left:31%; bottom:31%;"></span><span class="blue-dot" style="left:36%; bottom:46%;"></span> <span class="blue-dot" style="left:41%; bottom:39%;"></span><span class="blue-dot" style="left:46%; bottom:50%;"></span><span class="blue-dot" style="left:52%; bottom:43%;"></span><span class="blue-dot" style="left:57%; bottom:58%;"></span> <span class="blue-dot" style="left:62%; bottom:52%;"></span><span class="blue-dot" style="left:68%; bottom:60%;"></span><span class="green-dot fragment fade-in" style="left:74%; bottom:68%;"></span><span class="green-dot fragment fade-in" style="left:80%; bottom:76%;"></span> <span class="green-dot fragment fade-in" style="left:86%; bottom:72%;"></span><span class="green-dot fragment fade-in" style="left:93%; bottom:84%;"></span>
+<div class="assay-xaxis">
+enzyme variant rank →
+</div>
+<div class="assay-yaxis">
+enzyme efficacy →
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="takeaway">
+Observe → select → update → repeat.
+</div>
+</div>
+<aside class="notes">
+<p>Use this as an intuitive example of iterative empirical optimization. Do not over-teach enzyme engineering; the statistical idea is enough.</p>
+<p>The key point is that noisy data still supports useful decisions when the process is structured.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="probability" class="slide level2 section-break probability-break">
+<h2>Probability</h2>
+<div class="section-kicker">
+Part II
+</div>
+<div class="section-title">
+The mathematical language of uncertainty
+</div>
+<div class="section-subtitle">
+We now formalize the word “possible.”
+</div>
+<aside class="notes">
+<p>Pause here. Tell students that the course now becomes a little more technical, but the symbols will always refer to concrete objects.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="experiment-outcomes-events-probability" class="slide level2 concept-slide">
+<h2>Experiment → outcomes → events → probability</h2>
+<div class="eyebrow">
+Start with one clinical experiment
+</div>
+<div class="builder-grid">
+<div class="builder-card fragment fade-up">
+<div class="builder-label">
+Experiment
+</div>
+<div class="builder-main">
+Administer treatment
+</div>
+</div>
+<div class="builder-card fragment fade-up">
+<div class="builder-label">
+Possible outcomes
+</div>
+<div class="outcome-row">
+<span class="outcome-pill observed">Response</span> <span class="outcome-pill muted">No response</span>
+</div>
+</div>
+<div class="builder-card fragment fade-up">
+<div class="builder-label">
+Event
+</div>
+<div class="builder-main">
+<span class="math inline">\(A = \{\text{response}\}\)</span>
+</div>
+</div>
+<div class="builder-card fragment fade-up">
+<div class="builder-label">
+Probability
+</div>
+<div class="builder-main probability">
+<span class="math inline">\(\mathbb{P}(A) = 0.70\)</span>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>Probability is a rule for assigning numbers to events before the uncertain outcome is observed.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Do not start with coins. Start with a pharmacy-relevant two-outcome situation.</p>
+<p>Clarify that response/no response is a simplification. Real clinical endpoints can be continuous, ordinal, binary, time-to-event, etc. We start binary because it lets us see the structure.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="a-probability-space" class="slide level2 math-slide">
+<h2>A probability space</h2>
+<div class="eyebrow">
+The ingredients
+</div>
+<div class="ingredient-grid">
+<div class="ingredient-card fragment fade-up">
+<div class="math-symbol">
+<span class="math inline">\(\Omega\)</span>
+</div>
+<div class="ingredient-title">
+Sample space
+</div>
+<div class="ingredient-text">
+all possible elementary outcomes
+</div>
+</div>
+<div class="ingredient-card fragment fade-up">
+<div class="math-symbol">
+<span class="math inline">\(\mathcal{F}\)</span>
+</div>
+<div class="ingredient-title">
+Events
+</div>
+<div class="ingredient-text">
+questions we can ask about outcomes
+</div>
+</div>
+<div class="ingredient-card fragment fade-up">
+<div class="math-symbol">
+<span class="math inline">\(\mathbb{P}\)</span>
+</div>
+<div class="ingredient-title">
+Probability measure
+</div>
+<div class="ingredient-text">
+a rule assigning probabilities to events
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="definition-box">
+<p><span class="math display">\[
+\mathbb{P}:\mathcal{F} \rightarrow [0,1]
+\]</span></p>
+</div>
+</div>
+<aside class="notes">
+<p>Keep sigma-algebra details out of the lecture. Say: in advanced probability, the event system has additional technical requirements; in this course, think of F as the events to which probabilities are assigned.</p>
+<p>The message is: probability needs a universe of possible outcomes, a set of events, and a consistent assignment rule.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-sample-space" class="slide level2 concept-slide">
+<h2>The sample space</h2>
+<div class="eyebrow">
+Coin tosses: a clean toy model
+</div>
+<div class="coin-layout">
+<div class="coin-panel fragment fade-up">
+<div class="coin-title">
+One toss
+</div>
+<div class="coin-space">
+<span class="math inline">\(\Omega = \{\text{H},\text{T}\}\)</span>
+</div>
+<div class="coin-matrix">
+<div class="coin-row">
+<span class="coin">H</span>
+</div>
+<div class="coin-row">
+<span class="coin">T</span>
+</div>
+</div>
+</div>
+<div class="coin-panel fragment fade-up">
+<div class="coin-title">
+Two tosses
+</div>
+<div class="coin-space">
+<span class="math inline">\(\Omega = \{\text{HH},\text{HT},\text{TH},\text{TT}\}\)</span>
+</div>
+<div class="coin-matrix">
+<div class="coin-row">
+<span class="coin">H</span><span>→</span><span class="coin">H</span><span class="coin">H</span>
+</div>
+<div class="coin-row">
+<span class="coin">H</span><span>→</span><span class="coin">H</span><span class="coin">T</span>
+</div>
+<div class="coin-row">
+<span class="coin">T</span><span>→</span><span class="coin">T</span><span class="coin">H</span>
+</div>
+<div class="coin-row">
+<span class="coin">T</span><span>→</span><span class="coin">T</span><span class="coin">T</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+<p>For the first example, avoid adding “impossible” outcomes. Start with the outcomes the experiment actually defines.</p>
+</div>
+</div>
+<aside class="notes">
+<p>This cleans up the earlier draft idea. For one coin toss, Ω = {H, T}. For two coin tosses, Ω = {HH, HT, TH, TT}. Impossible outcomes and probability-zero events are more subtle and belong later when discussing continuous distributions.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="events-are-sets" class="slide level2 concept-slide">
+<h2>Events are sets</h2>
+<div class="eyebrow">
+Set-theoretic relations, made visible
+</div>
+<div class="event-board">
+<div class="outcome-card highlight fragment fade-up">
+HH
+</div>
+<div class="outcome-card highlight fragment fade-up">
+HT
+</div>
+<div class="outcome-card highlight fragment fade-up">
+TH
+</div>
+<div class="outcome-card fragment fade-up">
+TT
+</div>
+</div>
+<div class="equation-row">
+<div class="eq-card fragment fade-up">
+<span class="math inline">\(A = \{\text{at least one head}\}\)</span>
+</div>
+<div class="eq-card fragment fade-up">
+<span class="math inline">\(A = \{\text{HH},\text{HT},\text{TH}\}\)</span>
+</div>
+<div class="eq-card fragment fade-up">
+<span class="math inline">\(A^c = \{\text{TT}\}\)</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="mini-venn">
+<div class="venn-circle a">
+A
+</div>
+<div class="venn-circle b">
+B
+</div>
+<div class="venn-caption">
+union, intersection, complement are operations on events
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>The outcomes appear one by one. The first three are highlighted as event A. Then A and A complement are named.</p>
+<p>Define union/intersection verbally with the Venn visual: A or B; A and B; not A.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="three-rules-are-enough-to-start" class="slide level2 math-slide">
+<h2>Three rules are enough to start</h2>
+<div class="eyebrow">
+Kolmogorov axioms, introductory version
+</div>
+<div class="axiom-portrait-grid">
+<!-- Left Column: Axioms -->
+<div class="axiom-stack">
+<div class="axiom fragment fade-up">
+<span class="axiom-number">1</span> <span class="math inline">\(0 \leq \mathbb{P}(A) \leq 1\)</span>
+</div>
+<div class="axiom fragment fade-up">
+<span class="axiom-number">2</span> <span class="math inline">\(\mathbb{P}(\Omega)=1\)</span>
+</div>
+<div class="axiom fragment fade-up">
+<span class="axiom-number">3</span> If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are disjoint: <span class="math inline">\(\mathbb{P}(A\cup B)=\mathbb{P}(A)+\mathbb{P}(B)\)</span>
+</div>
+</div>
+<!-- Right Column: Portraits (New) -->
+<div class="mathematician-gallery fragment fade-up">
+<div class="portrait-card">
+<img src="figures/Chebyshev.jpg" alt="Andrey Markov">
+<div class="portrait-name">
+Pafnuty Chebyshev
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Markov.jpg" alt="Pafnuty Chebyshev">
+<div class="portrait-name">
+Andrey Markov
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Kolmogorov.jpg" alt="Andrey Kolmogorov">
+<div class="portrait-name">
+Andrey Kolmogorov
+</div>
+</div>
+</div>
+</div>
+<div class="prob-bar fragment fade-up">
+<span>0</span>
+<div class="prob-bar-fill">
+
+</div>
+<p><span>1</span></p>
+</div>
+<div class="fragment fade-up">
+<div class="takeaway">
+The full axiom is countable additivity; today, the finite version is enough for intuition.
+</div>
+<div class="interpretation-grid fragment fade-up">
+<div class="interp-card frequentist">
+<div class="interp-header">
+Frequentist View
+</div>
+<div class="interp-body">
+<strong>Relative Frequency:</strong> The long-run proportion of times an event <span class="math inline">\(A\)</span> occurs over infinitely repeated trials.
+</div>
+</div>
+<div class="interp-card bayesian">
+<div class="interp-header">
+Bayesian / Propensity View
+</div>
+<div class="interp-body">
+<strong>Degree of Belief:</strong> The quantifiable certainty or intrinsic propensity of event <span class="math inline">\(A\)</span> occurring given current evidence.
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>The goal is to make the axioms feel like sanity rules: probabilities are bounded, the whole universe has probability one, and non-overlapping pieces add.</p>
+<p>Do not get stuck on measure theory.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="useful-rules-follow-automatically" class="slide level2 math-slide">
+<h2>Useful rules follow automatically</h2>
+<div class="eyebrow">
+From axioms to working tools
+</div>
+<div class="rule-grid">
+<div class="rule-card fragment fade-up">
+<div class="rule-title">
+Complement
+</div>
+<div class="rule-eq">
+<span class="math inline">\(\mathbb{P}(A^c)=1-\mathbb{P}(A)\)</span>
+</div>
+<div class="rule-visual complement-visual">
+<span>A</span><span>Aᶜ</span>
+</div>
+</div>
+<div class="rule-card fragment fade-up">
+<div class="rule-title">
+Union
+</div>
+<div class="rule-eq">
+<span class="math inline">\(\mathbb{P}(A\cup B)=\mathbb{P}(A)+\mathbb{P}(B)-\mathbb{P}(A\cap B)\)</span>
+</div>
+<div class="equation-row">
+<div class="single-circle-box">
+<div class="standalone-circle circle-a">
+A
+</div>
+</div>
+<div class="math-operator">
++
+</div>
+<div class="single-circle-box">
+<div class="standalone-circle circle-b">
+B
+</div>
+</div>
+<div class="math-operator">
+=
+</div>
+<div class="overlap-mini">
+<div class="circle circle-a">
+A
+</div>
+<div class="circle circle-b">
+B
+</div>
+<div class="double-count-badge">
+×2
+</div>
+<div class="overlap-warning">
+Double-counted intersection <span class="math inline">\(A \cap B\)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>Most probability formulas are bookkeeping: which regions have we counted once, twice, or not at all?</p>
+</div>
+</div>
+<aside class="notes">
+<p>Students often experience these as arbitrary formulas. Teach them as area bookkeeping. If time permits, draw a Venn diagram live with the chalkboard tool.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="conditional-probability-changes-the-universe" class="slide level2 concept-slide">
+<h2>Conditional probability changes the universe</h2>
+<div class="eyebrow">
+Subgroups and new information
+</div>
+<div class="patient-container">
+<!-- 5x5 Grid -->
+<div class="patient-universe">
+<div class="patient-dot male resp">
+
+</div>
+<div class="patient-dot female">
+
+</div>
+<div class="patient-dot male">
+
+</div>
+<div class="patient-dot female resp">
+
+</div>
+<div class="patient-dot male resp">
+
+</div>
+<div class="patient-dot female">
+
+</div>
+<div class="patient-dot male">
+
+</div>
+<div class="patient-dot female resp">
+
+</div>
+<div class="patient-dot male">
+
+</div>
+<div class="patient-dot female">
+
+</div>
+<div class="patient-dot male resp">
+
+</div>
+<div class="patient-dot female">
+
+</div>
+<div class="patient-dot female resp">
+
+</div>
+<div class="patient-dot male">
+
+</div>
+<div class="patient-dot female">
+
+</div>
+<div class="patient-dot male">
+
+</div>
+<div class="patient-dot female resp">
+
+</div>
+<div class="patient-dot male resp">
+
+</div>
+<div class="patient-dot female">
+
+</div>
+<div class="patient-dot male">
+
+</div>
+<div class="patient-dot female">
+
+</div>
+<div class="patient-dot female resp">
+
+</div>
+<div class="patient-dot male">
+
+</div>
+<div class="patient-dot male resp">
+
+</div>
+<div class="patient-dot female">
+
+</div>
+</div>
+<!-- Legend -->
+<div class="patient-legend">
+<div class="legend-item">
+<div class="patient-dot male">
+
+</div>
+<span>Male Non-responder</span>
+</div>
+<div class="legend-item">
+<div class="patient-dot male resp">
+
+</div>
+<span>Male Responder</span>
+</div>
+<div class="legend-item">
+<div class="patient-dot female">
+
+</div>
+<span>Female Non-responder</span>
+</div>
+<div class="legend-item">
+<div class="patient-dot female resp">
+
+</div>
+<span>Female Responder (<span class="math inline">\(A \cap B\)</span>)</span>
+</div>
+</div>
+</div>
+<div class="condition-row">
+<div class="condition-card fragment fade-up">
+Responders among all patients: <span class="math inline">\(\mathbb{P}({\color{#1f6feb}A})\)</span>
+</div>
+<div class="condition-card fragment fade-up">
+Responders among female subgroup: <span class="math inline">\(\mathbb{P}({\color{#1f6feb}A} \mid {\color{#c65d09}B})\)</span>
+</div>
+<div class="condition-card fragment fade-up probability">
+<span class="math inline">\(\mathbb{P}({\color{#1f6feb}A} \mid {\color{#c65d09}B}) = \frac{\mathbb{P}({\color{#7b4ab5}A \cap B})}{\mathbb{P}({\color{#c65d09}B})}\)</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>Conditional probability changes the universe we are considering.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Stress that the denominator P(B) is not a trick; it is the size of the new universe.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="independence-is-a-scientific-assumption" class="slide level2 concept-slide">
+<h2>Independence is a scientific assumption</h2>
+<div class="eyebrow">
+When learning B tells us nothing about A
+</div>
+<div class="independence-grid">
+<div class="independence-card fragment fade-up">
+<div class="independence-title estimate">
+Independent
+</div>
+<div class="independence-eq">
+<span class="math inline">\(\mathbb{P}(A\mid B)=\mathbb{P}(A)\)</span>
+</div>
+<div class="independence-eq">
+<span class="math inline">\(\mathbb{P}(A\cap B)=\mathbb{P}(A)\cdot\mathbb{P}(B)\)</span>
+</div>
+<div class="small-caption">
+Knowing <span class="math inline">\(B\)</span> does not change the probability of <span class="math inline">\(A\)</span>.
+</div>
+</div>
+<div class="independence-card danger fragment fade-up">
+<div class="independence-title warning">
+Dependent
+</div>
+<div class="independence-example">
+Adverse effect<br>and<br>renal impairment
+</div>
+<div class="small-caption">
+Knowing <span class="math inline">\(B\)</span> may strongly change the probability of <span class="math inline">\(A\)</span>.
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+<p>Multiplication is only justified after the independence assumption is justified.</p>
+</div>
+</div>
+<aside class="notes">
+<p>This is a major conceptual slide. Make students say the scientific assumption aloud: are these events independent in the real world?</p>
+<p>Examples: two fair coin tosses are often modeled as independent; adverse effect and organ function are usually not safe to assume independent.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="return-to-the-court-case" class="slide level2 checkpoint-slide case-slide">
+<h2>Return to the court case</h2>
+<div class="warning-label">
+The hidden assumption
+</div>
+<div class="case-equation large-equation">
+<p><span class="math display">\[
+\frac{1}{8543}\times\frac{1}{8543}
+\]</span></p>
+</div>
+<div class="fragment fade-up">
+<div class="big-question warning" style="font-size:1.35em;">
+This multiplication assumes independence.
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="explain-two">
+<div class="explain-card">
+Siblings may share genetic and environmental risk factors.
+</div>
+<div class="explain-card">
+The calculation also confused:
+<div class="formula-block">
+<span class="math display">\[\mathbb{P}(\text{evidence} \mid \text{hypothesis})\]</span>
+</div>
+with:
+<div class="formula-block">
+<span class="math display">\[\mathbb{P}(\text{hypothesis} \mid \text{evidence})\]</span>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>Independence is not a default setting. It is a claim about how the world works.</p>
+</div>
+</div>
+<aside class="notes">
+<p>This is the payoff from the earlier unresolved mystery. Do not spend long on legal details.</p>
+<p>Say clearly: even if a probability number is correct in one context, combining it with another probability can become invalid when assumptions are unjustified.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="total-probability-divide-and-rebuild" class="slide level2 math-slide">
+<h2>Total probability: divide and rebuild</h2>
+<div class="eyebrow">
+A population can be built from subgroups
+</div>
+<div class="partition-visual">
+<div class="partition-block b">
+<span><span class="math inline">\(B\)</span></span>
+</div>
+<div class="partition-block bc">
+<span><span class="math inline">\(B^c\)</span></span>
+</div>
+<div class="event-slice slice1">
+<div class="slice-complement">
+<span class="math inline">\(A^c \cap B\)</span>
+</div>
+<div class="slice-fill high">
+<span class="math inline">\(A \cap B\)</span>
+</div>
+</div>
+<div class="event-slice slice2">
+<div class="slice-complement">
+<span class="math inline">\(A^c \cap B^c\)</span>
+</div>
+<div class="slice-fill low">
+<span class="math inline">\(A \cap B^c\)</span>
+</div>
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p><span class="math display">\[
+\mathbb{P}(A) = \mathbb{P}(A\mid B)\cdot\mathbb{P}(B) + \mathbb{P}(A\mid B^c)\cdot\mathbb{P}(B^c)
+\]</span></p>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>Calculate within simpler subgroups, then combine them according to subgroup size.</p>
+</div>
+</div>
+<aside class="notes">
+<p>This will return in epidemiology, diagnostic testing, and mixture distributions.</p>
+<p>Use an example verbally: probability of a positive diagnostic test = positives among diseased + positives among healthy.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="the-direction-matters" class="slide level2 checkpoint-slide">
+<h2>The direction matters</h2>
+<div class="eyebrow">
+A common diagnostic mistake
+</div>
+<div class="direction-grid">
+<div class="direction-card fragment fade-up">
+<div class="direction-label">
+Test performance
+</div>
+<div class="direction-eq">
+<span class="math inline">\(\mathbb{P}(+\mid\text{Disease})\)</span>
+</div>
+</div>
+<div class="direction-symbol fragment fade-in">
+≠
+</div>
+<div class="direction-card fragment fade-up">
+<div class="direction-label">
+Patient question
+</div>
+<div class="direction-eq">
+<span class="math inline">\(\mathbb{P}(\text{Disease}\mid +)\)</span>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="big-question warning" style="font-size:1.55em; text-align:center; margin-top:0.35em;">
+Not the same question.
+</div>
+</div>
+<aside class="notes">
+<p>Ask students: a test has 90% sensitivity. Does a positive result mean the patient has a 90% probability of disease?</p>
+<p>Let them answer before the red warning appears.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="a-diagnostic-test-puzzle" class="slide level2 example-slide question-slide">
+<h2>A diagnostic-test puzzle</h2>
+<div class="example-label">
+Try to guess before calculating
+</div>
+<div class="diagnostic-grid">
+<div class="diagnostic-card fragment fade-up">
+<div>
+Prevalence
+</div>
+<strong class="model">1%</strong> <span class="sub-label">disease in population</span>
+</div>
+<div class="diagnostic-card fragment fade-up">
+<div>
+Sensitivity
+</div>
+<strong class="probability">90%</strong> <span class="sub-label">correctly identified sick people</span>
+</div>
+<div class="diagnostic-card fragment fade-up">
+<div>
+Specificity
+</div>
+<strong class="estimate">95%</strong> <span class="sub-label">correctly identified healthy people</span>
+</div>
+</div>
+<div class="big-question" style="margin-top:0.55em; max-width:22ch;">
+<p>Someone tests positive. What is the probability that the person actually has the disease?</p>
+</div>
+<div class="fragment fade-up">
+<div class="assumption-chip">
+Commit to a number before the next slide.
+</div>
+</div>
+<aside class="notes">
+<p>Most students will guess near 90%. Do not correct them yet. The next slide should be a surprise.</p>
+<p>These numbers are deliberately round and pedagogical; this is not tied to a specific disease.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="count-people-not-abstract-probabilities" class="slide level2 concept-slide">
+<h2>Count people, not abstract probabilities</h2>
+<div class="eyebrow">
+Natural frequencies make Bayes intuitive
+</div>
+<div class="frequency-board">
+<div class="freq-row fragment fade-up">
+<div class="freq-label">
+Start with
+</div>
+<div class="freq-bar">
+<span class="observed-bg" style="width:100%;">1000 people</span>
+</div>
+</div>
+<div class="freq-row fragment fade-up">
+<div class="freq-label">
+Disease
+</div>
+<div class="freq-bar split">
+<span class="model-bg" style="width:1%;">10</span><span class="neutral-bg" style="width:99%;">990 without disease</span>
+</div>
+</div>
+<div class="freq-row fragment fade-up">
+<div class="freq-label">
+True positives
+</div>
+<div class="freq-bar">
+<span class="estimate-bg" style="width:0.9%;">9</span><span class="blank-bg" style="width:99.1%;"></span>
+</div>
+</div>
+<div class="freq-row fragment fade-up">
+<div class="freq-label">
+False positives
+</div>
+<div class="freq-bar">
+<span class="blank-bg" style="width:1%;"></span><span class="warning-bg" style="width:5%;">50</span><span class="blank-bg" style="width:94%;"></span>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="definition-box">
+<p><span class="math display">\[
+\mathbb{P}(\text{Disease}\mid +) \approx \frac{9}{9+50}\approx 15\%
+\]</span></p>
+</div>
+</div>
+<aside class="notes">
+<p>This should feel surprising. Emphasize that the test did not become bad; rather, rare disease plus imperfect specificity creates many false positives.</p>
+<p>Use this to create intuition before Bayes’ theorem appears as a formula.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="bayes-theorem" class="slide level2 math-slide">
+<h2>Bayes’ theorem</h2>
+<div class="eyebrow">
+The formula compresses the counting logic
+</div>
+<div class="definition-box large-definition fragment fade-up">
+<p><span class="math display">\[
+\mathbb{P}(D\mid +)=\frac{\mathbb{P}(+\mid D)\cdot \mathbb{P}(D)}{\mathbb{P}(+)}
+\]</span></p>
+</div>
+<div class="definition-box fragment fade-up">
+<p><span class="math display">\[
+\mathbb{P}(+)=\mathbb{P}(+\mid D)\cdot \mathbb{P}(D)+\mathbb{P}(+\mid D^c)\cdot \mathbb{P}(D^c)
+\]</span></p>
+</div>
+<div class="bayes-labels fragment fade-up">
+<div>
+<strong class="model">prior</strong><br>How common is disease?
+</div>
+<div>
+<strong class="probability">evidence model</strong><br>How does the test behave?
+</div>
+<div>
+<strong class="estimate">posterior</strong><br>What should we believe after observing <span class="math inline">\(+\)</span>?
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<p>Bayes’ theorem is a mathematical model for updating probabilities when new evidence arrives.</p>
+</div>
+</div>
+<aside class="notes">
+<p>Avoid saying Bayes is the entire foundation of the scientific method. Say it formalizes an important type of evidence updating.</p>
+<p>Connect it to the learning loop: prior state of knowledge → new data → updated state of knowledge.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="bayes-laboratory" class="slide level2 exercise-slide">
+<h2>Bayes laboratory</h2>
+<div class="try-label">
+Interactive slide for students at home
+</div>
+<div class="ojs-note">
+Move the sliders. Watch what happens when the disease becomes rare or specificity improves.
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="961" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 960;"><span id="cb1-961"><a aria-label="961"></a>viewof prev <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">30</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Disease prevalence (%)"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="966" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 965;"><span id="cb2-966"><a aria-label="966"></a>viewof sens <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">50</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">90</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Sensitivity (%)"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="971" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 970;"><span id="cb3-971"><a aria-label="971"></a>viewof spec <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">50</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">95</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Specificity (%)"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="976" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 975;"><span id="cb4-976"><a aria-label="976"></a>bayesCalc <span class="op">=</span> {</span>
+<span id="cb4-977"><a aria-label="977"></a>  <span class="kw">const</span> N <span class="op">=</span> <span class="dv">1000</span><span class="op">;</span></span>
+<span id="cb4-978"><a aria-label="978"></a>  <span class="kw">const</span> diseased <span class="op">=</span> N <span class="op">*</span> prev <span class="op">/</span> <span class="dv">100</span><span class="op">;</span></span>
+<span id="cb4-979"><a aria-label="979"></a>  <span class="kw">const</span> healthy <span class="op">=</span> N <span class="op">-</span> diseased<span class="op">;</span></span>
+<span id="cb4-980"><a aria-label="980"></a>  <span class="kw">const</span> tp <span class="op">=</span> diseased <span class="op">*</span> sens <span class="op">/</span> <span class="dv">100</span><span class="op">;</span></span>
+<span id="cb4-981"><a aria-label="981"></a>  <span class="kw">const</span> fp <span class="op">=</span> healthy <span class="op">*</span> (<span class="dv">100</span> <span class="op">-</span> spec) <span class="op">/</span> <span class="dv">100</span><span class="op">;</span></span>
+<span id="cb4-982"><a aria-label="982"></a>  <span class="kw">const</span> ppv <span class="op">=</span> tp <span class="op">/</span> (tp <span class="op">+</span> fp)<span class="op">;</span></span>
+<span id="cb4-983"><a aria-label="983"></a>  <span class="kw">const</span> widthTP <span class="op">=</span> <span class="dv">100</span> <span class="op">*</span> tp <span class="op">/</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">max</span>(tp <span class="op">+</span> fp<span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb4-984"><a aria-label="984"></a>  <span class="kw">const</span> widthFP <span class="op">=</span> <span class="dv">100</span> <span class="op">-</span> widthTP<span class="op">;</span></span>
+<span id="cb4-985"><a aria-label="985"></a>  <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="bayes-widget"&gt;</span></span>
+<span id="cb4-986"><a aria-label="986"></a><span class="vs">    &lt;div class="bayes-output-grid"&gt;</span></span>
+<span id="cb4-987"><a aria-label="987"></a><span class="vs">      &lt;div class="bayes-output"&gt;&lt;span&gt;Disease&lt;/span&gt;&lt;strong&gt;</span><span class="sc">${</span>diseased<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;small&gt;per 1000&lt;/small&gt;&lt;/div&gt;</span></span>
+<span id="cb4-988"><a aria-label="988"></a><span class="vs">      &lt;div class="bayes-output"&gt;&lt;span&gt;True +&lt;/span&gt;&lt;strong&gt;</span><span class="sc">${</span>tp<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;small&gt;per 1000&lt;/small&gt;&lt;/div&gt;</span></span>
+<span id="cb4-989"><a aria-label="989"></a><span class="vs">      &lt;div class="bayes-output"&gt;&lt;span&gt;False +&lt;/span&gt;&lt;strong&gt;</span><span class="sc">${</span>fp<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">&lt;/strong&gt;&lt;small&gt;per 1000&lt;/small&gt;&lt;/div&gt;</span></span>
+<span id="cb4-990"><a aria-label="990"></a><span class="vs">      &lt;div class="bayes-output"&gt;&lt;span&gt;P(Disease | +)&lt;/span&gt;&lt;strong&gt;</span><span class="sc">${</span>(<span class="dv">100</span> <span class="op">*</span> ppv)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="sc">}</span><span class="vs">%&lt;/strong&gt;&lt;small&gt;positive predictive value&lt;/small&gt;&lt;/div&gt;</span></span>
+<span id="cb4-991"><a aria-label="991"></a><span class="vs">    &lt;/div&gt;</span></span>
+<span id="cb4-992"><a aria-label="992"></a><span class="vs">    &lt;div class="positive-bar"&gt;</span></span>
+<span id="cb4-993"><a aria-label="993"></a><span class="vs">      &lt;div class="tp" style="width:</span><span class="sc">${</span>widthTP<span class="sc">}</span><span class="vs">%"&gt;true positives&lt;/div&gt;</span></span>
+<span id="cb4-994"><a aria-label="994"></a><span class="vs">      &lt;div class="fp" style="width:</span><span class="sc">${</span>widthFP<span class="sc">}</span><span class="vs">%"&gt;false positives&lt;/div&gt;</span></span>
+<span id="cb4-995"><a aria-label="995"></a><span class="vs">    &lt;/div&gt;</span></span>
+<span id="cb4-996"><a aria-label="996"></a><span class="vs">  &lt;/div&gt;`</span></span>
+<span id="cb4-997"><a aria-label="997"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>The key exploration questions: 1. Keep sensitivity and specificity fixed; decrease prevalence. What happens to P(Disease | +)? 2. Keep prevalence rare; improve specificity. What happens? 3. Which parameter matters most when screening rare disease?</p>
+<p>This is browser-side Observable JS, not Shiny. Students can use it from the HTML output without running R.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="how-many-ways" class="slide level2 concept-slide">
+<h2>How many ways?</h2>
+<div class="eyebrow">
+Counting supports probability
+</div>
+<div class="big-question" style="font-size:1.05em; margin-bottom:0.55em;">
+<p>Before choosing a formula, answer two design questions.</p>
+</div>
+<div class="counting-matrix fragment fade-up">
+<div>
+
+</div>
+<div class="matrix-head">
+Without replacement
+</div>
+<div class="matrix-head">
+With replacement
+</div>
+<div class="matrix-side">
+Permutation<br> <span class="matrix-sub">Arrangement of objects (Order matters)</span>
+</div>
+<div>
+<span class="math inline">\(\displaystyle n!\)</span>
+</div>
+<div>
+<span class="math inline">\(\displaystyle \frac{n!}{k_1!k_2!\cdots k_r!}\)</span>
+</div>
+<div class="matrix-side">
+Combination<br> <span class="matrix-sub">Selection of objects (Order does not matter)</span>
+</div>
+<div>
+<span class="math inline">\(\displaystyle {n\choose k}\)</span>
+</div>
+<div>
+<span class="math inline">\(\displaystyle {n+k-1\choose k}\)</span>
+</div>
+<div class="matrix-side">
+Variation<br> <span class="matrix-sub">Arrangement of selected objects (Order matters)</span>
+</div>
+<div>
+<span class="math inline">\(\displaystyle \frac{n!}{(n-k)!}\)</span>
+</div>
+<div>
+<span class="math inline">\(\displaystyle n^k\)</span>
+</div>
+</div>
+<aside class="notes">
+<p>The matrix is more important than the names. Many students memorize “permutation/combination/variation” without knowing which question each answers.</p>
+<p>Use small visual examples verbally: arrange three capsules; choose two patients; assign three doses from a dose list; choose flavors with repetition allowed.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="discrete-probability-by-counting" class="slide level2 exercise-slide">
+<h2>Discrete probability by counting</h2>
+<div class="try-label">
+Guided exercise
+</div>
+<div class="bag-visual">
+<div class="bag-label">
+Bag: 5 white balls + 8 red balls
+</div>
+<div class="balls">
+<span class="ball white"></span><span class="ball white"></span><span class="ball white"></span><span class="ball white"></span><span class="ball white"></span> <span class="ball red"></span><span class="ball red"></span><span class="ball red"></span><span class="ball red"></span><span class="ball red"></span><span class="ball red"></span><span class="ball red"></span><span class="ball red"></span>
+</div>
+</div>
+<div class="exercise-steps">
+<div class="exercise-card fragment fade-up">
+<div class="exercise-question">
+One draw: probability of red?
+</div>
+<div class="exercise-answer">
+<span class="math inline">\(\mathbb{P}(\text{red})=\frac{8}{13}\)</span>
+</div>
+</div>
+<div class="exercise-card fragment fade-up">
+<div class="exercise-question">
+Two draws without replacement: both red?
+</div>
+<div class="exercise-answer">
+<span class="math inline">\(\frac{8}{13}\cdot\frac{7}{12}=\frac{\binom82}{\binom{13}2}\)</span>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Solve first by sequential probability, then by counting combinations. The equivalence is the teaching point: probability often has multiple representations.</p>
+<p>Ask what changes if we replace the first ball before the second draw.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="continuous-probability-as-geometry" class="slide level2 exercise-slide">
+<h2>Continuous probability as geometry</h2>
+<div class="try-label">
+A probability without counting objects
+</div>
+<div class="geometry-grid">
+<div>
+<div class="big-question" style="font-size:0.95em; max-width:22ch;">
+Choose two random real numbers <span class="math inline">\(X,Y\in[0,1]\)</span>. What is <span class="math inline">\(\mathbb{P}(X+Y&lt;1)\)</span>?
+</div>
+<div class="definition-box fragment fade-up">
+<span class="math display">\[
+  X,Y\sim \mathcal{U}(0,1)
+  \]</span>
+</div>
+</div>
+<div class="unit-square fragment fade-up">
+<div class="triangle-region">
+
+</div>
+<div class="diag-line">
+
+</div>
+<div class="axis-x">
+x
+</div>
+<div class="axis-y">
+y
+</div>
+<div class="ineq-label">
+<span class="math inline">\(x+y&lt;1\)</span>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="definition-box">
+<p><span class="math display">\[
+\mathbb{P}(X+Y&lt;1)=\frac{\text{area of triangle}}{\text{area of square}}=\frac12
+\]</span></p>
+</div>
+</div>
+<aside class="notes">
+<p>This is the students’ first taste of continuous probability. Emphasize that for continuous variables, probability is not counting points. It can be area, volume, or more generally probability mass under a density.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="try-it-simulation-meets-geometry" class="slide level2 exercise-slide">
+<h2>Try it: simulation meets geometry</h2>
+<div class="try-label">
+Interactive slide for students at home
+</div>
+<div class="ojs-note">
+Increase the number of random points. The empirical proportion should drift toward <span class="math inline">\(1/2\)</span>.
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="1123" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1122;"><span id="cb5-1123"><a aria-label="1123"></a>viewof mc_n <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">20</span><span class="op">,</span> <span class="dv">1000</span>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Number of random points"</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="1128" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 1127;"><span id="cb6-1128"><a aria-label="1128"></a>mcPlot <span class="op">=</span> {</span>
+<span id="cb6-1129"><a aria-label="1129"></a>  <span class="kw">const</span> pts <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> mc_n}<span class="op">,</span> () <span class="kw">=&gt;</span> ({<span class="dt">x</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>()<span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>()}))<span class="op">;</span></span>
+<span id="cb6-1130"><a aria-label="1130"></a>  <span class="kw">const</span> hits <span class="op">=</span> pts<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">x</span> <span class="op">+</span> d<span class="op">.</span><span class="at">y</span> <span class="op">&lt;</span> <span class="dv">1</span>)<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
+<span id="cb6-1131"><a aria-label="1131"></a>  <span class="kw">const</span> ratio <span class="op">=</span> (hits <span class="op">/</span> mc_n)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">3</span>)<span class="op">;</span></span>
+<span id="cb6-1132"><a aria-label="1132"></a>  </span>
+<span id="cb6-1133"><a aria-label="1133"></a>  <span class="kw">const</span> circles <span class="op">=</span> pts<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> {</span>
+<span id="cb6-1134"><a aria-label="1134"></a>    <span class="kw">const</span> cls <span class="op">=</span> d<span class="op">.</span><span class="at">x</span> <span class="op">+</span> d<span class="op">.</span><span class="at">y</span> <span class="op">&lt;</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">"hit"</span> <span class="op">:</span> <span class="st">"miss"</span><span class="op">;</span></span>
+<span id="cb6-1135"><a aria-label="1135"></a>    <span class="cf">return</span> <span class="vs">`&lt;circle class="</span><span class="sc">${</span>cls<span class="sc">}</span><span class="vs">" cx="</span><span class="sc">${</span>d<span class="op">.</span><span class="at">x</span><span class="op">*</span><span class="dv">100</span><span class="sc">}</span><span class="vs">" cy="</span><span class="sc">${</span><span class="dv">100</span><span class="op">-</span>d<span class="op">.</span><span class="at">y</span><span class="op">*</span><span class="dv">100</span><span class="sc">}</span><span class="vs">" r="1.15" /&gt;`</span><span class="op">;</span></span>
+<span id="cb6-1136"><a aria-label="1136"></a>  })<span class="op">.</span><span class="fu">join</span>(<span class="st">""</span>)<span class="op">;</span></span>
+<span id="cb6-1137"><a aria-label="1137"></a></span>
+<span id="cb6-1138"><a aria-label="1138"></a>  <span class="cf">return</span> <span class="fu">html</span><span class="vs">`&lt;div class="mc-widget"&gt;</span></span>
+<span id="cb6-1139"><a aria-label="1139"></a><span class="vs">    &lt;svg viewBox="0 0 100 100" role="img" aria-label="Monte Carlo points in unit square"&gt;</span></span>
+<span id="cb6-1140"><a aria-label="1140"></a><span class="vs">      &lt;polygon points="0,100 0,0 100,100" class="mc-triangle"&gt;&lt;/polygon&gt;</span></span>
+<span id="cb6-1141"><a aria-label="1141"></a><span class="vs">      &lt;line x1="0" y1="0" x2="100" y2="100" class="mc-diagonal"&gt;&lt;/line&gt;</span></span>
+<span id="cb6-1142"><a aria-label="1142"></a><span class="vs">      </span><span class="sc">${</span>circles<span class="sc">}</span></span>
+<span id="cb6-1143"><a aria-label="1143"></a><span class="vs">    &lt;/svg&gt;</span></span>
+<span id="cb6-1144"><a aria-label="1144"></a><span class="vs">    &lt;div class="mc-result"&gt;</span></span>
+<span id="cb6-1145"><a aria-label="1145"></a><span class="vs">      </span><span class="sc">${</span><span class="fu">tex</span><span class="vs">`</span><span class="sc">\h</span><span class="vs">at{</span><span class="sc">\m</span><span class="vs">athbb{P}} = </span><span class="sc">\f</span><span class="vs">rac{</span><span class="sc">${</span>hits<span class="sc">}</span><span class="vs">}{</span><span class="sc">${</span>mc_n<span class="sc">}</span><span class="vs">} =</span><span class="sc">${</span>ratio<span class="sc">}</span><span class="vs">`</span><span class="sc">}</span></span>
+<span id="cb6-1146"><a aria-label="1146"></a><span class="vs">    &lt;/div&gt;</span></span>
+<span id="cb6-1147"><a aria-label="1147"></a><span class="vs">  &lt;/div&gt;`</span><span class="op">;</span></span>
+<span id="cb6-1148"><a aria-label="1148"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="random-concept-box fragment fade-up">
+<div class="concept-title">
+Statistical Concept: Continuous Uniform Randomness
+</div>
+<div class="concept-body">
+<p>
+A <strong>true uniform random variable</strong> <span class="math inline">\(X \sim \mathcal{U}(0,1)\)</span> guarantees that every numerical value in <span class="math inline">\([0,1]\)</span> has an equal probability of being selected.
+</p>
+<div class="comparison-row">
+<div class="comp-col">
+<span class="comp-header">True Randomness</span>
+<ul>
+<li>
+Generated by physical processes (e.g., thermal noise, radioactive decay)
+</li>
+<li>
+Completely unpredictable with <strong>zero repeating patterns</strong>
+</li>
+</ul>
+</div>
+<div class="comp-col">
+<span class="comp-header">Pseudo-Randomness</span>
+<ul>
+<li>
+Generated by deterministic algorithms (by computer)
+</li>
+<li>
+<strong>Practically indistinguishable</strong> from true random
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>This foreshadows the Law of Large Numbers without naming it as the main object yet. You can say: later in the course we will make precise why this stabilizes.</p>
+<p>Do not let the interactive slide consume too much lecture time. It is especially useful for students revisiting the HTML at home.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-did-we-really-learn" class="slide level2 concept-slide">
+<h2>What did we really learn?</h2>
+<div class="eyebrow">
+Week 1 synthesis
+</div>
+<div class="closing-stack">
+<div class="closing-line fragment fade-up">
+Probability is a mathematical language for uncertainty.
+</div>
+<div class="closing-line fragment fade-up">
+<span class="math inline">\(\mathbb{P}(A\mid B)\neq \mathbb{P}(B\mid A)\)</span>
+</div>
+<div class="closing-line fragment fade-up">
+Independence is an assumption about the world — not permission to multiply numbers.
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="final-question">
+<p>If probability describes uncertain processes, how can data teach us which probabilities or models are plausible?</p>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="takeaway">
+Next: probability distributions — the shapes uncertainty can take.
+</div>
+</div>
+<aside class="notes">
+<p>End by returning to the course definition: reasoning with data under uncertainty.</p>
+<p>The final question sets up Week 2 and Week 3: distributions describe uncertain outcomes, and estimation uses data to learn model parameters.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Statistics 101 · Week 1</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 0.55,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"numbers":true},
+'chalkboard': {"buttons":false,"theme":"whiteboard"},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'fast',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.5e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script type="ojs-module-contents">
+    eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBwcmV2ID0gSW5wdXRzLnJhbmdlKFswLjEsIDMwXSwge3ZhbHVlOiAxLCBzdGVwOiAwLjEsIGxhYmVsOiBcIkRpc2Vhc2UgcHJldmFsZW5jZSAoJSlcIn0pXHJcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBzZW5zID0gSW5wdXRzLnJhbmdlKFs1MCwgMTAwXSwge3ZhbHVlOiA5MCwgc3RlcDogMSwgbGFiZWw6IFwiU2Vuc2l0aXZpdHkgKCUpXCJ9KVxyXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2Ygc3BlYyA9IElucHV0cy5yYW5nZShbNTAsIDEwMF0sIHt2YWx1ZTogOTUsIHN0ZXA6IDEsIGxhYmVsOiBcIlNwZWNpZmljaXR5ICglKVwifSlcclxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiYmF5ZXNDYWxjID0ge1xyXG4gIGNvbnN0IE4gPSAxMDAwO1xyXG4gIGNvbnN0IGRpc2Vhc2VkID0gTiAqIHByZXYgLyAxMDA7XHJcbiAgY29uc3QgaGVhbHRoeSA9IE4gLSBkaXNlYXNlZDtcclxuICBjb25zdCB0cCA9IGRpc2Vhc2VkICogc2VucyAvIDEwMDtcclxuICBjb25zdCBmcCA9IGhlYWx0aHkgKiAoMTAwIC0gc3BlYykgLyAxMDA7XHJcbiAgY29uc3QgcHB2ID0gdHAgLyAodHAgKyBmcCk7XHJcbiAgY29uc3Qgd2lkdGhUUCA9IDEwMCAqIHRwIC8gTWF0aC5tYXgodHAgKyBmcCwgMSk7XHJcbiAgY29uc3Qgd2lkdGhGUCA9IDEwMCAtIHdpZHRoVFA7XHJcbiAgcmV0dXJuIGh0bWxgPGRpdiBjbGFzcz1cImJheWVzLXdpZGdldFwiPlxyXG4gICAgPGRpdiBjbGFzcz1cImJheWVzLW91dHB1dC1ncmlkXCI+XHJcbiAgICAgIDxkaXYgY2xhc3M9XCJiYXllcy1vdXRwdXRcIj48c3Bhbj5EaXNlYXNlPC9zcGFuPjxzdHJvbmc+JHtkaXNlYXNlZC50b0ZpeGVkKDEpfTwvc3Ryb25nPjxzbWFsbD5wZXIgMTAwMDwvc21hbGw+PC9kaXY+XHJcbiAgICAgIDxkaXYgY2xhc3M9XCJiYXllcy1vdXRwdXRcIj48c3Bhbj5UcnVlICs8L3NwYW4+PHN0cm9uZz4ke3RwLnRvRml4ZWQoMSl9PC9zdHJvbmc+PHNtYWxsPnBlciAxMDAwPC9zbWFsbD48L2Rpdj5cclxuICAgICAgPGRpdiBjbGFzcz1cImJheWVzLW91dHB1dFwiPjxzcGFuPkZhbHNlICs8L3NwYW4+PHN0cm9uZz4ke2ZwLnRvRml4ZWQoMSl9PC9zdHJvbmc+PHNtYWxsPnBlciAxMDAwPC9zbWFsbD48L2Rpdj5cclxuICAgICAgPGRpdiBjbGFzcz1cImJheWVzLW91dHB1dFwiPjxzcGFuPlAoRGlzZWFzZSB8ICspPC9zcGFuPjxzdHJvbmc+JHsoMTAwICogcHB2KS50b0ZpeGVkKDEpfSU8L3N0cm9uZz48c21hbGw+cG9zaXRpdmUgcHJlZGljdGl2ZSB2YWx1ZTwvc21hbGw+PC9kaXY+XHJcbiAgICA8L2Rpdj5cclxuICAgIDxkaXYgY2xhc3M9XCJwb3NpdGl2ZS1iYXJcIj5cclxuICAgICAgPGRpdiBjbGFzcz1cInRwXCIgc3R5bGU9XCJ3aWR0aDoke3dpZHRoVFB9JVwiPnRydWUgcG9zaXRpdmVzPC9kaXY+XHJcbiAgICAgIDxkaXYgY2xhc3M9XCJmcFwiIHN0eWxlPVwid2lkdGg6JHt3aWR0aEZQfSVcIj5mYWxzZSBwb3NpdGl2ZXM8L2Rpdj5cclxuICAgIDwvZGl2PlxyXG4gIDwvZGl2PmBcclxufVxyXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTUiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJ2aWV3b2YgbWNfbiA9IElucHV0cy5yYW5nZShbMjAsIDEwMDBdLCB7dmFsdWU6IDIwMCwgc3RlcDogMjAsIGxhYmVsOiBcIk51bWJlciBvZiByYW5kb20gcG9pbnRzXCJ9KVxyXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJtY1Bsb3QgPSB7XHJcbiAgY29uc3QgcHRzID0gQXJyYXkuZnJvbSh7bGVuZ3RoOiBtY19ufSwgKCkgPT4gKHt4OiBNYXRoLnJhbmRvbSgpLCB5OiBNYXRoLnJhbmRvbSgpfSkpO1xyXG4gIGNvbnN0IGhpdHMgPSBwdHMuZmlsdGVyKGQgPT4gZC54ICsgZC55IDwgMSkubGVuZ3RoO1xyXG4gIGNvbnN0IHJhdGlvID0gKGhpdHMgLyBtY19uKS50b0ZpeGVkKDMpO1xyXG4gIFxyXG4gIGNvbnN0IGNpcmNsZXMgPSBwdHMubWFwKGQgPT4ge1xyXG4gICAgY29uc3QgY2xzID0gZC54ICsgZC55IDwgMSA/IFwiaGl0XCIgOiBcIm1pc3NcIjtcclxuICAgIHJldHVybiBgPGNpcmNsZSBjbGFzcz1cIiR7Y2xzfVwiIGN4PVwiJHtkLngqMTAwfVwiIGN5PVwiJHsxMDAtZC55KjEwMH1cIiByPVwiMS4xNVwiIC8+YDtcclxuICB9KS5qb2luKFwiXCIpO1xyXG5cclxuICByZXR1cm4gaHRtbGA8ZGl2IGNsYXNzPVwibWMtd2lkZ2V0XCI+XHJcbiAgICA8c3ZnIHZpZXdCb3g9XCIwIDAgMTAwIDEwMFwiIHJvbGU9XCJpbWdcIiBhcmlhLWxhYmVsPVwiTW9udGUgQ2FybG8gcG9pbnRzIGluIHVuaXQgc3F1YXJlXCI+XHJcbiAgICAgIDxwb2x5Z29uIHBvaW50cz1cIjAsMTAwIDAsMCAxMDAsMTAwXCIgY2xhc3M9XCJtYy10cmlhbmdsZVwiPjwvcG9seWdvbj5cclxuICAgICAgPGxpbmUgeDE9XCIwXCIgeTE9XCIwXCIgeDI9XCIxMDBcIiB5Mj1cIjEwMFwiIGNsYXNzPVwibWMtZGlhZ29uYWxcIj48L2xpbmU+XHJcbiAgICAgICR7Y2lyY2xlc31cclxuICAgIDwvc3ZnPlxyXG4gICAgPGRpdiBjbGFzcz1cIm1jLXJlc3VsdFwiPlxyXG4gICAgICAke3RleGBcXGhhdHtcXG1hdGhiYntQfX0gPSBcXGZyYWN7JHtoaXRzfX17JHttY19ufX0gPSR7cmF0aW99YH1cclxuICAgIDwvZGl2PlxyXG4gIDwvZGl2PmA7XHJcbn1cclxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdwcmV2JykifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3NlbnMnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc3BlYycpIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdtY19uJykifV19
+    </script>
+    <script type="module">
+    if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+    window._ojs.paths.runtimeToDoc = "../../week01";
+    window._ojs.paths.runtimeToRoot = "../..";
+    window._ojs.paths.docToRoot = "..";
+    window._ojs.selfContained = false;
+    window._ojs.runtime.interpretFromScriptTags();
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

@@ -1,0 +1,2764 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
+
+  <meta name="author" content="Graduate Pharmaceutical Studies">
+  <title>Statistics for Pharmacists</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-97828ad88c487bff83a85c600c30abca.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-footer="" class="quarto-title-block center">
+  <h1 class="title">Statistics for Pharmacists</h1>
+  <p class="subtitle">Week 4 · Understanding data</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Graduate Pharmaceutical Studies
+</div>
+</div>
+</div>
+
+</section>
+<section id="understanding-data" class="slide level2 title-slide center">
+<h2>Understanding data</h2>
+<div class="eyebrow">
+Week 4
+</div>
+<div class="concept-line" style="margin-top:1em;">
+<p>From recorded values to usable information.</p>
+</div>
+<aside class="notes">
+<p>This week is a data-literacy pivot. Students now assume that a study has produced observations; the lecture asks how values become usable information, how data are structured and cleaned, and how visualization guides exploratory analysis.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="from-last-week-to-this-week" class="slide level2 concept-slide">
+<h2>From last week to this week</h2>
+<div class="eyebrow">
+Retrieval
+</div>
+<div class="dik-flow">
+<div class="dik-node model fragment fade-up">
+<div class="dik-title">
+Study design
+</div>
+<div class="dik-sub">
+how observations are generated
+</div>
+</div>
+<div class="dik-arrow fragment fade-in">
+→
+</div>
+<div class="dik-node data fragment fade-up">
+<div class="dik-title">
+Data
+</div>
+<div class="dik-sub">
+recorded observations
+</div>
+</div>
+<div class="dik-arrow fragment fade-in">
+→
+</div>
+<div class="dik-node know fragment fade-up">
+<div class="dik-title">
+Decisions
+</div>
+<div class="dik-sub">
+only as credible as the data-generating process
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Careful planning creates data we can trust. Now we ask how to understand those data.
+</div>
+</div>
+</section>
+<section id="now-we-have-the-data.-where-do-we-start" class="slide level2 motivation-slide">
+<h2>Now we have the data. Where do we start?</h2>
+<div class="eyebrow">
+Opening hook
+</div>
+<div class="raw-number-block fragment fade-up">
+<p><span>21</span><span>24</span><span>26</span><span>31</span><span>48</span><span>52</span><span>55</span> <span>41</span><span>38</span><span>72</span><span>76</span><span>80</span><span>63</span><span>58</span> <span>51</span><span>98</span><span>103</span><span>110</span><span>87</span><span>79</span><span>70</span> <span>65</span><span>60</span><span>57</span><span>89</span><span>93</span><span>96</span><span>78</span></p>
+</div>
+<div class="fragment fade-up">
+<div class="big-question">
+What do these numbers suggest?
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Raw numbers rarely tell their story by themselves.
+</div>
+</div>
+</section>
+<section id="humans-see-patterns-before-they-calculate-them" class="slide level2 concept-slide">
+<h2>Humans see patterns before they calculate them</h2>
+<div class="eyebrow">
+Exploratory analysis starts visually
+</div>
+<div class="outbreak-grid">
+<div id="outbreakNumbers" class="outbreak-number-table fragment fade-up">
+
+</div>
+<div class="outbreak-plot fragment fade-up">
+<svg id="outbreakSvg" viewbox="0 0 700 360" aria-label="Synthetic infection counts">
+</svg>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Before formal analysis, inspect the shape of the data.
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+Synthetic teaching example: the graphic illustrates statistical reasoning, not a claim about any real pandemic policy or intervention.
+</div>
+</div>
+</section>
+<section id="visual-pattern-hypothesis-evidence" class="slide level2 concept-slide">
+<h2>Visual pattern → hypothesis → evidence</h2>
+<div class="eyebrow">
+A bridge back to causality: Pattern recognition is the beginning, not the conclusion
+</div>
+<div class="dik-flow">
+<div class="dik-node data fragment fade-up">
+<div class="dik-title">
+Visual pattern
+</div>
+<div class="dik-sub">
+something appears structured
+</div>
+</div>
+<div class="dik-arrow fragment fade-in">
+→
+</div>
+<div class="dik-node info fragment fade-up">
+<div class="dik-title">
+Hypothesis
+</div>
+<div class="dik-sub">
+a possible explanation
+</div>
+</div>
+<div class="dik-arrow fragment fade-in">
+→
+</div>
+<div class="dik-node know fragment fade-up">
+<div class="dik-title">
+Evidence
+</div>
+<div class="dik-sub">
+study design + analysis test the explanation
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Visualization can generate questions. It does not, by itself, prove causes.
+</div>
+</div>
+</section>
+<section id="data-are-recorded-values" class="slide level2 concept-slide">
+<h2>Data are recorded values</h2>
+<div class="eyebrow">
+Without context, values are disconnected from the world
+</div>
+<div class="w4-grid-4">
+<div class="w4-card observed-border fragment fade-up">
+<div class="w4-card-title">
+37.8
+</div>
+<div class="w4-card-sub">
+value only
+</div>
+</div>
+<div class="w4-card observed-border fragment fade-up">
+<div class="w4-card-title">
+120
+</div>
+<div class="w4-card-sub">
+value only
+</div>
+</div>
+<div class="w4-card observed-border fragment fade-up">
+<div class="w4-card-title">
+F
+</div>
+<div class="w4-card-sub">
+symbol only
+</div>
+</div>
+<div class="w4-card observed-border fragment fade-up">
+<div class="w4-card-title">
+Stage 2
+</div>
+<div class="w4-card-sub">
+label only
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+A number becomes useful only when we know what it represents.
+</div>
+</div>
+</section>
+<section id="context-turns-data-into-information" class="slide level2 concept-slide">
+<h2>Context turns data into information</h2>
+<div class="eyebrow">
+Same values, now connected to meaning
+</div>
+<div class="w4-grid-4">
+<div class="w4-card probability-border fragment fade-up">
+<div class="w4-card-title">
+37.8 °C
+</div>
+<div class="w4-card-sub">
+body temperature
+</div>
+</div>
+<div class="w4-card probability-border fragment fade-up">
+<div class="w4-card-title">
+120 mmHg
+</div>
+<div class="w4-card-sub">
+systolic blood pressure
+</div>
+</div>
+<div class="w4-card probability-border fragment fade-up">
+<div class="w4-card-title">
+F
+</div>
+<div class="w4-card-sub">
+sex variable
+</div>
+</div>
+<div class="w4-card probability-border fragment fade-up">
+<div class="w4-card-title">
+Stage 2
+</div>
+<div class="w4-card-sub">
+disease stage
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Information is data interpreted in context.
+</div>
+</div>
+</section>
+<section id="data-information-knowledge" class="slide level2 concept-slide">
+<h2>Data, information, knowledge</h2>
+<div class="eyebrow">
+Three levels of use
+</div>
+<div class="dik-flow">
+<div class="dik-node data fragment fade-up">
+<div class="dik-title">
+Data
+</div>
+<div class="dik-img-wrap">
+<img src="figures/data.jpg" alt="data">
+</div>
+<div class="dik-sub">
+recorded values, symbols or measurements
+</div>
+</div>
+<div class="dik-arrow fragment fade-in">
+→
+</div>
+<div class="dik-node info fragment fade-up">
+<div class="dik-title">
+Information
+</div>
+<div class="dik-img-wrap">
+<img src="figures/information.jpg" alt="information">
+</div>
+<div class="dik-sub">
+data plus context and meaning
+</div>
+</div>
+<div class="dik-arrow fragment fade-in">
+→
+</div>
+<div class="dik-node know fragment fade-up">
+<div class="dik-title">
+Knowledge
+</div>
+<div class="dik-img-wrap">
+<img src="figures/knowledge.jpg" alt="knowledge">
+</div>
+<div class="dik-sub">
+information connected, interpreted and used
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Statistics helps us move from recorded values toward usable knowledge.
+</div>
+</div>
+</section>
+<section id="information-as-surprise" class="slide level2 math-slide">
+<h2>Information as surprise</h2>
+<div class="eyebrow">
+A short information-theory side-track
+</div>
+<div class="definition-box large-definition">
+<p><span class="math display">\[
+I(x)=-\log_2 \mathbb{P}(x)
+\]</span></p>
+</div>
+<div class="info-card-row">
+<div class="info-card fragment fade-up">
+<div class="p">
+<span class="math inline">\(P(x)=1\)</span>
+</div>
+<div class="bits">
+0 bits
+</div>
+</div>
+<div class="info-card fragment fade-up">
+<div class="p">
+<span class="math inline">\(P(x)=1/2\)</span>
+</div>
+<div class="bits">
+1 bit
+</div>
+</div>
+<div class="info-card fragment fade-up">
+<div class="p">
+<span class="math inline">\(P(x)=1/8\)</span>
+</div>
+<div class="bits">
+3 bits
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Rare events are more surprising, so observing them carries more information.
+</div>
+</div>
+</section>
+<section id="try-it-probability-and-surprise" class="slide level2 exercise-slide">
+<h2>Try it: probability and surprise</h2>
+<div class="try-label">
+Interactive concept slide
+</div>
+<div id="surpriseWidget" class="info-widget">
+<div class="w4-control-row">
+<label class="w4-control">Event probability p<input id="surpriseP" type="range" min="0.01" max="1" value="0.50" step="0.01"></label>
+<div class="w4-output">
+<span>probability</span><br><strong id="surprisePValue">0.50</strong>
+</div>
+<div class="w4-output">
+<span>surprise</span><br><strong id="surpriseBits">1.00 bits</strong>
+</div>
+</div>
+<div class="info-bar-wrap">
+<div id="surpriseBar" class="info-bar">
+
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+As probability goes down, surprise goes up.
+</div>
+</div>
+</section>
+<section id="entropy-is-expected-surprise" class="slide level2 math-slide">
+<h2>Entropy is expected surprise</h2>
+<div class="eyebrow">
+Average information content
+</div>
+<div class="definition-box large-definition">
+<p><span class="math display">\[
+H(X)=-\sum_i \mathbb{P}(x_i)\log_2 \mathbb{P}(x_i)
+\]</span></p>
+</div>
+<div class="entropy-compare">
+<div class="entropy-source fragment fade-up">
+<div class="w4-card-title">
+Predictable source
+</div>
+<div class="entropy-stream">
+AAAAAAAAABAAAAAA
+</div>
+<div class="entropy-value">
+low entropy
+</div>
+</div>
+<div class="entropy-source fragment fade-up">
+<div class="w4-card-title">
+Less predictable source
+</div>
+<div class="entropy-stream">
+ABBAABAABBABBAAB
+</div>
+<div class="entropy-value">
+higher entropy
+</div>
+</div>
+</div>
+<script>
+(function() {
+  function applyColorize() {
+    const colorizeStream = (str) => {
+      return str
+        .replace(/A/g, '<span class="char-a">A</span>')
+        .replace(/B/g, '<span class="char-b">B</span>');
+    };
+    document.querySelectorAll('.entropy-stream').forEach((el) => {
+      // Avoid re-running if already processed
+      if (!el.dataset.colorized) {
+        el.innerHTML = colorizeStream(el.textContent.trim());
+        el.dataset.colorized = "true";
+      }
+    });
+  }
+
+  // Execute immediately if DOM elements exist
+  applyColorize();
+
+  // Also hook into Reveal if available and not yet ready
+  if (window.Reveal && typeof Reveal.on === 'function') {
+    Reveal.on('ready', applyColorize);
+    Reveal.on('slidechanged', applyColorize);
+  }
+})();
+</script>
+</section>
+<section id="entropy-and-randomness" class="slide level2 concept-slide">
+<h2>Entropy and randomness</h2>
+<div class="eyebrow">
+Shared mathematics across information and physical states
+</div>
+<div class="w4-grid-2">
+<div class="w4-card probability-border fragment fade-up">
+<div class="w4-card-title">
+Shannon entropy
+</div>
+<div class="w4-card-sub">
+uncertainty over possible messages or symbols
+</div>
+<div class="w4-card-eq">
+high entropy → hard to predict
+</div>
+</div>
+<div class="w4-card model-border fragment fade-up">
+<div class="w4-card-title">
+Statistical-mechanical entropy
+</div>
+<div class="w4-card-sub">
+uncertainty over possible microstates
+</div>
+<div class="w4-card-eq">
+shared mathematical structure
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Both quantify uncertainty over possible states.
+</div>
+</div>
+<div class="timeline">
+<div class="timeline-step fragment fade-up">
+<div class="label">
+Claude Elwood Shannon
+</div>
+<img src="figures/Shannon.jpg" alt="Claude Shannon" class="step-image">
+</div>
+</div>
+</section>
+<section id="types-of-variables" class="slide level2 section-break">
+<h2>Types of variables</h2>
+<div class="section-kicker">
+Part II
+</div>
+<div class="section-title">
+Types of variables
+</div>
+<div class="section-subtitle">
+We now see the different data types and their characteristics.
+</div>
+</section>
+<section id="first-question-what-kind-of-variable-is-it" class="slide level2 concept-slide">
+<h2>First question: what kind of variable is it?</h2>
+<div class="eyebrow">
+Data types determine meaningful summaries and plots
+</div>
+<div class="var-tree">
+<div class="var-branch cat fragment fade-up">
+<div class="var-branch-title">
+Categorical
+</div>
+<div class="var-leaves">
+<div class="var-leaf">
+<strong>Nominal</strong><br>names, no order
+</div>
+<div class="var-leaf">
+<strong>Ordinal</strong><br>ordered categories
+</div>
+</div>
+</div>
+<div class="var-branch num fragment fade-up">
+<div class="var-branch-title">
+Numerical
+</div>
+<div class="var-leaves">
+<div class="var-leaf">
+<strong>Interval</strong><br>differences meaningful
+</div>
+<div class="var-leaf">
+<strong>Ratio</strong><br>ratios meaningful
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+The data type tells us what operations make sense.
+</div>
+</div>
+</section>
+<section id="nominal-and-ordinal-examples" class="slide level2 concept-slide">
+<h2>Nominal and ordinal examples</h2>
+<div class="eyebrow">
+Categorical variables
+</div>
+<div class="w4-grid-2">
+<div class="w4-card observed-border fragment fade-up">
+<div class="w4-card-title">
+Nominal
+</div>
+<div class="w4-card-sub">
+formulation type · sex · genotype · adverse-event category
+</div>
+<div class="w4-card-eq">
+no intrinsic order
+</div>
+</div>
+<div class="w4-card observed-border fragment fade-up">
+<div class="w4-card-title">
+Ordinal
+</div>
+<div class="w4-card-sub">
+disease stage · toxicity grade · response category · pain scale
+</div>
+<div class="w4-card-eq">
+ordered categories
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Nominal categories of “A”, “B”, “0” blood group have no inherent order or distance.
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Ordinal categories of “severe”, “normal”, “moderate” still have no inherent distance (difference and sum are not meaningful), but there is inherent order.
+</div>
+</div>
+</section>
+<section id="interval-and-ratio-examples" class="slide level2 concept-slide">
+<h2>Interval and ratio examples</h2>
+<div class="eyebrow">
+Numerical variables
+</div>
+<div class="w4-grid-2">
+<div class="w4-card model-border fragment fade-up">
+<div class="w4-card-title">
+Interval
+</div>
+<div class="w4-card-sub">
+temperature in °C · calendar year
+</div>
+<div class="w4-card-eq">
+differences meaningful
+</div>
+</div>
+<div class="w4-card model-border fragment fade-up">
+<div class="w4-card-title">
+Ratio
+</div>
+<div class="w4-card-sub">
+mass · concentration · dose · time · Kelvin temperature
+</div>
+<div class="w4-card-eq">
+differences and ratios meaningful
+</div>
+<div class="w4-card-eq">
+absolute zero exists
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+A temperature of 20 °C is not “twice as hot” as 10 °C; a 20 mg dose is twice a 10 mg dose.
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Note how Celsius scale has no absolute zero point (it can be positive and negative), while Kelvin has an absolute zero.
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+But not every value that can be negative is automatically interval: for electric charge the negative does not signify magnitude, but rather direction, so it is still ratio.
+</div>
+</div>
+</section>
+<section id="which-summaries-make-sense" class="slide level2 concept-slide">
+<h2>Which summaries make sense?</h2>
+<div class="eyebrow">
+A bridge back to Week 3
+</div>
+<div class="summary-sense-table fragment fade-up" style="font-size: 4rem;">
+<div class="head">
+Variable type
+</div>
+<div class="head">
+Frequency
+</div>
+<div class="head">
+Mode
+</div>
+<div class="head">
+Median
+</div>
+<div class="head">
+Mean
+</div>
+<div class="head">
+Nominal
+</div>
+<div class="yes">
+✓
+</div>
+<div class="yes">
+✓
+</div>
+<div class="no">
+—
+</div>
+<div class="no">
+—
+</div>
+<div class="head">
+Ordinal
+</div>
+<div class="yes">
+✓
+</div>
+<div class="yes">
+✓
+</div>
+<div class="yes">
+✓
+</div>
+<div class="no">
+usually no
+</div>
+<div class="head">
+Numerical
+</div>
+<div class="yes">
+✓
+</div>
+<div class="yes">
+✓
+</div>
+<div class="yes">
+✓
+</div>
+<div class="yes">
+✓
+</div>
+</div>
+</section>
+<section id="try-it-classify-the-variable" class="slide level2 exercise-slide">
+<h2>Try it: classify the variable</h2>
+<div class="try-label">
+Interactive data-type checkpoint
+</div>
+<div id="varQuiz" class="var-quiz">
+<div id="varQuizItem" class="var-quiz-item">
+blood group
+</div>
+<div class="var-quiz-buttons">
+<button data-answer="nominal">
+Nominal
+</button>
+<button data-answer="ordinal">
+Ordinal
+</button>
+<button data-answer="interval">
+Interval
+</button>
+<button data-answer="ratio">
+Ratio
+</button>
+</div>
+<div id="varQuizFeedback" class="var-feedback">
+Choose the best type.
+</div>
+</div>
+</section>
+<section id="data-structure" class="slide level2 section-break">
+<h2>Data structure</h2>
+<div class="section-kicker">
+Part III
+</div>
+<div class="section-title">
+Data structure
+</div>
+<div class="section-subtitle">
+We now see how data should be structured.
+</div>
+</section>
+<section id="structured-and-unstructured-data" class="slide level2 concept-slide">
+<h2>Structured and unstructured data</h2>
+<div class="eyebrow">
+This course mostly uses structured tabular data
+</div>
+<div class="structure-compare">
+<!-- Structured Box -->
+<div class="structure-box fragment fade-up">
+<div class="structure-title">
+Structured
+</div>
+<div class="structure-img-wrap">
+<img src="figures/datatable.jpg" alt="Structured database table example">
+</div>
+<div class="structure-list">
+<div class="structure-item">
+patient table
+</div>
+<div class="structure-item">
+laboratory results table
+</div>
+<div class="structure-item">
+clinical-trial spreadsheet
+</div>
+</div>
+</div>
+<!-- Unstructured Box -->
+<div class="structure-box fragment fade-up">
+<div class="structure-title">
+Unstructured
+</div>
+<div class="structure-img-wrap">
+<img src="figures/unstructured_data.jpg" alt="Unstructured clinical note or scan example">
+</div>
+<div class="structure-list">
+<div class="structure-item">
+free-text clinical note
+</div>
+<div class="structure-item">
+image
+</div>
+<div class="structure-item">
+audio / scanned report
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="anatomy-of-a-data-table" class="slide level2 concept-slide">
+<h2>Anatomy of a data table</h2>
+<div class="eyebrow">
+Rows, columns and cells
+</div>
+<div class="table-anatomy fragment fade-up" style="font-size: 3.4rem;">
+<div class="head col-highlight">
+patientID
+</div>
+<div class="head">
+sex
+</div>
+<div class="head">
+stage
+</div>
+<div class="head">
+diabetes
+</div>
+<div class="head">
+weight_kg
+</div>
+<div class="head">
+height_cm
+</div>
+<div class="head">
+bp_mmHg
+</div>
+<div class="head">
+bodyT_C
+</div>
+<div class="row-highlight">
+P01
+</div>
+<div class="row-highlight">
+F
+</div>
+<div class="row-highlight">
+1
+</div>
+<div class="row-highlight">
+false
+</div>
+<div class="row-highlight">
+58
+</div>
+<div class="row-highlight">
+164
+</div>
+<div class="row-highlight">
+118
+</div>
+<div class="row-highlight">
+36.8
+</div>
+<div>
+P02
+</div>
+<div>
+M
+</div>
+<div>
+2
+</div>
+<div>
+false
+</div>
+<div>
+82
+</div>
+<div>
+180
+</div>
+<div>
+142
+</div>
+<div>
+37.1
+</div>
+<div>
+P03
+</div>
+<div>
+F
+</div>
+<div>
+3
+</div>
+<div>
+true
+</div>
+<div>
+72
+</div>
+<div>
+169
+</div>
+<div>
+155
+</div>
+<div>
+38.0
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Rows are observations; columns are variables; cells are values.
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+We will reuse this type of structure throughout Week 4.
+</div>
+</div>
+</section>
+<section id="wide-format-long-format" class="slide level2 concept-slide">
+<h2>Wide format → Long format</h2>
+<div class="eyebrow">
+Humans often like reading repeated measurements side-by-side → Long format often makes grouping and plotting easier
+</div>
+<div class="format-demo">
+<div class="mini-data-table format-table-wide fragment fade-up">
+<div class="head">
+patient
+</div>
+<div class="head">
+day1
+</div>
+<div class="head">
+day2
+</div>
+<div class="head">
+day3
+</div>
+<div>
+P01
+</div>
+<div>
+120
+</div>
+<div>
+124
+</div>
+<div>
+122
+</div>
+<div>
+P02
+</div>
+<div>
+142
+</div>
+<div>
+139
+</div>
+<div>
+137
+</div>
+</div>
+<div class="format-arrow fragment fade-in">
+→
+</div>
+<div class="mini-data-table format-table-long fragment fade-up">
+<div class="head">
+patient
+</div>
+<div class="head">
+day
+</div>
+<div class="head">
+bp_mmHg
+</div>
+<div>
+P01
+</div>
+<div>
+1
+</div>
+<div>
+120
+</div>
+<div>
+P01
+</div>
+<div>
+2
+</div>
+<div>
+124
+</div>
+<div>
+P01
+</div>
+<div>
+3
+</div>
+<div>
+122
+</div>
+<div>
+P02
+</div>
+<div>
+1
+</div>
+<div>
+142
+</div>
+<div>
+P02
+</div>
+<div>
+2
+</div>
+<div>
+139
+</div>
+<div>
+P02
+</div>
+<div>
+3
+</div>
+<div>
+137
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Wide format keeps multiple measurement occasions in separate columns.
+</div>
+</div>
+</section>
+<section id="transformation-creates-derived-variables" class="slide level2 concept-slide">
+<h2>Transformation creates derived variables</h2>
+<div class="eyebrow">
+Raw variables can create new variables
+</div>
+<div class="transform-equation fragment fade-up">
+<div class="transform-card">
+weight = 72 kg
+</div>
+<div class="transform-card">
+height = 1.78 m
+</div>
+<div class="transform-arrow">
+→
+</div>
+<div class="transform-card estimate">
+BMI = 22.7
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p><span class="math display">\[
+BMI=\frac{\mathrm{weight}_{kg}}{\mathrm{height}_m^2}
+\]</span></p>
+</div>
+</section>
+<section id="transformation-changes-representation" class="slide level2 concept-slide">
+<h2>Transformation changes representation</h2>
+<div class="eyebrow">
+The patient does not change; the data representation changes
+</div>
+<div class="w4-grid-4">
+<div class="w4-card observed-border fragment fade-up">
+<div class="w4-card-title">
+Units
+</div>
+<div class="w4-card-sub">
+kg → g
+</div>
+</div>
+<div class="w4-card model-border fragment fade-up">
+<div class="w4-card-title">
+Temperature scale
+</div>
+<div class="w4-card-sub">
+°C → K
+</div>
+</div>
+<div class="w4-card probability-border fragment fade-up">
+<div class="w4-card-title">
+Log scale
+</div>
+<div class="w4-card-sub">
+concentration → log concentration
+</div>
+</div>
+<div class="w4-card estimate-border fragment fade-up">
+<div class="w4-card-title">
+Derived variable
+</div>
+<div class="w4-card-sub">
+weight + height → BMI
+</div>
+</div>
+</div>
+</section>
+<section id="why-log-transform" class="slide level2 concept-slide">
+<h2>Why log-transform?</h2>
+<div class="eyebrow">
+Multiplicative variation can become additive structure
+</div>
+<div class="log-axis-demo fragment fade-up">
+<div class="w4-card-title">
+Raw scale
+</div>
+<div class="log-axis">
+<span>1</span><span>10</span><span>100</span><span>1000</span>
+</div>
+</div>
+<div class="log-axis-demo fragment fade-up">
+<div class="w4-card-title">
+log10 scale
+</div>
+<div class="log-axis">
+<span>0</span><span>1</span><span>2</span><span>3</span>
+</div>
+</div>
+</section>
+<section id="missing-values-are-not-just-empty-cells" class="slide level2 concept-slide">
+<h2>Missing values are not just empty cells</h2>
+<div class="eyebrow">
+Missingness has causes
+</div>
+<div class="patient-table fragment fade-up" style="font-size: 3.4rem; grid-template-columns:repeat(5,1fr);">
+<div class="head">
+patient
+</div>
+<div class="head">
+visit
+</div>
+<div class="head">
+bp_mmHg
+</div>
+<div class="head">
+temp_C
+</div>
+<div class="head">
+reason?
+</div>
+<div>
+P01
+</div>
+<div>
+1
+</div>
+<div>
+118
+</div>
+<div>
+36.8
+</div>
+<div class="muted">
+observed
+</div>
+<div>
+P01
+</div>
+<div>
+2
+</div>
+<div class="missing">
+NA
+</div>
+<div>
+37.0
+</div>
+<div class="missing">
+?
+</div>
+<div>
+P02
+</div>
+<div>
+1
+</div>
+<div>
+142
+</div>
+<div class="missing">
+NA
+</div>
+<div class="missing">
+?
+</div>
+</div>
+<div class="missing-reasons fragment fade-up">
+<div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.62em; color: #475569;">
+measurement failed
+</div>
+<div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.62em; color: #475569;">
+patient skipped visit
+</div>
+<div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.62em; color: #475569;">
+not applicable
+</div>
+<div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.62em; color: #475569;">
+data-entry loss
+</div>
+<div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.62em; color: #475569;">
+dropout
+</div>
+</div>
+</section>
+<section id="handling-missing-values" class="slide level2 concept-slide">
+<h2>Handling missing values</h2>
+<div class="eyebrow">
+No method is automatically safe
+</div>
+<div class="cleaning-cards">
+<!-- Card 1: Delete Rows -->
+<div class="cleaning-card fragment fade-up">
+<div class="cleaning-title">
+Delete rows
+</div>
+<div class="cleaning-img-wrap">
+<img src="figures/clean-delete-rows.jpg" alt="Delete rows illustration">
+</div>
+<div class="cleaning-sub">
+simple, but can discard information or bias results
+</div>
+</div>
+<!-- Card 2: Simple Imputation -->
+<div class="cleaning-card fragment fade-up">
+<div class="cleaning-title">
+Simple imputation
+</div>
+<div class="cleaning-img-wrap">
+<img src="figures/clean-simple-imputation.jpg" alt="Mean median mode imputation illustration">
+</div>
+<div class="cleaning-sub">
+mean · median · mode
+</div>
+</div>
+<!-- Card 3: Model-based -->
+<div class="cleaning-card fragment fade-up">
+<div class="cleaning-title">
+Similarity/model-based
+</div>
+<div class="cleaning-img-wrap">
+<img src="figures/clean-model-imputation.jpg" alt="Model based imputation illustration">
+</div>
+<div class="cleaning-sub">
+use related variables or similar records
+</div>
+</div>
+<!-- Card 4: Carry Forward -->
+<div class="cleaning-card fragment fade-up">
+<div class="cleaning-title">
+Carry forward
+</div>
+<div class="cleaning-img-wrap">
+<img src="figures/clean-locf.jpg" alt="Last observation carried forward illustration">
+</div>
+<div class="cleaning-sub">
+useful for time-series data
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+The reason values are missing matters as much as the replacement rule.
+</div>
+</div>
+</section>
+<section id="tiny-imputation-demonstration" class="slide level2 concept-slide">
+<h2>Tiny imputation demonstration</h2>
+<div class="eyebrow">
+The chosen rule changes the inserted value
+</div>
+<div class="w4-grid-3">
+<div class="w4-card observed-border fragment fade-up">
+<div class="w4-card-title">
+Observed series
+</div>
+<div class="w4-card-eq">
+5, 6, NA, 7, 20
+</div>
+</div>
+<div class="w4-card model-border fragment fade-up">
+<div class="w4-card-title">
+Mean imputation
+</div>
+<div class="w4-card-eq">
+NA → 9.5
+</div>
+<div class="w4-card-sub">
+pulled by the outlier
+</div>
+</div>
+<div class="w4-card estimate-border fragment fade-up">
+<div class="w4-card-title">
+Median imputation
+</div>
+<div class="w4-card-eq">
+NA → 6.5
+</div>
+<div class="w4-card-sub">
+more robust here
+</div>
+</div>
+</div>
+</section>
+<section id="databases" class="slide level2 section-break">
+<h2>Databases</h2>
+<div class="section-kicker">
+Part IV
+</div>
+<div class="section-title">
+Databases
+</div>
+<div class="section-subtitle">
+We now see how data is stored and retrieved from databases.
+</div>
+</section>
+<section id="queries-are-set-operations" class="slide level2 concept-slide">
+<h2>Queries are set operations</h2>
+<div class="eyebrow">
+Database logic returns to Week 1 set theory
+</div>
+<div class="set-logic">
+<!-- Left Side: Venn Diagram -->
+<div class="overlap-mini fragment fade-up">
+<div class="circle circle-a">
+A: diabetes
+</div>
+<div class="circle circle-b">
+B: high BP
+</div>
+</div>
+<!-- Right Side Column: Stacked Cards -->
+<div class="set-cards-col">
+<div class="w4-card probability-border fragment fade-up">
+<div class="w4-card-title">
+AND
+</div>
+<div class="w4-card-eq">
+<span class="math inline">\(A\cap B\)</span>
+</div>
+<div class="w4-card-sub">
+patients satisfying both filters
+</div>
+</div>
+<div class="w4-card probability-border fragment fade-up">
+<div class="w4-card-title">
+OR
+</div>
+<div class="w4-card-eq">
+<span class="math inline">\(A\cup B\)</span>
+</div>
+<div class="w4-card-sub">
+patients satisfying either filters
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="patient-search-dashboard" class="slide level2 exercise-slide">
+<h2>Patient search dashboard</h2>
+<div class="try-label">
+Interactive data-query exercise
+</div>
+<div id="queryWidget" class="query-widget">
+<div class="query-controls">
+<p><label>diabetes<select id="qDiabetes"><option value="any">any</option><option value="true">true</option><option value="false">false</option></select></label> <label>sex<select id="qSex"><option value="any">any</option><option value="F">F</option><option value="M">M</option></select></label> <label>BP status<select id="qBpStatus"><option value="any">any</option><option value="low">low</option><option value="normal">normal</option><option value="high">high</option></select></label> <label>stage<select id="qStage"><option value="any">any</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label> <label>height ≥ <strong id="qHeightValue">150</strong> cm<input id="qHeight" type="range" min="150" max="190" value="150" step="1"></label> <label>combine<select id="qLogic"><option value="and">AND</option><option value="or">OR</option></select></label></p>
+</div>
+<div class="query-output-row">
+<div class="query-count">
+<span>matched</span><strong id="qCount">—</strong><span>patients</span>
+</div>
+<div id="qTable" class="query-table">
+
+</div>
+</div>
+</div>
+</section>
+<section id="joining-tables-left-join" class="slide level2 concept-slide">
+<h2>Joining tables: left join</h2>
+<div class="eyebrow">
+Attach matching information while keeping the left table
+</div>
+<div class="join-demo fragment fade-up">
+<div>
+<div class="join-table patients">
+<div class="head">
+ID
+</div>
+<div class="head">
+sex
+</div>
+<div class="head">
+stage
+</div>
+<div>
+P01
+</div>
+<div>
+F
+</div>
+<div>
+1
+</div>
+<div>
+P02
+</div>
+<div>
+M
+</div>
+<div>
+2
+</div>
+<div>
+P03
+</div>
+<div>
+F
+</div>
+<div>
+3
+</div>
+</div>
+<div class="join-caption">
+patients
+</div>
+</div>
+<div>
+<div class="join-table labs">
+<div class="head">
+ID
+</div>
+<div class="head">
+lab_value
+</div>
+<div>
+P01
+</div>
+<div>
+32
+</div>
+<div>
+P03
+</div>
+<div>
+51
+</div>
+</div>
+<div class="join-caption">
+labs
+</div>
+</div>
+<div class="join-arrow">
+→
+</div>
+<div>
+<div class="join-table joined">
+<div class="head">
+ID
+</div>
+<div class="head">
+sex
+</div>
+<div class="head">
+stage
+</div>
+<div class="head">
+lab_value
+</div>
+<div>
+P01
+</div>
+<div>
+F
+</div>
+<div>
+1
+</div>
+<div>
+32
+</div>
+<div>
+P02
+</div>
+<div>
+M
+</div>
+<div>
+2
+</div>
+<div class="missing">
+NA
+</div>
+<div>
+P03
+</div>
+<div>
+F
+</div>
+<div>
+3
+</div>
+<div>
+51
+</div>
+</div>
+<div class="join-caption">
+left join
+</div>
+</div>
+</div>
+</section>
+<section id="joining-tables-full-join" class="slide level2 concept-slide">
+<h2>Joining tables: full join</h2>
+<div class="eyebrow">
+Keep every record from both sides
+</div>
+<div class="join-demo fragment fade-up">
+<div>
+<div class="join-table patients">
+<div class="head">
+ID
+</div>
+<div class="head">
+sex
+</div>
+<div class="head">
+stage
+</div>
+<div>
+P01
+</div>
+<div>
+F
+</div>
+<div>
+1
+</div>
+<div>
+P02
+</div>
+<div>
+M
+</div>
+<div>
+2
+</div>
+</div>
+<div class="join-caption">
+patients
+</div>
+</div>
+<div>
+<div class="join-table labs">
+<div class="head">
+ID
+</div>
+<div class="head">
+lab_value
+</div>
+<div>
+P01
+</div>
+<div>
+32
+</div>
+<div>
+P03
+</div>
+<div>
+51
+</div>
+</div>
+<div class="join-caption">
+labs
+</div>
+</div>
+<div class="join-arrow">
+→
+</div>
+<div>
+<div class="join-table joined">
+<div class="head">
+ID
+</div>
+<div class="head">
+sex
+</div>
+<div class="head">
+stage
+</div>
+<div class="head">
+lab_value
+</div>
+<div>
+P01
+</div>
+<div>
+F
+</div>
+<div>
+1
+</div>
+<div>
+32
+</div>
+<div>
+P02
+</div>
+<div>
+M
+</div>
+<div>
+2
+</div>
+<div class="missing">
+NA
+</div>
+<div>
+P03
+</div>
+<div class="missing">
+NA
+</div>
+<div class="missing">
+NA
+</div>
+<div>
+51
+</div>
+</div>
+<div class="join-caption">
+full join
+</div>
+</div>
+</div>
+</section>
+<section id="graphs" class="slide level2 section-break">
+<h2>Graphs</h2>
+<div class="section-kicker">
+Part V
+</div>
+<div class="section-title">
+The second ingredient to descriptive statistics
+</div>
+<div class="section-subtitle">
+We now see how data are visualized.
+</div>
+</section>
+<section id="visualization-depends-on-variable-types" class="slide level2 concept-slide">
+<h2>Visualization depends on variable types</h2>
+<div class="eyebrow">
+Main concept of the week
+</div>
+<div class="viz-map">
+<div class="viz-matrix fragment fade-up">
+<div class="head">
+Selection
+</div>
+<div class="head">
+Useful view
+</div>
+<div>
+1 categorical
+</div>
+<div>
+frequency table + bar plot
+</div>
+<div>
+2 categorical
+</div>
+<div>
+contingency table + stacked bar plot
+</div>
+<div>
+1 numerical
+</div>
+<div>
+summary + histogram + boxplot
+</div>
+<div>
+2 numerical
+</div>
+<div>
+scatter plot
+</div>
+<div>
+categorical + numerical
+</div>
+<div>
+grouped boxplot
+</div>
+</div>
+<div class="w4-card probability-border fragment fade-up">
+<div class="w4-card-title">
+Rule of thumb
+</div>
+<div class="w4-card-sub">
+First identify variable types, then choose the graphical encoding.
+</div>
+</div>
+</div>
+<!-- ## One categorical variable {.concept-slide} -->
+<!-- <div class="eyebrow">Frequency table and bar plot</div> -->
+<!-- <div class="viz-map"> -->
+<!-- <div class="viz-table fragment fade-up" style="grid-template-columns:1fr 1fr;"><div class="head">sex</div><div class="head">count</div><div>F</div><div>9</div><div>M</div><div>9</div></div> -->
+<!-- <div class="viz-plotbox fragment fade-up"><svg id="plotOneCat" viewBox="0 0 500 300"></svg></div> -->
+<!-- </div> -->
+<!-- ## Two categorical variables {.concept-slide} -->
+<!-- <div class="eyebrow">Contingency table and stacked bar plot</div> -->
+<!-- <div class="viz-map"> -->
+<!-- <div class="viz-table fragment fade-up" style="grid-template-columns:1fr 1fr 1fr 1fr;"><div class="head">sex</div><div class="head">stage 1</div><div class="head">stage 2</div><div class="head">stage 3</div><div>F</div><div>3</div><div>3</div><div>3</div><div>M</div><div>3</div><div>3</div><div>3</div></div> -->
+<!-- <div class="viz-plotbox fragment fade-up"><svg id="plotTwoCat" viewBox="0 0 500 300"></svg></div> -->
+<!-- </div> -->
+<!-- ## One numerical variable {.concept-slide} -->
+<!-- <div class="eyebrow">Summary, histogram and boxplot</div> -->
+<!-- <div class="viz-map"> -->
+<!-- <div class="w4-card model-border fragment fade-up"><div class="w4-card-title">bp_mmHg</div><div class="w4-card-sub">mean ≈ 135 · SD ≈ 17 · median ≈ 134 · IQR ≈ 28</div></div> -->
+<!-- <div class="viz-plotbox fragment fade-up"><svg id="plotOneNum" viewBox="0 0 500 300"></svg></div> -->
+<!-- </div> -->
+<!-- ## Two numerical variables {.concept-slide} -->
+<!-- <div class="eyebrow">Scatter plot and marginal distribution intuition</div> -->
+<!-- <div class="viz-plotbox fragment fade-up"><svg id="plotTwoNum" viewBox="0 0 700 320"></svg></div> -->
+<!-- ## One categorical + one numerical {.concept-slide} -->
+<!-- <div class="eyebrow">Compare distributions across groups</div> -->
+<!-- <div class="viz-plotbox fragment fade-up"><svg id="plotCatNum" viewBox="0 0 700 320"></svg></div> -->
+<!-- ## Two categorical + one numerical {.concept-slide} -->
+<!-- <div class="eyebrow">Facets and summary heatmaps</div> -->
+<!-- <div class="w4-grid-2"> -->
+<!-- <div class="viz-plotbox fragment fade-up"><svg id="plotTwoCatNumBox" viewBox="0 0 500 300"></svg></div> -->
+<!-- <div class="viz-plotbox fragment fade-up"><svg id="plotHeatmap" viewBox="0 0 500 300"></svg></div> -->
+<!-- </div> -->
+<!-- ## Two numerical variables plus categorical encodings {.concept-slide} -->
+<!-- <div class="eyebrow">Color and shape carry categorical information</div> -->
+<!-- <div class="viz-plotbox fragment fade-up"><svg id="plotEncodedScatter" viewBox="0 0 700 320"></svg></div> -->
+</section>
+<section id="try-it-choose-what-to-visualize" class="slide level2 exercise-slide">
+<h2>Try it: choose what to visualize</h2>
+<div class="try-label">
+Interactive visualization laboratory
+</div>
+<!-- <div class="viz-lab" id="vizLab"> -->
+<!-- <div class="viz-lab-controls"> -->
+<!-- <label><input type="checkbox" value="sex">sex</label> -->
+<!-- <label><input type="checkbox" value="stage">disease_stage</label> -->
+<!-- <label><input type="checkbox" value="bp">bp_mmHg</label> -->
+<!-- <label><input type="checkbox" value="temp">bodyT_C</label> -->
+<!-- </div> -->
+<!-- <div class="viz-lab-body"> -->
+<!-- <div id="vizLabSummary" class="viz-summary">Select one or more variables.</div> -->
+<!-- <svg id="vizLabSvg" viewBox="0 0 560 360" aria-label="Selected-variable visualization"></svg> -->
+<!-- </div> -->
+<!-- </div> -->
+<div id="vizLab" class="viz-lab">
+<div class="viz-lab-controls">
+<label><input type="checkbox" value="sex">sex</label> <label><input type="checkbox" value="stage">disease_stage</label> <label><input type="checkbox" value="bp">bp_mmHg</label> <label><input type="checkbox" value="temp">bodyT_C</label>
+</div>
+<div class="viz-lab-body">
+<div id="vizLabSummary" class="viz-summary">
+Select one or more variables.
+</div>
+<div class="viz-lab-figure">
+<img id="vizLabImage" src="" alt="Selected-variable visualization">
+</div>
+</div>
+</div>
+</section>
+<section id="the-same-data-can-tell-different-visual-stories" class="slide level2 concept-slide">
+<h2>The same data can tell different visual stories</h2>
+<div class="eyebrow">
+Axis choices matter
+</div>
+<div class="trap-grid">
+<div class="trap-card fragment fade-up">
+<img src="figures/trap_zero_axis.svg" alt="Bar chart with y-axis starting at zero" class="trap-img">
+<div class="join-caption">
+axis starts at 0
+</div>
+</div>
+<div class="trap-card fragment fade-up">
+<img src="figures/trap_truncated_axis.svg" alt="Bar chart with truncated y-axis exaggerating differences" class="trap-img">
+<div class="join-caption">
+truncated y-axis exaggerates differences
+</div>
+</div>
+</div>
+<!-- ## Visualization is analysis, not decoration {.concept-slide} -->
+<!-- <div class="eyebrow">Choose encodings that match the data and question</div> -->
+<!-- <div class="w4-grid-3"> -->
+<!-- <div class="w4-card warning-border fragment fade-up"><div class="w4-card-title">Too many pie slices</div><div class="w4-card-sub">hard to compare 18 categories</div></div> -->
+<!-- <div class="w4-card warning-border fragment fade-up"><div class="w4-card-title">Line plot for unordered categories</div><div class="w4-card-sub">implies continuity or order that may not exist</div></div> -->
+<!-- <div class="w4-card warning-border fragment fade-up"><div class="w4-card-title">3D bars</div><div class="w4-card-sub">perspective distorts values</div></div> -->
+<!-- </div> -->
+</section>
+<section id="visualization-is-analysis-not-decoration" class="slide level2 concept-slide">
+<h2>Visualization is analysis, not decoration</h2>
+<div class="eyebrow">
+Choose encodings that match the data and question
+</div>
+<div class="w4-grid-3">
+<div class="w4-card warning-border fragment fade-up">
+<div class="w4-card-title">
+Too many pie slices
+</div>
+<div class="w4-card-sub">
+hard to compare 18 categories
+</div>
+<div class="w4-card-figure">
+<p><img src="figures/trap_many_pie.svg" alt="Pie chart with too many slices" class="w4-card-img"></p>
+</div>
+</div>
+<div class="w4-card warning-border fragment fade-up">
+<div class="w4-card-title">
+Line plot for unordered categories
+</div>
+<div class="w4-card-sub">
+implies continuity or order that may not exist
+</div>
+<div class="w4-card-figure">
+<p><img src="figures/trap_unordered_line.svg" alt="Line plot used for unordered categories" class="w4-card-img"></p>
+</div>
+</div>
+<div class="w4-card warning-border fragment fade-up">
+<div class="w4-card-title">
+3D bars
+</div>
+<div class="w4-card-sub">
+perspective distorts values
+</div>
+<div class="w4-card-figure">
+<p><img src="figures/trap_3d_bars.svg" alt="3D bar chart distorting values" class="w4-card-img"></p>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+A plot is an analytical choice, not decoration.
+</div>
+</div>
+</section>
+<section id="exercise-what-data-type-is-this" class="slide level2 exercise-slide">
+<h2>Exercise: what data type is this?</h2>
+<div id="mcType" class="mc-widget">
+<div class="mc-question">
+Disease stage I, II, III is best described as…
+</div>
+<div class="mc-options">
+<button class="mc-button" data-correct="false">
+Nominal
+</button>
+<button class="mc-button" data-correct="true">
+Ordinal
+</button>
+<button class="mc-button" data-correct="false">
+Interval
+</button>
+<button class="mc-button" data-correct="false">
+Ratio
+</button>
+</div>
+<div class="mc-feedback">
+Choose an answer.
+</div>
+</div>
+</section>
+<section id="exercise-what-should-you-plot" class="slide level2 exercise-slide">
+<h2>Exercise: what should you plot?</h2>
+<div id="mcPlotChoice" class="mc-widget">
+<div class="mc-question">
+Compare systolic BP distributions between disease stages.
+</div>
+<div class="mc-options">
+<button class="mc-button" data-correct="false">
+Pie chart
+</button>
+<button class="mc-button" data-correct="false">
+Scatter plot only
+</button>
+<button class="mc-button" data-correct="true">
+Grouped boxplot
+</button>
+<button class="mc-button" data-correct="false">
+3D bar chart
+</button>
+</div>
+<div class="mc-feedback">
+Choose an answer.
+</div>
+</div>
+</section>
+<section id="exercise-what-does-this-query-return" class="slide level2 exercise-slide">
+<h2>Exercise: what does this query return?</h2>
+<div id="mcQuery" class="mc-widget">
+<div class="mc-question">
+diabetes = TRUE AND BP = high returns…
+</div>
+<div class="mc-options">
+<button class="mc-button" data-correct="true">
+only patients satisfying both conditions
+</button>
+<button class="mc-button" data-correct="false">
+patients satisfying either condition
+</button>
+<button class="mc-button" data-correct="false">
+all diabetic patients regardless of BP
+</button>
+<button class="mc-button" data-correct="false">
+all high-BP patients regardless of diabetes
+</button>
+</div>
+<div class="mc-feedback">
+Choose an answer.
+</div>
+</div>
+</section>
+<section id="exercise-what-went-wrong" class="slide level2 exercise-slide">
+<h2>Exercise: what went wrong?</h2>
+<div class="eyebrow">
+Data cleaning checkpoint
+</div>
+<div class="problem-table fragment fade-up" data-fragment-index="0" style="font-size: 4rem;">
+<div class="head">
+patient
+</div>
+<div class="head">
+sex
+</div>
+<div class="head">
+stage
+</div>
+<div class="head">
+bp
+</div>
+<div class="head">
+temp
+</div>
+<div class="head">
+problem?
+</div>
+<div>
+P01
+</div>
+<div>
+F
+</div>
+<div>
+1
+</div>
+<div>
+118
+</div>
+<div>
+36.8
+</div>
+<div>
+<span class="fragment fade-in" data-fragment-index="1">—</span>
+</div>
+<div>
+P02
+</div>
+<div>
+M
+</div>
+<div>
+2
+</div>
+<div class="problem">
+high
+</div>
+<div>
+37.1
+</div>
+<div>
+<span class="problem fragment fade-in" data-fragment-index="1">text in numeric column</span>
+</div>
+<div>
+P03
+</div>
+<div>
+F
+</div>
+<div>
+3
+</div>
+<div>
+155
+</div>
+<div class="problem">
+999
+</div>
+<div>
+<span class="problem fragment fade-in" data-fragment-index="1">coded missing value</span>
+</div>
+<div>
+P03
+</div>
+<div>
+F
+</div>
+<div>
+3
+</div>
+<div>
+155
+</div>
+<div>
+38.0
+</div>
+<div>
+<span class="problem fragment fade-in" data-fragment-index="1">duplicate patient</span>
+</div>
+<div>
+P04
+</div>
+<div>
+M
+</div>
+<div>
+1
+</div>
+<div>
+126
+</div>
+<div class="problem">
+24.0
+</div>
+<div>
+<span class="problem fragment fade-in" data-fragment-index="1">impossible value?</span>
+</div>
+</div>
+</section>
+<section id="what-did-we-learn" class="slide level2 concept-slide">
+<h2>What did we learn?</h2>
+<div class="eyebrow">
+Week 4 synthesis
+</div>
+<div class="pipeline">
+<div class="pipeline-step fragment fade-up">
+Good data begin with a credible data-generating process.
+</div>
+<div class="pipeline-step fragment fade-up">
+Structure makes data usable: rows, columns, variables and values.
+</div>
+<div class="pipeline-step fragment fade-up">
+Cleaning and transformation change what later analysis can mean.
+</div>
+<div class="pipeline-step fragment fade-up">
+Visualization exposes shape, patterns and problems before formal inference.
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="final-question">
+Next week: why averages and distributions become predictable when samples grow.
+</div>
+</div>
+<script>
+(function(){
+
+const patients = [
+{id:'P01', sex:'F', stage:1, diabetes:false, height:164, bp:118, temp:36.8},
+{id:'P02', sex:'M', stage:2, diabetes:true, height:180, bp:142, temp:37.1},
+{id:'P03', sex:'F', stage:3, diabetes:true, height:169, bp:155, temp:38.0},
+{id:'P04', sex:'M', stage:1, diabetes:false, height:175, bp:126, temp:36.7},
+{id:'P05', sex:'F', stage:2, diabetes:false, height:158, bp:132, temp:37.2},
+{id:'P06', sex:'M', stage:3, diabetes:true, height:188, bp:160, temp:38.2},
+{id:'P07', sex:'F', stage:1, diabetes:false, height:171, bp:112, temp:36.6},
+{id:'P08', sex:'M', stage:2, diabetes:false, height:176, bp:135, temp:37.0},
+{id:'P09', sex:'F', stage:3, diabetes:true, height:162, bp:150, temp:37.8},
+{id:'P10', sex:'M', stage:1, diabetes:false, height:172, bp:121, temp:36.9},
+{id:'P11', sex:'F', stage:2, diabetes:true, height:166, bp:144, temp:37.4},
+{id:'P12', sex:'M', stage:3, diabetes:true, height:184, bp:166, temp:38.4},
+{id:'P13', sex:'F', stage:1, diabetes:false, height:160, bp:116, temp:36.7},
+{id:'P14', sex:'M', stage:2, diabetes:false, height:178, bp:138, temp:37.3},
+{id:'P15', sex:'F', stage:3, diabetes:true, height:173, bp:158, temp:38.1},
+{id:'P16', sex:'M', stage:1, diabetes:false, height:182, bp:124, temp:36.8},
+{id:'P17', sex:'F', stage:2, diabetes:false, height:165, bp:130, temp:37.0},
+{id:'P18', sex:'M', stage:3, diabetes:true, height:190, bp:170, temp:38.5}
+];
+
+function bpStatus(bp){ if(bp < 120) return 'low'; if(bp <= 139) return 'normal'; return 'high'; }
+function mean(a){ return a.reduce((s,x)=>s+x,0)/a.length; }
+function sd(a){ const m=mean(a); return Math.sqrt(a.reduce((s,x)=>s+(x-m)**2,0)/(a.length-1)); }
+function median(a){ const b=[...a].sort((x,y)=>x-y); const n=b.length; return n%2?b[(n-1)/2]:(b[n/2-1]+b[n/2])/2; }
+
+function pathLine(points){ return points.map((p,i)=>`${i?'L':'M'} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' '); }
+function clearSvg(svg){ if(svg) svg.innerHTML=''; }
+function makeAxis(svg,W,H,left,bottom,right,top){ return `<line x1="${left}" y1="${bottom}" x2="${W-right}" y2="${bottom}" class="plot-axis"/><line x1="${left}" y1="${top}" x2="${left}" y2="${bottom}" class="plot-axis"/>`; }
+
+function drawOutbreak(svgId, detailed=true){
+ const svg=document.getElementById(svgId); if(!svg) return;
+ const data=[21,24,26,31,48,52,55,41,38,72,76,80,63,58,51,98,103,110,87,79,70,65,60,57,89,93,96,78,66,55,51,44,38,36,32,34,46,49,43,35,31,29,24,22,25,28,32,30,26,24];
+ const W=700,H=360,left=50,right=28,top=24,bottom=305; const maxY=120; const mapX=i=>left+i/(data.length-1)*(W-left-right); const mapY=y=>bottom-y/maxY*(bottom-top);
+ let html=makeAxis(svg,W,H,left,bottom,right,top);
+ if(detailed){ html += `<rect x="${mapX(28)}" y="${top}" width="${mapX(49)-mapX(28)}" height="${bottom-top}" class="outbreak-band"/><line x1="${mapX(28)}" y1="${top}" x2="${mapX(28)}" y2="${bottom}" class="outbreak-vax"/><text x="${mapX(28)+6}" y="${top+18}" class="outbreak-vax-label">marked rollout</text>`; }
+ html += `<path d="${pathLine(data.map((y,i)=>[mapX(i),mapY(y)]))}" class="outbreak-line"/>`;
+ [0,10,20,30,40,49].forEach(i=>{ html += `<text x="${mapX(i)}" y="${bottom+20}" text-anchor="middle" class="outbreak-note">${i}</text>`; });
+ html += `<text x="${left+6}" y="${top+15}" class="outbreak-note">synthetic cases</text>`;
+ if(detailed){ html += `<text x="${mapX(11)}" y="${mapY(100)-10}" class="outbreak-note">larger spikes</text><text x="${mapX(38)}" y="${mapY(50)-10}" class="outbreak-note">smaller later spikes</text>`; }
+ svg.innerHTML=html;
+ const table=document.getElementById('outbreakNumbers'); if(table && svgId==='outbreakSvg'){ table.innerHTML=data.slice(0,35).map(x=>`<span>${x}</span>`).join(''); }
+}
+
+function updateSurprise(){ const p=Number(document.getElementById('surpriseP')?.value||0.5); const bits=-Math.log2(p); const pv=document.getElementById('surprisePValue'), bv=document.getElementById('surpriseBits'), bar=document.getElementById('surpriseBar'); if(pv) pv.textContent=p.toFixed(2); if(bv) bv.textContent=bits.toFixed(2)+' bits'; if(bar) bar.style.width=Math.min(100,bits/6*100)+'%'; }
+
+const quizItems=[
+ {name:'blood group', answer:'nominal', why:'Blood group names have no natural numerical order.'},
+ {name:'disease stage', answer:'ordinal', why:'Stages are ordered categories.'},
+ {name:'tablet mass', answer:'ratio', why:'Mass has a meaningful zero and ratios make sense.'},
+ {name:'temperature in °C', answer:'interval', why:'Differences make sense; ratios do not.'},
+ {name:'treatment arm', answer:'nominal', why:'Treatment labels are categories.'}
+];
+let quizIndex=0;
+function initVarQuiz(){ const box=document.getElementById('varQuiz'); if(!box) return; const item=document.getElementById('varQuizItem'); const fb=document.getElementById('varQuizFeedback'); const buttons=box.querySelectorAll('button'); function show(){ item.textContent=quizItems[quizIndex].name; fb.textContent='Choose the best type.'; fb.className='var-feedback'; } buttons.forEach(btn=>btn.addEventListener('click',()=>{ const q=quizItems[quizIndex]; const ok=btn.dataset.answer===q.answer; fb.textContent=(ok?'Correct. ':'Not quite. ')+q.why; fb.className='var-feedback '+(ok?'good':'bad'); if(ok){ setTimeout(()=>{ quizIndex=(quizIndex+1)%quizItems.length; show(); },1500); } })); show(); }
+
+function initQuery(){ const w=document.getElementById('queryWidget'); if(!w) return; const ids=['qDiabetes','qSex','qBpStatus','qStage','qHeight','qLogic']; ids.forEach(id=>document.getElementById(id).addEventListener('input',renderQuery)); renderQuery(); }
+function renderQuery(){ const dia=document.getElementById('qDiabetes').value, sex=document.getElementById('qSex').value, bp=document.getElementById('qBpStatus').value, stage=document.getElementById('qStage').value, h=Number(document.getElementById('qHeight').value), logic=document.getElementById('qLogic').value; document.getElementById('qHeightValue').textContent = h;
+ const filters=[p=> dia==='any'||String(p.diabetes)===dia, p=> sex==='any'||p.sex===sex, p=> bp==='any'||bpStatus(p.bp)===bp, p=> stage==='any'||String(p.stage)===stage, p=> p.height>=h];
+ const active=[dia!=='any', sex!=='any', bp!=='any', stage!=='any', h>150];
+ let out=patients.filter(p=>{ const results=filters.map(f=>f(p)); if(!active.some(Boolean)) return true; return logic==='and'?results.every((r,i)=>!active[i]||r):results.some((r,i)=>active[i]&&r); });
+ document.getElementById('qCount').textContent=out.length; const tbl=document.getElementById('qTable'); let html='<div class="head">ID</div><div class="head">sex</div><div class="head">stage</div><div class="head">diabetes</div><div class="head">height</div><div class="head">BP</div><div class="head">status</div>'; out.slice(0,6).forEach(p=>{ html+=`<div>${p.id}</div><div>${p.sex}</div><div>${p.stage}</div><div>${p.diabetes}</div><div>${p.height}</div><div>${p.bp}</div><div>${bpStatus(p.bp)}</div>`; }); tbl.innerHTML=html; }
+
+function barSvg(svgId, values, labels, colors){ const svg=document.getElementById(svgId); if(!svg) return; const W=500,H=300,left=55,right=30,top=20,bottom=245; const max=Math.max(...values)*1.15; let html=makeAxis(svg,W,H,left,bottom,right,top); values.forEach((v,i)=>{ const bw=80; const gap=(W-left-right-values.length*bw)/(values.length+1); const x=left+gap+i*(bw+gap); const y=bottom-v/max*(bottom-top); html += `<rect x="${x}" y="${y}" width="${bw}" height="${bottom-y}" class="${colors?.[i]||'plot-bar'}"/><text x="${x+bw/2}" y="${bottom+18}" text-anchor="middle" class="plot-label">${labels[i]}</text><text x="${x+bw/2}" y="${y-6}" text-anchor="middle" class="plot-label">${v}</text>`; }); svg.innerHTML=html; }
+function drawOneCat(){ const f=patients.filter(p=>p.sex==='F').length, m=patients.length-f; barSvg('plotOneCat',[f,m],['F','M'],['plot-bar','plot-bar2']); }
+function drawTwoCat(){ const svg=document.getElementById('plotTwoCat'); if(!svg) return; const W=500,H=300,left=60,bottom=245,top=25; let html=makeAxis(svg,W,H,left,bottom,30,top); const sexes=['F','M'], stages=[1,2,3], cols=['#1f6feb','#7b4ab5','#c65d09']; sexes.forEach((sex,i)=>{ let x=150+i*170; let y=bottom; stages.forEach((st,j)=>{ const count=patients.filter(p=>p.sex===sex&&p.stage===st).length; const h=count/9*(bottom-top); html += `<rect x="${x}" y="${y-h}" width="80" height="${h}" fill="${cols[j]}" opacity=".72"/>`; y-=h; }); html += `<text x="${x+40}" y="${bottom+18}" text-anchor="middle" class="plot-label">${sex}</text>`; }); svg.innerHTML=html; }
+function drawHistogram(svgId, vals){ const svg=document.getElementById(svgId); if(!svg)return; const W=500,H=300,left=55,bottom=245,top=25,right=30; const min=Math.min(...vals), max=Math.max(...vals), bins=5; const counts=Array(bins).fill(0); vals.forEach(v=>{ let idx=Math.min(bins-1,Math.floor((v-min)/(max-min+1e-9)*bins)); counts[idx]++; }); let html=makeAxis(svg,W,H,left,bottom,right,top); const maxC=Math.max(...counts); const bw=(W-left-right)/bins; counts.forEach((c,i)=>{ const x=left+i*bw+3; const h=c/maxC*(bottom-top); html+=`<rect x="${x}" y="${bottom-h}" width="${bw-6}" height="${h}" class="plot-bar"/>`; }); // box below
+ const med=median(vals), q1=median(vals.filter(v=>v<=med)), q3=median(vals.filter(v=>v>=med)); const mapX=v=>left+(v-min)/(max-min)*(W-left-right); html+=`<line x1="${mapX(min)}" y1="270" x2="${mapX(max)}" y2="270" class="plot-axis"/><rect x="${mapX(q1)}" y="260" width="${mapX(q3)-mapX(q1)}" height="20" class="plot-box"/><line x1="${mapX(med)}" y1="258" x2="${mapX(med)}" y2="282" class="plot-median"/>`; svg.innerHTML=html; }
+function drawScatter(svgId, encode=false){ const svg=document.getElementById(svgId); if(!svg)return; const W=700,H=320,left=55,bottom=270,top=25,right=30; const xs=patients.map(p=>p.bp), ys=patients.map(p=>p.temp); const xMin=105,xMax=175,yMin=36.4,yMax=38.7; const mapX=x=>left+(x-xMin)/(xMax-xMin)*(W-left-right); const mapY=y=>bottom-(y-yMin)/(yMax-yMin)*(bottom-top); let html=makeAxis(svg,W,H,left,bottom,right,top); patients.forEach(p=>{ const col=p.sex==='F'?'#1f6feb':'#c65d09'; const shape=p.stage===1?'circle':p.stage===2?'rect':'triangle'; const x=mapX(p.bp), y=mapY(p.temp); if(!encode || shape==='circle') html += `<circle cx="${x}" cy="${y}" r="5" fill="${encode?col:'#1f6feb'}" opacity=".78"/>`; else if(shape==='rect') html += `<rect x="${x-5}" y="${y-5}" width="10" height="10" fill="${col}" opacity=".78"/>`; else html += `<polygon points="${x},${y-6} ${x-6},${y+6} ${x+6},${y+6}" fill="${col}" opacity=".78"/>`; }); html += `<text x="${W/2}" y="305" text-anchor="middle" class="plot-label">bp_mmHg</text><text x="18" y="150" transform="rotate(-90 18 150)" text-anchor="middle" class="plot-label">bodyT_C</text>`; svg.innerHTML=html; }
+function drawBoxplot(svgId, by='sex'){ const svg=document.getElementById(svgId); if(!svg)return; const W=700,H=320,left=55,bottom=270,top=25; const groups=by==='sex'?['F','M']:[1,2,3]; const valsBy=g=>patients.filter(p=>by==='sex'?p.sex===g:p.stage===g).map(p=>p.bp); const yMin=105,yMax=175; const mapY=y=>bottom-(y-yMin)/(yMax-yMin)*(bottom-top); let html=makeAxis(svg,W,H,left,bottom,30,top); groups.forEach((g,i)=>{ const vals=valsBy(g).sort((a,b)=>a-b); const med=median(vals), q1=median(vals.filter(v=>v<=med)), q3=median(vals.filter(v=>v>=med)), mn=vals[0], mx=vals[vals.length-1]; const x=150+i*(400/(groups.length-1||1)); html+=`<line x1="${x}" y1="${mapY(mn)}" x2="${x}" y2="${mapY(mx)}" class="plot-axis"/><rect x="${x-35}" y="${mapY(q3)}" width="70" height="${mapY(q1)-mapY(q3)}" class="plot-box"/><line x1="${x-38}" y1="${mapY(med)}" x2="${x+38}" y2="${mapY(med)}" class="plot-median"/><text x="${x}" y="${bottom+18}" text-anchor="middle" class="plot-label">${g}</text>`; vals.forEach((v,j)=>{html+=`<circle cx="${x-18+j*7}" cy="${mapY(v)}" r="3" class="plot-dot"/>`;}); }); svg.innerHTML=html; }
+function drawHeatmap(){ const svg=document.getElementById('plotHeatmap'); if(!svg)return; const W=500,H=300,left=90,top=40,cell=55; let html=''; ['F','M'].forEach((sex,i)=>{ [1,2,3].forEach((st,j)=>{ const vals=patients.filter(p=>p.sex===sex&&p.stage===st).map(p=>p.bp); const m=mean(vals); const intensity=(m-110)/60; html+=`<rect x="${left+j*cell}" y="${top+i*cell}" width="${cell}" height="${cell}" fill="rgba(123,74,181,${0.15+intensity*.65})"/><text x="${left+j*cell+cell/2}" y="${top+i*cell+cell/2+4}" text-anchor="middle" class="plot-label">${m.toFixed(0)}</text>`; }); html+=`<text x="${left-15}" y="${top+i*cell+cell/2+4}" text-anchor="end" class="plot-label">${sex}</text>`; }); [1,2,3].forEach((st,j)=>html+=`<text x="${left+j*cell+cell/2}" y="${top-10}" text-anchor="middle" class="plot-label">stage ${st}</text>`); svg.innerHTML=html; }
+function drawVizStatic(){ drawOneCat(); drawTwoCat(); drawHistogram('plotOneNum', patients.map(p=>p.bp)); drawScatter('plotTwoNum'); drawBoxplot('plotCatNum','sex'); drawBoxplot('plotTwoCatNumBox','stage'); drawHeatmap(); drawScatter('plotEncodedScatter',true); drawTrap(); }
+function drawTrap(){ barSvg('trapZeroAxis',[88,92],['A','B'],['plot-bar','plot-bar2']); const svg=document.getElementById('trapTruncatedAxis'); if(!svg)return; const W=500,H=300,left=55,bottom=245,top=30,right=30; let html=makeAxis(svg,W,H,left,bottom,right,top); [88,92].forEach((v,i)=>{ const x=145+i*140; const y=bottom-(v-85)/10*(bottom-top); html+=`<rect x="${x}" y="${y}" width="90" height="${bottom-y}" class="${i?'plot-bar2':'plot-bar'}"/><text x="${x+45}" y="${bottom+18}" text-anchor="middle" class="plot-label">${i?'B':'A'}</text>`; }); svg.innerHTML=html; }
+
+function initVizLab() {
+  const lab = document.getElementById("vizLab");
+  if (!lab) return;
+  lab.querySelectorAll("input").forEach(inp => {
+    inp.addEventListener("change", renderVizLab);
+  });
+  renderVizLab();
+}
+
+function renderVizLab() {
+  const selected = [
+    ...document.querySelectorAll("#vizLab input:checked")
+  ].map(x => x.value);
+  const summary = document.getElementById("vizLabSummary");
+  const image = document.getElementById("vizLabImage");
+  if (!summary || !image) return;
+  /* -------------------------------------------------------
+     Nothing selected
+     ------------------------------------------------------- */
+  if (selected.length === 0) {
+    summary.innerHTML =
+      "Select one or more variables.";
+    image.removeAttribute("src");
+    image.style.display = "none";
+    return;
+  }
+  /* -------------------------------------------------------
+     Variable types
+     ------------------------------------------------------- */
+  const cats =
+    selected.filter(v =>
+      ["sex", "stage"].includes(v)
+    );
+  const nums =
+    selected.filter(v =>
+      ["bp", "temp"].includes(v)
+    );
+  /* -------------------------------------------------------
+     Suggested visualization
+     ------------------------------------------------------- */
+  let suggestion = "";
+  if (
+    selected.length === 1 &&
+    cats.length === 1
+  ) {
+    suggestion =
+      "frequency table + bar plot";
+  } else if (
+    selected.length === 1 &&
+    nums.length === 1
+  ) {
+    suggestion =
+      "histogram + boxplot";
+  } else if (
+    cats.length === 2 &&
+    nums.length === 0
+  ) {
+    suggestion =
+      "contingency table + stacked bar plot";
+  } else if (
+    nums.length === 2 &&
+    cats.length === 0
+  ) {
+    suggestion =
+      "scatter plot + marginal distributions";
+  } else if (
+    nums.length === 1 &&
+    cats.length === 1
+  ) {
+    suggestion =
+      "grouped boxplots";
+  } else if (
+    nums.length === 1 &&
+    cats.length === 2
+  ) {
+    suggestion =
+      "faceted boxplots + heatmap";
+  } else if (
+    nums.length === 2 &&
+    cats.length === 1
+  ) {
+    suggestion =
+      "scatter plot with categorical encoding";
+  } else if (
+    nums.length === 2 &&
+    cats.length === 2
+  ) {
+    suggestion =
+      "scatter plot with color / size encoding";
+  }
+  summary.innerHTML = `
+    <strong>Selected:</strong><br>
+    ${selected.join(", ")}
+    <br><br>
+    <strong>Types:</strong><br>
+    ${cats.length} categorical,
+    ${nums.length} numerical
+    <br><br>
+    <strong>Suggested:</strong><br>
+    ${suggestion}
+  `;
+  /* -------------------------------------------------------
+     Choose pre-rendered ggplot SVG
+     ------------------------------------------------------- */
+  /*
+   * Always use the same ordering for filenames:
+   * sex → stage → bp → temp
+   */
+  const order = [
+    "sex",
+    "stage",
+    "bp",
+    "temp"
+  ];
+  const ordered =
+    order.filter(v =>
+      selected.includes(v)
+    );
+  const filename = `figures/viz_${ordered.join("_")}.svg`;
+  image.src = filename;
+  image.style.display = "block";
+  image.alt = `Visualization of ${ordered.join(", ")}`;
+}
+
+function initMC(){ document.querySelectorAll('.mc-widget').forEach(w=>{ const fb=w.querySelector('.mc-feedback'); w.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{ const ok=b.dataset.correct==='true'; fb.textContent=ok?'Correct.':'Not quite — reconsider the variable type and question.'; fb.className='mc-feedback '+(ok?'good':'bad'); })); }); }
+
+function init(){ drawOutbreak('outbreakSvg'); updateSurprise(); document.getElementById('surpriseP')?.addEventListener('input',updateSurprise); initVarQuiz(); initQuery(); drawVizStatic(); initVizLab(); initMC(); }
+window.addEventListener('load',init); if(window.Reveal){ Reveal.on('ready',init); Reveal.on('slidechanged',init); Reveal.on('fragmentshown',init); } init();
+})();
+</script>
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>Statistics 101 · Week 4</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 0.55,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true,"numbers":true},
+'chalkboard': {"buttons":false,"theme":"whiteboard"},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'fast',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.5e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
