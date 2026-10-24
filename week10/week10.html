@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Graduate Pharmaceutical Studies">
-  <title>Statistics for Pharmacists – Statistics 101</title>
+  <title>Statistics for Pharmacists</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -35,7 +35,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-73f4d359ee59172b10577676e68c9ef0.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-0c5d4c871f2bc0629a536cae6dbcfced.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -135,8 +135,8 @@
     <div class="slides">
 
 <section id="title-slide" data-footer="" class="quarto-title-block center">
-  <h1 class="title">Statistics 101</h1>
-  <p class="subtitle">Week 10 · Placeholder</p>
+  <h1 class="title">Statistics for Pharmacists</h1>
+  <p class="subtitle">Week 10 · Pharmaceutical and clinical statistics</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -147,14 +147,2251 @@ Graduate Pharmaceutical Studies
 </div>
 
 </section>
-<section id="week-10" class="slide level2 motivation-slide">
-<h2>Week 10</h2>
+<section id="pharmaceutical-and-clinical-statistics" class="slide level2 title-slide center">
+<h2>Pharmaceutical and clinical statistics</h2>
 <div class="eyebrow">
-Course skeleton
+Week 10
 </div>
-<div class="big-question">
-Content to be developed.
+<div class="concept-line" style="margin-top:1em;">
+How does statistics enter actual pharmaceutical evidence?
 </div>
+</section>
+<section id="today-one-evidence-chain" class="slide level2 concept-slide">
+<h2>Today: one evidence chain</h2>
+<div class="eyebrow">
+Not another catalog of tests
+</div>
+<div class="w10-evidence-flow">
+<div>
+Populations<span>epidemiology</span>
+</div>
+<b>→</b>
+<div>
+Patients<span>diagnostics</span>
+</div>
+<b>→</b>
+<div>
+Interventions<span>clinical trials</span>
+</div>
+<b>→</b>
+<div>
+Exposure<span>toxicology</span>
+</div>
+<b>→</b>
+<div>
+Knowledge<span>meta-analysis</span>
+</div>
+</div>
+<div class="concept-line fragment fade-up">
+The question and study design determine the interpretation; statistical machinery quantifies <strong>effects and uncertainty</strong>.
+</div>
+</section>
+<section id="first-can-we-intervene" class="slide level2 concept-slide">
+<h2>First: can we intervene?</h2>
+<div class="eyebrow">
+Return to Week 03 · study design
+</div>
+<div class="w10-card-grid">
+<div class="w10-card observed">
+<div class="w10-card-label">
+Observe
+</div>
+<div class="w10-card-large">
+Exposure is not allocated
+</div>
+<div class="w10-card-small">
+Cohort / case–control / cross-sectional studies
+</div>
+</div>
+<div class="w10-card estimate">
+<div class="w10-card-label">
+Randomize
+</div>
+<div class="w10-card-large">
+Exposure is allocated
+</div>
+<div class="w10-card-small">
+Controlled trial with prespecified endpoints
+</div>
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+Both designs have sampling variability. Random allocation helps break systematic links between measured <em>and unmeasured</em> baseline confounders on average.
+</p>
+</div>
+</section>
+<section id="prevalence-how-many-are-affected-now" class="slide level2 concept-slide">
+<h2>Prevalence: how many are affected now?</h2>
+<div class="eyebrow">
+Disease burden · stock of existing cases
+</div>
+<div class="w10-bigmath">
+<span class="math inline">\(\mathrm{Prevalence}=\dfrac{\text{existing cases}}{\text{population at time / period}}\)</span>
+</div>
+<div class="w10-card-grid">
+<div class="w10-card observed">
+<div class="w10-card-label">
+Illustrative population
+</div>
+<div class="w10-card-large">
+1,000 people
+</div>
+<div class="w10-card-small">
+Observed at the start of the year
+</div>
+</div>
+<div class="w10-card model">
+<div class="w10-card-label">
+Already affected
+</div>
+<div class="w10-card-large">
+50 people
+</div>
+<div class="w10-card-small">
+Point prevalence = 50 / 1,000 = 5%
+</div>
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+Prevalence describes population burden. It reflects both arrival of new cases and how long people remain cases.
+</p>
+</div>
+</section>
+<section id="incidence-how-many-become-affected" class="slide level2 concept-slide">
+<h2>Incidence: how many become affected?</h2>
+<div class="eyebrow">
+New events among people initially at risk
+</div>
+<div class="w10-figure" style="height:10.5em;">
+<img src="figures/incidence_prevalence.svg" alt="Synthetic population illustrates prevalence and new cases over a period">
+</div>
+<div class="w10-equation">
+<span class="math inline">\(\text{Cumulative incidence}=40/950\approx4.2\%\)</span> during 1 year
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+Cumulative incidence is a risk over a specified time horizon, assuming appropriate follow-up and accounting for censoring when needed.
+</p>
+</div>
+</section>
+<section id="incidence-rate-uses-person-time" class="slide level2 concept-slide">
+<h2>Incidence rate uses person-time</h2>
+<div class="eyebrow">
+A different denominator and unit
+</div>
+<div class="w10-bigmath">
+<span class="math inline">\(\text{Incidence rate}=\dfrac{\text{new cases}}{\sum\text{person-time at risk}}\)</span>
+</div>
+<div class="w10-card-grid">
+<div class="w10-card observed">
+<div class="w10-card-label">
+Example
+</div>
+<div class="w10-card-large">
+40 new cases
+</div>
+<div class="w10-card-small">
+Among a dynamic followed population
+</div>
+</div>
+<div class="w10-card model">
+<div class="w10-card-label">
+Observed time
+</div>
+<div class="w10-card-large">
+900 person-years
+</div>
+<div class="w10-card-small">
+Different people contribute different durations
+</div>
+</div>
+<div class="w10-card estimate">
+<div class="w10-card-label">
+Incidence rate
+</div>
+<div class="w10-card-large">
+4.44 / 100 person-years
+</div>
+<div class="w10-card-small">
+An event rate, not a 4.44% probability
+</div>
+</div>
+</div>
+<div class="concept-line fragment fade-up">
+Rate and probability become close only under additional conditions, including relatively low risk over the time horizon.
+</div>
+</section>
+<section id="revisit-the-invisible-third-variable" class="slide level2 concept-slide">
+<h2>Revisit the invisible third variable</h2>
+<div class="eyebrow">
+Synthetic association · sugary drinks → school performance
+</div>
+<div class="w10-figure" style="height:10.8em;">
+<img src="figures/confounding_dag1.svg" alt="Causal directed acyclic graph with household resources influencing both sugary drinks and performance">
+</div>
+<div class="concept-line fragment fade-up">
+Household resources <span class="math inline">\(Z\)</span> can be a <strong>confounder</strong> if it is a common cause of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>; a mediator or collider would have a different causal role.
+</div>
+</section>
+<section id="an-association-that-appears-when-pooled" class="slide level2 concept-slide">
+<h2>An association that appears when pooled</h2>
+<div class="eyebrow">
+Compare within the low- and high-rent strata
+</div>
+<div class="w10-figure" style="height:12.6em;display:grid; grid-template-areas:'stack';align-items:center;justify-items:center;">
+<img src="figures/confounding_strata_masked.svg" alt="Risk of bad school performance within low- and high-rent strata" style="grid-area:stack;z-index:1;max-height:100%;width:auto;"><img src="figures/confounding_strata.svg" class="fragment fade-up" alt="Risk of bad school performance by drink intake within strata and pooled, with exact synthetic counts" style="grid-area:stack;z-index:2;max-height:100%;width:auto;">
+</div>
+<div class="w10-small-note">
+Low rent: 10/100 versus 2/20 · high rent: 10/20 versus 50/100 · pooled: 20/120 versus 52/120. All counts synthetic.
+</div>
+</section>
+<section id="directed-acyclic-graph" class="slide level2 concept-slide">
+<h2>Directed acyclic graph</h2>
+<div class="eyebrow">
+Causal interpretation · Stratification blocks the backdoor path
+</div>
+<div class="w10-figure" style="height:10.8em;">
+<img src="figures/confounding_dag2.svg" alt="Causal directed acyclic graph with household resources influencing both sugary drinks and performance 2">
+</div>
+<div class="concept-line fragment fade-up">
+When the association vanishes within strata, it suggests <span class="math inline">\(Z\)</span> confounds both variables rather than <span class="math inline">\(X\)</span> directly causing <span class="math inline">\(Y\)</span>—provided no unmeasured confounders remain.
+</div>
+</section>
+<section id="confounder-or-effect-modifier" class="slide level2 concept-slide">
+<h2>Confounder or effect modifier?</h2>
+<div class="eyebrow">
+Two different scientific questions
+</div>
+<div class="w10-table" style="--cols:3; font-size: 120%">
+<div class="w10-th">
+Concept
+</div>
+<div class="w10-th">
+What happens?
+</div>
+<div class="w10-th">
+What should we do?
+</div>
+<div>
+Confounding
+</div>
+<div>
+An overall estimate is distorted by differing group compositions
+</div>
+<div>
+Adjustment aims at an association net of the confounding pathway
+</div>
+<div>
+Effect modification
+</div>
+<div>
+Exposure–outcome associations genuinely differ between strata
+</div>
+<div>
+Report the strata; an overall effect can conceal clinically useful differences
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+Our synthetic drink example illustrates both:
+</p>
+<p>
+<span class="math inline">\(RR\)</span> within low rent <span class="math inline">\(= 2.0\)</span>;
+</p>
+<p>
+<span class="math inline">\(RR\)</span> within high rent <span class="math inline">\(= 1.33\)</span>;
+</p>
+<p>
+pooled <span class="math inline">\(RR = 1.0\)</span>.
+</p>
+</div>
+</section>
+<section id="the-hospital-paradox-once-again" class="slide level2 concept-slide">
+<h2>The hospital paradox, once again</h2>
+<div class="eyebrow">
+Drug response across three hospitals
+</div>
+<div class="w10-figure" style="height:12.6em;">
+<img src="figures/hospital_simpson.svg" alt="Treatment better at each of three hospitals yet worse after pooling due to differing case mix">
+</div>
+<div class="w10-small-note">
+Drug: 30%, 60%, 90% success in hospitals A/B/C; control: 20%, 50%, 80%. Different arm allocations create the pooled reversal.
+</div>
+</section>
+<section id="when-the-confounder-is-measured" class="slide level2 concept-slide">
+<h2>When the confounder is measured</h2>
+<div class="eyebrow">
+Design and analysis options
+</div>
+<div class="w10-step-stack">
+<div class="w10-step">
+<span class="w10-num">01</span><strong>Before data collection</strong><span>Restriction or matching can improve comparability; randomization addresses baseline confounding by design.</span>
+</div>
+<div class="w10-step">
+<span class="w10-num">02</span><strong>During analysis</strong><span>Stratify, standardize or adjust using regression; always inspect effect modification.</span>
+</div>
+<div class="w10-step">
+<span class="w10-num">03</span><strong>If effects are broadly common</strong><span>Mantel–Haenszel estimates an adjusted association across strata (with a clear target estimand).</span>
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+A common pooled effect is not appropriate when stratum-specific treatment effects differ substantially.
+</p>
+</div>
+</section>
+<section id="what-if-confounding-is-unobserved" class="slide level2 concept-slide">
+<h2>What if confounding is unobserved?</h2>
+<div class="eyebrow">
+A fundamental limit of observational evidence
+</div>
+<div class="w10-card-grid">
+<div class="w10-card observed">
+<div class="w10-card-label">
+Propensity methods
+</div>
+<div class="w10-card-large">
+Measured covariates
+</div>
+<div class="w10-card-small">
+Matching / weighting / adjustment can balance observed confounders
+</div>
+</div>
+<div class="w10-card uncertainty">
+<div class="w10-card-label">
+Sensitivity analysis
+</div>
+<div class="w10-card-large">
+Unmeasured covariates
+</div>
+<div class="w10-card-small">
+Ask how strong hidden confounding must be to reverse a result
+</div>
+</div>
+<div class="w10-card estimate">
+<div class="w10-card-label">
+Triangulate
+</div>
+<div class="w10-card-large">
+Different designs
+</div>
+<div class="w10-card-small">
+Compare evidence across designs with different weaknesses
+</div>
+</div>
+</div>
+<div class="warning-box fragment fade-up">
+<p>
+These approaches do <strong>not</strong> automatically solve unmeasured confounding; more sophisticated methods are outside this course.
+</p>
+</div>
+</section>
+<section id="epidemiology-which-effect-measure" class="slide level2 concept-slide">
+<h2>Epidemiology: which effect measure?</h2>
+<div class="eyebrow">
+Use incidence for risk; distinguish risk from odds
+</div>
+<div class="w10-table" style="--cols:3; font-size: 120%">
+<div class="w10-th">
+Measure
+</div>
+<div class="w10-th">
+Formula
+</div>
+<div class="w10-th">
+Interpretation
+</div>
+<div>
+Risk (<span class="math inline">\(p\)</span>)
+</div>
+<div>
+Events / people at risk
+</div>
+<div>
+Probability over a specified period
+</div>
+<div>
+Odds
+</div>
+<div>
+<span class="math inline">\(p/(1-p)\)</span>
+</div>
+<div>
+Event relative to non-event probability
+</div>
+<div>
+Relative risk (<span class="math inline">\(RR\)</span>)
+</div>
+<div>
+<span class="math inline">\(p_\mathrm{T}/p_\mathrm{C}\)</span>
+</div>
+<div>
+Relative event risk: multiplicative
+</div>
+<div>
+Odds ratio (<span class="math inline">\(OR\)</span>)
+</div>
+<div>
+<span class="math inline">\([p_\mathrm{T}/(1-p_\mathrm{T})]/[p_\mathrm{C}/(1-p_\mathrm{C})]\)</span>
+</div>
+<div>
+Multiplicative odds, not risk
+</div>
+<div>
+Risk difference (<span class="math inline">\(RD\)</span>)
+</div>
+<div>
+<span class="math inline">\(p_\mathrm{T}-p_\mathrm{C}\)</span>
+</div>
+<div>
+Absolute percentage-point difference
+</div>
+</div>
+<div class="w10-small-note">
+<span class="math inline">\(\mathrm{T}\)</span> = exposed / treated; <span class="math inline">\(\mathrm{C}\)</span> = comparator. Choose a time horizon and clear event definition.
+</div>
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+<div class="portrait-card">
+<img src="figures/Graunt.jpg" alt="John Graunt">
+<div class="portrait-name">
+John Graunt
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Farr.jpg" alt="William Farr">
+<div class="portrait-name">
+William Farr
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Snow.jpg" alt="John Snow">
+<div class="portrait-name">
+John Snow
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Nightingale.jpg" alt="Florence Nightingale">
+<div class="portrait-name">
+Florence Nightingale
+</div>
+</div>
+</div>
+</section>
+<section id="same-rr-very-different-absolute-impact" class="slide level2 concept-slide">
+<h2>Same RR, very different absolute impact</h2>
+<div class="eyebrow">
+Why baseline risk matters
+</div>
+<div class="w10-figure" style="height:12.4em;">
+<img src="figures/relative_absolute_risk.svg" alt="Two treatment examples have same relative risk but very different absolute risk differences">
+</div>
+<div class="concept-line fragment fade-up">
+A <span class="math inline">\(50\%\)</span> relative reduction can mean <strong>1</strong> or <strong>20</strong> events prevented per 100 patients, depending on baseline risk.
+</div>
+</section>
+<section id="worked-example-risk-and-risk-difference" class="slide level2 concept-slide">
+<h2>Worked example: risk and risk difference</h2>
+<div class="eyebrow">
+Synthetic one-year prevention trial
+</div>
+<div class="w10-card-grid">
+<div class="w10-card model">
+<div class="w10-card-label">
+Comparator risk
+</div>
+<div class="w10-card-large">
+20%
+</div>
+<div class="w10-card-small">
+20 events per 100 patients
+</div>
+</div>
+<div class="w10-card observed">
+<div class="w10-card-label">
+Treatment risk
+</div>
+<div class="w10-card-large">
+10%
+</div>
+<div class="w10-card-small">
+10 events per 100 patients
+</div>
+</div>
+<div class="w10-card estimate">
+<div class="w10-card-label">
+RR
+</div>
+<div class="w10-card-large">
+0.50
+</div>
+<div class="w10-card-small">
+Half the event risk under treatment
+</div>
+</div>
+<div class="w10-card uncertainty">
+<div class="w10-card-label">
+Absolute RD
+</div>
+<div class="w10-card-large">
+10 percentage points
+</div>
+<div class="w10-card-small">
+0.10 − 0.20 = −0.10
+</div>
+</div>
+</div>
+<div class="concept-line fragment fade-up">
+Absolute and relative summaries describe the <strong>same contrast</strong>, on different scales.
+</div>
+</section>
+<section id="nnt-and-nnh-put-consequences-on-the-same-page" class="slide level2 concept-slide">
+<h2>NNT and NNH: put consequences on the same page</h2>
+<div class="eyebrow">
+Number needed to treat / harm
+</div>
+<div class="w10-card-grid">
+<div class="w10-card estimate">
+<div class="w10-card-label">
+Benefit
+</div>
+<div class="w10-card-large">
+NNT = 10
+</div>
+<div class="w10-card-small">
+ARR = 0.10 → one additional prevented event per 10 treated, on average
+</div>
+</div>
+<div class="w10-card warning">
+<div class="w10-card-label">
+Harm
+</div>
+<div class="w10-card-large">
+NNH = 25
+</div>
+<div class="w10-card-small">
+Absolute harm increase 0.04 → one additional adverse event per 25 treated, on average
+</div>
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+Specify comparator, population, endpoint and time horizon. NNT does not identify which patient benefits, and comparing NNT/NNH needs clinical weighting of outcomes.
+</p>
+</div>
+</section>
+<section id="attributable-fractions-causal-language-needs-care" class="slide level2 concept-slide">
+<h2>Attributable fractions: causal language needs care</h2>
+<div class="eyebrow">
+Illustrative association · exposure raises risk from 10% to 20%
+</div>
+<div class="w10-formula-pair">
+<div>
+<strong>Among exposed</strong><span><span class="math inline">\(AF_E=(RR-1)/RR=50\%\)</span></span><small>Fraction of exposed cases attributed to exposure, if association is causal</small>
+</div>
+<div>
+<strong>In population</strong><span><span class="math inline">\(PAF=(R_{pop}-R_0)/R_{pop}\approx23\%\)</span></span><small>With 30% exposed: population risk = 13%, baseline risk = 10%</small>
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+Attributable fractions are <strong>not</strong> causal without assumptions about confounding, timing and intervention effects.
+</p>
+</div>
+</section>
+<section id="diagnostic-tests" class="slide level2 section-break">
+<h2>Diagnostic tests</h2>
+<div class="section-kicker">
+Part II
+</div>
+<div class="section-title">
+Diagnostic tests can fall for misclassification
+</div>
+<div class="section-subtitle">
+We now see what to be aware of when diagnosing patients to estimate prevalence.
+</div>
+</section>
+<section id="diagnostic-tests-from-association-to-classification" class="slide level2 concept-slide">
+<h2>Diagnostic tests: from association to classification</h2>
+<div class="eyebrow">
+Return to Bayes · Week 01
+</div>
+<div class="w10-card-grid">
+<div class="w10-card observed">
+<div class="w10-card-label">
+Test accuracy
+</div>
+<div class="w10-card-large">
+Sensitivity / specificity
+</div>
+<div class="w10-card-small">
+How often the test correctly classifies reference-standard outcomes
+</div>
+</div>
+<div class="w10-card model">
+<div class="w10-card-label">
+Population context
+</div>
+<div class="w10-card-large">
+Prevalence
+</div>
+<div class="w10-card-small">
+How common the target condition is in the tested population
+</div>
+</div>
+<div class="w10-card uncertainty">
+<div class="w10-card-label">
+Patient interpretation
+</div>
+<div class="w10-card-large">
+PPV / NPV
+</div>
+<div class="w10-card-small">
+How likely a result is to indicate disease / health
+</div>
+</div>
+</div>
+<div class="concept-line fragment fade-up">
+Accuracy statistics alone do not tell us how much to trust a <strong>positive</strong> test.
+</div>
+</section>
+<section id="start-from-four-patients-categories" class="slide level2 concept-slide">
+<h2>Start from four patients categories</h2>
+<div class="eyebrow">
+Positive / negative test × present / absent condition
+</div>
+<div class="w10-figure" style="height:11.8em;">
+<img src="figures/confusion_matrix.svg" alt="Two by two diagnostic classification matrix with true positives, false positives, false negatives and true negatives">
+</div>
+<div class="w10-equation">
+<span class="math inline">\(\mathrm{Sensitivity}=TP/(TP+FN)\)</span> &nbsp;&nbsp; <span class="math inline">\(\mathrm{Specificity}=TN/(TN+FP)\)</span>
+</div>
+</section>
+<section id="interactive-lab-thirty-diagnostic-metrics" class="slide level2 exercise-slide">
+<h2>Interactive lab · thirty diagnostic metrics</h2>
+<div class="eyebrow">
+Numbers change together · meaning depends on the denominator
+</div>
+<div id="confWidget" class="w10-conf-widget">
+<div class="w10-conf-left">
+<div class="w10-mini-title">
+Edit the patient counts
+</div>
+<div class="w10-count-grid">
+<div class="w10-input-cell">
+<label class="w10-control">TP · sick &amp; positive<input id="cmTP" type="number" min="0" step="1" value="38"></label>
+</div>
+<div class="w10-input-cell">
+<label class="w10-control">FN · sick &amp; negative<input id="cmFN" type="number" min="0" step="1" value="8"></label>
+</div>
+<div class="w10-input-cell">
+<label class="w10-control">FP · healthy &amp; positive<input id="cmFP" type="number" min="0" step="1" value="12"></label>
+</div>
+<div class="w10-input-cell">
+<label class="w10-control">TN · healthy &amp; negative<input id="cmTN" type="number" min="0" step="1" value="142"></label>
+</div>
+</div>
+<div class="w10-highlight-metrics">
+<div>
+<span>Sensitivity</span><strong id="cmSensBig">—</strong>
+</div>
+<div>
+<span>Specificity</span><strong id="cmSpecBig">—</strong>
+</div>
+<div>
+<span>PPV</span><strong id="cmPpvBig">—</strong>
+</div>
+<div>
+<span>NPV</span><strong id="cmNpvBig">—</strong>
+</div>
+</div>
+<div class="w10-mini-note">
+Undefined denominators display “—”. Counts must be nonnegative whole numbers.
+</div>
+</div>
+<div class="w10-conf-right">
+<div class="w10-mini-title">
+Explore the full diagnostic vocabulary · 5 columns × 6 metrics
+</div>
+<div id="cmMetrics" class="w10-metric-grid">
+
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Focus on sensitivity, specificity, PPV, NPV; the more advanced metrics are for recognition, not memorization.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="a-metric-is-a-question-with-a-denominator" class="slide level2 concept-slide">
+<h2>A metric is a question with a denominator</h2>
+<div class="eyebrow">
+Read the conditioning, not just the abbreviation
+</div>
+<div class="w10-table" style="--cols:3">
+<div class="w10-th">
+Metric
+</div>
+<div class="w10-th">
+Clinical interpretation
+</div>
+<div class="w10-th">
+Definition
+</div>
+<div>
+Sensitivity / recall
+</div>
+<div>
+Of those truly sick, what fraction tests positive?
+</div>
+<div>
+<span class="math inline">\(TP/(TP+FN)\)</span>
+</div>
+<div>
+Specificity
+</div>
+<div>
+Of those truly healthy, what fraction tests negative?
+</div>
+<div>
+<span class="math inline">\(TN/(TN+FP)\)</span>
+</div>
+<div>
+PPV
+</div>
+<div>
+Of those testing positive, what fraction is sick?
+</div>
+<div>
+<span class="math inline">\(TP/(TP+FP)\)</span>
+</div>
+<div>
+NPV
+</div>
+<div>
+Of those testing negative, what fraction is healthy?
+</div>
+<div>
+<span class="math inline">\(TN/(TN+FN)\)</span>
+</div>
+</div>
+<div class="concept-line fragment fade-up">
+Sensitivity and specificity condition on <em>reference disease status</em>; predictive values condition on the <em>observed test result</em>.
+</div>
+</section>
+<section id="a-diagnostic-marker-needs-a-decision-threshold" class="slide level2 concept-slide">
+<h2>A diagnostic marker needs a decision threshold</h2>
+<div class="eyebrow">
+Last week: a probability model · today: an action
+</div>
+<div class="w10-step-stack">
+<div class="w10-step">
+<span class="w10-num">01</span><strong>Measure</strong><span>A continuous biomarker varies across sick and healthy people.</span>
+</div>
+<div class="w10-step">
+<span class="w10-num">02</span><strong>Classify</strong><span>Choose a cutoff: trade missed cases against false alarms.</span>
+</div>
+<div class="w10-step">
+<span class="w10-num">03</span><strong>Validate</strong><span>Estimate sensitivity, specificity and calibration in a new relevant population.</span>
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+A model threshold that maximizes an in-sample statistic may be too optimistic in new patients.
+</p>
+</div>
+</section>
+<section id="interactive-lab-threshold-and-roc" class="slide level2 exercise-slide">
+<h2>Interactive lab · threshold and ROC</h2>
+<div class="eyebrow">
+Synthetic iron-deficiency status · disease reference label known
+</div>
+<div id="rocWidget" class="w10-lab">
+<div class="w10-controls">
+<label class="w10-control">Biomarker (synthetic study)<select id="rocMarker"><option value="ferritin">Ferritin · strong separation</option><option value="folate">Folate · weak separation</option></select></label> <label class="w10-control">Positive if marker ≤ <strong id="rocCutVal">30</strong><input id="rocCut" type="range" min="0" max="110" value="30" step="1"></label>
+<div class="w10-micro">
+Drag the red threshold line on the left plot; the current operating point moves on the ROC.
+</div>
+<div class="w10-two-output">
+<div class="w10-output">
+<span>Sensitivity</span><strong id="rocSen">—</strong>
+</div>
+<div class="w10-output">
+<span>Specificity</span><strong id="rocSpe">—</strong>
+</div>
+<div class="w10-output">
+<span>AUC · fixed per marker</span><strong id="rocAuc">—</strong>
+</div>
+<div class="w10-output">
+<span>Youden cutoff (sample)</span><strong id="rocBest">—</strong>
+</div>
+</div>
+</div>
+<div class="w10-visual">
+<svg id="rocSvg" class="w10-svg" style="height:14em" viewbox="0 0 900 475" aria-label="Synthetic biomarker dot plot with draggable threshold and corresponding ROC curve">
+</svg>
+</div>
+</div>
+<aside class="notes">
+<p>Strong/weak marker distributions are explicitly synthetic and not clinical performance claims. Ferritin values decrease in this simulated iron-deficiency dataset; folate is deliberately weak.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="what-the-roc-curve-is-showing" class="slide level2 concept-slide">
+<h2>What the ROC curve is showing</h2>
+<div class="eyebrow">
+Each cutoff gives ONE point; all cutoffs give ONE curve
+</div>
+<div class="w10-table" style="--cols:3">
+<div class="w10-th">
+Element
+</div>
+<div class="w10-th">
+Definition
+</div>
+<div class="w10-th">
+Interpretation
+</div>
+<div>
+Horizontal axis
+</div>
+<div>
+<span class="math inline">\(1-Sp\)</span>
+</div>
+<div>
+False-positive rate
+</div>
+<div>
+Vertical axis
+</div>
+<div>
+<span class="math inline">\(Se\)</span>
+</div>
+<div>
+True-positive rate
+</div>
+<div>
+AUC
+</div>
+<div>
+Area under the entire ROC
+</div>
+<div>
+Discrimination across all cutoffs; does not change when slider moves
+</div>
+<div>
+Upper-left corner
+</div>
+<div>
+High&nbsp;<span class="math inline">\(Se\)</span>, low&nbsp;<span class="math inline">\(FPR\)</span>
+</div>
+<div>
+Ideal only if clinical costs and prevalence allow
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+Maximum <em>Youden index</em> and shortest distance to the corner are possible cutoff criteria — neither is a universal clinical optimum.
+</p>
+</div>
+</section>
+<section id="which-error-is-more-costly" class="slide level2 concept-slide">
+<h2>Which error is more costly?</h2>
+<div class="eyebrow">
+Clinical thresholds encode clinical decisions
+</div>
+<div class="w10-card-grid">
+<div class="w10-card estimate">
+<div class="w10-card-label">
+High sensitivity
+</div>
+<div class="w10-card-large">
+Avoid missed disease
+</div>
+<div class="w10-card-small">
+Often acceptable to trigger a confirmatory test
+</div>
+</div>
+<div class="w10-card warning">
+<div class="w10-card-label">
+High specificity
+</div>
+<div class="w10-card-large">
+Avoid false positives
+</div>
+<div class="w10-card-small">
+Important if unnecessary treatment would be risky
+</div>
+</div>
+<div class="w10-card uncertainty">
+<div class="w10-card-label">
+AUC
+</div>
+<div class="w10-card-large">
+Overall ranking performance
+</div>
+<div class="w10-card-small">
+AUC alone does not choose a patient-facing threshold
+</div>
+</div>
+</div>
+<div class="concept-line fragment fade-up">
+Select cutoffs with anticipated costs, prevalence, clinical pathway and independent validation in mind.
+</div>
+</section>
+<section id="bayes-comes-back-ppv-changes-with-prevalence" class="slide level2 concept-slide">
+<h2>Bayes comes back: PPV changes with prevalence</h2>
+<div class="eyebrow">
+Illustrative test: sensitivity 90%, specificity 90%
+</div>
+<div class="w10-card-grid">
+<div class="w10-card warning">
+<div class="w10-card-label">
+Prevalence 1%
+</div>
+<div class="w10-card-large">
+PPV = 8.3%
+</div>
+<div class="w10-card-small">
+Most positives are false positives at very low prevalence
+</div>
+</div>
+<div class="w10-card estimate">
+<div class="w10-card-label">
+Prevalence 20%
+</div>
+<div class="w10-card-large">
+PPV = 69.2%
+</div>
+<div class="w10-card-small">
+Positive result becomes substantially more credible
+</div>
+</div>
+</div>
+<div class="w10-bigmath">
+<span class="math inline">\(PPV=\dfrac{Se\times Prev}{Se\times Prev+(1-Sp)(1-Prev)}\)</span>
+</div>
+</section>
+<section id="diagnostic-uncertainty-does-not-stop-at-the-cutoff" class="slide level2 concept-slide">
+<h2>Diagnostic uncertainty does not stop at the cutoff</h2>
+<div class="eyebrow">
+A test-accuracy estimate comes from a finite study
+</div>
+<div class="w10-step-stack">
+<div class="w10-step">
+<span class="w10-num">01</span><strong>Report intervals</strong><span>Sensitivity and specificity have sampling uncertainty; so does AUC.</span>
+</div>
+<div class="w10-step">
+<span class="w10-num">02</span><strong>Specify reference standard</strong><span>Errors in the disease reference label can bias measured diagnostic accuracy.</span>
+</div>
+<div class="w10-step">
+<span class="w10-num">03</span><strong>Verify transportability</strong><span>Prevalence, disease spectrum, laboratories and settings may differ.</span>
+</div>
+</div>
+<div class="warning-box fragment fade-up">
+<p>
+If thresholds are chosen on the same data used for evaluation, apparent accuracy may be optimistic.
+</p>
+</div>
+</section>
+<section id="pooling-samples-when-fewer-tests-can-suffice" class="slide level2 concept-slide">
+<h2>Pooling samples: when fewer tests can suffice</h2>
+<div class="eyebrow">
+Group testing · only when assay dilution is acceptable
+</div>
+<div class="w10-figure" style="height:10.3em;">
+<img src="figures/pooled_testing.svg" alt="Diagram of pooling patient samples and retesting individuals if pool tests positive">
+</div>
+<div class="w10-equation">
+Expected tests per person (idealized) <span class="math inline">\(\approx 1/k + 1-(1-p)^k\)</span>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+Valid only under an appropriate pooling protocol and assumptions; lower assay sensitivity after dilution, dependence and prevalence can change whether pooling helps.
+</p>
+</div>
+</section>
+<section id="clinical-trials" class="slide level2 section-break">
+<h2>Clinical trials</h2>
+<div class="section-kicker">
+Part III
+</div>
+<div class="section-title">
+For causal inference use clinical study
+</div>
+<div class="section-subtitle">
+We now see all the care we have to give for correct planning and execution.
+</div>
+</section>
+<section id="clinical-trials-what-randomization-buys-us" class="slide level2 concept-slide">
+<h2>Clinical trials: what randomization buys us</h2>
+<div class="eyebrow">
+Treatment allocation as a planned intervention
+</div>
+<div class="w10-figure" style="height:11.8em;">
+<img src="figures/trial_design_flow.svg" alt="Flow of eligible participants through concealed randomization into treatment and comparator arms">
+</div>
+<div class="concept-line fragment fade-up">
+The target is a <strong>causal contrast</strong> under a clearly specified intervention, endpoint, population and follow-up.
+</div>
+</section>
+<section id="write-the-question-before-running-the-test" class="slide level2 concept-slide">
+<h2>Write the question before running the test</h2>
+<div class="eyebrow">
+Superiority, noninferiority, equivalence
+</div>
+<div class="w10-table" style="--cols:3; font-size: 120%">
+<div class="w10-th">
+Objective
+</div>
+<div class="w10-th">
+Clinical question
+</div>
+<div class="w10-th">
+Statistical logic
+</div>
+<div>
+Superiority
+</div>
+<div>
+Is&nbsp;<span class="math inline">\(T\)</span>&nbsp;better than&nbsp;<span class="math inline">\(C\)</span>?
+</div>
+<div>
+Evidence that the effect exceeds a reference such as zero
+</div>
+<div>
+Noninferiority
+</div>
+<div>
+Is&nbsp;<span class="math inline">\(T\)</span>&nbsp;not unacceptably worse?
+</div>
+<div>
+One-sided prespecified margin and appropriate CI
+</div>
+<div>
+Equivalence
+</div>
+<div>
+Are effects close enough in both directions?
+</div>
+<div>
+Two-sided margin; TOST / corresponding 90% CI
+</div>
+</div>
+<div class="concept-line fragment fade-up">
+The same observed treatment difference can support different conclusions depending on the <strong>prespecified question</strong>.
+</div>
+</section>
+<section id="every-trial-needs-a-defensible-comparator" class="slide level2 concept-slide">
+<h2>Every trial needs a defensible comparator</h2>
+<div class="eyebrow">
+Ethics and interpretability
+</div>
+<div class="w10-card-grid">
+<div class="w10-card uncertainty">
+<div class="w10-card-label">
+Placebo
+</div>
+<div class="w10-card-large">
+When appropriate
+</div>
+<div class="w10-card-small">
+Can separate treatment effect from expectations, but ethical constraints apply
+</div>
+</div>
+<div class="w10-card estimate">
+<div class="w10-card-label">
+Active comparator
+</div>
+<div class="w10-card-large">
+Standard of care
+</div>
+<div class="w10-card-small">
+Tests relative benefit or acceptable loss against existing treatment
+</div>
+</div>
+<div class="w10-card observed">
+<div class="w10-card-label">
+No intervention
+</div>
+<div class="w10-card-large">
+Sometimes relevant
+</div>
+<div class="w10-card-small">
+Not interchangeable with placebo when expectations/attention matter
+</div>
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+Comparator choice is part of the scientific and ethical question, not an afterthought.
+</p>
+</div>
+</section>
+<section id="endpoints-one-convincing-outcome-beats-many-weak-ones" class="slide level2 concept-slide">
+<h2>Endpoints: one convincing outcome beats many weak ones</h2>
+<div class="eyebrow">
+Efficacy, safety and multiplicity
+</div>
+<div class="w10-figure" style="height:9.6em;">
+<img src="figures/trial_endpoints.svg" alt="Prespecified primary, supportive secondary, and safety endpoints on separate cards">
+</div>
+<div class="concept-line fragment fade-up">
+Define what is measured, when, how and by whom. Multiple confirmatory claims require an error-control strategy.
+</div>
+</section>
+<section id="baseline-covariates-and-missing-follow-up" class="slide level2 concept-slide">
+<h2>Baseline, covariates and missing follow-up</h2>
+<div class="eyebrow">
+Prevent avoidable ambiguity
+</div>
+<div class="w10-step-stack">
+<div class="w10-step">
+<span class="w10-num">01</span><strong>Before dosing</strong><span>Record baseline endpoint and prognostic factors; plan any covariate adjustment.</span>
+</div>
+<div class="w10-step">
+<span class="w10-num">02</span><strong>During follow-up</strong><span>Apply identical outcome ascertainment and monitoring principles across arms.</span>
+</div>
+<div class="w10-step">
+<span class="w10-num">03</span><strong>At analysis</strong><span>Define the population to analyze and the assumptions for missing values before seeing outcomes.</span>
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+Baseline differences can occur by chance despite proper randomization. Do not use significance testing as a gatekeeper for adjustment.
+</p>
+</div>
+</section>
+<section id="masking-and-allocation-concealment" class="slide level2 concept-slide">
+<h2>Masking and allocation concealment</h2>
+<div class="eyebrow">
+These prevent different problems
+</div>
+<div class="w10-card-grid">
+<div class="w10-card observed">
+<div class="w10-card-label">
+Concealment
+</div>
+<div class="w10-card-large">
+Before assignment
+</div>
+<div class="w10-card-small">
+Prevents knowledge of the upcoming allocation from influencing enrolment
+</div>
+</div>
+<div class="w10-card model">
+<div class="w10-card-label">
+Masking
+</div>
+<div class="w10-card-large">
+After assignment
+</div>
+<div class="w10-card-small">
+Can reduce performance and outcome-assessment biases
+</div>
+</div>
+<div class="w10-card estimate">
+<div class="w10-card-label">
+Transparent reporting
+</div>
+<div class="w10-card-large">
+Throughout
+</div>
+<div class="w10-card-small">
+Specify exactly who was masked and how
+</div>
+</div>
+</div>
+<div class="concept-line fragment fade-up">
+Labels like “double blind” are less informative than naming <strong>participants, clinicians, assessors and analysts</strong>.
+</div>
+</section>
+<section id="interactive-lab-randomize-one-patient-at-a-time" class="slide level2 exercise-slide">
+<h2>Interactive lab · randomize one patient at a time</h2>
+<div class="eyebrow">
+Watch adaptation to arm imbalance
+</div>
+<div id="randomWidget" class="w10-lab">
+<div class="w10-controls">
+<label class="w10-control">Allocation mechanism<select id="ranMode"><option value="simple">Simple randomization: p = 0.50</option><option value="biased">Biased coin: p = 0.75 toward underrepresented arm</option></select></label>
+<div class="w10-button-row">
+<button id="ranOne" class="w10-button" type="button">
+Allocate 1
+</button>
+<button id="ranTen" class="w10-button" type="button">
+Allocate 10
+</button>
+<button id="ranReset" class="w10-button secondary" type="button">
+Reset
+</button>
+</div>
+<div class="w10-two-output">
+<div class="w10-output">
+<span>Treatment / control</span><strong id="ranCounts">0 / 0</strong>
+</div>
+<div class="w10-output">
+<span>Next p(treatment)</span><strong id="ranProbability">0.50</strong>
+</div>
+<div class="w10-output">
+<span>Allocated</span><strong id="ranTotal">0</strong>
+</div>
+<div class="w10-output">
+<span>Absolute imbalance</span><strong id="ranGap">0</strong>
+</div>
+</div>
+<div class="w10-micro">
+Balanced-biased-coin allocation is <strong>not</strong> an outcome-adaptive design; it uses prior arm counts only.
+</div>
+</div>
+<div class="w10-visual">
+<svg id="randomSvg" class="w10-svg" style="height: 14em" viewbox="0 0 900 475" aria-label="Sequential trial assignment and arm balance">
+</svg>
+</div>
+</div>
+</section>
+<section id="randomization-not-all-methods-are-interchangeable" class="slide level2 concept-slide">
+<h2>Randomization: not all methods are interchangeable</h2>
+<div class="eyebrow">
+Use transparent, prespecified rules
+</div>
+<div class="w10-table" style="--cols:3">
+<div class="w10-th">
+Design
+</div>
+<div class="w10-th">
+What it changes
+</div>
+<div class="w10-th">
+What to remember
+</div>
+<div>
+Simple random
+</div>
+<div>
+Each assignment independent
+</div>
+<div>
+Some imbalance is natural, especially in small studies
+</div>
+<div>
+Blocked / stratified
+</div>
+<div>
+Restrictions preserve balance
+</div>
+<div>
+Specify blocks, factors and concealment protocol
+</div>
+<div>
+Biased coin
+</div>
+<div>
+Preferentially corrects imbalance
+</div>
+<div>
+Assignment probability changes using current counts
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+Proper randomization does not guarantee equal arm sizes or eliminate chance variation in prognostic factors.
+</p>
+</div>
+</section>
+<section id="interactive-lab-plan-the-sample-size" class="slide level2 exercise-slide">
+<h2>Interactive lab · plan the sample size</h2>
+<div class="eyebrow">
+A two-arm continuous-endpoint superiority study
+</div>
+<div id="powerWidget" class="w10-lab">
+<div class="w10-controls">
+<label class="w10-control">Anticipated absolute effect <span class="math inline">\(\Delta\)</span><input id="powEffect" type="number" min="0.1" max="100" step="0.5" value="5"></label> <label class="w10-control">Common planning SD <span class="math inline">\(\sigma\)</span><input id="powSd" type="number" min="0.1" max="100" step="0.5" value="12"></label> <label class="w10-control">Two-sided <span class="math inline">\(\alpha\)</span><select id="powAlpha"><option value="0.10">0.10</option><option value="0.05" selected="">0.05</option><option value="0.01">0.01</option></select></label> <label class="w10-control">Target power<select id="powTarget"><option value="0.8" selected="">80%</option><option value="0.9">90%</option><option value="0.95">95%</option></select></label>
+<div class="w10-two-output">
+<div class="w10-output">
+<span>Required / arm</span><strong id="powN">—</strong>
+</div>
+<div class="w10-output">
+<span>Total planned</span><strong id="powTotal">—</strong>
+</div>
+<div class="w10-output">
+<span>Standardized effect</span><strong id="powD">—</strong>
+</div>
+<div class="w10-output">
+<span>Attained approx. power</span><strong id="powAttained">—</strong>
+</div>
+</div>
+<div id="powNote" class="w10-micro">
+Two independent groups, equal allocation; finite-df t-critical, normal approximation to t-test power.
+</div>
+</div>
+<div class="w10-visual">
+<svg id="powerSvg" class="w10-svg" style="height: 16em" viewbox="0 0 900 475" aria-label="Power versus sample size for a two-sample treatment comparison">
+</svg>
+</div>
+</div>
+</section>
+<section id="what-goes-into-sample-size-planning" class="slide level2 concept-slide">
+<h2>What goes into sample-size planning?</h2>
+<div class="eyebrow">
+You cannot compute <span class="math inline">\(n\)</span> without assumptions
+</div>
+<div class="w10-step-stack">
+<div class="w10-step">
+<span class="w10-num">01</span><strong>Clinically important difference</strong><span>Choose <span class="math inline">\(\Delta\)</span> on the original outcome scale, not merely an attainable statistical signal.</span>
+</div>
+<div class="w10-step">
+<span class="w10-num">02</span><strong>Within-arm SD and α</strong><span>Higher variability or more stringent α generally needs more patients.</span>
+</div>
+<div class="w10-step">
+<span class="w10-num">03</span><strong>Target power and operations</strong><span>Higher power needs more patients; add credible allowance for attrition and operational limitations.</span>
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+The widget gives an illustrative approximation for two independent groups, not a regulatory trial-planning calculation.
+</p>
+</div>
+</section>
+<section id="read-a-trial-result-as-an-effect-and-its-interval" class="slide level2 concept-slide">
+<h2>Read a trial result as an effect and its interval</h2>
+<div class="eyebrow">
+An example reporting sentence
+</div>
+<div class="w10-quote">
+“The treatment reduced systolic blood pressure by an estimated <strong>5 mmHg</strong> relative to control (95% CI <strong>2 to 8 mmHg</strong> reduction), at 12 weeks.”
+</div>
+<div class="w10-card-grid">
+<div class="w10-card estimate">
+<div class="w10-card-label">
+Magnitude
+</div>
+<div class="w10-card-large">
+5 mmHg
+</div>
+<div class="w10-card-small">
+Is it clinically important?
+</div>
+</div>
+<div class="w10-card uncertainty">
+<div class="w10-card-label">
+Uncertainty
+</div>
+<div class="w10-card-large">
+95% CI
+</div>
+<div class="w10-card-small">
+What range of effects remains compatible with data?
+</div>
+</div>
+<div class="w10-card observed">
+<div class="w10-card-label">
+Context
+</div>
+<div class="w10-card-large">
+12 weeks
+</div>
+<div class="w10-card-small">
+Who, when, comparator, adverse effects?
+</div>
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+Statistical significance is not a complete benefit–risk assessment.
+</p>
+</div>
+<div class="mathematician-gallery fragment fade-up" style="max-width: 16em">
+<div class="portrait-card">
+<img src="figures/Lind.jpg" alt="James Lind">
+<div class="portrait-name">
+James Lind
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Hill.jpg" alt="Bradford Hill">
+<div class="portrait-name">
+Sir Austin Bradford Hill
+</div>
+</div>
+</div>
+</section>
+<section id="toxicology" class="slide level2 section-break">
+<h2>Toxicology</h2>
+<div class="section-kicker">
+Part IV
+</div>
+<div class="section-title">
+It is actually important to prove safety first
+</div>
+<div class="section-subtitle">
+We now see the basic idea of assessing drug toxicity.
+</div>
+</section>
+<section id="toxicology-dose-effect-and-harm" class="slide level2 concept-slide">
+<h2>Toxicology: dose, effect and harm</h2>
+<div class="eyebrow">
+Repeated exposures and nonlinear biological responses
+</div>
+<div class="w10-card-grid">
+<div class="w10-card estimate">
+<div class="w10-card-label">
+Pharmacology
+</div>
+<div class="w10-card-large">
+EC50 / IC50
+</div>
+<div class="w10-card-small">
+Dose or concentration at a defined half-maximal response
+</div>
+</div>
+<div class="w10-card warning">
+<div class="w10-card-label">
+Toxicology
+</div>
+<div class="w10-card-large">
+TC50 / LC50
+</div>
+<div class="w10-card-small">
+Half-maximal toxic response / 50% lethality in a stated assay
+</div>
+</div>
+<div class="w10-card observed">
+<div class="w10-card-label">
+Experiment
+</div>
+<div class="w10-card-large">
+Doses and times
+</div>
+<div class="w10-card-small">
+Exposure schedule and concentration range matter
+</div>
+</div>
+</div>
+<div class="concept-line fragment fade-up">
+A dose–response model describes a particular endpoint under a particular exposure protocol.
+</div>
+</section>
+<section id="sigmoids-are-useful-not-universal" class="slide level2 concept-slide">
+<h2>Sigmoids are useful, not universal</h2>
+<div class="eyebrow">
+Potency, slope, saturation
+</div>
+<div class="w10-figure" style="height:12.2em;">
+<img src="figures/dose_response_families.svg" alt="Sigmoidal dose-response families with shifts in EC50 and slope changes">
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+The extended logit curve from last week links log-dose with response shape; model choice requires mechanistic and empirical justification.
+</p>
+</div>
+</section>
+<section id="from-mass-action-to-the-boltzmann-sigmoid" class="slide level2 concept-slide">
+<h2>From Mass Action to the Boltzmann Sigmoid</h2>
+<div class="eyebrow">
+First-principles derivation · Binding kinetics &amp; cooperativity
+</div>
+<div class="w10-three" style="margin-top: 0.4em; gap: 0.7em; align-items: stretch;">
+<!-- Card 1: Mass Action -->
+<div class="w10-card model-border">
+<div class="w10-card-title">
+1: Equilibrium Mass Action
+</div>
+<div class="w10-card-sub" style="font-size: 0.55em; margin-bottom: 0.4em;">
+Receptor <span class="math inline">\(\text{R}\)</span> binds ligand <span class="math inline">\(\text{L}\)</span>: <span class="math display">\[\text{L} + \text{R} \underset{k_{\mathrm{off}}}{\overset{k_{\mathrm{on}}}{\rightleftharpoons}} \text{RL}, \quad K_{\mathrm{d}} = \frac{[\text{L}][\text{R}]}{[\text{RL}]}\]</span>
+</div>
+<div class="w10-card-math" style="font-size: 0.65em;">
+<span class="math display">\[\theta = \frac{[\text{RL}]}{[\text{R}]_{\mathrm{tot}}} = \frac{[\text{L}]}{[\text{L}] + K_{\mathrm{d}}}\]</span>
+</div>
+<div class="w10-card-sub" style="font-size: 0.4em; margin-top: 0.4em;">
+Hyperbolic response curve on a linear concentration scale (<span class="math inline">\([\text{L}]\)</span>).
+</div>
+</div>
+<!-- Card 2: Log-Dose / Boltzmann Sigmoid -->
+<div class="w10-card estimate-border fragment fade-up">
+<div class="w10-card-title">
+2: Log-Dose reparameterization
+</div>
+<div class="w10-card-sub" style="font-size: 0.55em; margin-bottom: 0.4em;">
+Define log-concentration <span class="math inline">\(x = \log[\text{L}]\)</span> and log-dissociation <span class="math inline">\(x_{50} = \log K_{\mathrm{d}}\)</span>:
+</div>
+<div class="w10-card-math" style="font-size: 0.65em;">
+<span class="math display">\[\theta = \frac{e^x}{e^x + e^{x_{50}}} = \frac{1}{1 + e^{-(x - x_{50})}}\]</span>
+</div>
+<div class="w10-card-sub" style="font-size: 0.4em; margin-top: 0.4em;">
+This is <strong>exactly</strong> the standard logistic (Boltzmann) sigmoid on the log-dose axis.
+</div>
+</div>
+<!-- Card 3: Hill Cooperativity -->
+<div class="w10-card uncertainty-border fragment fade-up">
+<div class="w10-card-title">
+3: Hill Cooperativity (<span class="math inline">\(n_{\mathrm{H}}\)</span>)
+</div>
+<div class="w10-card-sub" style="font-size: 0.55em; margin-bottom: 0.4em;">
+Multi-site binding (<span class="math inline">\(n_{\mathrm{H}}\)</span> molecules bind cooperatively):
+</div>
+<div class="w10-card-math" style="font-size: 0.65em;">
+<span class="math display">\[\theta = \frac{[\text{L}]^{n_{\mathrm{H}}}}{[\text{L}]^{n_{\mathrm{H}}} + K_{\mathrm{d}}^{n_{\mathrm{H}}}} = \frac{1}{1 + e^{-n_{\mathrm{H}}(x - x_{50})}}\]</span>
+</div>
+<div class="w10-card-sub" style="font-size: 0.4em; margin-top: 0.4em;">
+The Hill coefficient <span class="math inline">\(n_{\mathrm{H}}\)</span> directly scales the <strong>slope factor</strong> (steepness) of the sigmoid.
+</div>
+</div>
+</div>
+<div class="w10-caption fragment fade-up" style="margin-top: 0.75em;">
+<strong>Mechanistic insight:</strong> The logistic curve is not just an empirical smoothing function—it arises naturally when ligand-receptor equilibrium is plotted against log-concentration. <span class="math inline">\(n_{\mathrm{H}} &gt; 1\)</span> indicates positive cooperativity, while <span class="math inline">\(n_{\mathrm{H}} &lt; 1\)</span> reflects negative cooperativity or multiple receptor subtypes.
+</div>
+</section>
+<section id="dose-planning-determines-what-can-be-estimated" class="slide level2 concept-slide">
+<h2>Dose planning determines what can be estimated</h2>
+<div class="eyebrow">
+Avoid fitting a curve to the wrong region
+</div>
+<div class="w10-step-stack">
+<div class="w10-step">
+<span class="w10-num">01</span><strong>Include a meaningful control</strong><span>Establish baseline or background toxicity.</span>
+</div>
+<div class="w10-step">
+<span class="w10-num">02</span><strong>Bracket the transition</strong><span>Sample both lower and higher response regions, where feasible; do not require a universal 30–70% range.</span>
+</div>
+<div class="w10-step">
+<span class="w10-num">03</span><strong>Replicate and account for exposure</strong><span>Dose spacing, sample size, time and measurement error affect certainty.</span>
+</div>
+</div>
+<div class="concept-line fragment fade-up">
+An apparent EC50 can be extrapolation if the measured doses never bracket half-response.
+</div>
+</section>
+<section id="noael-loael-versus-modeled-bmd" class="slide level2 concept-slide">
+<h2>NOAEL / LOAEL versus modeled BMD</h2>
+<div class="eyebrow">
+One comes from dose groups; one from a curve
+</div>
+<div class="w10-figure" style="height:12em;">
+<img src="figures/toxicology_bmd.svg" alt="Illustrative observed dose groups and fitted adverse-effect response with NOAEL LOAEL and benchmark dose">
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+NOAEL/LOAEL are study-dependent observed dose levels. BMD (benchmark dose) is fitted at a specified benchmark response; BMDL is a lower confidence bound for that modeled dose.
+</p>
+</div>
+</section>
+<section id="exposure-duration-changes-the-interpretation" class="slide level2 concept-slide">
+<h2>Exposure duration changes the interpretation</h2>
+<div class="eyebrow">
+One dose, more than one answer
+</div>
+<div class="w10-card-grid">
+<div class="w10-card observed">
+<div class="w10-card-label">
+Acute
+</div>
+<div class="w10-card-large">
+Single/short exposure
+</div>
+<div class="w10-card-small">
+Different endpoints than prolonged dosing
+</div>
+</div>
+<div class="w10-card model">
+<div class="w10-card-label">
+Repeated-dose
+</div>
+<div class="w10-card-large">
+Weeks/months
+</div>
+<div class="w10-card-small">
+Accumulation and adaptation may alter response
+</div>
+</div>
+<div class="w10-card warning">
+<div class="w10-card-label">
+Clinical translation
+</div>
+<div class="w10-card-large">
+Species and protocols
+</div>
+<div class="w10-card-small">
+Do not equate experimental safety thresholds directly with a safe patient dose
+</div>
+</div>
+</div>
+<div class="concept-line fragment fade-up">
+A toxicity statement is incomplete without dose, route, exposure duration, species/population and endpoint.
+</div>
+</section>
+<section id="meta-analysis" class="slide level2 section-break">
+<h2>Meta-analysis</h2>
+<div class="section-kicker">
+Part V
+</div>
+<div class="section-title">
+Human knowledge accumulated
+</div>
+<div class="section-subtitle">
+Why consensus provides a stronger evidence.
+</div>
+</section>
+<section id="from-individual-studies-to-cumulative-evidence" class="slide level2 concept-slide">
+<h2>From individual studies to cumulative evidence</h2>
+<div class="eyebrow">
+Systematic review → quantitative synthesis
+</div>
+<div class="w10-step-stack">
+<div class="w10-step">
+<span class="w10-num">01</span><strong>Define a systematic question</strong><span>Population, intervention/exposure, comparator, outcome and study design.</span>
+</div>
+<div class="w10-step">
+<span class="w10-num">02</span><strong>Search and appraise</strong><span>Include eligible studies transparently; assess bias and publication/selective reporting.</span>
+</div>
+<div class="w10-step">
+<span class="w10-num">03</span><strong>Synthesize</strong><span>Combine comparable estimates and examine between-study differences.</span>
+</div>
+</div>
+<div class="concept-line fragment fade-up">
+A meta-analysis is a calculation <em>inside</em> a systematic review, not a substitute for one.
+</div>
+<div class="mathematician-gallery fragment fade-up" style="max-width: 16em">
+<div class="portrait-card">
+<img src="figures/Cochrane.jpg" alt="Archie Cochrane">
+<div class="portrait-name">
+Archie Cochrane
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Glass.jpg" alt="Gene V. Glass">
+<div class="portrait-name">
+Gene V. Glass
+</div>
+</div>
+</div>
+</section>
+<section id="how-to-read-a-forest-plot" class="slide level2 concept-slide">
+<h2>How to read a forest plot</h2>
+<div class="eyebrow">
+Each line = one study, diamond = pooled estimate
+</div>
+<div class="w10-figure" style="height:13.3em;">
+<img src="figures/forest_anatomy.svg" alt="Synthetic common-effect forest plot showing individual risk ratios and confidence intervals and green pooled diamond">
+</div>
+<div class="w10-small-note">
+Squares represent study estimates; square area reflects precision weight. Horizontal lines are 95% CIs. The dashed line at RR=1 is the no-effect reference.
+</div>
+</section>
+<section id="why-more-precise-studies-get-more-weight" class="slide level2 concept-slide">
+<h2>Why more precise studies get more weight</h2>
+<div class="eyebrow">
+Common-effect model, under its assumptions
+</div>
+<div class="w10-bigmath">
+<span class="math inline">\(w_i=1/SE_i^2,\qquad \hat\theta_{pool}=\dfrac{\sum_i w_i\hat\theta_i}{\sum_i w_i}\)</span>
+</div>
+<div class="w10-card-grid">
+<div class="w10-card estimate">
+<div class="w10-card-label">
+High precision
+</div>
+<div class="w10-card-large">
+Small SE
+</div>
+<div class="w10-card-small">
+Larger inverse-variance weight
+</div>
+</div>
+<div class="w10-card uncertainty">
+<div class="w10-card-label">
+Low precision
+</div>
+<div class="w10-card-large">
+Large SE
+</div>
+<div class="w10-card-small">
+Smaller weight
+</div>
+</div>
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+For ratio measures, average <strong>log risk ratios / log odds ratios</strong>, then exponentiate. Pool only effects on a comparable estimand and scale.
+</p>
+</div>
+</section>
+<section id="what-if-studies-truly-differ" class="slide level2 concept-slide">
+<h2>What if studies truly differ?</h2>
+<div class="eyebrow">
+Between-study heterogeneity
+</div>
+<div class="w10-table" style="--cols:3; font-size: 120%">
+<div class="w10-th">
+Approach
+</div>
+<div class="w10-th">
+Concept
+</div>
+<div class="w10-th">
+Caution
+</div>
+<div>
+Common-effect
+</div>
+<div>
+One underlying effect in the included studies
+</div>
+<div>
+Variation attributed to sampling uncertainty
+</div>
+<div>
+Random-effects
+</div>
+<div>
+A distribution of underlying study effects
+</div>
+<div>
+Accounts for between-study heterogeneity; requires more assumptions
+</div>
+<div>
+Subgroups / sensitivity
+</div>
+<div>
+Explore prespecified differences
+</div>
+<div>
+Avoid assuming any pooled mean applies to all patients
+</div>
+</div>
+<div class="concept-line fragment fade-up">
+A narrower pooled CI is not evidence that all populations benefit equally.
+</div>
+</section>
+<section id="funnel-plots-a-clue-not-a-verdict" class="slide level2 concept-slide">
+<h2>Funnel plots: a clue, not a verdict</h2>
+<div class="eyebrow">
+Small studies, precision and selective publication
+</div>
+<div class="w10-figure" style="height:12.3em;">
+<img src="figures/funnel_anatomy.svg" alt="Side by side approximately symmetric and asymmetric funnel plots with effect size and standard error axes">
+</div>
+<div class="definition-box fragment fade-up">
+<p>
+Asymmetry may result from publication bias, heterogeneity, methodological differences or chance; assess alongside study design and reporting.
+</p>
+</div>
+</section>
+<section id="check-your-intuition-which-denominator" class="slide level2 exercise-slide">
+<h2>Check your intuition · Which denominator?</h2>
+<div class="eyebrow">
+Interpret, do not memorize
+</div>
+<div class="w10-quiz" data-quiz="1">
+<div class="w10-quiz-question">
+A negative diagnostic test is obtained. What is the probability the person is actually healthy?
+</div>
+<div class="w10-quiz-options">
+<button type="button" class="w10-choice" data-choice="A">
+A · Sensitivity
+</button>
+<button type="button" class="w10-choice" data-choice="B">
+B · Specificity
+</button>
+<button type="button" class="w10-choice" data-choice="C">
+C · Negative predictive value
+</button>
+</div>
+<div class="w10-quiz-feedback" aria-live="polite">
+
+</div>
+</div>
+</section>
+<section id="check-your-intuition-best-threshold" class="slide level2 exercise-slide">
+<h2>Check your intuition · Best threshold?</h2>
+<div class="eyebrow">
+Interpret, do not memorize
+</div>
+<div class="w10-quiz" data-quiz="2">
+<div class="w10-quiz-question">
+A threshold is moved along a fixed biomarker ROC curve. What might change?
+</div>
+<div class="w10-quiz-options">
+<button type="button" class="w10-choice" data-choice="A">
+A · AUC
+</button>
+<button type="button" class="w10-choice" data-choice="B">
+B · Sensitivity and specificity
+</button>
+<button type="button" class="w10-choice" data-choice="C">
+C · Disease prevalence
+</button>
+</div>
+<div class="w10-quiz-feedback" aria-live="polite">
+
+</div>
+</div>
+</section>
+<section id="check-your-intuition-randomization" class="slide level2 exercise-slide">
+<h2>Check your intuition · Randomization?</h2>
+<div class="eyebrow">
+Interpret, do not memorize
+</div>
+<div class="w10-quiz" data-quiz="3">
+<div class="w10-quiz-question">
+Which statement about randomized allocation is correct?
+</div>
+<div class="w10-quiz-options">
+<button type="button" class="w10-choice" data-choice="A">
+A · Eliminates sampling variation
+</button>
+<button type="button" class="w10-choice" data-choice="B">
+B · Guarantees equal covariates
+</button>
+<button type="button" class="w10-choice" data-choice="C">
+C · Reduces systematic baseline confounding on average
+</button>
+</div>
+<div class="w10-quiz-feedback" aria-live="polite">
+
+</div>
+</div>
+</section>
+<section id="check-your-intuition-meta-analysis" class="slide level2 exercise-slide">
+<h2>Check your intuition · Meta-analysis?</h2>
+<div class="eyebrow">
+Interpret, do not memorize
+</div>
+<div class="w10-quiz" data-quiz="4">
+<div class="w10-quiz-question">
+Several precise studies estimate different population effects. What is most important to inspect?
+</div>
+<div class="w10-quiz-options">
+<button type="button" class="w10-choice" data-choice="A">
+A · Heterogeneity and applicability
+</button>
+<button type="button" class="w10-choice" data-choice="B">
+B · Only the pooled p-value
+</button>
+<button type="button" class="w10-choice" data-choice="C">
+C · Whether all effect estimates are identical
+</button>
+</div>
+<div class="w10-quiz-feedback" aria-live="polite">
+
+</div>
+</div>
+</section>
+<section id="one-map-where-statistics-enters-evidence" class="slide level2 concept-slide">
+<h2>One map: where statistics enters evidence</h2>
+<div class="eyebrow">
+From research question to decision
+</div>
+<div class="w10-summary-flow">
+<div>
+<strong>Who?</strong><span>Population, prevalence, selection</span>
+</div>
+<div>
+<strong>What?</strong><span>Diagnosis and misclassification</span>
+</div>
+<div>
+<strong>Why?</strong><span>Trial causal effect and benefit–harm</span>
+</div>
+<div>
+<strong>How much?</strong><span>Dose–response and uncertainty</span>
+</div>
+<div>
+<strong>How sure?</strong><span>Systematic review and meta-analysis</span>
+</div>
+</div>
+<div class="concept-line fragment fade-up">
+A sound interpretation requires <strong>design + estimand + measurement + uncertainty + applicability</strong>.
+</div>
+</section>
+<section id="next-the-data-do-not-always-come-one-patient-at-a-time" class="slide level2 section-slide">
+<h2>Next: the data do not always come one patient at a time</h2>
+<div class="eyebrow">
+Week 11 · time, signals, survival and prediction
+</div>
+<div class="w10-hero">
+Outcomes may arrive as <strong>trajectories</strong>, <strong>repeated measurements</strong> and <strong>time until an event</strong>.
+</div>
+<div class="w10-card-grid">
+<div class="w10-card observed">
+<div class="w10-card-label">
+Time series
+</div>
+<div class="w10-card-large">
+Signal trajectories
+</div>
+<div class="w10-card-small">
+Serial dependence matters
+</div>
+</div>
+<div class="w10-card uncertainty">
+<div class="w10-card-label">
+Survival
+</div>
+<div class="w10-card-large">
+Time-to-event
+</div>
+<div class="w10-card-small">
+Follow-up and censoring matter
+</div>
+</div>
+<div class="w10-card estimate">
+<div class="w10-card-label">
+Prediction
+</div>
+<div class="w10-card-large">
+Generalization
+</div>
+<div class="w10-card-small">
+Validation matters
+</div>
+</div>
+</div>
+<!-- One JS block. Do not load week10.js separately. -->
+<script>
+/* Week 10: one scoped script, initialized once. The QMD embeds this verbatim. */
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const N=(id,fallback)=>{const el=$(id);const v=el?Number(el.value):fallback;return Number.isFinite(v)?v:fallback;};
+const out=(id,v)=>{const el=$(id);if(el)el.textContent=String(v);};
+const svgLine=(x1,y1,x2,y2,cls='w10-axis')=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="${cls}"></line>`;
+const svgPath=(pts,cls)=>`<path class="${cls}" d="${pts.map((p,i)=>`${i?'L':'M'}${p[0].toFixed(2)},${p[1].toFixed(2)}`).join(' ')}"></path>`;
+const txt=(x,y,string,cls='w10-tick',anchor='middle')=>`<text x="${x}" y="${y}" text-anchor="${anchor}" class="${cls}">${string}</text>`;
+const pct=p=>Number.isFinite(p)?(100*p).toFixed(1)+'%':'—';
+const fixed=(x,d=2)=>Number.isNaN(x)?'—':x===Infinity?'∞':x===-Infinity?'−∞':Number.isFinite(x)?x.toFixed(d):'—';
+const safe=(a,b)=>b===0?NaN:a/b;
+const axes=(L,R,T,B,xlabels,ylabels)=>{
+ let s=svgLine(L,B,R,B)+svgLine(L,T,L,B);
+ for(const [v,x] of xlabels)s+=svgLine(x,B,x,B+6)+txt(x,B+26,v);
+ for(const [v,y] of ylabels)s+=svgLine(L,y,R,y,'w10-gridline')+txt(L-10,y+5,v,'w10-tick','end');
+ return s;
+};
+
+/* --------------------------------------------------------
+   Diagnostic 5 × 6 display
+   -------------------------------------------------------- */
+function renderConfusion(){
+ const tp=Math.max(0,Math.floor(N('cmTP',0))),fn=Math.max(0,Math.floor(N('cmFN',0)));
+ const fp=Math.max(0,Math.floor(N('cmFP',0))),tn=Math.max(0,Math.floor(N('cmTN',0)));
+ const sick=tp+fn,healthy=tn+fp,pos=tp+fp,neg=tn+fn,total=sick+healthy;
+ const sen=safe(tp,sick),spec=safe(tn,healthy),ppv=safe(tp,pos),npv=safe(tn,neg);
+ const fpr=safe(fp,healthy),fnr=safe(fn,sick),fdr=safe(fp,pos),forate=safe(fn,neg);
+ const acc=safe(tp+tn,total),bacc=(sen+spec)/2;
+ const f1=safe(2*tp,2*tp+fp+fn),fowl= Math.sqrt(ppv*sen);
+ const inf=sen+spec-1,marked=ppv+npv-1;
+ const mcc=safe(tp*tn-fp*fn,Math.sqrt(pos*sick*healthy*neg));
+ const lrp=safe(sen,fpr),lrm=safe(fnr,spec),dor=safe(lrp,lrm);
+ const prevTh=safe(Math.sqrt(fpr),Math.sqrt(sen)+Math.sqrt(fpr));
+ const jacc=safe(tp,tp+fp+fn);
+ out('cmSensBig',pct(sen));out('cmSpecBig',pct(spec));out('cmPpvBig',pct(ppv));out('cmNpvBig',pct(npv));
+ // Exactly 5 columns × 6 rows, ordered like the course outline.
+ const specs=[
+  [['Total',total,'n'],['Healthy',healthy,'n'],['Sick',sick,'n'],['Prevalence',safe(sick,total),'pct'],['Accuracy',acc,'pct'],['Balanced accuracy',bacc,'pct']],
+  [['Positive',pos,'n'],['TP',tp,'n'],['FP',fp,'n'],['PPV',ppv,'pct'],['False discovery rate',fdr,'pct'],['F1 score',f1,'decimal']],
+  [['Negative',neg,'n'],['FN',fn,'n'],['TN',tn,'n'],['False omission rate',forate,'pct'],['NPV',npv,'pct'],['Fowlkes–Mallows',fowl,'decimal']],
+  [['Informedness',inf,'decimal'],['Sensitivity / recall',sen,'pct'],['FPR / fall-out',fpr,'pct'],['LR+',lrp,'decimal'],['Markedness',marked,'decimal'],['Matthews (MCC)',mcc,'decimal']],
+  [['Prev. threshold',prevTh,'pct'],['FNR / miss rate',fnr,'pct'],['Specificity',spec,'pct'],['LR−',lrm,'decimal'],['Diagnostic OR',dor,'decimal'],['Jaccard / threat',jacc,'decimal']]
+ ];
+ const fmt=(v,type)=>type==='n'?String(v):type==='pct'?pct(v):fixed(v,2);
+ // Style mapping for matrix categories
+ const styleMap = {
+   'Healthy': 'model', 'Sick': 'model',
+   'Positive': 'observed', 'Negative': 'observed',
+   'TP': 'uncertainty', 'TN': 'uncertainty', 'FP': 'uncertainty', 'FN': 'uncertainty',
+   'Sensitivity / recall': 'primary', 'Specificity': 'primary', 'PPV': 'primary', 'NPV': 'primary',
+   'Balanced accuracy': 'primary', 'Accuracy': 'primary'
+ };
+ <!-- const el = $('cmMetrics'); -->
+ <!-- if (el) el.innerHTML = specs.map(column => -->
+ <!--   '<div class="w10-metric-col">' + column.map(([name, value, type]) => -->
+ <!--     `<div class="w10-metric ${styleMap[name] || ''}"><strong>${name}</strong><span>${fmt(value, type)}</span></div>`).join('') + '</div>').join(''); -->
+ // Formula lookup for tooltip popups
+  const formulaMap = {
+    'Prevalence': 'Sick / Total',
+    'Accuracy': '(TP + TN) / Total',
+    'Balanced accuracy': '(Sensitivity + Specificity) / 2',
+    'PPV': 'TP / (TP + FP)',
+    'False discovery rate': 'FP / (TP + FP)',
+    'F1 score': '2·TP / (2·TP + FP + FN)',
+    'False omission rate': 'FN / (TN + FN)',
+    'NPV': 'TN / (TN + FN)',
+    'Fowlkes–Mallows': '√(PPV × Sensitivity)',
+    'Informedness': 'Sensitivity + Specificity − 1',
+    'Sensitivity / recall': 'TP / (TP + FN)',
+    'FPR / fall-out': 'FP / (TN + FP)',
+    'LR+': 'Sensitivity / FPR',
+    'Markedness': 'PPV + NPV − 1',
+    'Matthews (MCC)': '(TP·TN − FP·FN) / √((TP+FP)(TP+FN)(TN+FP)(TN+FN))',
+    'Prev. threshold': '√FPR / (√Sensitivity + √FPR)',
+    'FNR / miss rate': 'FN / (TP + FN)',
+    'Specificity': 'TN / (TN + FP)',
+    'LR−': 'FNR / Specificity',
+    'Diagnostic OR': 'LR+ / LR−',
+    'Jaccard / threat': 'TP / (TP + FP + FN)'
+  };
+
+  const el = $('cmMetrics');
+  if (el) el.innerHTML = specs.map(column => 
+    '<div class="w10-metric-col">' + column.map(([name, value, type]) => {
+      const f = formulaMap[name];
+      const tipAttr = f ? ` data-formula="${f}"` : '';
+      return `<div class="w10-metric ${styleMap[name] || ''}"${tipAttr}><strong>${name}</strong><span>${fmt(value, type)}</span></div>`;
+    }).join('') + '</div>'
+  ).join('');
+}
+
+/* --------------------------------------------------------
+   Diagnostic biomarker + receiver operating characteristic.
+   LOW biomarker value is defined as test-positive in BOTH
+   synthetic datasets. Sample and ROC remain fixed as slider moves.
+   -------------------------------------------------------- */
+const markerCache={};
+function makeRng(seed){let state=seed>>>0;return ()=>{state^=state<<13;state^=state>>>17;state^=state<<5;return ((state>>>0)+.5)/4294967296;};}
+function normalDraw(rand){return Math.sqrt(-2*Math.log(Math.max(1e-12,rand())))*Math.cos(2*Math.PI*rand());}
+function genMarker(which){
+ const rand=makeRng(which==='ferritin'?640091:94741);
+ const max=which==='ferritin'?110:22, healthy=[],sick=[];
+ for(let i=0;i<72;i++){
+  const mh=which==='ferritin'?62:11.1,sh=which==='ferritin'?19:3.2;
+  const ms=which==='ferritin'?24:9.9,ss=which==='ferritin'?14:3.6;
+  healthy.push(clamp(mh+normalDraw(rand)*sh,.5,max-.5));
+  sick.push(clamp(ms+normalDraw(rand)*ss,.5,max-.5));
+ }
+ return {max,healthy,sick,unit:which==='ferritin'?'ng/mL':'ng/mL'};
+}
+function markerRates(data,cut){
+ const tp=data.sick.filter(v=>v<=cut).length,fn=data.sick.length-tp;
+ const fp=data.healthy.filter(v=>v<=cut).length,tn=data.healthy.length-fp;
+ return {tp,fn,fp,tn,tpr:tp/data.sick.length,fpr:fp/data.healthy.length};
+}
+function markerCurve(data){
+ const sorted=[...data.healthy,...data.sick].sort((a,b)=>a-b);
+ const cuts=[-1,...sorted, data.max+1];
+ const seen=new Set(),points=[];let bestCut=0,bestJ=-Infinity;
+ for(const c of cuts){if(seen.has(c))continue;seen.add(c);
+  const r=markerRates(data,c);points.push({x:r.fpr,y:r.tpr,cut:c});
+  const J=r.tpr-r.fpr;if(J>bestJ){bestJ=J;bestCut=c;}
+ }
+ points.sort((a,b)=>a.x-b.x || a.y-b.y);
+ // AUC: U statistic, disease values are positive on the low end.
+ let wins=0;
+ for(const s of data.sick)for(const h of data.healthy)wins+=s<h?1:s===h?.5:0;
+ const auc=wins/(data.sick.length*data.healthy.length);
+ return {points,auc,bestCut};
+}
+function changeMarker(){
+ const which=$('rocMarker').value;
+ const data=markerCache[which]||(markerCache[which]=genMarker(which));
+ const slider=$('rocCut');slider.max=String(data.max);slider.min='0';slider.step=which==='ferritin'?'1':'.2';slider.value=which==='ferritin'?'30':'10';
+ renderRoc();
+}
+function renderRoc(){
+ const which=$('rocMarker')?.value||'ferritin',data=markerCache[which]||(markerCache[which]=genMarker(which));
+ const cut=N('rocCut',30),scores=markerCurve(data),current=markerRates(data,cut);
+ out('rocCutVal',cut.toFixed(which==='ferritin'?0:1)+' '+data.unit);
+ out('rocSen',pct(current.tpr));out('rocSpe',pct(1-current.fpr));out('rocAuc',scores.auc.toFixed(3));out('rocBest',scores.bestCut.toFixed(1)+' '+data.unit);
+ const svg=$('rocSvg');if(!svg)return;
+ const L=66,R=495,T=78,B=372,L2=610,R2=845,T2=91,B2=333;
+ const mx=x=>L+x/data.max*(R-L),rX=x=>L2+x*(R2-L2),rY=y=>B2-y*(B2-T2);
+ let h=`<defs><clipPath id="w10RocClip"><rect x="${L}" y="${T}" width="${R-L}" height="${B-T}"></rect></clipPath></defs>`;
+ h+=`<rect x="${L}" y="${T}" width="${mx(cut)-L}" height="${B-T}" class="w10-hist-selected"></rect>`;
+ h+=txt(L,34,'Biomarker values by reference group','w10-svg-title','start')+txt(L2,34,'Receiver operating characteristic','w10-svg-title','start');
+ h+=svgLine(L,B,R,B)+svgLine(L,T,L,B)+svgLine(L2,B2,R2,B2)+svgLine(L2,T2,L2,B2);
+ for(const f of [0,.25,.5,.75,1]){
+   const x=rX(f),y=rY(f);
+   h+=svgLine(x,B2,x,B2+6)+txt(x,B2+25,f.toFixed(2));
+   h+=svgLine(L2,y,R2,y,'w10-gridline')+txt(L2-8,y+5,f.toFixed(2),'w10-tick','end');
+ }
+ for(let i=0;i<=5;i++){const v=i/5*data.max;h+=svgLine(mx(v),B,mx(v),B+6)+txt(mx(v),B+25,v.toFixed(which==='ferritin'?0:1));}
+ h+=txt((L+R)/2,B+57,which==='ferritin'?'Ferritin (ng/mL)':'Folate (ng/mL)','w10-svg-label');
+ h+=txt((L2+R2)/2,B2+58,'False positive rate (1 − Specificity)','w10-svg-label');
+ <!-- h+=txt(L2-36,(T2+B2)/2,'True positive rate (Sensitivity)','w10-svg-label'); -->
+ const yX = L2 - 45, yY = (T2 + B2) / 2;
+ h += `<text x="${yX}" y="${yY}" transform="rotate(-90, ${yX}, ${yY})" text-anchor="middle" class="w10-svg-label">True positive rate (Sensitivity)</text>`;
+ h+=txt(L+6,116,'Healthy · blue','w10-svg-label','start');h+=txt(L+6,266,'Sick · orange','w10-svg-label','start');
+ const rand=makeRng(97621);let dots='';
+ for(const [className,values,y] of [['w10-healthy',data.healthy,164],['w10-sick',data.sick,315]]){
+   for(const v of values){const yy=y+(rand()-.5)*75;
+    dots+=`<circle cx="${mx(v).toFixed(2)}" cy="${yy.toFixed(2)}" r="4.0" class="${className}"></circle>`;}
+ }
+ h+=`<g clip-path="url(#w10RocClip)">${dots}${svgLine(mx(cut),T,mx(cut),B,'w10-marker-line')}</g>`;
+ h+=txt(clamp(mx(cut)+9,L+20,R-20),T+25,'cutoff','w10-svg-muted','start');
+ h+=svgLine(L2,B2,R2,T2,'w10-gridline');
+ h+=svgPath(scores.points.map(p=>[rX(p.x),rY(p.y)]),'w10-roc-line');
+ const br=markerRates(data,scores.bestCut);
+ h+=`<circle cx="${rX(br.fpr)}" cy="${rY(br.tpr)}" r="6" fill="#18864b" stroke="white" stroke-width="2"></circle>`;
+ h+=`<circle cx="${rX(current.fpr)}" cy="${rY(current.tpr)}" r="8" class="w10-roc-dot"></circle>`;
+ h+=txt(R2,60,`AUC ${scores.auc.toFixed(3)} · sample Youden max marked in green`,'w10-svg-muted','end');
+ svg.innerHTML=h;
+}
+let rocDrag=false;
+function rocPointer(event){
+ const svg=$('rocSvg');if(!svg)return;
+ const ctm=svg.getScreenCTM();if(!ctm)return;
+ const loc=new DOMPoint(event.clientX,event.clientY).matrixTransform(ctm.inverse());
+ const which=$('rocMarker').value,data=markerCache[which];
+ const L=66,R=495,T=78,B=372;
+ if(loc.x<L-15||loc.x>R+15||loc.y<T-15||loc.y>B+15)return;
+ const value=clamp((loc.x-L)/(R-L)*data.max,0,data.max);
+ const step=which==='ferritin'?1:.2;
+ $('rocCut').value=String(Math.round(value/step)*step);
+ renderRoc();
+}
+
+/* --------------------------------------------------------
+   Sequential randomization. Mode only alters next assignment.
+   No clinical outcome information is ever used.
+   -------------------------------------------------------- */
+let randState=90418, allocations=[];
+function randomU(){randState^=randState<<13;randState^=randState>>>17;randState^=randState<<5;return ((randState>>>0)+.5)/4294967296;}
+function assignmentProb(){const t=allocations.filter(x=>x===1).length,c=allocations.length-t;
+ if($('ranMode')?.value!=='biased'||t===c)return .5;
+ return t<c?.75:.25;
+}
+function assignPatients(n){for(let i=0;i<n;i++){const p=assignmentProb();allocations.push(randomU()<p?1:0);}renderRandom();}
+function renderRandom(){
+ const t=allocations.filter(x=>x===1).length,c=allocations.length-t;
+ out('ranCounts',`${t} / ${c}`);out('ranProbability',assignmentProb().toFixed(2));out('ranTotal',allocations.length);out('ranGap',Math.abs(t-c));
+ const svg=$('randomSvg');if(!svg)return;
+ let h=txt(60,35,'Allocations in arrival order','w10-svg-title','start')+txt(495,35,'Accumulated arm balance','w10-svg-title','start');
+ h+=`<rect x="60" y="60" width="395" height="330" rx="12" fill="#f8fafc" stroke="#d9e1ea"></rect>`;
+ const boxes=allocations.slice(-120);
+ boxes.forEach((v,i)=>{const col=i%15,row=Math.floor(i/15);h+=`<rect x="${70+col*25.5}" y="${70+row*36.5}" width="20.5" height="24" rx="4" class="${v?'w10-ranT':'w10-ranC'}"></rect>`;});
+ h+=txt(62,420,'Last 120 assignments · green treatment / blue control','w10-svg-muted','start');
+ const L=525,R=850,T=88,B=374;h+=svgLine(L,B,R,B)+svgLine(L,T,L,B);
+ const maxN=Math.max(20,allocations.length);const maxIm=Math.max(4,Math.ceil(Math.sqrt(Math.max(1,allocations.length))*2));
+ const mx=i=>L+i/maxN*(R-L),my=v=>(B+T)/2-v/maxIm*(B-T)/2;
+ h+=svgLine(L,my(0),R,my(0),'w10-gridline');
+ for(const v of [-maxIm,0,maxIm])h+=txt(L-10,my(v)+5,v,'w10-tick','end');
+ for(const i of [0,.25,.5,.75,1])h+=txt(mx(i*maxN),B+25,Math.round(i*maxN));
+ if(allocations.length){let bal=0;const coords=[[mx(0),my(0)]];
+   for(let i=0;i<allocations.length;i++){bal+=allocations[i]?1:-1;coords.push([mx(i+1),my(clamp(bal,-maxIm,maxIm))]);}
+   h+=svgPath(coords,'w10-power-line');
+   h+=`<circle cx="${mx(allocations.length)}" cy="${my(clamp(bal,-maxIm,maxIm))}" r="6" fill="#c93838"></circle>`;
+ }
+ h+=txt(695,447,'Treatment − control assignment count','w10-svg-muted');
+ svg.innerHTML=h;
+}
+
+/* --------------------------------------------------------
+   Planning calculator: t-critical from finite-df expansion;
+   power under a normal approximation to noncentral-t power.
+   Explicitly described as approximate on the slide.
+   -------------------------------------------------------- */
+function normCdf(x){
+ // Hastings polynomial (absolute error near 1e-7 for N(0,1)).
+ const t=1/(1+0.2316419*Math.abs(x));
+ const d=0.3989422804014327*Math.exp(-x*x/2);
+ const tail=d*t*(0.319381530+t*(-0.356563782+t*(1.781477937+t*(-1.821255978+t*1.330274429))));
+ return x>=0?1-tail:tail;
+}
+function normInv(p){
+ // Acklam rational approximation; all caller p are strictly between zero and one.
+ const a=[-39.6968302866538,220.946098424521,-275.928510446969,138.357751867269,-30.6647980661472,2.50662827745924];
+ const b=[-54.4760987982241,161.585836858041,-155.698979859887,66.8013118877197,-13.2806815528857];
+ const c=[-0.00778489400243029,-0.322396458041136,-2.40075827716184,-2.54973253934373,4.37466414146497,2.93816398269878];
+ const d=[0.00778469570904146,0.32246712907004,2.445134137143,3.75440866190742];
+ if(p<.02425){const q=Math.sqrt(-2*Math.log(p));return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);}
+ if(p>1-.02425)return -normInv(1-p);
+ const q=p-.5,r=q*q;
+ return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1);
+}
+function approxTCrit(p,df){const z=normInv(p),z2=z*z,z3=z*z2,z5=z3*z2,z7=z5*z2;
+ return z+(z3+z)/(4*df)+(5*z5+16*z3+3*z)/(96*df*df)+(3*z7+19*z5+17*z3-15*z)/(384*df*df*df);
+}
+function approxPower(n,delta,sd,alpha){
+ if(n<2)return 0;
+ const ncp=Math.abs(delta)/(sd*Math.sqrt(2/n)),crit=approxTCrit(1-alpha/2,2*n-2);
+ return clamp(1-normCdf(crit-ncp)+normCdf(-crit-ncp),0,1);
+}
+function renderPower(){
+ const delta=Math.abs(N('powEffect',5)),sd=N('powSd',12),alpha=N('powAlpha',.05),target=N('powTarget',.8);
+ if(!(sd>0&&delta>0)){
+ for(const id of ['powN','powTotal','powD','powAttained'])out(id,'—');out('powNote','Enter positive anticipated effect and SD.');$('powerSvg').innerHTML='';return;
+ }
+ const MAX=20000;let targetN=null;
+ for(let n=2;n<=MAX;n++){if(approxPower(n,delta,sd,alpha)>=target){targetN=n;break;}}
+ const shown=targetN||MAX;
+ out('powN',targetN?shown.toLocaleString():'>20,000');out('powTotal',targetN?(shown*2).toLocaleString():'>40,000');out('powD',(delta/sd).toFixed(2));
+ out('powAttained',targetN?pct(approxPower(shown,delta,sd,alpha)):'< target by 20,000');
+ out('powNote',targetN?'Approximate t-test power using a finite-df t critical value and normal tail approximation; no dropout adjustment.':'Required n exceeds the displayed search limit; investigate feasibility and assumptions.');
+ const svg=$('powerSvg');if(!svg)return;
+ const L=85,R=854,T=58,B=375,maxN=Math.max(40,Math.min(2000,Math.round(shown*1.35)));
+ const mx=n=>L+(n-2)/(maxN-2)*(R-L),my=p=>B-(p-.0)*(B-T);
+ let h=axes(L,R,T,B,[[2,mx(2)],[Math.round(maxN/4),mx(maxN/4)],[Math.round(maxN/2),mx(maxN/2)],[Math.round(maxN*3/4),mx(maxN*3/4)],[maxN,mx(maxN)]],[[0,my(0)],[.25,my(.25)],[.5,my(.5)],[.75,my(.75)],[1,my(1)]]);
+ h+=txt(L,28,'Planning power vs patients per arm','w10-svg-title','start');
+ h+=svgLine(L,my(target),R,my(target),'w10-marker-line');
+ const pts=Array.from({length:220},(_,i)=>{const n=2+(maxN-2)*i/219;return[mx(n),my(approxPower(n,delta,sd,alpha))];});
+ h+=svgPath(pts,'w10-power-line');
+ if(targetN&&targetN<=maxN){h+=svgLine(mx(shown),my(0),mx(shown),my(target),'w10-marker-line');
+ h+=`<circle cx="${mx(shown)}" cy="${my(approxPower(shown,delta,sd,alpha))}" r="8" class="w10-power-dot"></circle>`;}
+ h+=txt((L+R)/2,443,'Patients per arm (equal allocation)','w10-svg-label');h+=txt(R,36,`Target ${Math.round(target*100)}% · two-sided α = ${alpha}`,'w10-svg-muted','end');
+ svg.innerHTML=h;
+}
+
+const quizAnswers={
+ '1':['C','NPV = TN / (TN + FN); the denominator includes all negative test results.'],
+ '2':['B','A cutoff changes sensitivity and specificity. The AUC for fixed biomarker scores remains constant.'],
+ '3':['C','Randomization removes systematic assignment mechanisms on average, not random variation.'],
+ '4':['A','Between-study differences require inspection of heterogeneity, bias and applicability.']
+};
+function answerQuiz(button){
+ const card=button.closest('.w10-quiz'),spec=quizAnswers[card?.dataset.quiz];if(!spec)return;
+ const correct=button.dataset.choice===spec[0];
+ card.querySelectorAll('.w10-choice').forEach(b=>b.classList.remove('correct','wrong'));
+ button.classList.add(correct?'correct':'wrong');
+ const el=card.querySelector('.w10-quiz-feedback');if(el){el.className='w10-quiz-feedback '+(correct?'correct':'wrong');el.textContent=(correct?'Correct. ':'Not quite. ')+spec[1];}
+}
+
+let initialized=false;
+function initWeek10(){
+ if(initialized||!$('confWidget'))return;
+ initialized=true;
+ for(const id of ['cmTP','cmFN','cmFP','cmTN'])$(id)?.addEventListener('input',renderConfusion);
+ $('rocMarker')?.addEventListener('change',changeMarker);
+ $('rocCut')?.addEventListener('input',renderRoc);
+ const rs=$('rocSvg');
+ rs?.addEventListener('pointerdown',e=>{const ctm=rs.getScreenCTM();if(!ctm)return;const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(ctm.inverse());
+  if(p.x>=51&&p.x<=510&&p.y>=65&&p.y<=395){rocDrag=true;rs.setPointerCapture?.(e.pointerId);rocPointer(e);}
+ });
+ rs?.addEventListener('pointermove',e=>{if(rocDrag)rocPointer(e);});
+ rs?.addEventListener('pointerup',()=>{rocDrag=false;});
+ rs?.addEventListener('pointercancel',()=>{rocDrag=false;});
+ $('ranOne')?.addEventListener('click',()=>assignPatients(1));
+ $('ranTen')?.addEventListener('click',()=>assignPatients(10));
+ $('ranReset')?.addEventListener('click',()=>{allocations=[];randState=90418;renderRandom();});
+ $('ranMode')?.addEventListener('change',renderRandom);
+ for(const id of ['powEffect','powSd','powAlpha','powTarget'])$(id)?.addEventListener('input',renderPower);
+ document.querySelectorAll('.w10-choice').forEach(b=>b.addEventListener('click',()=>answerQuiz(b)));
+ renderConfusion();changeMarker();renderRandom();renderPower();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initWeek10);else initWeek10();
+window.addEventListener('load',initWeek10);
+if(window.Reveal&&typeof window.Reveal.on==='function'){
+ window.Reveal.on('ready',initWeek10);window.Reveal.on('slidechanged',initWeek10);
+}
+})();
+
+</script>
 
 
 </section>
@@ -445,7 +2682,7 @@ Content to be developed.
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/mirzahosseini-arash-semmelweis\.github\.io\/statsenpure\/");
+            var filterRegex = new RegExp('/' + window.location.host + '/');
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

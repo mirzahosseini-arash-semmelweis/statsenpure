@@ -1,0 +1,148 @@
+def generate_weather_svg():
+    svg = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 410" width="100%" height="100%" style="font-family: system-ui, -apple-system, sans-serif;">
+  <defs>
+    <style>
+      .title { font-size: 16px; font-weight: 700; fill: #0f172a; text-anchor: middle; }
+      .subtitle { font-size: 12px; fill: #64748b; text-anchor: middle; }
+      .card-title { font-size: 14px; font-weight: 600; fill: #0f172a; }
+      .card-prob { font-size: 12px; fill: #64748b; }
+      .card-code { font-size: 15px; font-weight: 700; text-anchor: end; }
+      .sum-lbl { font-size: 12px; fill: #64748b; text-anchor: middle; }
+      .sum-val { font-size: 17px; font-weight: 700; text-anchor: middle; }
+      .edge-lbl { font-size: 12px; font-weight: 700; fill: #2563eb; text-anchor: middle; dominant-baseline: central; }
+      .tree-line { stroke: #94a3b8; stroke-width: 2; stroke-linecap: round; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563eb"/>
+    </marker>
+  </defs>
+
+  <!-- PANEL 1: Fixed Length -->
+  <g transform="translate(10, 10)">
+    <rect x="0" y="0" width="420" height="390" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="210" y="32" class="title">Fixed-Length Encoding</text>
+    <text x="210" y="50" class="subtitle">Equal 2 bits allocated for all 4 outcomes</text>
+
+    <!-- Antenna Broadcast Tower Icon -->
+    <g transform="translate(15, 80)">
+      <g stroke="#0f172a" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <circle cx="45" cy="28" r="4.5" stroke-width="2.8"/>
+        <path d="M 45 33 L 20 100" />
+        <path d="M 45 33 L 70 100" />
+        <line x1="38" y1="50" x2="52" y2="50" />
+        <line x1="30" y1="70" x2="60" y2="70" />
+        <line x1="30" y1="70" x2="65" y2="94" />
+        <line x1="60" y1="70" x2="25" y2="94" />
+        <path d="M 33 16 A 15 15 0 0 0 33 40" stroke-width="3" />
+        <path d="M 24 8 A 25 25 0 0 0 24 48" stroke-width="3" />
+        <path d="M 57 16 A 15 15 0 0 1 57 40" stroke-width="3" />
+        <path d="M 66 8 A 25 25 0 0 1 66 48" stroke-width="3" />
+      </g>
+      <text x="45" y="118" font-size="11" font-weight="700" fill="#0f172a" text-anchor="middle">Daily Weather</text>
+      <text x="45" y="132" font-size="11" font-weight="700" fill="#0f172a" text-anchor="middle">Transmitter</text>
+    </g>
+
+    <!-- Transmission Arrow -->
+    <path d="M 112 145 L 155 145" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <text x="133" y="132" font-size="11" font-weight="700" fill="#2563eb" text-anchor="middle">2 bits/day</text>
+
+    <!-- Fixed Cards -->
+    <g transform="translate(170, 75)">
+      <rect x="0" y="0" width="230" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="14" y="25" class="card-title">Sunny ☀️</text><text x="100" y="25" class="card-prob">P = 1/4</text><text x="215" y="25" class="card-code" fill="#2563eb">00</text>
+    </g>
+    <g transform="translate(170, 125)">
+      <rect x="0" y="0" width="230" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="14" y="25" class="card-title">Cloudy ⛅</text><text x="100" y="25" class="card-prob">P = 1/4</text><text x="215" y="25" class="card-code" fill="#2563eb">01</text>
+    </g>
+    <g transform="translate(170, 175)">
+      <rect x="0" y="0" width="230" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="14" y="25" class="card-title">Rainy 🌧️</text><text x="100" y="25" class="card-prob">P = 1/4</text><text x="215" y="25" class="card-code" fill="#2563eb">10</text>
+    </g>
+    <g transform="translate(170, 225)">
+      <rect x="0" y="0" width="230" height="40" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+      <text x="14" y="25" class="card-title">Storm ⛈️</text><text x="100" y="25" class="card-prob">P = 1/4</text><text x="215" y="25" class="card-code" fill="#2563eb">11</text>
+    </g>
+
+    <!-- Summary Box -->
+    <g transform="translate(20, 305)">
+      <rect x="0" y="0" width="380" height="60" rx="10" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+      <text x="190" y="24" class="sum-lbl">Average Daily Transmission Cost</text>
+      <text x="190" y="47" class="sum-val" fill="#2563eb">2.00 bits / day</text>
+    </g>
+  </g>
+
+  <!-- PANEL 2: Variable Length Huffman Tree -->
+  <g transform="translate(450, 10)">
+    <rect x="0" y="0" width="440" height="390" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <text x="220" y="32" class="title">Variable-Length Prefix-Free Code</text>
+    <text x="220" y="50" class="subtitle">Matched to non-uniform weather frequencies</text>
+
+    <!-- Tree Edges -->
+    <line x1="30" y1="170" x2="190" y2="95" class="tree-line"/>
+    <line x1="30" y1="170" x2="80" y2="215" class="tree-line"/>
+
+    <line x1="80" y1="215" x2="200" y2="175" class="tree-line"/>
+    <line x1="80" y1="215" x2="130" y2="265" class="tree-line"/>
+
+    <line x1="130" y1="265" x2="230" y2="242" class="tree-line"/>
+    <line x1="130" y1="265" x2="230" y2="292" class="tree-line"/>
+
+    <!-- Edge Bit Labels -->
+    <circle cx="110" cy="132" r="10" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="110" y="132" class="edge-lbl">0</text>
+
+    <circle cx="55" cy="192" r="10" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="55" y="192" class="edge-lbl">1</text>
+
+    <circle cx="140" cy="195" r="10" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="140" y="195" class="edge-lbl">0</text>
+
+    <circle cx="105" cy="240" r="10" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="105" y="240" class="edge-lbl">1</text>
+
+    <circle cx="180" cy="253" r="10" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="180" y="253" class="edge-lbl">0</text>
+
+    <circle cx="180" cy="278" r="10" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+    <text x="180" y="278" class="edge-lbl">1</text>
+
+    <!-- Internal Nodes -->
+    <circle cx="30" cy="170" r="7" fill="#2563eb"/>
+    <circle cx="80" cy="215" r="6" fill="#2563eb"/>
+    <circle cx="130" cy="265" r="5" fill="#2563eb"/>
+
+    <!-- Leaf Cards -->
+    <g transform="translate(190, 75)">
+      <rect x="0" y="0" width="230" height="40" rx="8" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+      <text x="14" y="25" class="card-title">Sunny ☀️</text><text x="95" y="25" class="card-prob">P = 1/2</text>
+      <text x="215" y="25" class="card-code" fill="#16a34a">0 <tspan font-size="11" font-weight="400" fill="#64748b">(1 bit)</tspan></text>
+    </g>
+    <g transform="translate(200, 155)">
+      <rect x="0" y="0" width="220" height="40" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+      <text x="14" y="25" class="card-title">Cloudy ⛅</text><text x="90" y="25" class="card-prob">P = 1/4</text>
+      <text x="205" y="25" class="card-code" fill="#2563eb">10 <tspan font-size="11" font-weight="400" fill="#64748b">(2 bits)</tspan></text>
+    </g>
+    <g transform="translate(230, 222)">
+      <rect x="0" y="0" width="190" height="36" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+      <text x="12" y="23" class="card-title" font-size="13">Rainy 🌧️</text><text x="70" y="23" class="card-prob" font-size="11">P = 1/8</text>
+      <text x="178" y="23" class="card-code" font-size="13" fill="#ea580c">110 <tspan font-size="10" font-weight="400" fill="#64748b">(3b)</tspan></text>
+    </g>
+    <g transform="translate(230, 274)">
+      <rect x="0" y="0" width="190" height="36" rx="8" fill="#fff7ed" stroke="#ea580c" stroke-width="1.5"/>
+      <text x="12" y="23" class="card-title" font-size="13">Storm ⛈️</text><text x="70" y="23" class="card-prob" font-size="11">P = 1/8</text>
+      <text x="178" y="23" class="card-code" font-size="13" fill="#ea580c">111 <tspan font-size="10" font-weight="400" fill="#64748b">(3b)</tspan></text>
+    </g>
+
+    <!-- Summary Box -->
+    <g transform="translate(25, 325)">
+      <rect x="0" y="0" width="390" height="52" rx="10" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+      <text x="195" y="20" class="sum-lbl">Entropy H(X) = 0.5(1) + 0.25(2) + 2×0.125(3)</text>
+      <text x="195" y="40" class="sum-val" fill="#16a34a">1.75 bits / day <tspan font-size="12" font-weight="500" fill="#15803d">(−12.5% bandwidth saved)</tspan></text>
+    </g>
+  </g>
+</svg>'''
+    with open('shannon_weather_coding.svg', 'w', encoding='utf-8') as f:
+        f.write(svg)
+
+generate_weather_svg()

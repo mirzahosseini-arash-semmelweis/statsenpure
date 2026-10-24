@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Graduate Pharmaceutical Studies">
-  <title>Statistics for Pharmacists – Statistics 101</title>
+  <title>Statistics for Pharmacists</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -35,7 +35,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-73f4d359ee59172b10577676e68c9ef0.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-f1b8ee13908ba1ac80054bf7bdf633b2.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -135,8 +135,8 @@
     <div class="slides">
 
 <section id="title-slide" data-footer="" class="quarto-title-block center">
-  <h1 class="title">Statistics 101</h1>
-  <p class="subtitle">Week 7 · Placeholder</p>
+  <h1 class="title">Statistics for Pharmacists</h1>
+  <p class="subtitle">Week 7 · Comparing groups</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -147,14 +147,3460 @@ Graduate Pharmaceutical Studies
 </div>
 
 </section>
-<section id="week-7" class="slide level2 motivation-slide">
-<h2>Week 7</h2>
+<section id="comparing-groups" class="slide level2 title-slide center">
+<h2>Comparing groups</h2>
 <div class="eyebrow">
-Course skeleton
+Week 7
 </div>
-<div class="big-question">
-Content to be developed.
+<div class="concept-line" style="margin-top:1em;">
+<p>Are these groups meaningfully different?</p>
 </div>
+<aside class="notes">
+<p>Week 6 gave us the general inference machinery. This week is about choosing a statistic and a reference distribution that fit the data structure and scientific question.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="we-already-know-the-recipe" class="slide level2 motivation-slide">
+<h2>We already know the recipe</h2>
+<div class="eyebrow">
+From Week 6
+</div>
+<div class="recipe-flow fragment fade-up">
+<div class="recipe-node observed-border">
+<strong>Observe</strong><span>sample statistic</span>
+</div>
+<div class="recipe-arrow">
+→
+</div>
+<div class="recipe-node uncertainty-border">
+<strong>Standardize</strong><span>sampling variability</span>
+</div>
+<div class="recipe-arrow">
+→
+</div>
+<div class="recipe-node estimate-border">
+<strong>Decide</strong><span>CI + test + effect</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Today we change the <strong>test statistic</strong> to match the data and the question.
+</div>
+</div>
+</section>
+<section id="there-is-no-universal-test-statistic" class="slide level2 concept-slide">
+<h2>There is no universal test statistic</h2>
+<div class="eyebrow">
+Data structure matters
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Binary outcome
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(\hat p\)</span>
+</div>
+<div class="w7-card-sub">
+counts and proportions
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+Continuous outcome
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(\bar x, s\)</span>
+</div>
+<div class="w7-card-sub">
+means and spreads
+</div>
+</div>
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+Several groups
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(\bar x_1 \, \text{vs.} \, \bar x_2\)</span>
+</div>
+<div class="w7-card-sub">
+between vs within variability
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+<div class="warning-title">
+The test name comes last
+</div>
+<p>
+First identify the variable, sampling structure, parameter of interest, and comparison.
+</p>
+</div>
+</div>
+</section>
+<section id="the-target-is-still-the-population" class="slide level2 concept-slide">
+<h2>The target is still the population</h2>
+<div class="eyebrow">
+Do not lose the inferential target
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Observed sample
+</div>
+<div class="w7-card-sub">
+what happened in these patients
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+Sampling model
+</div>
+<div class="w7-card-sub">
+what would vary across repetitions
+</div>
+</div>
+<div class="w7-card model-border">
+<div class="w7-card-title">
+Population parameter
+</div>
+<div class="w7-card-sub">
+what we want to learn about disease <span class="math inline">\(D\)</span>
+</div>
+</div>
+</div>
+</section>
+<section id="choosing-a-test" class="slide level2 section-break">
+<h2>Choosing a test</h2>
+<div class="section-kicker">
+Part I
+</div>
+<div class="section-title">
+A test-selection blueprint
+</div>
+<div class="section-subtitle">
+Choose from the data structure and scientific question.
+</div>
+</section>
+<section id="four-questions-get-us-surprisingly-far" class="slide level2 concept-slide">
+<h2>Four questions get us surprisingly far</h2>
+<div class="eyebrow">
+A practical blueprint
+</div>
+<div class="choice-map fragment fade-up">
+<div class="choice-step">
+<span>1</span><strong>Variable type?</strong><small>categorical or continuous</small>
+</div>
+<div class="choice-step">
+<span>2</span><strong>How many groups?</strong><small>one, two, or more</small>
+</div>
+<div class="choice-step">
+<span>3</span><strong>Paired?</strong><small>same units measured twice?</small>
+</div>
+<div class="choice-step">
+<span>4</span><strong>What parameter?</strong><small>location, spread, association, agreement</small>
+</div>
+</div>
+</section>
+<section id="first-branch-what-kind-of-variable" class="slide level2 concept-slide">
+<h2>First branch: what kind of variable?</h2>
+<div class="eyebrow">
+The arithmetic must make sense
+</div>
+<div class="w7-grid-2 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Categorical
+</div>
+<div class="w7-card-sub">
+counts, proportions, contingency tables
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(O-E\)</span>
+</div>
+<img src="figures/categorical_data.jpg" alt="Categorical" class="w7-card-img">
+</div>
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+Continuous
+</div>
+<div class="w7-card-sub">
+means, differences, variances
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(\bar x,\;s^2\)</span>
+</div>
+<img src="figures/continuous_data.jpg" alt="Continuous" class="w7-card-img">
+</div>
+</div>
+</section>
+<section id="second-branch-what-comparison" class="slide level2 concept-slide">
+<h2>Second branch: what comparison?</h2>
+<div class="eyebrow">
+Reference vs another group
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card model-border">
+<div class="w7-card-title">
+One sample
+</div>
+<div class="w7-card-sub">
+compare with a reference value or distribution
+</div>
+<img src="figures/one_sample.jpg" alt="One sample" class="w7-card-img">
+</div>
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Two samples
+</div>
+<div class="w7-card-sub">
+compare two populations
+</div>
+<img src="figures/two_samples.jpg" alt="Two samples" class="w7-card-img">
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+Three or more
+</div>
+<div class="w7-card-sub">
+compare several means jointly
+</div>
+<img src="figures/three_samples.jpg" alt="Three samples" class="w7-card-img">
+</div>
+</div>
+</section>
+<section id="third-branch-independent-or-paired" class="slide level2 concept-slide">
+<h2>Third branch: independent or paired?</h2>
+<div class="eyebrow">
+What is the observational unit?
+</div>
+<div class="w7-grid-2 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Independent
+</div>
+<div class="w7-card-sub">
+healthy patients and sick patients are different people
+</div>
+<img src="figures/unpaired_samples.png" alt="Unpaired" class="w7-card-img">
+</div>
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+Paired
+</div>
+<div class="w7-card-sub">
+the same patients measured before and after treatment <span class="math inline">\(\text{T}\)</span>
+</div>
+<img src="figures/paired_samples.png" alt="Paired" class="w7-card-img">
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+A paired analysis works on the <strong>within-subject differences</strong>.
+</div>
+</div>
+</section>
+<section id="fourth-branch-location-or-spread" class="slide level2 concept-slide">
+<h2>Fourth branch: location or spread?</h2>
+<div class="eyebrow">
+Different parameters answer different questions
+</div>
+<div class="w7-grid-2 fragment fade-up">
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+Location
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(\mu,\;p\)</span>
+</div>
+<div class="w7-card-sub">
+where is the population centered?
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+Spread
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(\sigma^2\)</span>
+</div>
+<div class="w7-card-sub">
+how variable is the population?
+</div>
+</div>
+</div>
+</section>
+<section id="a-compact-map-for-today" class="slide level2 concept-slide">
+<h2>A compact map for today</h2>
+<div class="eyebrow">
+Not a memorization table
+</div>
+<div class="test-map fragment fade-up" style="font-size: 110%">
+<div class="head">
+data / design
+</div>
+<div class="head">
+one group
+</div>
+<div class="head">
+two independent groups
+</div>
+<div class="head">
+paired
+</div>
+<div class="cat">
+binary / categorical
+</div>
+<div>
+binomial / goodness-of-fit
+</div>
+<div>
+Fisher / <span class="math inline">\(\chi^2\)</span>
+</div>
+<div>
+McNemar
+</div>
+<div class="cont">
+continuous mean
+</div>
+<div>
+one-sample Student <span class="math inline">\(t\)</span>
+</div>
+<div>
+Welch <span class="math inline">\(t\)</span>
+</div>
+<div>
+paired Student <span class="math inline">\(t\)</span>
+</div>
+<div class="cont">
+continuous variance
+</div>
+<div>
+<span class="math inline">\(\chi^2\)</span> variance test
+</div>
+<div>
+<span class="math inline">\(F\)</span> variance-ratio test
+</div>
+<div>
+Pitman–Morgan
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+The point is to reconstruct the choice, not memorize every cell.
+</div>
+</div>
+<div class="mathematician-gallery fragment fade-up" style="max-width: 42em !important;">
+<div class="portrait-card">
+<img src="figures/Gosset.jpg" alt="William S Gosset">
+<div class="portrait-name">
+William S. Gosset
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/McNemar.png" alt="Quinn McNemar">
+<div class="portrait-name">
+Quinn McNemar
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Welch.png" alt="Bernard L Welch">
+<div class="portrait-name">
+Bernard L. Welch
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Pitman.jpg" alt="Edwin JG Pitman">
+<div class="portrait-name">
+Edwin J.G. Pitman
+</div>
+</div>
+</div>
+</section>
+<section id="our-week-7-dataset" class="slide level2 section-slide">
+<h2>Our Week 7 dataset</h2>
+<div class="eyebrow">
+Synthetic clinical study of disease <span class="math inline">\(D\)</span>
+</div>
+<div class="w7-grid-4 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+disease
+</div>
+<div class="w7-card-sub">
+0 healthy · 1 sick
+</div>
+</div>
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+haemophilia
+</div>
+<div class="w7-card-sub">
+0 asymptomatic · 1 symptomatic
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+age group
+</div>
+<div class="w7-card-sub">
+young · middle · old
+</div>
+</div>
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+hemoglobin
+</div>
+<div class="w7-card-sub">
+continuous · g/L
+</div>
+</div>
+</div>
+<div class="data-table fragment fade-up" style="font-size: 110%">
+<div class="head">
+id
+</div>
+<div class="head">
+disease
+</div>
+<div class="head">
+haemophilia
+</div>
+<div class="head">
+age group
+</div>
+<div class="head">
+hemoglobin
+</div>
+<div>
+001
+</div>
+<div class="binary">
+0
+</div>
+<div class="binary">
+0
+</div>
+<div class="ordinal">
+young
+</div>
+<div class="continuous">
+146
+</div>
+<div>
+002
+</div>
+<div class="binary">
+1
+</div>
+<div class="binary">
+0
+</div>
+<div class="ordinal">
+old
+</div>
+<div class="continuous">
+121
+</div>
+<div>
+003
+</div>
+<div class="binary">
+1
+</div>
+<div class="binary">
+1
+</div>
+<div class="ordinal">
+middle
+</div>
+<div class="continuous">
+114
+</div>
+<div>
+004
+</div>
+<div class="binary">
+0
+</div>
+<div class="binary">
+0
+</div>
+<div class="ordinal">
+middle
+</div>
+<div class="continuous">
+139
+</div>
+<div>
+005
+</div>
+<div class="binary">
+1
+</div>
+<div class="binary">
+0
+</div>
+<div class="ordinal">
+old
+</div>
+<div class="continuous">
+126
+</div>
+<div>
+006
+</div>
+<div class="binary">
+0
+</div>
+<div class="binary">
+1
+</div>
+<div class="ordinal">
+young
+</div>
+<div class="continuous">
+134
+</div>
+</div>
+</section>
+<section id="a-paired-mini-study-inside-the-dataset" class="slide level2 concept-slide">
+<h2>A paired mini-study inside the dataset</h2>
+<div class="eyebrow">
+Treatment <span class="math inline">\(T\)</span> in old subjects
+</div>
+<div class="study-mini fragment fade-up">
+<div class="observed-border">
+<strong>Old patients</strong><span>same people</span>
+</div>
+<div class="study-arrow">
+→
+</div>
+<div class="uncertainty-border">
+<strong>Treatment</strong><span>follow-up period</span>
+</div>
+<div class="study-arrow">
+→
+</div>
+<div class="estimate-border">
+<strong>Post-treatment</strong><span>compare with their own baseline</span>
+</div>
+</div>
+</section>
+<section id="categorical-outcomes" class="slide level2 section-break">
+<h2>Categorical outcomes</h2>
+<div class="section-kicker">
+Part II
+</div>
+<div class="section-title">
+Counts and proportions
+</div>
+<div class="section-subtitle">
+The sampling object is a count, proportion, or contingency table.
+</div>
+</section>
+<section id="one-binary-proportion-vs-a-reference" class="slide level2 concept-slide">
+<h2>One binary proportion vs a reference</h2>
+<div class="eyebrow">
+Exact binomial test
+</div>
+<div class="w7-grid-2 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Observed
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(X\)</span> haemophilic among <span class="math inline">\(n\)</span> sick patients
+</div>
+</div>
+<div class="w7-card model-border">
+<div class="w7-card-title">
+Reference world
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(X\sim\mathrm{Binomial}(n,p_0)\)</span>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Question: is the haemophilia proportion in sick patients different from <span class="math inline">\(p_0=0.50\)</span>?
+</div>
+</div>
+</section>
+<section id="example-exact-binomial-test" class="slide level2 concept-slide">
+<h2>Example: exact binomial test</h2>
+<div class="test-example-grid fragment fade-up">
+<div class="test-result-card">
+<div class="test-name">
+Exact binomial test
+</div>
+<div class="question">
+Is <span class="math inline">\(p_{\text{haemophilia}}\)</span> among sick patients different from <span class="math inline">\(0.50\)</span>?
+</div>
+<div class="result">
+Report: observed proportion + CI + exact p-value
+</div>
+</div>
+<div class="test-figure">
+<p><img src="figures/cat_binomial.svg" alt="Exact binomial test result" class="test-figure-img"></p>
+</div>
+</div>
+</section>
+<section id="one-categorical-distribution-vs-a-reference" class="slide level2 concept-slide">
+<h2>One categorical distribution vs a reference</h2>
+<div class="eyebrow">
+Chi-squared goodness-of-fit
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Observed counts
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(O_j\)</span>
+</div>
+</div>
+<div class="w7-card model-border">
+<div class="w7-card-title">
+Expected counts
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(E_j=n p_{0j}\)</span>
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+Discrepancy
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(\sum (O_j-E_j)^2/E_j\)</span>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Example: are young / middle / old sick patients distributed as <span class="math inline">\(\frac{1}{3}\)</span>, <span class="math inline">\(\frac{1}{3}\)</span>, <span class="math inline">\(\frac{1}{3}\)</span>?
+</div>
+</div>
+</section>
+<section id="example-goodness-of-fit" class="slide level2 concept-slide">
+<h2>Example: goodness-of-fit</h2>
+<div class="test-example-grid fragment fade-up">
+<div class="test-result-card">
+<div class="test-name">
+<span class="math inline">\(\chi^2\)</span> goodness-of-fit
+</div>
+<div class="question">
+Does the observed age-group distribution match the reference distribution?
+</div>
+<div class="result">
+Report observed vs expected proportions + <span class="math inline">\(\chi^2\)</span> + df + p
+</div>
+</div>
+<div class="test-figure">
+<p><img src="figures/cat_gof.svg" alt="GOF test result" class="test-figure-img"></p>
+</div>
+</div>
+</section>
+<section id="two-groups-and-a-categorical-outcome" class="slide level2 concept-slide">
+<h2>Two groups and a categorical outcome</h2>
+<div class="eyebrow">
+Homogeneity
+</div>
+<div class="w7-grid-2 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Fisher exact
+</div>
+<div class="w7-card-sub">
+especially useful for small 2×2 tables
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+Pearson <span class="math inline">\(\chi^2\)</span>
+</div>
+<div class="w7-card-sub">
+compares observed and expected cell counts from marginals
+</div>
+</div>
+</div>
+</section>
+<section id="example-healthy-vs-sick" class="slide level2 concept-slide">
+<h2>Example: healthy vs sick</h2>
+<div class="test-example-grid fragment fade-up">
+<div class="test-result-card">
+<div class="test-name">
+Fisher / Pearson <span class="math inline">\(\chi^2\)</span>
+</div>
+<div class="question">
+Is haemophilia proportion different in healthy and sick groups?
+</div>
+<div class="result">
+Report contingency table + risk/proportion difference CI + p-value
+</div>
+</div>
+<div class="test-figure">
+<p><img src="figures/cat_two_groups.svg" alt="Chi-squared homogeneity test result" class="test-figure-img"></p>
+</div>
+</div>
+</section>
+<section id="paired-binary-outcome" class="slide level2 concept-slide">
+<h2>Paired binary outcome</h2>
+<div class="eyebrow">
+McNemar’s test
+</div>
+<div class="w7-grid-2 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Before
+</div>
+<div class="w7-card-sub">
+haemophilia classification at baseline
+</div>
+</div>
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+After
+</div>
+<div class="w7-card-sub">
+same subjects after treatment
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Only the <strong>discordant pairs</strong> carry information about directional change.
+</div>
+</div>
+</section>
+<section id="example-paired-categorical-change" class="slide level2 concept-slide">
+<h2>Example: paired categorical change</h2>
+<div class="test-example-grid fragment fade-up">
+<div class="test-result-card">
+<div class="test-name">
+McNemar
+</div>
+<div class="question">
+Did the binary classification change after treatment in the same subjects?
+</div>
+<div class="result">
+Report discordant transitions + paired proportion difference + p
+</div>
+</div>
+<div class="test-figure">
+<p><img src="figures/cat_mcnemar.svg" alt="McNemar test result" class="test-figure-img"></p>
+</div>
+</div>
+</section>
+<section id="categorical-synthesis" class="slide level2 concept-slide">
+<h2>Categorical synthesis</h2>
+<div class="eyebrow">
+Reconstruct the choice
+</div>
+<div class="test-family-table fragment fade-up" style="font-size: 110%">
+<div class="head">
+question
+</div>
+<div class="head">
+design
+</div>
+<div class="head">
+statistic
+</div>
+<div class="head">
+test
+</div>
+<div>
+binary <span class="math inline">\(p\)</span> vs <span class="math inline">\(p_0\)</span>
+</div>
+<div>
+one sample
+</div>
+<div>
+count <span class="math inline">\(X\)</span>
+</div>
+<div>
+exact binomial
+</div>
+<div>
+distribution vs reference
+</div>
+<div>
+one sample
+</div>
+<div>
+<span class="math inline">\(\sum(O-E)^2/E\)</span>
+</div>
+<div>
+<span class="math inline">\(\chi^2\)</span> GOF
+</div>
+<div>
+proportions across groups
+</div>
+<div>
+independent
+</div>
+<div>
+contingency table
+</div>
+<div>
+Fisher / Pearson <span class="math inline">\(\chi^2\)</span>
+</div>
+<div>
+binary change
+</div>
+<div>
+paired
+</div>
+<div>
+discordant pairs
+</div>
+<div>
+McNemar
+</div>
+</div>
+</section>
+<section id="continuous-outcomes" class="slide level2 section-break">
+<h2>Continuous outcomes</h2>
+<div class="section-kicker">
+Part III
+</div>
+<div class="section-title">
+Means and variances
+</div>
+<div class="section-subtitle">
+Now the parameters are population location and spread.
+</div>
+</section>
+<section id="one-mean-vs-a-reference" class="slide level2 concept-slide">
+<h2>One mean vs a reference</h2>
+<div class="eyebrow">
+One-sample Student’s <span class="math inline">\(t\)</span>
+</div>
+<div class="test-example-grid fragment fade-up">
+<div class="test-result-card">
+<div class="test-name">
+One-sample Student <span class="math inline">\(t\)</span>
+</div>
+<div class="question">
+Is mean hemoglobin in sick patients different from <span class="math inline">\(130\)</span> g/L?
+</div>
+<div class="result">
+<span class="math inline">\(t=(\bar x-130)/(s/\sqrt n)\)</span>
+</div>
+</div>
+<div class="test-figure">
+<p><img src="figures/cont_one_mean.svg" alt="One mean test result" class="test-figure-img"></p>
+</div>
+</div>
+</section>
+<section id="one-variance-vs-a-reference" class="slide level2 concept-slide">
+<h2>One variance vs a reference</h2>
+<div class="eyebrow">
+Chi-squared test for one variance
+</div>
+<div class="test-example-grid fragment fade-up">
+<div class="test-result-card">
+<div class="test-name">
+One-variance <span class="math inline">\(\chi^2\)</span>
+</div>
+<div class="question">
+Is population SD different from <span class="math inline">\(10\)</span> g/L?
+</div>
+<div class="result">
+<span class="math inline">\((n-1)s^2/\sigma_0^2\sim\chi^2_{n-1}\)</span> under Normality
+</div>
+<div class="caution">
+This test is especially sensitive to non-Normal data.
+</div>
+</div>
+<div class="test-figure">
+<p><img src="figures/cont_one_variance.svg" alt="One variance test result" class="test-figure-img"></p>
+</div>
+</div>
+</section>
+<section id="two-independent-means" class="slide level2 concept-slide">
+<h2>Two independent means</h2>
+<div class="eyebrow">
+Welch’s two-sample <span class="math inline">\(t\)</span> test
+</div>
+<div class="test-example-grid fragment fade-up">
+<div class="test-result-card">
+<div class="test-name">
+Welch <span class="math inline">\(t\)</span>
+</div>
+<div class="question">
+Is mean hemoglobin different in healthy and sick populations?
+</div>
+<div class="result">
+difference in means + SE using both group variances
+</div>
+<div class="caution">
+Welch is the default here: it does not require equal population variances.
+</div>
+</div>
+<div class="test-figure">
+<p><img src="figures/cont_welch.svg" alt="Welch test result" class="test-figure-img"></p>
+</div>
+</div>
+</section>
+<section id="two-independent-variances" class="slide level2 concept-slide">
+<h2>Two independent variances</h2>
+<div class="eyebrow">
+Classical <span class="math inline">\(F\)</span> variance-ratio test
+</div>
+<div class="test-example-grid fragment fade-up">
+<div class="test-result-card">
+<div class="test-name">
+Variance ratio
+</div>
+<div class="question">
+Is hemoglobin variability different in healthy and sick populations?
+</div>
+<div class="result">
+<span class="math inline">\(F=s_1^2/s_2^2\)</span> · infer a <strong>ratio</strong> of variances
+</div>
+<div class="caution">
+The classical <span class="math inline">\(F\)</span> test is strongly sensitive to non-Normality.
+</div>
+</div>
+<div class="test-figure">
+<p><img src="figures/cont_f_variance.svg" alt="F test result" class="test-figure-img"></p>
+</div>
+</div>
+</section>
+<section id="paired-continuous-means" class="slide level2 concept-slide">
+<h2>Paired continuous means</h2>
+<div class="eyebrow">
+Paired <span class="math inline">\(t\)</span> = one-sample <span class="math inline">\(t\)</span> on differences
+</div>
+<div class="test-example-grid fragment fade-up">
+<div class="test-result-card">
+<div class="test-name">
+Paired Student <span class="math inline">\(t\)</span>
+</div>
+<div class="question">
+Did mean hemoglobin change after treatment in the same old subjects?
+</div>
+<div class="result">
+define <span class="math inline">\(D_i=post_i-pre_i\)</span>, then test <span class="math inline">\(E(D)=0\)</span>
+</div>
+</div>
+<div class="test-figure">
+<p><img src="figures/cont_paired_t.svg" alt="Paired t test result" class="test-figure-img"></p>
+</div>
+</div>
+</section>
+<section id="paired-continuous-variances" class="slide level2 concept-slide">
+<h2>Paired continuous variances</h2>
+<div class="eyebrow">
+Pitman–Morgan test
+</div>
+<div class="test-example-grid fragment fade-up">
+<div class="test-result-card">
+<div class="test-name">
+Pitman–Morgan
+</div>
+<div class="question">
+Did population variability change between paired pre/post measurements?
+</div>
+<div class="result">
+tests equality of two variances when measurements are paired
+</div>
+<div class="caution">
+This is a specialized Normal-theory method; use only when the variance question is scientifically meaningful.
+</div>
+</div>
+<div class="test-figure">
+<p><img src="figures/cont_pitman_morgan.svg" alt="Pitman Morgan test result" class="test-figure-img"></p>
+</div>
+</div>
+</section>
+<section id="parametric-tests-come-with-a-model" class="slide level2 concept-slide">
+<h2>Parametric tests come with a model</h2>
+<div class="eyebrow">
+Assumptions are part of the inferential claim
+</div>
+<div class="assumption-stack fragment fade-up">
+<div class="assumption-row">
+<strong>Independence / sampling design</strong><span>usually more fundamental than the exact shape of the histogram</span>
+</div>
+<div class="assumption-row">
+<strong>Distributional shape</strong><span>for small samples, strong skew and outliers can matter; paired tests concern the distribution of differences</span>
+</div>
+<div class="assumption-row">
+<strong>Variance structure</strong><span>Welch relaxes equal-variance assumptions for the two-sample mean problem</span>
+</div>
+<div class="assumption-row">
+<strong>Model adequacy</strong><span>inspect the data and residual structure rather than using a separate normality test as a mechanical gatekeeper</span>
+</div>
+</div>
+</section>
+<section id="normality-is-not-a-yesno-property-of-a-sample" class="slide level2 concept-slide">
+<h2>Normality is not a yes/no property of a sample</h2>
+<div class="eyebrow">
+Inspect shape, tails, and outliers
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Histogram
+</div>
+<div class="w7-card-sub">
+global shape
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+QQ plot
+</div>
+<div class="w7-card-sub">
+quantiles and tail departures
+</div>
+</div>
+<div class="w7-card warning-border">
+<div class="w7-card-title">
+Context
+</div>
+<div class="w7-card-sub">
+sample size, outliers, balance, scientific plausibility
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Moderate or large samples often make mean-based methods robust to mild non-Normality.
+</div>
+</div>
+</section>
+<section id="how-a-qq-plot-works" class="slide level2 concept-slide">
+<h2>How a QQ plot works</h2>
+<div class="eyebrow">
+Quantile against quantile
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card model-border">
+<div class="w7-card-title">
+Theoretical quantile
+</div>
+<div class="w7-card-sub">
+where a Normal observation should fall
+</div>
+</div>
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Sample quantile
+</div>
+<div class="w7-card-sub">
+where the ordered observation actually falls
+</div>
+</div>
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+Near a line
+</div>
+<div class="w7-card-sub">
+approximately compatible with Normal location-scale shape
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-qq-diagnostics" class="slide level2 exercise-slide">
+<h2>Try it: QQ diagnostics</h2>
+<div class="try-label">
+Interactive distribution diagnostics
+</div>
+<div id="qqWidget" class="qq-widget">
+<div class="qq-layout">
+<div class="w7-control-grid qq-controls">
+<p><label class="w7-control"> source distribution <select id="qqDist" style="font-size: 110%"> <option value="normal">normal</option> <option value="right">right-skewed</option> <option value="left">left-skewed</option> <option value="bimodal">bimodal</option> </select> </label> <label class="w7-control"> sample size <span class="math inline">\(n\)</span> = <strong id="qqNValue">80</strong> <input id="qqN" type="range" min="20" max="300" value="80" step="10"> </label> <button id="qqRedraw" class="w7-button" type="button"> Draw new sample </button></p>
+</div>
+<div class="qq-visual">
+<svg id="qqSvg" class="w7-lab-svg qq-svg" viewbox="0 0 900 500" preserveaspectratio="xMidYMid meet" aria-label="QQ plot with marginal sample and Normal distributions">
+</svg>
+<div class="qq-readout">
+<div class="w7-output">
+<p><span>quantile</span> <strong id="qqProbOut">move cursor</strong></p>
+</div>
+<div class="w7-output">
+<p><span>theoretical</span> <strong id="qqTheoOut">—</strong></p>
+</div>
+<div class="w7-output">
+<p><span>sample</span> <strong id="qqSampleOut">—</strong></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Move across the QQ panel: the highlighted point links one theoretical Normal quantile to the corresponding sample quantile.
+</div>
+</div>
+</section>
+<section id="specific-tests-worked-visually" class="slide level2 section-break">
+<h2>Specific tests, worked visually</h2>
+<div class="section-kicker">
+Part IV
+</div>
+<div class="section-title">
+From formula to reference distribution
+</div>
+<div class="section-subtitle">
+Two worked tests make the general Week 6 machinery concrete.
+</div>
+</section>
+<section id="welchs-t-standardize-a-difference-in-means" class="slide level2 concept-slide">
+<h2>Welch’s <span class="math inline">\(t\)</span>: standardize a difference in means</h2>
+<div class="eyebrow">
+Two independent continuous groups
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Difference
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(\bar x_A-\bar x_B\)</span>
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+Standard error
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(\sqrt{s_A^2/n_A+s_B^2/n_B}\)</span>
+</div>
+</div>
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+Welch statistic
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(t=\frac{\bar x_A-\bar x_B}{SE}\)</span>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+The degrees of freedom are adjusted because the two variances are estimated separately.
+</div>
+</div>
+</section>
+<section id="try-it-welchs-t-test" class="slide level2 exercise-slide">
+<h2>Try it: Welch’s <span class="math inline">\(t\)</span> test</h2>
+<div class="try-label">
+Enter summary statistics
+</div>
+<div id="welchWidget" class="welch-layout">
+<div>
+<div class="welch-controls">
+<!-- Group A (Column 1) -->
+<div class="welch-group">
+<div class="group-label">
+Group A
+</div>
+<p><label class="w7-control"> <span>mean</span> <input id="welchM1" type="number" value="138" step="1"> </label> <label class="w7-control"> <span>SD</span> <input id="welchS1" type="number" value="14" min="0.1" step="1"> </label> <label class="w7-control"> <span><span class="math inline">\(n\)</span></span> <input id="welchN1" type="number" value="60" min="2" step="1"> </label></p>
+</div>
+<!-- Group B (Column 2) -->
+<div class="welch-group">
+<div class="group-label">
+Group B
+</div>
+<p><label class="w7-control"> <span>mean</span> <input id="welchM2" type="number" value="132" step="1"> </label> <label class="w7-control"> <span>SD</span> <input id="welchS2" type="number" value="18" min="0.1" step="1"> </label> <label class="w7-control"> <span><span class="math inline">\(n\)</span></span> <input id="welchN2" type="number" value="55" min="2" step="1"> </label></p>
+</div>
+</div>
+<div class="welch-calc">
+<div class="w7-output">
+<span>difference</span><strong id="welchDiffOut">—</strong>
+</div>
+<div class="w7-output">
+<span>SE</span><strong id="welchSeOut">—</strong>
+</div>
+<div class="w7-output">
+<span>t value</span><strong id="welchTOut">—</strong>
+</div>
+<div class="w7-output">
+<span>df</span><strong id="welchDfOut">—</strong>
+</div>
+<div class="w7-output">
+<span>two-sided p value</span><strong id="welchPOut">—</strong>
+</div>
+<div class="w7-output">
+<span>95% CI</span><strong id="welchCiOut">—</strong>
+</div>
+</div>
+</div>
+<svg id="welchSvg" class="w7-lab-svg welch-svg" viewbox="0 0 900 470" aria-label="Welch t distribution and confidence interval">
+</svg>
+</div>
+</section>
+<section id="what-welchs-test-is-saying" class="slide level2 concept-slide">
+<h2>What Welch’s test is saying</h2>
+<div class="eyebrow">
+Keep three outputs together
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Estimate
+</div>
+<div class="w7-card-sub">
+how large is the mean difference?
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+Interval
+</div>
+<div class="w7-card-sub">
+which population differences are compatible?
+</div>
+</div>
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+p-value
+</div>
+<div class="w7-card-sub">
+how extreme is the standardized difference under <span class="math inline">\(H_0\)</span>?
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+The test does not replace effect size or scientific interpretation.
+</div>
+</div>
+</section>
+<section id="chi-squared-contingency-tests-compare-observed-with-expected" class="slide level2 concept-slide">
+<h2>Chi-squared contingency tests: compare observed with expected</h2>
+<div class="eyebrow">
+The null model builds the expected table
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Observed
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(O_{ij}\)</span>
+</div>
+</div>
+<div class="w7-card model-border">
+<div class="w7-card-title">
+Expected under independence
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(E_{ij}=\frac{R_iC_j}{N}\)</span>
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+Sum discrepancies
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(X^2=\sum\frac{(O-E)^2}{E}\)</span>
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-a-contingency-table" class="slide level2 exercise-slide">
+<h2>Try it: a contingency table</h2>
+<div class="try-label">
+Pearson chi-squared test
+</div>
+<div id="chiTableWidget" class="chi-widget-layout">
+<div class="chi-input-card">
+<div class="w7-control-grid chi-top-controls">
+<label class="w7-control"> <span>table size</span> <select id="chiLayout" style="font-size: 110%"> <option value="2x2" style="font-size: 80%">2 × 2</option> <option value="2x3" style="font-size: 80%">2 × 3</option> </select> </label> <label class="w7-control"> <span><span class="math inline">\(\alpha\)</span></span> <select id="chiAlpha" style="font-size: 110%"> <option value="0.10" style="font-size: 80%">0.10</option> <option value="0.05" style="font-size: 80%" selected="">0.05</option> <option value="0.01" style="font-size: 80%">0.01</option> </select> </label>
+</div>
+<div id="chiInputGrid" class="chi-table-input">
+<div class="chi-table-row chi-table-header">
+<div>
+
+</div>
+<div class="col-header">
+Group A
+</div>
+<div class="col-header">
+Group B
+</div>
+</div>
+<div class="chi-table-row">
+<div class="row-header">
+Cat 1
+</div>
+<input id="chiA1" type="number" value="24" min="0"> <input id="chiB1" type="number" value="40" min="0">
+</div>
+<div class="chi-table-row">
+<div class="row-header">
+Cat 2
+</div>
+<input id="chiA2" type="number" value="36" min="0"> <input id="chiB2" type="number" value="20" min="0">
+</div>
+<div class="chi-table-row chi-col3">
+<div class="row-header">
+Cat 3
+</div>
+<input id="chiA3" type="number" value="20" min="0"> <input id="chiB3" type="number" value="20" min="0">
+</div>
+</div>
+<div class="chi-expected-card">
+<div class="chi-expected-label">
+Expected Frequencies (<span class="math inline">\(E\)</span>)
+</div>
+<div id="chiExpected" class="chi-expected">
+
+</div>
+</div>
+<div class="chi-output-row">
+<div class="w7-output">
+<span>χ2</span><strong id="chiStatOut">—</strong>
+</div>
+<div class="w7-output">
+<span>df</span><strong id="chiDfOut">—</strong>
+</div>
+<div class="w7-output">
+<span>p</span><strong id="chiPOut">—</strong>
+</div>
+</div>
+</div>
+<p><svg id="chiTableSvg" class="w7-lab-svg chi-svg" viewbox="0 0 900 430" aria-label="Chi-squared reference distribution"></svg></p>
+</div>
+</section>
+<section id="expected-counts-are-part-of-the-approximation" class="slide level2 concept-slide">
+<h2>Expected counts are part of the approximation</h2>
+<div class="eyebrow">
+Small tables need care
+</div>
+<div class="w7-grid-2 fragment fade-up">
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+Reasonable expected counts
+</div>
+<div class="w7-card-sub">
+the chi-squared approximation can work well
+</div>
+</div>
+<div class="w7-card warning-border">
+<div class="w7-card-title">
+Sparse cells
+</div>
+<div class="w7-card-sub">
+exact methods or alternative models may be preferable
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+This is why Fisher’s exact test remains useful for small 2×2 tables.
+</div>
+</div>
+</section>
+<section id="anova" class="slide level2 section-break">
+<h2>ANOVA</h2>
+<div class="section-kicker">
+Part V
+</div>
+<div class="section-title">
+More than two means
+</div>
+<div class="section-subtitle">
+Why an analysis of variance answers a question about means.
+</div>
+</section>
+<section id="why-analysis-of-variance-for-a-mean-question" class="slide level2 concept-slide">
+<h2>Why “analysis of variance” for a mean question?</h2>
+<div class="eyebrow">
+The core logic
+</div>
+<div class="variance-decomp fragment fade-up">
+<div class="observed-border">
+<strong>Within groups</strong><span>natural patient-to-patient variability</span>
+</div>
+<div class="variance-arrow">
+vs
+</div>
+<div class="estimate-border">
+<strong>Between groups</strong><span>dose groups have different centers</span>
+</div>
+<div class="variance-arrow">
+→
+</div>
+<div class="uncertainty-border">
+<strong class="inline-label"><strong style="font-size: 170%"><span class="math inline">\(F\)</span></strong>ratio</strong><span>signal relative to noise</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+If group means are truly equal, between-group variability should not dwarf within-group variability.
+</div>
+</div>
+</section>
+<section id="anova-decomposes-total-variability" class="slide level2 concept-slide">
+<h2>ANOVA decomposes total variability</h2>
+<div class="eyebrow">
+One-way ANOVA
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Total Sum-of-Squares
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(SS_T\)</span>
+</div>
+<div class="w7-card-sub">
+all deviations from grand mean
+</div>
+</div>
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+Between Sum-of-Squares
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(SS_B\)</span>
+</div>
+<div class="w7-card-sub">
+group means vs grand mean
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+Within Sum-of-Squares
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(SS_W\)</span>
+</div>
+<div class="w7-card-sub">
+individuals vs their group mean
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+<span class="math inline">\(SS_T=SS_B+SS_W\)</span> and <span class="math inline">\(F=MS_B/MS_W\)</span>.
+</div>
+</div>
+</section>
+<section id="try-it-one-way-anova" class="slide level2 exercise-slide">
+<h2>Try it: one-way ANOVA</h2>
+<div class="try-label">
+Three dose groups
+</div>
+<div id="anovaWidget" class="anova-widget">
+<div class="anova-layout">
+<div class="anova-left">
+<div class="anova-controls">
+<p><label class="w7-control">low mean<input id="anovaM1" type="number" value="72" step="1"></label> <label class="w7-control">medium mean<input id="anovaM2" type="number" value="69" step="1"></label> <label class="w7-control">high mean<input id="anovaM3" type="number" value="64" step="1"></label> <label class="w7-control">common SD<input id="anovaSd" type="number" value="8" min="0.1" step="1"></label> <label class="w7-control"><span class="math inline">\(n\)</span> / group<input id="anovaN" type="number" value="30" min="2" step="1"></label></p>
+</div>
+<div class="anova-output-row">
+<div class="w7-output">
+<span style="font-size: 120%"><span class="math inline">\(SS_B\)</span></span><strong id="anovaSsbOut">—</strong>
+</div>
+<div class="w7-output">
+<span style="font-size: 120%"><span class="math inline">\(SS_W\)</span></span><strong id="anovaSswOut">—</strong>
+</div>
+<div class="w7-output">
+<span style="font-size: 120%"><span class="math inline">\(MS_B\)</span></span><strong id="anovaMsbOut">—</strong>
+</div>
+<div class="w7-output">
+<span style="font-size: 120%"><span class="math inline">\(F\)</span></span><strong id="anovaFOut">—</strong>
+</div>
+<div class="w7-output">
+<span style="font-size: 120%"><span class="math inline">\(p\)</span></span><strong id="anovaPOut">—</strong>
+</div>
+</div>
+</div>
+<div class="anova-visual">
+<svg id="anovaSvg" class="w7-lab-svg anova-svg" viewbox="0 0 900 500" aria-label="One-way ANOVA visualization">
+</svg>
+</div>
+</div>
+</div>
+</section>
+<section id="a-significant-anova-is-an-omnibus-statement" class="slide level2 concept-slide">
+<h2>A significant ANOVA is an omnibus statement</h2>
+<div class="eyebrow">
+At least one mean differs
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+ANOVA
+</div>
+<div class="w7-card-sub">
+tests the global null that all means are equal
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+Tukey
+</div>
+<div class="w7-card-sub">
+all pairwise comparisons
+</div>
+</div>
+<div class="w7-card model-border">
+<div class="w7-card-title">
+Dunnett
+</div>
+<div class="w7-card-sub">
+each treatment against a chosen reference
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Post-hoc comparisons answer “which groups?” while controlling multiplicity.
+</div>
+</div>
+<div class="mathematician-gallery fragment fade-up" style="max-width: 28em">
+<div class="portrait-card">
+<img src="figures/Tukey.jpg" alt="John Tukey">
+<div class="portrait-name">
+John Tukey
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Dunnett.jpg" alt="Charles W. Dunnett">
+<div class="portrait-name">
+Charles W. Dunnett
+</div>
+</div>
+</div>
+</section>
+<section id="two-factors-dose-and-smoking" class="slide level2 concept-slide">
+<h2>Two factors: dose and smoking</h2>
+<div class="eyebrow">
+Factorial ANOVA
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Dose main effect
+</div>
+<div class="w7-card-sub">
+averaged across smoking status
+</div>
+</div>
+<div class="w7-card model-border">
+<div class="w7-card-title">
+Smoking main effect
+</div>
+<div class="w7-card-sub">
+averaged across doses
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+Interaction
+</div>
+<div class="w7-card-sub">
+does the dose effect depend on smoking?
+</div>
+</div>
+</div>
+</section>
+<section id="interaction-means-the-effect-of-a-depends-on-b" class="slide level2 concept-slide">
+<h2>Interaction means “the effect of A depends on B”</h2>
+<div class="eyebrow">
+Parallel vs non-parallel patterns
+</div>
+<div class="w7-grid-2 fragment fade-up">
+<div class="figure-placeholder">
+<strong>No / little interaction</strong><span style="font-size: 80%">dose-response lines are approximately parallel</span>
+</div>
+<div class="figure-placeholder">
+<strong>Interaction</strong><span style="font-size: 80%">dose-response differs across smoking status</span>
+</div>
+</div>
+</section>
+<section id="try-it-factorial-effects" class="slide level2 exercise-slide">
+<h2>Try it: factorial effects</h2>
+<div class="try-label">
+Manipulate main effects and interaction
+</div>
+<div id="factorialWidget" class="factorial-layout">
+<div class="factorial-controls">
+<label class="w7-control">baseline mean = <strong id="facBaseValue">72</strong><input id="facBase" type="range" min="55" max="85" value="72" step="1"></label> <label class="w7-control">medium-dose effect = <strong id="facMedValue">-2</strong><input id="facMed" type="range" min="-10" max="10" value="-2" step="1"></label> <label class="w7-control">high-dose effect = <strong id="facHighValue">-6</strong><input id="facHigh" type="range" min="-15" max="15" value="-6" step="1"></label> <label class="w7-control">smoking shift at low dose = <strong id="facSmokeValue">3</strong><input id="facSmoke" type="range" min="-10" max="10" value="3" step="1"></label>
+<div class="factorial-interaction-controls">
+<div class="factorial-interaction-title">
+Interaction · departure from additivity
+</div>
+<label class="w7-control factorial-interaction-control">smoker × medium dose = <strong id="facIntMedValue">0</strong><input id="facIntMed" type="range" min="-12" max="12" value="0" step="1"></label> <label class="w7-control factorial-interaction-control">smoker × high dose = <strong id="facIntHighValue">5</strong><input id="facIntHigh" type="range" min="-12" max="12" value="5" step="1"></label>
+</div>
+<label class="w7-control">common SD = <strong id="facSdValue">6</strong><input id="facSd" type="range" min="2" max="12" value="6" step="1"></label> <label class="w7-control"><span class="math inline">\(n\)</span> / cell = <strong id="facNValue">30</strong><input id="facN" type="range" min="10" max="100" value="30" step="5"></label>
+</div>
+<div>
+<svg id="factorialSvg" class="w7-lab-svg factorial-svg" viewbox="0 0 900 470" aria-label="Factorial interaction plot"></svg>
+<div class="factorial-readout">
+<div class="w7-output">
+<span class="inline-label" style="font-size: 120%"><span>interaction</span><span style="font-size: 110%"><span class="math inline">\(F\)</span></span></span><strong id="facFOut">—</strong>
+</div>
+<div class="w7-output">
+<span class="inline-label" style="font-size: 120%"><span>interaction</span><span style="font-size: 110%"><span class="math inline">\(p\)</span></span></span><strong id="facPOut">—</strong>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="factorial-models-are-not-six-separate-t-tests" class="slide level2 concept-slide">
+<h2>Factorial models are not six separate t tests</h2>
+<div class="eyebrow">
+The model asks structured questions
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+Main effect
+</div>
+<div class="w7-card-sub">
+a systematic average shift
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+Interaction
+</div>
+<div class="w7-card-sub">
+departure from additivity
+</div>
+</div>
+<div class="w7-card warning-border">
+<div class="w7-card-title">
+Do not over-slice
+</div>
+<div class="w7-card-sub">
+many unplanned pairwise tests recreate multiplicity problems
+</div>
+</div>
+</div>
+</section>
+<section id="agreement-and-equivalence" class="slide level2 section-break">
+<h2>Agreement and equivalence</h2>
+<div class="section-kicker">
+Part VI
+</div>
+<div class="section-title">
+When “no important difference” is the goal
+</div>
+<div class="section-subtitle">
+Association, agreement, equivalence, and interchangeability are different claims.
+</div>
+</section>
+<section id="association-is-not-agreement" class="slide level2 concept-slide">
+<h2>Association is not agreement</h2>
+<div class="eyebrow">
+A hierarchy of questions
+</div>
+<div class="agreement-spectrum fragment fade-up">
+<div class="agreement-node observed-border">
+<strong>Association</strong><span>do the variables contain information about each other?</span>
+</div>
+<div class="agreement-arrow">
+→
+</div>
+<div class="agreement-node estimate-border">
+<strong>Agreement</strong><span>do measurements / ratings coincide?</span>
+</div>
+<div class="agreement-arrow">
+→
+</div>
+<div class="agreement-node uncertainty-border">
+<strong>Interchangeability</strong><span>are differences small enough for practical replacement?</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+A high correlation can coexist with poor agreement.
+</div>
+</div>
+</section>
+<section id="categorical-agreement-cohens-kappa" class="slide level2 concept-slide">
+<h2>Categorical agreement: Cohen’s kappa</h2>
+<div class="eyebrow">
+Two diagnosticians, same patients
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+Observed agreement
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(P_o\)</span>
+</div>
+</div>
+<div class="w7-card model-border">
+<div class="w7-card-title">
+Chance agreement
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(P_e\)</span>
+</div>
+</div>
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+Excess agreement
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(\kappa=\frac{P_o-P_e}{1-P_e}\)</span>
+</div>
+</div>
+</div>
+<div class="mathematician-gallery fragment fade-up">
+<div class="portrait-card">
+<img src="figures/Cohen.jpg" alt="Jacob Cohen">
+<div class="portrait-name">
+Jacob Cohen
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Krippendorff.jpg" alt="Klaus Krippendorff">
+<div class="portrait-name">
+Klaus Krippendorff
+</div>
+</div>
+</div>
+</section>
+<section id="try-it-cohens-kappa" class="slide level2 exercise-slide">
+<h2>Try it: Cohen’s kappa</h2>
+<div class="try-label">
+Edit the 2×2 rating table
+</div>
+<div id="kappaWidget" class="kappa-layout">
+<div class="kappa-table">
+<div class="head">
+
+</div>
+<div class="head">
+Doctor 2 +
+</div>
+<div class="head">
+Doctor 2 −
+</div>
+<div class="head">
+Doctor 1 +
+</div>
+<input id="kapA" type="number" value="42" min="0"><input id="kapB" type="number" value="8" min="0">
+<div class="head">
+Doctor 1 −
+</div>
+<input id="kapC" type="number" value="6" min="0"><input id="kapD" type="number" value="44" min="0">
+</div>
+<div>
+<div class="kappa-output">
+<div class="w7-output">
+<span class="inline-label" style="font-size: 120%"><span>observed</span><span style="font-size: 110%"><span class="math inline">\(P_o\)</span></span></span><strong id="kapPoOut">—</strong>
+</div>
+<div class="w7-output">
+<span class="inline-label" style="font-size: 120%"><span>chance</span><span style="font-size: 110%"><span class="math inline">\(P_e\)</span></span></span><strong id="kapPeOut">—</strong>
+</div>
+<div class="w7-output">
+<span class="inline-label" style="font-size: 120%"><span style="font-size: 110%"><span class="math inline">\(\kappa\)</span></span></span><strong id="kapOut">—</strong>
+</div>
+</div>
+<div class="kappa-gauge">
+<div id="kapNeedle" class="needle">
+
+</div>
+</div>
+<div class="kappa-scale">
+<span>−1</span><span>0</span><span>1</span>
+</div>
+<div class="concept-line" style="font-size:.48em;margin-top:.5em;">
+Kappa adjusts raw agreement for agreement expected from the marginal prevalences.
+</div>
+</div>
+</div>
+</section>
+<section id="equivalence-reverses-the-usual-null-logic" class="slide level2 concept-slide">
+<h2>Equivalence reverses the usual null logic</h2>
+<div class="eyebrow">
+Generic vs originator
+</div>
+<div class="equiv-logic fragment fade-up">
+<div class="equiv-node warning-border">
+<strong class="inline-label" style="font-size: 110%"><strong>Choose</strong><strong style="font-size: 110%"><span class="math inline">\(\Delta\)</span></strong><strong>first</strong></strong><span>largest scientifically acceptable difference</span>
+</div>
+<div class="equiv-arrow">
+→
+</div>
+<div class="equiv-node uncertainty-border">
+<strong>Test both boundaries</strong><span class="inline-label">difference must be above<span style="font-size: 190%"><span class="math inline">\(-\Delta\)</span></span>and below<span style="font-size: 190%"><span class="math inline">\(+\Delta\)</span></span></span>
+</div>
+<div class="equiv-arrow">
+→
+</div>
+<div class="equiv-node estimate-border">
+<strong>Conclude equivalence</strong><span>only if both one-sided tests reject</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+<div class="warning-title">
+Not “prove the difference is zero”
+</div>
+<p>
+Exact equality is not the target. Equivalence means the population difference is sufficiently small relative to a pre-specified scientific margin.
+</p>
+</div>
+</div>
+</section>
+<section id="four-confidence-interval-situations" class="slide level2 concept-slide">
+<h2>Four confidence-interval situations</h2>
+<div class="eyebrow">
+Equivalence margin <span class="math inline">\([-\Delta,+\Delta]\)</span>
+</div>
+<div class="equiv-cases fragment fade-up">
+<div class="equiv-case">
+<strong>Equivalent and includes 0</strong>
+<div class="equiv-track">
+<span class="zero"></span><span class="ci" style="left:35%;width:28%;"></span><span class="point" style="left:49%;"></span>
+</div>
+<small>entire 90% CI lies inside the equivalence margin</small>
+</div>
+<div class="equiv-case">
+<strong>Equivalent but different from 0</strong>
+<div class="equiv-track">
+<span class="zero"></span><span class="ci" style="left:55%;width:16%;"></span><span class="point" style="left:63%;"></span>
+</div>
+<small>statistical difference can coexist with practical equivalence</small>
+</div>
+<div class="equiv-case">
+<strong>Not equivalent, includes 0</strong>
+<div class="equiv-track">
+<span class="zero"></span><span class="ci" style="left:15%;width:56%;"></span><span class="point" style="left:47%;"></span>
+</div>
+<small>too imprecise to establish equivalence</small>
+</div>
+<div class="equiv-case">
+<strong>Neither equivalent nor close to 0</strong>
+<div class="equiv-track">
+<span class="zero"></span><span class="ci" style="left:70%;width:22%;"></span><span class="point" style="left:81%;"></span>
+</div>
+<small>difference extends beyond the acceptable margin</small>
+</div>
+</div>
+</section>
+<section id="try-it-equivalence-of-two-means" class="slide level2 exercise-slide">
+<h2>Try it: equivalence of two means</h2>
+<div class="try-label">
+TOST shown through the equivalent 90% CI
+</div>
+<div id="equivWidget" class="equiv-widget">
+<div class="equiv-layout">
+<div class="equiv-controls">
+<p><label class="w7-control">originator mean<input id="eqM1" type="number" value="100" step="0.5"></label> <label class="w7-control">generic mean<input id="eqM2" type="number" value="101" step="0.5"></label> <label class="w7-control">common SD<input id="eqSd" type="number" value="8" min="0.1" step="0.5"></label> <label class="w7-control"><span class="math inline">\(n\)</span> / group<input id="eqN" type="number" value="60" min="2" step="1"></label> <label class="w7-control">equivalence margin <span class="math inline">\(\Delta\)</span><input id="eqDelta" type="number" value="3" min="0.1" step="0.5"></label></p>
+</div>
+<div class="equiv-visual">
+<svg id="equivSvg" class="w7-lab-svg equiv-svg" viewbox="0 0 900 430" aria-label="Equivalence confidence interval">
+</svg>
+<div class="equiv-output-row">
+<div class="w7-output">
+<span>difference</span><strong id="eqDiffOut">—</strong>
+</div>
+<div class="w7-output">
+<span>90% CI</span><strong id="eqCiOut">—</strong>
+</div>
+<div class="w7-output">
+<span>margin</span><strong id="eqMarginOut">—</strong>
+</div>
+<div class="w7-output">
+<span>decision</span><strong id="eqDecisionOut">—</strong>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="interchangeability-asks-more-than-mean-equivalence" class="slide level2 concept-slide">
+<h2>Interchangeability asks more than mean equivalence</h2>
+<div class="eyebrow">
+Bland–Altman logic
+</div>
+<div class="w7-grid-3 fragment fade-up">
+<div class="w7-card observed-border">
+<div class="w7-card-title">
+For each subject
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(d_i=A_i-B_i\)</span>
+</div>
+</div>
+<div class="w7-card model-border">
+<div class="w7-card-title">
+Bias
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(\bar d\)</span>
+</div>
+</div>
+<div class="w7-card uncertainty-border">
+<div class="w7-card-title">
+Limits of agreement
+</div>
+<div class="w7-card-math">
+<span class="math inline">\(\bar d\pm1.96s_d\)</span>
+</div>
+</div>
+</div>
+<div class="mathematician-gallery fragment fade-up">
+<div class="portrait-card">
+<img src="figures/Bland.jpg" alt="Martin Bland">
+<div class="portrait-name">
+Martin Bland
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Altman.jpg" alt="Douglas G Altman">
+<div class="portrait-name">
+Douglas G. Altman
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+The question is whether <strong>individual differences</strong>, not just the mean difference, are acceptably small.
+</div>
+</div>
+</section>
+<section id="blandaltman-patterns" class="slide level2 concept-slide">
+<h2>Bland–Altman patterns</h2>
+<div class="eyebrow">
+Four qualitatively different situations
+</div>
+<div class="ba-grid fragment fade-up">
+<div class="ba-figure">
+<img src="figures/ba_good.svg" alt="BA good" class="ba-figure-img">
+</div>
+<div class="ba-figure">
+<img src="figures/ba_bias.svg" alt="BA good" class="ba-figure-img">
+</div>
+<div class="ba-figure">
+<img src="figures/ba_hetero.svg" alt="BA good" class="ba-figure-img">
+</div>
+<div class="ba-figure">
+<img src="figures/ba_wide.svg" alt="BA good" class="ba-figure-img">
+</div>
+</div>
+</section>
+<section id="correlation-would-miss-the-point" class="slide level2 concept-slide">
+<h2>Correlation would miss the point</h2>
+<div class="eyebrow">
+Agreement is a difference question
+</div>
+<div class="w7-grid-2 fragment fade-up">
+<div class="w7-card warning-border">
+<div class="w7-card-title">
+High correlation
+</div>
+<div class="w7-card-sub">
+measurements can move together while one is systematically 10 units higher
+</div>
+</div>
+<div class="w7-card estimate-border">
+<div class="w7-card-title">
+Good agreement
+</div>
+<div class="w7-card-sub">
+individual differences are centered and clinically acceptably narrow
+</div>
+</div>
+</div>
+</section>
+<section id="choose-the-test" class="slide level2 exercise-slide">
+<h2>Choose the test</h2>
+<div class="eyebrow">
+Prediction exercise
+</div>
+<div class="question-card fragment fade-up">
+<div class="scenario">
+A single group of <span class="math inline">\(80\)</span> patients has a binary adverse-event outcome. You want to know whether the population event proportion differs from the historical value <span class="math inline">\(0.10\)</span>.
+</div>
+<div class="ask">
+Which inferential structure fits?
+</div>
+<div class="answer-grid">
+<div>
+Welch <span class="math inline">\(t\)</span>
+</div>
+<div>
+exact binomial
+</div>
+<div>
+McNemar
+</div>
+<div>
+ANOVA
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="w7-callout estimate-callout">
+<strong>Exact binomial:</strong> one binary proportion compared with a reference probability.
+</div>
+</div>
+</section>
+<section id="choose-the-test-paired-data" class="slide level2 exercise-slide">
+<h2>Choose the test: paired data</h2>
+<div class="eyebrow">
+Prediction exercise
+</div>
+<div class="question-card fragment fade-up">
+<div class="scenario">
+The same <span class="math inline">\(45\)</span> patients have hemoglobin measured immediately before and after treatment. The question is whether the mean within-patient change is zero.
+</div>
+<div class="ask">
+What statistic should you build first?
+</div>
+<div class="answer-grid">
+<div>
+two independent means
+</div>
+<div>
+within-patient differences
+</div>
+<div>
+variance ratio
+</div>
+<div>
+contingency table
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="w7-callout estimate-callout">
+Compute <span class="math inline">\(D_i=post_i-pre_i\)</span>, then perform a one-sample <span class="math inline">\(t\)</span> analysis on the differences.
+</div>
+</div>
+</section>
+<section id="read-the-output-not-just-the-p-value" class="slide level2 exercise-slide">
+<h2>Read the output, not just the p-value</h2>
+<div class="eyebrow">
+Interpretation exercise
+</div>
+<div class="question-card fragment fade-up">
+<div class="scenario">
+Difference in means = <span class="math inline">\(-1.8\)</span> g/L, 95% CI <span class="math inline">\([-5.5,1.9]\)</span>, p = <span class="math inline">\(0.34\)</span>.
+</div>
+<div class="ask">
+Which statement is defensible?
+</div>
+<div class="answer-grid">
+<div>
+the means are proven equal
+</div>
+<div>
+there is no clinically meaningful effect
+</div>
+<div>
+the data are compatible with a range of negative and positive effects
+</div>
+<div>
+<span class="math inline">\(H_0\)</span> has probability <span class="math inline">\(0.34\)</span>
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="w7-callout uncertainty-callout">
+The interval is the key: the study is compatible with several population effects. “Not significant” is not proof of equality.
+</div>
+</div>
+</section>
+<section id="week-7-synthesis" class="slide level2 concept-slide">
+<h2>Week 7 synthesis</h2>
+<div class="eyebrow">
+Do not memorize an encyclopedia
+</div>
+<div class="recap-tree fragment fade-up">
+<div>
+<strong>1 · Identify data</strong><span>categorical vs continuous</span>
+</div>
+<div>
+<strong>2 · Identify design</strong><span>one / two / many; paired vs independent</span>
+</div>
+<div>
+<strong>3 · Identify parameter</strong><span>proportion, mean, variance, agreement</span>
+</div>
+<div>
+<strong>4 · Choose machinery</strong><span>statistic + reference distribution + CI</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Then explain the effect estimate, uncertainty, assumptions, and scientific meaning.
+</div>
+</div>
+</section>
+<section id="next-week" class="slide level2 section-slide">
+<h2>Next week</h2>
+<div class="eyebrow">
+Week 8 · Association and regression
+</div>
+<div class="definition-box">
+from comparing groups → modelling relationships
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Correlation, linear regression, and the first generalized linear model ideas.
+</div>
+</div>
+<script>
+(function(){
+
+/* =========================================================
+   SHARED NUMERICAL HELPERS
+   ========================================================= */
+
+let qqSeed = 0;
+
+function clamp(x,a,b){ return Math.max(a,Math.min(b,x)); }
+function mulberry32(seed){ return function(){ let t=seed+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return ((t^t>>>14)>>>0)/4294967296;}; }
+function randn(rng){ let u=0,v=0;while(u===0)u=rng();while(v===0)v=rng();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
+function normPdf(x,mu=0,s=1){ const z=(x-mu)/s;return Math.exp(-.5*z*z)/(s*Math.sqrt(2*Math.PI)); }
+function logGamma(z){ const g=7,p=[0.99999999999980993,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-0.13857109526572012,9.9843695780195716e-6,1.5056327351493116e-7];if(z<.5)return Math.log(Math.PI)-Math.log(Math.sin(Math.PI*z))-logGamma(1-z);z-=1;let x=p[0];for(let i=1;i<p.length;i++)x+=p[i]/(z+i);const t=z+g+.5;return .5*Math.log(2*Math.PI)+(z+.5)*Math.log(t)-t+Math.log(x); }
+function tPdf(x,nu){ const a=logGamma((nu+1)/2)-logGamma(nu/2)-.5*Math.log(nu*Math.PI);return Math.exp(a-((nu+1)/2)*Math.log(1+x*x/nu)); }
+function chiPdf(x,k){ if(x<=0)return 0;return Math.exp((k/2-1)*Math.log(x)-x/2-(k/2)*Math.log(2)-logGamma(k/2)); }
+function axis(x1,y1,x2,y2,cls='w7-axis'){ return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="${cls}"></line>`; }
+function pathFrom(points,cls){ return `<path d="${points.map((p,i)=>`${i?'L':'M'} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' ')}" class="${cls}"></path>`; }
+function fmtP(p){ if(!Number.isFinite(p))return '—';if(p<.001)return '&lt;0.001';return p.toFixed(3); }
+
+function betacf(a,b,x){ const MAXIT=200,EPS=3e-12,FPMIN=1e-300;let qab=a+b,qap=a+1,qam=a-1,c=1,d=1-qab*x/qap;if(Math.abs(d)<FPMIN)d=FPMIN;d=1/d;let h=d;for(let m=1;m<=MAXIT;m++){let m2=2*m;let aa=m*(b-m)*x/((qam+m2)*(a+m2));d=1+aa*d;if(Math.abs(d)<FPMIN)d=FPMIN;c=1+aa/c;if(Math.abs(c)<FPMIN)c=FPMIN;d=1/d;h*=d*c;aa=-(a+m)*(qab+m)*x/((a+m2)*(qap+m2));d=1+aa*d;if(Math.abs(d)<FPMIN)d=FPMIN;c=1+aa/c;if(Math.abs(c)<FPMIN)c=FPMIN;d=1/d;const del=d*c;h*=del;if(Math.abs(del-1)<EPS)break;}return h; }
+function betai(a,b,x){ if(x<=0)return 0;if(x>=1)return 1;const bt=Math.exp(logGamma(a+b)-logGamma(a)-logGamma(b)+a*Math.log(x)+b*Math.log(1-x));return x<(a+1)/(a+b+2)?bt*betacf(a,b,x)/a:1-bt*betacf(b,a,1-x)/b; }
+function tCdf(t,nu){ const x=nu/(nu+t*t),ib=betai(nu/2,.5,x);return t>=0?1-.5*ib:.5*ib; }
+function tInv(p,nu){ let lo=-20,hi=20;for(let i=0;i<90;i++){const mid=(lo+hi)/2;if(tCdf(mid,nu)<p)lo=mid;else hi=mid;}return (lo+hi)/2; }
+function gammaQ(a,x){ if(x<0||a<=0)return NaN;if(x===0)return 1;const ITMAX=200,EPS=3e-12,FPMIN=1e-300;if(x<a+1){let ap=a,sum=1/a,del=sum;for(let n=1;n<=ITMAX;n++){ap++;del*=x/ap;sum+=del;if(Math.abs(del)<Math.abs(sum)*EPS)break;}const p=sum*Math.exp(-x+a*Math.log(x)-logGamma(a));return 1-p;}let b=x+1-a,c=1/FPMIN,d=1/b,h=d;for(let i=1;i<=ITMAX;i++){const an=-i*(i-a);b+=2;d=an*d+b;if(Math.abs(d)<FPMIN)d=FPMIN;c=b+an/c;if(Math.abs(c)<FPMIN)c=FPMIN;d=1/d;const del=d*c;h*=del;if(Math.abs(del-1)<EPS)break;}return Math.exp(-x+a*Math.log(x)-logGamma(a))*h; }
+function chiSurvival(x,df){ return gammaQ(df/2,x/2); }
+function chiInv(p,df){ let lo=0,hi=Math.max(10,df+10*Math.sqrt(2*df));while(1-chiSurvival(hi,df)<p)hi*=2;for(let i=0;i<90;i++){const mid=(lo+hi)/2;const cdf=1-chiSurvival(mid,df);if(cdf<p)lo=mid;else hi=mid;}return (lo+hi)/2; }
+function fCdf(x,d1,d2){ if(x<=0)return 0;return betai(d1/2,d2/2,(d1*x)/(d1*x+d2)); }
+
+/* Acklam inverse Normal approximation */
+function normInv(p){ if(p<=0)return -Infinity;if(p>=1)return Infinity;const a=[-39.6968302866538,220.946098424521,-275.928510446969,138.357751867269,-30.6647980661472,2.50662827745924],b=[-54.4760987982241,161.585836858041,-155.698979859887,66.8013118877197,-13.2806815528857],c=[-.00778489400243029,-.322396458041136,-2.40075827716184,-2.54973253934373,4.37466414146497,2.93816398269878],d=[.00778469570904146,.32246712907004,2.445134137143,3.75440866190742],pl=.02425,ph=1-pl;let q,r;if(p<pl){q=Math.sqrt(-2*Math.log(p));return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);}if(p>ph){q=Math.sqrt(-2*Math.log(1-p));return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);}q=p-.5;r=q*q;return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1); }
+
+/* =========================================================
+   QQ WIDGET
+   ========================================================= */
+
+let qqCache={values:[],theo:[],dist:'normal',n:80};
+
+function qqDrawSample(){
+  const dist=document.getElementById('qqDist')?.value||'normal';
+  const n=Number(document.getElementById('qqN')?.value||80);
+  const out=document.getElementById('qqNValue');if(out)out.textContent=n;
+  const rng=mulberry32(7100+qqSeed*1009+(dist==='right'?100:dist==='left'?200:dist==='bimodal'?300:0));
+  const values=[];
+  for(let i=0;i<n;i++){
+    let x;
+    if(dist==='normal')x=randn(rng);
+    else if(dist==='right')x=-Math.log(Math.max(1e-12,1-rng()))-1;
+    else if(dist==='left')x=1+Math.log(Math.max(1e-12,1-rng()));
+    else x=(rng()<.5?-1.8:1.8)+.65*randn(rng);
+    values.push(x);
+  }
+  values.sort((a,b)=>a-b);
+  const theo=values.map((_,i)=>normInv((i+.5)/n));
+  qqCache={values,theo,dist,n};
+  renderQQ(-1);
+}
+
+function renderQQ(active=-1){
+  const svg=document.getElementById('qqSvg');if(!svg||!qqCache.values.length)return;
+  const vals=qqCache.values,theo=qqCache.theo,n=vals.length;
+  const W=900,H=500;
+  const qL=70,qR=625,qT=105,qB=445;
+  const topT=18,topB=82;
+  const histL=660,histR=870;
+  const xMin=-3.3,xMax=3.3;
+  let yMin=Math.min(...vals),yMax=Math.max(...vals);const yr=yMax-yMin||1;yMin-=.08*yr;yMax+=.08*yr;
+  const mx=x=>qL+((x-xMin)/(xMax-xMin))*(qR-qL);
+  const my=y=>qB-((y-yMin)/(yMax-yMin))*(qB-qT);
+  const sampleMean=vals.reduce((a,b)=>a+b,0)/n;
+  const sampleSd=Math.sqrt(vals.reduce((s,x)=>s+(x-sampleMean)**2,0)/(n-1));
+  let html='';
+  // main grid
+  [-3,-2,-1,0,1,2,3].forEach(t=>{const x=mx(t);html+=axis(x,qT,x,qB,'w7-gridline');html+=`<text x="${x}" y="${qB+22}" text-anchor="middle" class="w7-label">${t}</text>`;});
+  const yTicks=5;for(let j=0;j<=yTicks;j++){const v=yMin+j*(yMax-yMin)/yTicks,y=my(v);html+=axis(qL,y,qR,y,'w7-gridline');html+=`<text x="${qL-10}" y="${y+4}" text-anchor="end" class="w7-small-label">${v.toFixed(1)}</text>`;}
+  html+=axis(qL,qB,qR,qB)+axis(qL,qT,qL,qB);
+  html+=`<text x="${(qL+qR)/2}" y="485" text-anchor="middle" class="w7-title-label">theoretical Normal quantile</text>`;
+  html+=`<text x="18" y="${(qT+qB)/2}" text-anchor="middle" transform="rotate(-90 18 ${(qT+qB)/2})" class="w7-title-label">sample quantile</text>`;
+  // reference line
+  const refPts=[xMin,xMax].map(x=>[mx(x),my(sampleMean+sampleSd*x)]);html+=pathFrom(refPts,'qq-reference');
+  // top theoretical density
+  const densPts=[];for(let x=xMin;x<=xMax;x+=.04){densPts.push([mx(x),topB-(normPdf(x)/.42)*(topB-topT)]);}html+=pathFrom(densPts,'qq-normal');html+=axis(qL,topB,qR,topB);
+  html+=`<text x="${qL}" y="14" class="w7-small-label">theoretical Normal density</text>`;
+  // right sample histogram along y
+  const bins=18,counts=Array(bins).fill(0);vals.forEach(v=>{let b=Math.floor(((v-yMin)/(yMax-yMin))*bins);b=clamp(b,0,bins-1);counts[b]++;});const cMax=Math.max(...counts,1);
+  for(let b=0;b<bins;b++){const y1=my(yMin+(b+1)*(yMax-yMin)/bins),y2=my(yMin+b*(yMax-yMin)/bins);const w=(counts[b]/cMax)*(histR-histL);html+=`<rect x="${histL}" y="${y1}" width="${w}" height="${Math.max(1,y2-y1-1)}" class="qq-hist"></rect>`;}
+  html+=axis(histL,qT,histL,qB);html+=`<text x="${histL}" y="${qT-10}" class="w7-small-label">sample distribution</text>`;
+  // active highlights
+  if(active>=0&&active<n){
+    const ax=mx(theo[active]),ay=my(vals[active]);
+    html+=`<rect x="${qL}" y="${topT}" width="${Math.max(0,ax-qL)}" height="${topB-topT}" class="qq-highlight"></rect>`;
+    const b=clamp(Math.floor(((vals[active]-yMin)/(yMax-yMin))*bins),0,bins-1);const hy1=my(yMin+(b+1)*(yMax-yMin)/bins),hy2=my(yMin+b*(yMax-yMin)/bins);html+=`<rect x="${histL}" y="${hy1}" width="${histR-histL}" height="${Math.max(1,hy2-hy1)}" class="qq-highlight"></rect>`;
+    html+=axis(ax,qT,ax,qB,'qq-crosshair')+axis(qL,ay,qR,ay,'qq-crosshair');
+  }
+  // points last
+  vals.forEach((v,i)=>{html+=`<circle cx="${mx(theo[i])}" cy="${my(v)}" r="${i===active?5:3.2}" class="qq-point${i===active?' active':''}"></circle>`;});
+  svg.innerHTML=html;
+  const pOut=document.getElementById('qqProbOut'),tOut=document.getElementById('qqTheoOut'),sOut=document.getElementById('qqSampleOut');
+  if(active>=0){const p=(active+.5)/n;if(pOut)pOut.textContent=`${(100*p).toFixed(1)}%`;if(tOut)tOut.textContent=theo[active].toFixed(2);if(sOut)sOut.textContent=vals[active].toFixed(2);}else{if(pOut)pOut.textContent='move cursor';if(tOut)tOut.textContent='—';if(sOut)sOut.textContent='—';}
+}
+
+function qqPointer(e) {
+  const svg = document.getElementById("qqSvg");
+  if (!svg ||!qqCache.theo.length) {return;}
+  const ctm = svg.getScreenCTM();
+  if (!ctm) return;
+  let point;
+  if (typeof DOMPoint === "function") {
+    point =
+      new DOMPoint(
+        e.clientX,
+        e.clientY
+      ).matrixTransform(
+        ctm.inverse()
+      );
+  } else {
+    const p = svg.createSVGPoint();
+    p.x = e.clientX;
+    p.y = e.clientY;
+    point = p.matrixTransform(ctm.inverse());
+  }
+  const x = point.x;
+  const y = point.y;
+  const qL = 70;
+  const qR = 625;
+  const qT = 105;
+  const qB = 445;
+  if (x < qL || x > qR || y < qT || y > qB) {
+    renderQQ(-1);
+    return;
+  }
+  const xMin = -3.3;
+  const xMax = 3.3;
+  const theoreticalX = xMin + ((x - qL) / (qR - qL)) * (xMax - xMin);
+  let best = 0;
+  let bestDistance = Infinity;
+  qqCache.theo.forEach(
+    (q, i) => {
+      const distance = Math.abs(q - theoreticalX);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        best = i;
+      }
+    }
+  );
+  renderQQ(best);
+}
+
+/* =========================================================
+   WELCH T WIDGET
+   ========================================================= */
+
+function renderWelch(){
+  const m1=Number(document.getElementById('welchM1')?.value||0),s1=Math.max(.001,Number(document.getElementById('welchS1')?.value||1)),n1=Math.max(2,Number(document.getElementById('welchN1')?.value||2));
+  const m2=Number(document.getElementById('welchM2')?.value||0),s2=Math.max(.001,Number(document.getElementById('welchS2')?.value||1)),n2=Math.max(2,Number(document.getElementById('welchN2')?.value||2));
+  const diff=m1-m2,a=s1*s1/n1,b=s2*s2/n2,se=Math.sqrt(a+b),t=diff/se,df=(a+b)*(a+b)/(a*a/(n1-1)+b*b/(n2-1));
+  const p=2*(1-tCdf(Math.abs(t),df)),crit=tInv(.975,df),lo=diff-crit*se,hi=diff+crit*se;
+  
+  document.getElementById('welchDiffOut').textContent=diff.toFixed(2);
+  document.getElementById('welchSeOut').textContent=se.toFixed(2);
+  document.getElementById('welchTOut').textContent=t.toFixed(2);
+  document.getElementById('welchDfOut').textContent=df.toFixed(1);
+  document.getElementById('welchPOut').innerHTML=fmtP(p);
+  document.getElementById('welchCiOut').textContent=`[${lo.toFixed(1)}, ${hi.toFixed(1)}]`;
+
+  const svg=document.getElementById('welchSvg');if(!svg)return;
+  const L=55,R=855,top=35,base=245,xMin=-5,xMax=5; // Adjusted top to 35 for region labels
+  const mx=x=>L+((x-xMin)/(xMax-xMin))*(R-L);
+  let yMax=0;for(let x=xMin;x<=xMax;x+=.03)yMax=Math.max(yMax,tPdf(x,df));
+  const my=y=>base-(y/(yMax*1.12))*(base-top);
+
+  let html=axis(L,base,R,base);
+  [-4,-2,0,2,4].forEach(x=>{
+    html+=axis(mx(x),base,mx(x),base+6);
+    html+=`<text x="${mx(x)}" y="${base+24}" text-anchor="middle" class="w7-label">${x}</text>`;
+  });
+
+  function area(a0,b0){
+    const aa=Math.max(xMin,a0),bb=Math.min(xMax,b0);if(bb<=aa)return'';
+    let d=`M ${mx(aa)} ${base} L ${mx(aa)} ${my(tPdf(aa,df))}`;
+    for(let x=aa+.03;x<=bb;x+=.03)d+=` L ${mx(x)} ${my(tPdf(x,df))}`;
+    d+=` L ${mx(bb)} ${my(tPdf(bb,df))} L ${mx(bb)} ${base} Z`;
+    return d;
+  }
+
+  html+=`<path d="${area(xMin,-crit)}" class="rejection-fill"></path><path d="${area(crit,xMax)}" class="rejection-fill"></path>`;
+  const pts=[];for(let x=xMin;x<=xMax;x+=.03)pts.push([mx(x),my(tPdf(x,df))]);
+  html+=pathFrom(pts,'density-null');
+
+  [-crit,crit].forEach(c=>{if(c>=xMin&&c<=xMax)html+=axis(mx(c),top,mx(c),base,'critical-line');});
+  
+  // ---------------------------------------------------------
+  // Hypothesis Decision Labels (Tails = Reject, Center = Retain)
+  // ---------------------------------------------------------
+  const leftTailMid = (xMin - crit) / 2;
+  const rightTailMid = (xMax + crit) / 2;
+  
+  html += `<text x="${mx(leftTailMid)}" y="${top - 12}" text-anchor="middle" class="welch-decision-label reject">Reject H₀</text>`;
+  html += `<text x="${mx(0)}" y="${top - 12}" text-anchor="middle" class="welch-decision-label retain">Do not reject H₀</text>`;
+  html += `<text x="${mx(rightTailMid)}" y="${top - 12}" text-anchor="middle" class="welch-decision-label reject">Reject H₀</text>`;
+
+  const tc=clamp(t,xMin,xMax);
+  html+=axis(mx(tc),top,mx(tc),base,'observed-line');
+  html+=`<text x="${mx(tc)}" y="${top - 24}" text-anchor="middle" class="w7-title-label">observed t = ${t.toFixed(2)}</text>`;
+
+  /* ---------------------------------------------------------
+    95% CI panel
+  --------------------------------------------------------- */
+  const y = 390;
+  const ciMin = -10, ciMax = 10;
+  const cix = x => L + ((x - ciMin) / (ciMax - ciMin)) * (R - L);
+  const clipCI = x => clamp(x, ciMin, ciMax);
+  const loDraw = clipCI(lo), hiDraw = clipCI(hi), diffDraw = clipCI(diff);
+
+  html += axis(L, y, R, y);
+  [-10, -5, 0, 5, 10].forEach(v => {
+    const x = cix(v);
+    html += axis(x, y, x, y + 6);
+    html += `<text x="${x}" y="${y + 28}" text-anchor="middle" class="w7-label">${v}</text>`;
+  });
+
+  html += axis(cix(0), y - 40, cix(0), y + 15, "ci-zero");
+  html += axis(cix(loDraw), y, cix(hiDraw), y, "ci-line");
+  html += `<circle cx="${cix(diffDraw)}" cy="${y}" r="6" fill="#1f6feb" stroke="#fff" stroke-width="2"></circle>`;
+  html += `<text x="${L}" y="${y - 32}" class="w7-title-label">95% CI for mean difference</text>`;
+  html += `<text x="${cix(loDraw)}" y="${y + 48}" text-anchor="middle" class="w7-small-label">${lo.toFixed(1)}</text>`;
+  html += `<text x="${cix(hiDraw)}" y="${y + 48}" text-anchor="middle" class="w7-small-label">${hi.toFixed(1)}</text>`;
+
+  svg.innerHTML=html;
+}
+
+/* =========================================================
+   CHI-SQUARE CONTINGENCY WIDGET
+   ========================================================= */
+
+function renderChiTable() {
+  // 1. Read Inputs & Configure Layout
+  const layout = document.getElementById('chiLayout')?.value || '2x2';
+  const cols = layout === '2x3' ? 3 : 2;
+  const alpha = Number(document.getElementById('chiAlpha')?.value || 0.05);
+  
+  document.querySelectorAll('.chi-col3').forEach(el => {
+    el.style.display = cols === 3 ? '' : 'none';
+  });
+
+  const a = [
+    Number(document.getElementById('chiA1')?.value || 0),
+    Number(document.getElementById('chiA2')?.value || 0),
+    Number(document.getElementById('chiA3')?.value || 0)
+  ].slice(0, cols);
+
+  const b = [
+    Number(document.getElementById('chiB1')?.value || 0),
+    Number(document.getElementById('chiB2')?.value || 0),
+    Number(document.getElementById('chiB3')?.value || 0)
+  ].slice(0, cols);
+
+  const rows = [a, b];
+  const rowT = rows.map(r => r.reduce((x, y) => x + y, 0));
+  const colT = Array.from({ length: cols }, (_, j) => a[j] + b[j]);
+  const N = rowT[0] + rowT[1];
+
+  if (N <= 0) return;
+
+  // 2. Calculate Expected Frequencies and Chi-Square Statistic
+  const expected = [[], []];
+  let stat = 0;
+
+  for (let i = 0; i < 2; i++) {
+    for (let j = 0; j < cols; j++) {
+      const e = (rowT[i] * colT[j]) / N;
+      expected[i][j] = e;
+      if (e > 0) {
+        stat += Math.pow(rows[i][j] - e, 2) / e;
+      }
+    }
+  }
+
+  const df = cols - 1;
+  const p = chiSurvival(stat, df);
+  const crit = chiInv(1 - alpha, df);
+
+  // 3. Update DOM Text Outputs
+  document.getElementById('chiStatOut').textContent = stat.toFixed(2);
+  document.getElementById('chiDfOut').textContent = df;
+  document.getElementById('chiPOut').innerHTML = fmtP(p);
+
+  const ex = document.getElementById('chiExpected');
+  if (ex) {
+    ex.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+    ex.innerHTML = expected
+      .flat()
+      .map((e, i) => `<div>E${i + 1}=${e.toFixed(1)}</div>`)
+      .join('');
+  }
+
+  // 4. Prepare SVG Canvas & Scale Mappers
+  const svg = document.getElementById('chiTableSvg');
+  if (!svg) return;
+
+  const L = 55;
+  const R = 855;
+  const top = 35; // Increased top margin for decision labels
+  const base = 355;
+  const xMin = 0;
+  const xMax = Math.max(8, crit * 1.5, stat * 1.25, df + 6 * Math.sqrt(2 * df));
+
+  const mx = x => L + (x / xMax) * (R - L);
+  const step = xMax / 400;
+
+  let yMax = 0;
+  for (let x = 0.01; x <= xMax; x += step) {
+    yMax = Math.max(yMax, chiPdf(x, df));
+  }
+  const my = y => base - (y / (yMax * 1.12)) * (base - top);
+
+  function area(a0, b0) {
+    const aa = Math.max(0, a0);
+    const bb = Math.min(xMax, b0);
+    let d = `M ${mx(aa)} ${base} L ${mx(aa)} ${my(chiPdf(Math.max(0.001, aa), df))}`;
+    for (let x = aa + step; x <= bb; x += step) {
+      d += ` L ${mx(x)} ${my(chiPdf(x, df))}`;
+    }
+    d += ` L ${mx(bb)} ${my(chiPdf(bb, df))} L ${mx(bb)} ${base} Z`;
+    return d;
+  }
+
+  // 5. Build SVG Elements
+  let html = axis(L, base, R, base);
+
+  // Rejection Area & Density Path
+  html += `<path d="${area(crit, xMax)}" class="rejection-fill"></path>`;
+
+  const pts = [];
+  for (let x = 0.01; x <= xMax; x += step) {
+    pts.push([mx(x), my(chiPdf(x, df))]);
+  }
+  html += pathFrom(pts, 'chi-density');
+
+  // Critical & Observed Lines
+  const clampedStat = clamp(stat, 0, xMax);
+  html += axis(mx(crit), top, mx(crit), base, 'critical-line');
+  html += axis(mx(clampedStat), top, mx(clampedStat), base, 'observed-line');
+
+  // Decision Region Labels (Left = Retain, Right = Reject)
+  const retainMid = crit / 2;
+  const rejectMid = (crit + xMax) / 2;
+
+  html += `<text x="${mx(retainMid)}" y="${top - 12}" text-anchor="middle" class="chi-decision-label retain">Do not reject H₀</text>`;
+  html += `<text x="${mx(rejectMid)}" y="${top - 12}" text-anchor="middle" class="chi-decision-label reject">Reject H₀</text>`;
+
+  // X-Axis Ticks and Labels
+  [0, 0.25, 0.5, 0.75, 1].forEach(f => {
+    const v = f * xMax;
+    const x = mx(v);
+    html += axis(x, base, x, base + 6);
+    html += `<text x="${x}" y="${base + 24}" text-anchor="middle" class="w7-label">${v.toFixed(1)}</text>`;
+  });
+
+  // Plot Titles
+  html += `<text x="${mx(clampedStat)}" y="${top - 24}" text-anchor="middle" class="w7-title-label">observed X² = ${stat.toFixed(2)}</text>`;
+  html += `<text x="${mx(crit)}" y="${base - 30}" text-anchor="middle" class="w7-small-label">critical ${crit.toFixed(2)}</text>`;
+
+  svg.innerHTML = html;
+}
+
+/* =========================================================
+   ONE-WAY ANOVA WIDGET
+   ========================================================= */
+
+function renderAnova(){
+  const means=[1,2,3].map(i=>Number(document.getElementById(`anovaM${i}`)?.value||0)),sd=Math.max(.001,Number(document.getElementById('anovaSd')?.value||1)),n=Math.max(2,Number(document.getElementById('anovaN')?.value||2)),k=3;
+  const grand=means.reduce((a,b)=>a+b,0)/k,ssb=n*means.reduce((s,m)=>s+(m-grand)**2,0),ssw=k*(n-1)*sd*sd,dfb=k-1,dfw=k*n-k,msb=ssb/dfb,msw=ssw/dfw,F=msb/msw,p=1-fCdf(F,dfb,dfw);
+  document.getElementById('anovaSsbOut').textContent=ssb.toFixed(1);document.getElementById('anovaSswOut').textContent=ssw.toFixed(1);document.getElementById('anovaMsbOut').textContent=msb.toFixed(1);document.getElementById('anovaFOut').textContent=F.toFixed(2);document.getElementById('anovaPOut').innerHTML=fmtP(p);
+  const svg=document.getElementById('anovaSvg');if(!svg)return;const W=900,H=460,L=85,R=855,top=35,base=390,xs=[220,450,680],labels=['low','medium','high'];let yMin=Math.min(...means)-2.7*sd,yMax=Math.max(...means)+2.7*sd;const my=y=>base-((y-yMin)/(yMax-yMin))*(base-top);let html=axis(L,base,R,base)+axis(L,top,L,base);for(let j=0;j<=5;j++){const v=yMin+j*(yMax-yMin)/5,y=my(v);html+=axis(L,y,R,y,'w7-gridline')+`<text x="${L-10}" y="${y+4}" text-anchor="end" class="w7-label">${v.toFixed(0)}</text>`;}
+  html+=axis(L,my(grand),R,my(grand),'anova-grand')+`<text x="${R}" y="${my(grand)-7}" text-anchor="end" class="w7-small-label">grand mean ${grand.toFixed(1)}</text>`;
+  const meanPts=[];means.forEach((m,i)=>{const x=xs[i],q1=m-.674*sd,q3=m+.674*sd,wlo=m-1.5*sd,whi=m+1.5*sd;html+=`<rect x="${x-42}" y="${my(q3)}" width="84" height="${my(q1)-my(q3)}" class="anova-box"></rect>`;html+=axis(x-42,my(m),x+42,my(m),'anova-median')+axis(x,my(whi),x,my(wlo),'anova-whisker')+axis(x-18,my(whi),x+18,my(whi),'anova-whisker')+axis(x-18,my(wlo),x+18,my(wlo),'anova-whisker');const se=sd/Math.sqrt(n),crit=tInv(.975,n-1),lo=m-crit*se,hi=m+crit*se;html+=axis(x,my(lo),x,my(hi),'ci-line')+`<circle cx="${x}" cy="${my(m)}" r="6" class="anova-mean-point"></circle><text x="${x}" y="${base+28}" text-anchor="middle" class="w7-title-label">${labels[i]}</text>`;meanPts.push([x,my(m)]);});html+=pathFrom(meanPts,'anova-mean-line');svg.innerHTML=html;
+}
+
+/* =========================================================
+   FACTORIAL INTERACTION WIDGET
+   ========================================================= */
+
+function renderFactorial() {
+
+  const base =
+    Number(
+      document.getElementById('facBase')?.value || 72
+    );
+
+  const med =
+    Number(
+      document.getElementById('facMed')?.value || -2
+    );
+
+  const high =
+    Number(
+      document.getElementById('facHigh')?.value || -6
+    );
+
+  const smoke =
+    Number(
+      document.getElementById('facSmoke')?.value || 3
+    );
+
+  const intMed =
+    Number(
+      document.getElementById('facIntMed')?.value || 0
+    );
+
+  const intHigh =
+    Number(
+      document.getElementById('facIntHigh')?.value || 5
+    );
+
+  const sd =
+    Math.max(
+      .1,
+      Number(
+        document.getElementById('facSd')?.value || 6
+      )
+    );
+
+  const n =
+    Math.max(
+      2,
+      Number(
+        document.getElementById('facN')?.value || 30
+      )
+    );
+
+
+  /* -------------------------------------------------------
+     Live labels
+     ------------------------------------------------------- */
+
+  [
+    ['facBaseValue', base],
+    ['facMedValue', med],
+    ['facHighValue', high],
+    ['facSmokeValue', smoke],
+    ['facIntMedValue', intMed],
+    ['facIntHighValue', intHigh],
+    ['facSdValue', sd],
+    ['facNValue', n]
+  ].forEach(([id, value]) => {
+
+    const el =
+      document.getElementById(id);
+
+    if (el) {
+      el.textContent = value;
+    }
+  });
+
+
+  /* -------------------------------------------------------
+     Cell means
+
+     Reference cell:
+     non-smoker + low dose
+
+     Interactions modify the smoker dose response
+     beyond simple additivity.
+     ------------------------------------------------------- */
+
+  const nons = [
+    base,
+    base + med,
+    base + high
+  ];
+
+
+  const smok = [
+    base + smoke,
+
+    base +
+      smoke +
+      med +
+      intMed,
+
+    base +
+      smoke +
+      high +
+      intHigh
+  ];
+
+
+  /* -------------------------------------------------------
+     Two-way ANOVA interaction test
+     
+     balanced 3 × 2 design
+     ------------------------------------------------------- */
+
+  const a = 3;   // dose levels
+  const b = 2;   // smoking levels
+
+
+  const cells = [
+    nons,
+    smok
+  ];
+
+
+  const grand =
+    cells
+      .flat()
+      .reduce(
+        (sum, x) => sum + x,
+        0
+      ) /
+    (a * b);
+
+
+  /* dose marginal means */
+
+  const doseMeans =
+    [0, 1, 2].map(j =>
+      (
+        nons[j] +
+        smok[j]
+      ) / 2
+    );
+
+
+  /* smoking marginal means */
+
+  const smokingMeans = [
+    nons.reduce(
+      (sum, x) => sum + x,
+      0
+    ) / a,
+
+    smok.reduce(
+      (sum, x) => sum + x,
+      0
+    ) / a
+  ];
+
+
+  /*
+   * Interaction SS:
+   *
+   * departure of each cell mean from what would
+   * be expected from additive main effects.
+   */
+
+  let ssInteraction = 0;
+
+
+  for (let i = 0; i < b; i++) {
+
+    for (let j = 0; j < a; j++) {
+
+      const residual =
+        cells[i][j] -
+        doseMeans[j] -
+        smokingMeans[i] +
+        grand;
+
+
+      ssInteraction +=
+        n *
+        residual *
+        residual;
+    }
+  }
+
+
+  const dfInteraction =
+    (a - 1) *
+    (b - 1);       // = 2
+
+
+  const dfError =
+    a *
+    b *
+    (n - 1);
+
+
+  /*
+   * common within-cell SD gives pooled MSE
+   */
+
+  const mse =
+    sd * sd;
+
+
+  const msInteraction =
+    ssInteraction /
+    dfInteraction;
+
+
+  const F =
+    msInteraction /
+    mse;
+
+
+  const p =
+    Math.max(
+      0,
+      Math.min(
+        1,
+        1 -
+        fCdf(
+          F,
+          dfInteraction,
+          dfError
+        )
+      )
+    );
+
+
+  const fOut =
+    document.getElementById(
+      'facFOut'
+    );
+
+  const pOut =
+    document.getElementById(
+      'facPOut'
+    );
+
+
+  if (fOut) {
+
+    fOut.textContent =
+      `F(${dfInteraction}, ${dfError}) = ${F.toFixed(2)}`;
+  }
+
+
+  if (pOut) {
+
+    pOut.innerHTML =
+      fmtP(p);
+  }
+
+
+  /* -------------------------------------------------------
+     Mean confidence intervals
+     ------------------------------------------------------- */
+
+  const se =
+    sd /
+    Math.sqrt(n);
+
+
+  /*
+   * pooled residual df from factorial ANOVA
+   */
+
+  const crit =
+    tInv(
+      .975,
+      dfError
+    );
+
+
+  const halfCI =
+    crit *
+    se;
+
+
+  /* -------------------------------------------------------
+     SVG geometry
+     ------------------------------------------------------- */
+
+  const svg =
+    document.getElementById(
+      'factorialSvg'
+    );
+
+  if (!svg) return;
+
+
+  const L = 80;
+  const R = 840;
+
+  const top = 48;
+  const baseY = 385;
+
+  const xs = [
+    180,
+    450,
+    720
+  ];
+
+  const labels = [
+    'low',
+    'medium',
+    'high'
+  ];
+
+
+  const allMeans =
+    nons.concat(smok);
+
+
+  /*
+   * y-scale depends on mean positions and SD,
+   * but NOT on n.
+   *
+   * Therefore changing n visibly changes CI width.
+   */
+
+  const yPad =
+    Math.max(
+      8,
+      .75 * sd
+    );
+
+
+  const yMin =
+    Math.min(...allMeans) -
+    yPad;
+
+
+  const yMax =
+    Math.max(...allMeans) +
+    yPad;
+
+
+  const my = y =>
+    baseY -
+    (
+      (y - yMin) /
+      (yMax - yMin)
+    ) *
+    (baseY - top);
+
+
+  let html =
+    axis(
+      L,
+      baseY,
+      R,
+      baseY
+    ) +
+    axis(
+      L,
+      top,
+      L,
+      baseY
+    );
+
+
+  /* -------------------------------------------------------
+     horizontal grid
+     ------------------------------------------------------- */
+
+  for (let j = 0; j <= 5; j++) {
+
+    const value =
+      yMin +
+      j *
+      (yMax - yMin) /
+      5;
+
+
+    const y =
+      my(value);
+
+
+    html +=
+      axis(
+        L,
+        y,
+        R,
+        y,
+        'w7-gridline'
+      );
+
+
+    html += `
+      <text
+        x="${L - 10}"
+        y="${y + 4}"
+        text-anchor="end"
+        class="w7-label">
+        ${value.toFixed(0)}
+      </text>
+    `;
+  }
+
+
+  /* -------------------------------------------------------
+     CI helper
+     ------------------------------------------------------- */
+
+  function drawCI(
+    x,
+    mean,
+    cls
+  ) {
+
+    const lo =
+      mean -
+      halfCI;
+
+    const hi =
+      mean +
+      halfCI;
+
+
+    let out = "";
+
+
+    out +=
+      axis(
+        x,
+        my(lo),
+        x,
+        my(hi),
+        cls
+      );
+
+
+    out +=
+      axis(
+        x - 9,
+        my(lo),
+        x + 9,
+        my(lo),
+        cls
+      );
+
+
+    out +=
+      axis(
+        x - 9,
+        my(hi),
+        x + 9,
+        my(hi),
+        cls
+      );
+
+
+    return out;
+  }
+
+
+  /* -------------------------------------------------------
+     95% mean CIs
+     ------------------------------------------------------- */
+
+  nons.forEach(
+    (mean, i) => {
+
+      html +=
+        drawCI(
+          xs[i] - 8,
+          mean,
+          'factor-ci-a'
+        );
+    }
+  );
+
+
+  smok.forEach(
+    (mean, i) => {
+
+      html +=
+        drawCI(
+          xs[i] + 8,
+          mean,
+          'factor-ci-b'
+        );
+    }
+  );
+
+
+  /* -------------------------------------------------------
+     Mean trajectories
+     ------------------------------------------------------- */
+
+  const pa =
+    nons.map(
+      (mean, i) => [
+        xs[i],
+        my(mean)
+      ]
+    );
+
+
+  const pb =
+    smok.map(
+      (mean, i) => [
+        xs[i],
+        my(mean)
+      ]
+    );
+
+
+  html +=
+    pathFrom(
+      pa,
+      'factor-line-a'
+    );
+
+
+  html +=
+    pathFrom(
+      pb,
+      'factor-line-b'
+    );
+
+
+  pa.forEach(p => {
+
+    html += `
+      <circle
+        cx="${p[0]}"
+        cy="${p[1]}"
+        r="6"
+        class="factor-point-a">
+      </circle>
+    `;
+  });
+
+
+  pb.forEach(p => {
+
+    html += `
+      <circle
+        cx="${p[0]}"
+        cy="${p[1]}"
+        r="6"
+        class="factor-point-b">
+      </circle>
+    `;
+  });
+
+
+  /* -------------------------------------------------------
+     dose labels
+     ------------------------------------------------------- */
+
+  labels.forEach(
+    (label, i) => {
+
+      html += `
+        <text
+          x="${xs[i]}"
+          y="${baseY + 28}"
+          text-anchor="middle"
+          class="w7-title-label">
+          ${label}
+        </text>
+      `;
+    }
+  );
+
+
+  /* -------------------------------------------------------
+     Proper two-row legend
+     ------------------------------------------------------- */
+
+  const legendX =
+    R - 145;
+
+  const legendY =
+    top + 10;
+
+
+  html += `
+    <line
+      x1="${legendX - 32}"
+      y1="${legendY}"
+      x2="${legendX - 8}"
+      y2="${legendY}"
+      class="factor-line-a">
+    </line>
+
+    <text
+      x="${legendX}"
+      y="${legendY + 5}"
+      class="factor-legend-a">
+      non-smoker
+    </text>
+
+    <line
+      x1="${legendX - 32}"
+      y1="${legendY + 25}"
+      x2="${legendX - 8}"
+      y2="${legendY + 25}"
+      class="factor-line-b">
+    </line>
+
+    <text
+      x="${legendX}"
+      y="${legendY + 30}"
+      class="factor-legend-b">
+      smoker
+    </text>
+  `;
+
+
+  /* -------------------------------------------------------
+     top note
+     ------------------------------------------------------- */
+
+  html += `
+    <text
+      x="${L}"
+      y="20"
+      class="w7-small-label">
+      cell means ± 95% CI · n=${n} per cell · common SD=${sd.toFixed(1)}
+    </text>
+  `;
+
+
+  svg.innerHTML =
+    html;
+}
+
+/* =========================================================
+   KAPPA WIDGET
+   ========================================================= */
+
+function renderKappa(){
+  const a=Number(document.getElementById('kapA')?.value||0),b=Number(document.getElementById('kapB')?.value||0),c=Number(document.getElementById('kapC')?.value||0),d=Number(document.getElementById('kapD')?.value||0),N=a+b+c+d;if(N<=0)return;
+  const po=(a+d)/N,r1=(a+b)/N,r2=(c+d)/N,c1=(a+c)/N,c2=(b+d)/N,pe=r1*c1+r2*c2,k=(1-pe)>1e-12?(po-pe)/(1-pe):NaN;
+  document.getElementById('kapPoOut').textContent=po.toFixed(3);document.getElementById('kapPeOut').textContent=pe.toFixed(3);document.getElementById('kapOut').textContent=Number.isFinite(k)?k.toFixed(3):'—';const needle=document.getElementById('kapNeedle');if(needle&&Number.isFinite(k))needle.style.left=`${clamp((k+1)/2*100,0,100)}%`;
+}
+
+/* =========================================================
+   EQUIVALENCE WIDGET
+   ========================================================= */
+
+function renderEquiv(){
+
+  const m1 =
+    Number(
+      document.getElementById('eqM1')?.value || 0
+    );
+
+  const m2 =
+    Number(
+      document.getElementById('eqM2')?.value || 0
+    );
+
+  const sd =
+    Math.max(
+      .001,
+      Number(
+        document.getElementById('eqSd')?.value || 1
+      )
+    );
+
+  const n =
+    Math.max(
+      2,
+      Number(
+        document.getElementById('eqN')?.value || 2
+      )
+    );
+
+  const delta =
+    Math.max(
+      .001,
+      Number(
+        document.getElementById('eqDelta')?.value || 1
+      )
+    );
+
+
+  const diff = m2 - m1;
+
+  const se =
+    sd *
+    Math.sqrt(2 / n);
+
+  const df =
+    2 * n - 2;
+
+  const crit =
+    tInv(.95, df);
+
+  const lo =
+    diff - crit * se;
+
+  const hi =
+    diff + crit * se;
+
+  const equiv =
+    lo > -delta &&
+    hi < delta;
+
+
+  document.getElementById('eqDiffOut').textContent =
+    diff.toFixed(2);
+
+  document.getElementById('eqCiOut').textContent =
+    `[${lo.toFixed(2)}, ${hi.toFixed(2)}]`;
+
+  document.getElementById('eqMarginOut').textContent =
+    `±${delta.toFixed(2)}`;
+
+
+  const dec =
+    document.getElementById('eqDecisionOut');
+
+  dec.textContent =
+    equiv
+      ? 'equivalent'
+      : 'not established';
+
+  dec.style.color =
+    equiv
+      ? '#18864b'
+      : '#c93838';
+
+
+  const svg =
+    document.getElementById('equivSvg');
+
+  if (!svg) return;
+
+
+  const L = 65;
+  const R = 850;
+  const base = 205;
+
+
+  const xAbs =
+    Math.max(
+      delta * 1.8,
+      Math.abs(lo) * 1.35,
+      Math.abs(hi) * 1.35,
+      1
+    );
+
+  const xMin =
+    -xAbs;
+
+  const xMax =
+    xAbs;
+
+
+  const mx = x =>
+    L +
+    (
+      (x - xMin) /
+      (xMax - xMin)
+    ) *
+    (R - L);
+
+
+  let html = `
+    <rect
+      x="${mx(-delta)}"
+      y="75"
+      width="${mx(delta) - mx(-delta)}"
+      height="130"
+      class="equiv-band">
+    </rect>
+  `;
+
+
+  /* x-axis */
+
+  html +=
+    axis(
+      L,
+      base,
+      R,
+      base
+    );
+
+
+  /* -------------------------------------------------------
+     Numeric x-axis ticks
+     ------------------------------------------------------- */
+
+  const tickStep = 1;
+
+  const firstTick =
+    Math.ceil(xMin / tickStep) *
+    tickStep;
+
+  for (
+    let v = firstTick;
+    v <= xMax;
+    v += tickStep
+  ) {
+
+    const x =
+      mx(v);
+
+    html +=
+      axis(
+        x,
+        base,
+        x,
+        base + 6
+      );
+
+    html += `
+      <text
+        x="${x}"
+        y="${base + 25}"
+        text-anchor="middle"
+        class="w7-label">
+        ${v.toFixed(0)}
+      </text>
+    `;
+  }
+
+
+  /* equivalence boundaries */
+
+  html +=
+    axis(
+      mx(-delta),
+      55,
+      mx(-delta),
+      base,
+      'equiv-bound'
+    );
+
+  html +=
+    axis(
+      mx(delta),
+      55,
+      mx(delta),
+      base,
+      'equiv-bound'
+    );
+
+
+  /* zero */
+
+  html +=
+    axis(
+      mx(0),
+      55,
+      mx(0),
+      base,
+      'equiv-zero-line'
+    );
+
+
+  /* confidence interval */
+
+  html +=
+    axis(
+      mx(lo),
+      135,
+      mx(hi),
+      135,
+      'equiv-ci'
+    );
+
+
+  /* point estimate */
+
+  html += `
+    <circle
+      cx="${mx(diff)}"
+      cy="135"
+      r="7"
+      class="equiv-point">
+    </circle>
+  `;
+
+
+  /* equivalence-limit labels */
+
+  html += `
+    <text
+      x="${mx(-delta)}"
+      y="45"
+      text-anchor="middle"
+      class="w7-title-label">
+      −Δ
+    </text>
+
+    <text
+      x="${mx(delta)}"
+      y="45"
+      text-anchor="middle"
+      class="w7-title-label">
+      +Δ
+    </text>
+  `;
+
+
+  html += `
+    <text
+      x="${L}"
+      y="30"
+      class="w7-small-label">
+      90% CI: equivalent only if the entire interval is inside the pre-specified margin
+    </text>
+  `;
+
+
+  svg.innerHTML =
+    html;
+}
+
+/* =========================================================
+   INITIALIZATION
+   ========================================================= */
+
+function bindOnce(id,event,fn){
+  const el=document.getElementById(id);if(!el)return;
+  const key=`w7${event}`;if(el.dataset[key]==='1')return;el.dataset[key]='1';el.addEventListener(event,fn);
+}
+
+function initWeek07(){
+  qqDrawSample();
+  renderWelch();
+  renderChiTable();
+  renderAnova();
+  renderFactorial();
+  renderKappa();
+  renderEquiv();
+
+  bindOnce('qqDist','change',qqDrawSample);bindOnce('qqN','input',qqDrawSample);
+  const qb=document.getElementById('qqRedraw');if(qb&&qb.dataset.w7click!=='1'){qb.dataset.w7click='1';qb.addEventListener('click',()=>{qqSeed++;qqDrawSample();});}
+  bindOnce('qqSvg','pointermove',qqPointer);bindOnce('qqSvg','pointerleave',()=>renderQQ(-1));
+
+  ['welchM1','welchS1','welchN1','welchM2','welchS2','welchN2'].forEach(id=>bindOnce(id,'input',renderWelch));
+  bindOnce('chiLayout','change',renderChiTable);bindOnce('chiAlpha','change',renderChiTable);['chiA1','chiA2','chiA3','chiB1','chiB2','chiB3'].forEach(id=>bindOnce(id,'input',renderChiTable));
+  ['anovaM1','anovaM2','anovaM3','anovaSd','anovaN'].forEach(id=>bindOnce(id,'input',renderAnova));
+  ['facBase','facMed','facHigh','facSmoke','facIntMed','facIntHigh','facSd','facN'].forEach(id=>bindOnce(id,'input',renderFactorial));
+  ['kapA','kapB','kapC','kapD'].forEach(id=>bindOnce(id,'input',renderKappa));
+  ['eqM1','eqM2','eqSd','eqN','eqDelta'].forEach(id=>bindOnce(id,'input',renderEquiv));
+}
+
+function startWeek07(){ requestAnimationFrame(()=>requestAnimationFrame(initWeek07)); }
+
+startWeek07();
+document.addEventListener('DOMContentLoaded',startWeek07);
+window.addEventListener('load',startWeek07);
+if(window.Reveal&&typeof window.Reveal.on==='function'){
+  window.Reveal.on('ready',startWeek07);
+  window.Reveal.on('slidechanged',startWeek07);
+}
+
+})();
+</script>
 
 
 </section>
@@ -445,7 +3891,7 @@ Content to be developed.
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/mirzahosseini-arash-semmelweis\.github\.io\/statsenpure\/");
+            var filterRegex = new RegExp('/' + window.location.host + '/');
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

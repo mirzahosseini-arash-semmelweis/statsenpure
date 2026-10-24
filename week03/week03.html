@@ -35,7 +35,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-fabaf26df5c01c116bac9cab879bd7af.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-cfc4f0390516df3c97a57936b8569234.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -381,7 +381,7 @@ Do not confuse density with point probability
 </div>
 <div id="normalLikeWidget" class="normal-like-widget">
 <div class="w3-control-row">
-<label class="w3-control">Candidate mean μ <input id="likeMu" type="range" min="1.970" max="2.030" value="2.000" step="0.001"> </label>
+<label class="w3-control">Candidate mean μ (at fixed σ = 0.008 g) <input id="likeMu" type="range" min="1.970" max="2.030" value="2.000" step="0.001"> </label>
 <div class="w3-output">
 <span>observed tablet</span><strong class="observed">2.014 g</strong>
 </div>
@@ -395,7 +395,7 @@ Do not confuse density with point probability
 <div class="fragment fade-up">
 <div class="definition-box">
 <p><span class="math display">\[
-P(X=2.014)=0\quad\text{but}\quad \mathcal{L}(\mu\mid x)\propto f(x\mid\mu)
+\mathbb{P}(X=2.014)=0\quad\text{but}\quad \mathcal{L}(\mu\mid x)\propto f(x\mid\mu)
 \]</span></p>
 </div>
 </div>
@@ -591,9 +591,9 @@ start from outcome status, look backward for exposure
 outcome → exposure history
 </div>
 </div>
-<div class="study-direction-figure fragment fade-up">
-<img src="figures/study_direction.svg" alt="Direction of observation in common observational study designs">
 </div>
+<div class="study-direction-figure fragment fade-up" style="height: 14em; width: 28em">
+<p><img src="figures/study_direction.svg" alt="Direction of observation in common observational study designs"></p>
 </div>
 <aside class="notes">
 <p>Keep the examples pharmaceutical: drug exposure and adverse event; smoking and lung disease; genotype and hypersensitivity.</p>
@@ -813,7 +813,7 @@ stronger protection against confounding
 ∑
 </div>
 <div class="meta-content">
-<span class="meta-title">Meta-analysis &amp; Systematic Review</span> <span class="meta-sub">Synthesizes and pools evidence across all available studies</span>
+<span class="meta-title">Meta-analysis &amp; Systematic Review</span> <span class="meta-sub">Synthesizes and pools evidence across available and eligible studies</span>
 </div>
 </div>
 <div class="fragment fade-up">
@@ -1603,7 +1603,7 @@ high bias · high variance
 Beyond Bias &amp; Variance: Key Related Measurement Concepts
 </div>
 </div>
-<div class="concept-cards-grid fragment fade-up">
+<div class="concept-cards-grid fragment fade-up" style="font-size: 1.1em">
 <!-- Card 1: Association & Concordance -->
 <div class="concept-card">
 <div class="card-header">
@@ -1713,6 +1713,7 @@ unstable across repetitions
 <div class="concept-line">
 Overall estimation error can arise from being systematically wrong, unstable, or both.
 </div>
+<div class="concept-line style=" font-size:75%"="">Here we use bias in a narrower estimator/measurement sense.</div>
 </div>
 <aside class="notes">
 <p>This is the only formal math needed here. It prepares students for later discussions of modeling, prediction, overfitting and machine learning.</p>
@@ -1862,7 +1863,7 @@ The mean moves. The median barely does.
 </div>
 </div>
 <aside class="notes">
-<p>Use the example verbally: mean changes from 10 to 23.6; median remains 10. This is a nice quick mental arithmetic exercise.</p>
+<p>Use the example verbally: mean changes; median remains 10. This is a nice quick mental arithmetic exercise.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -3185,7 +3186,7 @@ if (window.Reveal) {
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/mirzahosseini-arash-semmelweis\.github\.io\/statsenpure\/");
+            var filterRegex = new RegExp('/' + window.location.host + '/');
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

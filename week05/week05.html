@@ -35,7 +35,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bb913c663c24e6322ba1eeedce42c9bb.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-7b99ef04f452f842941e6982b668e314.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -446,7 +446,7 @@ Manufacturing process
 all tablets this process could produce
 </div>
 <div class="w5-card-figure">
-<p><img src="figures/pop_manufacturing.jpg" alt="Conceptual population of tablets from a manufacturing process" class="w5-card-img"></p>
+<p><img src="figures/pop_manufacturing.png" alt="Conceptual population of tablets from a manufacturing process" class="w5-card-img"></p>
 </div>
 </div>
 <div class="w5-card model-border fragment fade-up">
@@ -711,6 +711,26 @@ What does the distribution of sample averages look like?
 <strong>Central Limit Theorem:</strong> The population shape can be skewed, discrete or bounded — yet the distribution of sample means often becomes approximately Gaussian.
 </div>
 </div>
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+<div class="portrait-card">
+<img src="figures/deMoivre.jpg" alt="Abraham de Moivre">
+<div class="portrait-name">
+Abraham de Moivre
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Laplace.jpg" alt="Pierre-Simon Laplace">
+<div class="portrait-name">
+Pierre-Simon Laplace
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Pólya.jpg" alt="György Pólya">
+<div class="portrait-name">
+György Pólya
+</div>
+</div>
+</div>
 </section>
 <section id="try-it-clt-sampling-laboratory" class="slide level2 exercise-slide">
 <h2>Try it: CLT sampling laboratory</h2>
@@ -719,20 +739,20 @@ Interactive sampling distribution
 </div>
 <div id="cltWidget" class="clt-widget">
 <div class="w5-control-row clt-controls">
-<label class="w5-control"> source distribution <select id="cltDist"> <option value="normal">normal</option> <option value="skew">right-skewed continuous</option> <option value="bernoulli">binary outcome</option> <option value="uniform">uniform</option> </select> </label> <label class="w5-control"> sample size n = <strong id="cltNValue">1</strong> <input id="cltN" type="range" min="1" max="80" value="1" step="1"> </label> <label class="w5-control"> repeated samples k = <strong id="cltKValue">50</strong> <input id="cltK" type="range" min="50" max="800" value="50" step="50"> </label> <button id="cltRedraw" class="clt-redraw-button" type="button"> Draw new samples </button>
+<label class="w5-control" style="font-size: 0.5em"> source distribution <select id="cltDist" style="font-size: 0.8em;"> <option value="normal">normal</option> <option value="skew">right-skewed continuous</option> <option value="bernoulli">binary outcome</option> <option value="uniform">uniform</option> </select> </label> <label class="w5-control" style="font-size: 0.5em"> sample size n = <strong id="cltNValue">1</strong> <input id="cltN" type="range" min="1" max="80" value="1" step="1"> </label> <label class="w5-control" style="font-size: 0.5em"> repeated samples k = <strong id="cltKValue">50</strong> <input id="cltK" type="range" min="50" max="800" value="50" step="50"> </label> <button id="cltRedraw" class="clt-redraw-button" type="button"> Draw new samples </button>
 </div>
 <div class="clt-panel-row">
 <div class="clt-panel">
 <div class="mini-title">
 source population
 </div>
-<svg id="cltSourceSvg" viewbox="0 0 360 250"></svg>
+<svg id="cltSourceSvg" viewbox="0 0 350 250"></svg>
 </div>
 <div class="clt-panel">
 <div class="mini-title">
 sampling distribution of means
 </div>
-<svg id="cltMeansSvg" viewbox="0 0 360 250"></svg>
+<svg id="cltMeansSvg" viewbox="0 0 350 250"></svg>
 </div>
 </div>
 </div>
@@ -814,7 +834,7 @@ need about <span class="math inline">\(4n\)</span>
 </div>
 <div class="fragment fade-up">
 <div class="concept-line">
-Precision improves with sample size, but not linearly.
+Precision improves with sample size, but not linearly. Larger <span class="math inline">\(n\)</span> reduces random sampling uncertainty; it does not automatically correct bias.
 </div>
 </div>
 </section>
@@ -1004,7 +1024,7 @@ Where χ² comes from
 <p><span class="math display">\[
 Z_1^2+Z_2^2+\cdots+Z_k^2\sim\chi_k^2
 \qquad
-Z_i\sim N(0,1)
+Z_i \overset{\text{iid}}{\sim} \mathcal{N}(0,1)
 \]</span></p>
 </div>
 <div class="fragment fade-up">
@@ -1079,7 +1099,7 @@ U_2\sim\chi^2_{\nu_2}
 </div>
 <div class="fragment fade-up">
 <div class="concept-line">
-The <span class="math inline">\(F\)</span> distribution appears when comparing variance-like quantities.
+The <span class="math inline">\(F\)</span> distribution appears when comparing independent variance-like quantities.
 </div>
 </div>
 </section>
@@ -2044,6 +2064,28 @@ function drawCltSource(svgId, dist) {
       "source-path"
     );
 
+  // X-axis ticks for continuous source distributions
+  const ticks =
+    dist === "normal" ? [-4, -2, 0, 2, 4] :
+    dist === "skew" ? [0, 1, 2, 3, 4, 5, 6] :
+    [0, 0.25, 0.5, 0.75, 1];
+  
+  ticks.forEach(v => {
+    const px = left +
+      ((v - support[0]) / (support[1] - support[0])) *
+      (right - left);
+  
+    html += `
+      <line x1="${px}" y1="${base}"
+            x2="${px}" y2="${base + 5}"
+            stroke="#667085" stroke-width="1"/>
+      <text x="${px}" y="${base + 21}"
+            text-anchor="middle"
+            class="w5-label">
+        ${v}
+      </text>
+    `;
+  });
 
   svg.innerHTML = html;
 }
@@ -2216,6 +2258,43 @@ function drawCltHistogram(
     </text>
   `;
 
+  // Adaptive, human-readable x-axis ticks
+  const rawStep = (x1 - x0) / 5;
+  const magnitude = 10 ** Math.floor(Math.log10(rawStep));
+  const multiple = rawStep / magnitude;
+  
+  const tickStep = (
+    multiple <= 1 ? 1 :
+    multiple <= 2 ? 2 :
+    multiple <= 5 ? 5 : 10
+  ) * magnitude;
+  
+  const decimals = Math.max(
+    0,
+    -Math.floor(Math.log10(tickStep))
+  );
+  
+  const firstTick = Math.ceil(x0 / tickStep) * tickStep;
+  
+  for (
+    let tick = firstTick;
+    tick <= x1 + tickStep * 1e-9;
+    tick += tickStep
+  ) {
+    const px = mapX(tick);
+    const label = Number(tick.toFixed(decimals));
+  
+    html += `
+      <line x1="${px}" y1="${base}"
+            x2="${px}" y2="${base + 5}"
+            stroke="#667085" stroke-width="1"/>
+      <text x="${px}" y="${base + 21}"
+            text-anchor="middle"
+            class="w5-label">
+        ${label}
+      </text>
+    `;
+  }
 
   svg.innerHTML = html;
 }
@@ -3044,7 +3123,7 @@ if (
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/mirzahosseini-arash-semmelweis\.github\.io\/statsenpure\/");
+            var filterRegex = new RegExp('/' + window.location.host + '/');
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

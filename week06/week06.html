@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Graduate Pharmaceutical Studies">
-  <title>Statistics for Pharmacists – Statistics 101</title>
+  <title>Statistics for Pharmacists</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -35,7 +35,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-73f4d359ee59172b10577676e68c9ef0.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-90c263fde258f1587acc5ed2ca6b4c75.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -135,8 +135,8 @@
     <div class="slides">
 
 <section id="title-slide" data-footer="" class="quarto-title-block center">
-  <h1 class="title">Statistics 101</h1>
-  <p class="subtitle">Week 6 · Placeholder</p>
+  <h1 class="title">Statistics for Pharmacists</h1>
+  <p class="subtitle">Week 6 · Statistical inference</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -147,14 +147,4408 @@ Graduate Pharmaceutical Studies
 </div>
 
 </section>
-<section id="week-6" class="slide level2 motivation-slide">
-<h2>Week 6</h2>
+<section id="statistical-inference" class="slide level2 title-slide center">
+<h2>Statistical inference</h2>
 <div class="eyebrow">
-Course skeleton
+Week 6
 </div>
+<div class="concept-line" style="margin-top:1em;">
+<p>How uncertain is our estimate — and how should we make decisions from data?</p>
+</div>
+<aside class="notes">
+<p>Week 5 gave us sampling distributions. Week 6 uses that machinery for estimation and decision-making. The entire lecture follows one randomized blood-pressure trial so the abstractions stay anchored.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="we-did-everything-correctly-right" class="slide level2 motivation-slide">
+<h2>We did everything correctly… right?</h2>
+<div class="eyebrow">
+Opening case
+</div>
+<div class="trial-pipeline fragment fade-up">
+<div class="trial-step observed-border">
+<span>1</span><strong>Randomize</strong><small>placebo vs experimental</small>
+</div>
+<div class="trial-arrow">
+→
+</div>
+<div class="trial-step observed-border">
+<span>2</span><strong>Blind</strong><small>reduce expectation bias</small>
+</div>
+<div class="trial-arrow">
+→
+</div>
+<div class="trial-step observed-border">
+<span>3</span><strong>Measure</strong><small>systolic BP after treatment</small>
+</div>
+<div class="trial-arrow">
+→
+</div>
+<div class="trial-step observed-border">
+<span>4</span><strong>Clean</strong><small>check data carefully</small>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Now we have numbers. What decision can they support?
+</div>
+</div>
+</section>
+<section id="the-observed-result" class="slide level2 concept-slide">
+<h2>The observed result</h2>
+<div class="eyebrow">
+A randomized two-arm trial
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+“Suppose we investigate new Drug <span class="math inline">\(\text{A}\)</span> as antihypertensive agent.”
+</div>
+</div>
+<div class="trial-summary fragment fade-up">
+<div class="trial-summary-head">
+arm
+</div>
+<div class="trial-summary-head">
+<span class="math inline">\(n\)</span>
+</div>
+<div class="trial-summary-head">
+mean SBP
+</div>
+<div class="trial-summary-head">
+SD
+</div>
+<div class="trial-summary-head">
+SE
+</div>
+<div class="trial-arm placebo">
+placebo
+</div>
+<div>
+80
+</div>
+<div>
+<strong>138.8</strong> mmHg
+</div>
+<div>
+14.0
+</div>
+<div>
+1.57
+</div>
+<div class="trial-arm drug">
+experimental
+</div>
+<div>
+80
+</div>
+<div>
+<strong>133.0</strong> mmHg
+</div>
+<div>
+14.2
+</div>
+<div>
+1.59
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="w6-callout estimate-callout" style="font-size: 0.65em">
+Observed difference: <strong><span class="math inline">\(\hat\Delta = 133.0-138.8=-5.8\)</span> mmHg</strong>
+</div>
+</div>
+<aside class="notes">
+<p>The endpoint is deliberately incomplete: we are showing post-treatment BP without baseline BP. We return to that later.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="description-is-not-yet-inference" class="slide level2 concept-slide">
+<h2>Description is not yet inference</h2>
+<div class="eyebrow">
+The transition
+</div>
+<div class="w6-grid-3 fragment fade-up">
+<div class="w6-card observed-border">
+<div class="w6-card-title">
+What we observed
+</div>
+<div class="big-symbol observed">
+<span class="math inline">\(-5.8\)</span>
+</div>
+<div class="w6-card-sub">
+sample difference
+</div>
+</div>
+<div class="w6-card uncertainty-border">
+<div class="w6-card-title">
+What could vary
+</div>
+<div class="big-symbol probability">
+<span class="math inline">\(?\)</span>
+</div>
+<div class="w6-card-sub">
+another random sample
+</div>
+</div>
+<div class="w6-card model-border">
+<div class="w6-card-title">
+What we want
+</div>
+<div class="big-symbol model">
+<span class="math inline">\(\Delta\)</span>
+</div>
+<div class="w6-card-sub">
+population treatment effect
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Inference connects a noisy statistic to an unknown population quantity.
+</div>
+</div>
+</section>
+<section id="and-then-someone-asks-for-a-yesno-answer" class="slide level2 motivation-slide">
+<h2>And then someone asks for a yes/no answer</h2>
+<div class="eyebrow">
+The decision problem
+</div>
+<div class="decision-stage fragment fade-up">
+<div class="decision-data observed">
+data
+</div>
+<div class="decision-arrow">
+→
+</div>
+<div class="decision-uncertainty probability">
+uncertainty
+</div>
+<div class="decision-arrow">
+→
+</div>
+<div class="decision-action">
+action
+</div>
+</div>
+<div class="decision-question fragment fade-up">
+Should this result change what we do? (In this case market new Drug <span class="math inline">\(\text{A}\)</span>)
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+<div class="warning-title">
+Important
+</div>
+<p>
+Statistics can quantify evidence and uncertainty. It cannot decide clinical value, ethics, benefit–risk, or regulatory policy by itself.
+</p>
+</div>
+</div>
+</section>
+<section id="decision-theory-data-actions-consequences" class="slide level2 concept-slide">
+<h2>Decision theory: data, actions, consequences</h2>
+<div class="eyebrow">
+A minimal vocabulary
+</div>
+<div class="decision-theory-grid fragment fade-up">
+<div class="dt-node observed-border">
+<strong>State of nature</strong><span>what is actually true</span>
+</div>
+<div class="dt-node uncertainty-border">
+<strong>Data</strong><span>what the experiment reveals</span>
+</div>
+<div class="dt-node estimate-border">
+<strong>Decision rule</strong><span>how evidence maps to an action</span>
+</div>
+<div class="dt-node warning-border">
+<strong>Loss / consequence</strong><span>what errors cost us</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+A statistical rule is useful only in the context of consequences.
+</div>
+</div>
+<div class="portrait">
+<div class="portrait-step fragment fade-up">
+<div class="label">
+Abraham Wald
+</div>
+<img src="figures/Wald.jpg" alt="Abraham Wald" class="step-image">
+</div>
+<div class="portrait-step fragment fade-up">
+<div class="label">
+Jerzy Neyman
+</div>
+<img src="figures/Neyman.jpg" alt="Jerzy Neyman" class="step-image">
+</div>
+<div class="portrait-step fragment fade-up">
+<div class="label">
+Egon Pearson
+</div>
+<img src="figures/Pearson.jpg" alt="Egon Pearson" class="step-image">
+</div>
+</div>
+</section>
+<section id="confidence-interval" class="slide level2 section-break">
+<h2>Confidence interval</h2>
+<div class="section-kicker">
+Part II
+</div>
+<div class="section-title">
+The confidence interval
+</div>
+<div class="section-subtitle">
+We now see how we can quantify the uncertainty of an estimate.
+</div>
+</section>
+<section id="first-quantify-uncertainty-around-an-estimate" class="slide level2 section-slide">
+<h2>First: quantify uncertainty around an estimate</h2>
+<div class="eyebrow">
+Confidence intervals
+</div>
+<div class="section-equation">
+estimate <span class="math inline">\(\pm\)</span> uncertainty
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Week 5 already gave us the engine.
+</div>
+</div>
+<div class="w6-flow-3 fragment fade-up">
+<div class="w6-flow-node observed-border">
+<strong>sample mean</strong><span><span class="math inline">\(\bar X\)</span> changes from sample to sample</span>
+</div>
+<div class="w6-flow-arrow">
+→
+</div>
+<div class="w6-flow-node uncertainty-border">
+<strong>sampling distribution</strong><span><span class="math inline">\(\mathrm{SE}(\bar X)=\sigma/\sqrt n\)</span></span>
+</div>
+<div class="w6-flow-arrow">
+→
+</div>
+<div class="w6-flow-node model-border">
+<strong>population mean</strong><span>centered at <span class="math inline">\(\mu\)</span></span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="definition-box">
+<div class="definition-title">
+Confidence interval
+</div>
+<p>
+A procedure that uses the sampling distribution to construct a range of parameter values compatible with the observed estimate.
+</p>
+</div>
+</div>
+</section>
+<section id="the-familiar-95-interval" class="slide level2 concept-slide">
+<h2>The familiar 95% interval</h2>
+<div class="eyebrow">
+Normal-model intuition
+</div>
+<div class="ci-formula-stage fragment fade-up">
+<div class="ci-formula observed">
+<span class="math inline">\(\bar x\)</span>
+</div>
+<div class="ci-sign">
+<span class="math inline">\(\pm\)</span>
+</div>
+<div class="ci-formula probability">
+<span class="math inline">\(1.96\)</span>
+</div>
+<div class="ci-times">
+<span class="math inline">\(\times\)</span>
+</div>
+<div class="ci-formula uncertainty">
+<span class="math inline">\(\mathrm{SE}(\bar X)\)</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+For a Normal model with known <span class="math inline">\(\sigma\)</span>, this procedure covers <span class="math inline">\(\mu\)</span> in 95% of repeated samples.
+</div>
+</div>
+<aside class="notes">
+<p>More generally, critical values and standard errors depend on the model. Week 7 introduces t-based intervals and other specific tests.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="try-it-confidence-interval-coverage" class="slide level2 exercise-slide">
+<h2>Try it: confidence interval coverage</h2>
+<div class="try-label">
+Repeated-sampling laboratory · Normal population
+</div>
+<div id="ciMeanWidget" class="ci-widget">
+<div class="w6-control-grid ci-controls">
+<label class="w6-control">population <span class="math inline">\(\mu\)</span> = <strong id="ciMuValue">0.0</strong><input id="ciMu" type="range" min="-5" max="5" value="0" step="0.5"></label> <label class="w6-control">population <span class="math inline">\(\sigma\)</span> = <strong id="ciSigmaValue">2.0</strong><input id="ciSigma" type="range" min="0.5" max="5" value="2" step="0.5"></label> <label class="w6-control">sample size <span class="math inline">\(n\)</span> = <strong id="ciNValue">20</strong><input id="ciN" type="range" min="5" max="200" value="20" step="5"></label> <label class="w6-control">confidence = <strong id="ciLevelValue">95%</strong><input id="ciLevel" type="range" min="80" max="100" value="95" step="1"></label> <label class="w6-control">interval type<select id="ciType"><option value="two">two-sided</option><option value="lower">lower bound</option><option value="upper">upper bound</option></select></label> <label class="w6-control">repeated samples<select id="ciK"><option value="100">100</option><option value="500">500</option><option value="1000">1000</option></select></label> <button id="ciRedraw" class="w6-button" type="button">Draw new samples</button>
+<div class="w6-output">
+<span>empirical coverage</span><strong id="ciCoverage">—</strong>
+</div>
+</div>
+<svg id="ciMeanSvg" class="w6-lab-svg ci-mean-svg" style="height:15em" viewbox="0 0 900 610" aria-label="Repeated confidence intervals and coverage">
+</svg>
+</div>
+</section>
+<section id="what-should-you-notice" class="slide level2 concept-slide">
+<h2>What should you notice?</h2>
+<div class="eyebrow">
+Coverage laboratory
+</div>
+<div class="w6-grid-3 fragment fade-up">
+<div class="w6-card uncertainty-border">
+<div class="w6-card-title">
+Increase <span class="math inline">\(n\)</span>
+</div>
+<div class="w6-card-sub">
+intervals get shorter because SE decreases
+</div>
+</div>
+<div class="w6-card estimate-border">
+<div class="w6-card-title">
+Keep 95%
+</div>
+<div class="w6-card-sub">
+long-run coverage remains near 95%
+</div>
+</div>
+<div class="w6-card model-border">
+<div class="w6-card-title">
+Change <span class="math inline">\(\sigma\)</span>
+</div>
+<div class="w6-card-sub">
+more variable populations need wider intervals
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+<div class="warning-title">
+Why no 100% confidence can be chosen?
+</div>
+<p>
+For an unbounded Normal mean, guaranteed 100% coverage would require an interval extending without bound.
+</p>
+</div>
+</div>
+<div class="fragment fade-up">
 <div class="big-question">
-Content to be developed.
+What does “95% confidence” mean?
 </div>
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+<div class="warning-title">
+Not this:
+</div>
+<p>
+After the interval is calculated, the fixed population parameter is not “95% likely” to be inside this particular interval.
+</p>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+The 95% belongs to the long-run performance of the <strong>procedure</strong>.
+</div>
+</div>
+</section>
+<section id="one-sided-intervals-use-the-same-probability-geometry" class="slide level2 concept-slide">
+<h2>One-sided intervals use the same probability geometry</h2>
+<div class="eyebrow">
+Middle vs tail probability
+</div>
+<div class="tail-grid fragment fade-up">
+<div class="tail-card">
+<div class="tail-title">
+two-sided
+</div>
+<svg id="tailTwoSvg" class="tail-svg" style="height: 10em" viewbox="0 0 240 120" preserveaspectratio="xMidYMid meet">
+</svg>
+<div class="tail-sub" style="font-size:80%">
+central <span class="math inline">\(1-\alpha\)</span>
+</div>
+</div>
+<div class="tail-card">
+<div class="tail-title">
+lower bound
+</div>
+<svg id="tailLowerSvg" class="tail-svg" style="height: 10em" viewbox="0 0 240 120" preserveaspectratio="xMidYMid meet">
+</svg>
+<div class="tail-sub" style="font-size:80%">
+protect against values below <span class="math inline">\(L\)</span>
+</div>
+</div>
+<div class="tail-card">
+<div class="tail-title">
+upper bound
+</div>
+<svg id="tailUpperSvg" class="tail-svg" style="height: 10em" viewbox="0 0 240 120" preserveaspectratio="xMidYMid meet">
+</svg>
+<div class="tail-sub" style="font-size:80%">
+protect against values above <span class="math inline">\(U\)</span>
+</div>
+</div>
+</div>
+</section>
+<section id="proportions-need-intervals-too" class="slide level2 concept-slide">
+<h2>Proportions need intervals too</h2>
+<div class="eyebrow">
+Binary outcomes
+</div>
+<div class="w6-grid-2 fragment fade-up">
+<div class="w6-card observed-border">
+<div class="w6-card-title">
+Observed proportion
+</div>
+<div class="big-symbol observed">
+<span class="math inline">\(\hat p=x/n\)</span>
+</div>
+<div class="w6-card-sub">
+e.g.&nbsp;response, toxicity, remission
+</div>
+</div>
+<div class="w6-card uncertainty-border">
+<div class="w6-card-title">
+Sampling uncertainty
+</div>
+<div class="big-symbol probability">
+interval
+</div>
+<div class="w6-card-sub">
+must respect the <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span> boundary
+</div>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Same inferential idea; a different sampling model and interval formula.
+</div>
+</div>
+</section>
+<section id="try-it-proportion-confidence-intervals" class="slide level2 exercise-slide">
+<h2>Try it: proportion confidence intervals</h2>
+<div class="try-label">
+Repeated-sampling laboratory · binary outcome
+</div>
+<div id="ciPropWidget" class="ci-widget">
+<div class="w6-control-grid prop-controls">
+<label class="w6-control">population <span class="math inline">\(p\)</span> = <strong id="propPValue">0.30</strong><input id="propP" type="range" min="0.02" max="0.98" value="0.30" step="0.02"></label> <label class="w6-control">sample size <span class="math inline">\(n\)</span> = <strong id="propNValue">40</strong><input id="propN" type="range" min="10" max="300" value="40" step="10"></label> <label class="w6-control">confidence = <strong id="propLevelValue">95%</strong><input id="propLevel" type="range" min="80" max="99" value="95" step="1"></label> <label class="w6-control">repeated samples<select id="propK"><option value="100">100</option><option value="500">500</option><option value="1000">1000</option></select></label> <button id="propRedraw" class="w6-button" type="button">Draw new samples</button>
+<div class="w6-output">
+<span>empirical coverage</span><strong id="propCoverage">—</strong>
+</div>
+</div>
+<svg id="ciPropSvg" class="w6-lab-svg ci-prop-svg" style="height:15em" viewbox="0 0 900 610" aria-label="Repeated confidence intervals for a proportion">
+</svg>
+</div>
+<aside class="notes">
+<p>The widget uses the Wilson interval. The method name is not the teaching target; the target is that binary sampling needs an interval suited to proportions, especially near 0 or 1.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="back-to-our-trial-which-interval-matters" class="slide level2 concept-slide">
+<h2>Back to our trial: which interval matters?</h2>
+<div class="eyebrow">
+Two groups
+</div>
+<div class="arm-ci-stage fragment fade-up">
+<div class="arm-ci-row">
+<span class="arm-name placebo">placebo</span>
+<div class="arm-track">
+<i style="left:42%;width:34%;"></i><b style="left:59%;"></b>
+</div>
+<span>138.8</span>
+</div>
+<div class="arm-ci-row">
+<span class="arm-name drug">experimental</span>
+<div class="arm-track">
+<i style="left:14%;width:35%;"></i><b style="left:31%;"></b>
+</div>
+<span>133.0</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+<div class="warning-title">
+Do not test a difference by eyeballing two separate CIs
+</div>
+<p>
+Overlap of the two group intervals is not the formal criterion for whether the group means differ.
+</p>
+</div>
+</div>
+</section>
+<section id="estimate-the-treatment-effect-directly" class="slide level2 concept-slide">
+<h2>Estimate the treatment effect directly</h2>
+<div class="eyebrow">
+The contrast is the target
+</div>
+<div class="effect-ci-stage fragment fade-up">
+<div class="effect-label">
+<span class="math inline">\(\hat\Delta=-5.8\)</span> mmHg · 95% CI approximately <span class="math inline">\([-10.2,-1.4]\)</span>
+</div>
+<div class="effect-track">
+<div class="effect-zero">
+
+</div>
+<div class="effect-interval">
+
+</div>
+<div class="effect-point">
+
+</div>
+</div>
+<div class="effect-axis">
+<span>−12</span><span>−8</span><span>−4</span><span>0</span><span>4</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+The interval asks the right question: which population differences are compatible with the observed difference?
+</div>
+</div>
+</section>
+<section id="significant-is-not-the-same-as-important" class="slide level2 concept-slide">
+<h2>Significant is not the same as important</h2>
+<div class="eyebrow">
+Two different judgments
+</div>
+<div class="significance-split fragment fade-up">
+<div class="significance-card uncertainty-border">
+<div class="sig-question">
+Statistical
+</div>
+<strong>Is the result difficult to explain by sampling variation under a reference model?</strong><span>statistics can help</span>
+</div>
+<div class="significance-card model-border">
+<div class="sig-question">
+Clinical / practical
+</div>
+<strong>Is the magnitude large enough to matter for patients and decisions?</strong><span>requires domain context</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+A tiny effect can be statistically clear. A clinically valuable effect can remain uncertain in a small study.
+</div>
+</div>
+</section>
+<section id="hypothesis-tests" class="slide level2 section-break">
+<h2>Hypothesis tests</h2>
+<div class="section-kicker">
+Part III
+</div>
+<div class="section-title">
+Hypothesis tests
+</div>
+<div class="section-subtitle">
+We now see how we can devise a decision rule.
+</div>
+</section>
+<section id="now-turn-estimation-into-a-decision-rule" class="slide level2 section-slide">
+<h2>Now turn estimation into a decision rule</h2>
+<div class="eyebrow">
+Hypothesis testing
+</div>
+<div class="section-equation">
+assume a reference world → ask how unusual our statistic is
+</div>
+</section>
+<section id="scientific-hypothesis-statistical-hypothesis" class="slide level2 concept-slide">
+<h2>Scientific hypothesis ≠ statistical hypothesis</h2>
+<div class="eyebrow">
+Do not confuse the levels
+</div>
+<div class="hypothesis-ladder fragment fade-up">
+<div class="hyp-level science">
+<span>Scientific question</span><strong>Does the treatment improve cardiovascular health?</strong>
+</div>
+<div class="hyp-arrow">
+↓ operationalize
+</div>
+<div class="hyp-level endpoint">
+<span>Clinical endpoint</span><strong>systolic blood pressure after treatment</strong>
+</div>
+<div class="hyp-arrow">
+↓ formalize
+</div>
+<div class="hyp-level statistical">
+<span>Statistical hypothesis</span><strong><span class="math inline">\(H_0:\Delta=0\)</span> versus an alternative</strong>
+</div>
+</div>
+<aside class="notes">
+<p>The statistical hypothesis is narrower than the scientific claim. Rejecting a BP null hypothesis does not prove the full clinical hypothesis.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="step-1-define-the-null-reference" class="slide level2 concept-slide">
+<h2>Step 1: define the null reference</h2>
+<div class="eyebrow">
+A specific parameter statement
+</div>
+<div class="hypothesis-pair fragment fade-up">
+<div class="hyp-card null">
+<span>Null</span><strong><span class="math inline">\(H_0:\Delta=0\)</span></strong><small>no population mean difference in this example</small>
+</div>
+<div class="hyp-card alt">
+<span>Alternative</span><strong><span class="math inline">\(H_1:\Delta\ne0\)</span></strong><small>population means differ</small>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+<div class="warning-title">
+Not always “no difference”
+</div>
+<p>
+Equivalence and non-inferiority questions use different null hypotheses. We meet them next week.
+</p>
+</div>
+</div>
+</section>
+<section id="step-2-choose-the-direction-before-seeing-the-result" class="slide level2 concept-slide">
+<h2>Step 2: choose the direction before seeing the result</h2>
+<div class="eyebrow">
+Alternative hypotheses
+</div>
+<div class="alt-grid fragment fade-up">
+<div class="alt-card">
+<div class="alt-symbol">
+<span class="math inline">\(\Delta\ne0\)</span>
+</div>
+<strong>two-sided</strong><span>either direction matters</span>
+</div>
+<div class="alt-card">
+<div class="alt-symbol">
+<span class="math inline">\(\Delta&lt;0\)</span>
+</div>
+<strong>lower-tail</strong><span>only sufficiently lower values count</span>
+</div>
+<div class="alt-card">
+<div class="alt-symbol">
+<span class="math inline">\(\Delta&gt;0\)</span>
+</div>
+<strong>upper-tail</strong><span>only sufficiently higher values count</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Direction is a design choice, not something to choose after inspecting the data.
+</div>
+</div>
+</section>
+<section id="step-3-standardize-the-observed-discrepancy" class="slide level2 concept-slide">
+<h2>Step 3: standardize the observed discrepancy</h2>
+<div class="eyebrow">
+Test statistic
+</div>
+<div class="test-stat-stage fragment fade-up">
+<div class="test-stat-numerator">
+observed effect − null effect
+</div>
+<div class="test-stat-bar">
+
+</div>
+<div class="test-stat-denominator">
+standard error
+</div>
+<div class="test-stat-equals">
+<span class="math inline">\(=\;z\)</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+A good test statistic transforms the problem into a reference distribution we understand.
+</div>
+</div>
+</section>
+<section id="the-null-world-is-a-counterfactual-model" class="slide level2 concept-slide">
+<h2>The null world is a counterfactual model</h2>
+<div class="eyebrow">
+If <span class="math inline">\(H_0\)</span> were true…
+</div>
+<div class="null-world fragment fade-up">
+<svg id="nullWorldSvg" viewbox="0 0 820 310" class="null-svg" preserveaspectratio="xMidYMid meet" aria-label="Standard normal null distribution with central 95 percent region">
+</svg>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+With <span class="math inline">\(\alpha=0.05\)</span>, sufficiently extreme statistics fall in the rejection region.
+</div>
+</div>
+</section>
+<section id="step-4-compare-the-statistic-with-the-null-world" class="slide level2 concept-slide">
+<h2>Step 4: compare the statistic with the null world</h2>
+<div class="eyebrow">
+Our trial
+</div>
+<div class="observed-z fragment fade-up">
+<div class="z-number">
+<span class="math inline">\(z\approx -2.6\)</span>
+</div>
+<div class="z-track">
+<span class="z-reject-left">reject</span><i class="z-bound-left"></i><b class="z-zero"></b><i class="z-bound-right"></i><span class="z-reject-right">reject</span><em class="z-observed"></em>
+</div>
+<div class="z-scale">
+<span>−4</span><span>−1.96</span><span>0</span><span>+1.96</span><span>+4</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+The observed standardized difference lies in a region that is uncommon under <span class="math inline">\(H_0\)</span>.
+</div>
+</div>
+</section>
+<section id="step-5-summarize-extremeness-with-a-p-value" class="slide level2 concept-slide">
+<h2>Step 5: summarize extremeness with a p-value</h2>
+<div class="eyebrow">
+A tail probability under <span class="math inline">\(H_0\)</span>
+</div>
+<div class="definition-box fragment fade-up">
+<div class="definition-title">
+p-value
+</div>
+<p>
+Assuming the null hypothesis and the statistical model are correct, the probability of obtaining a test statistic at least as extreme as the observed one.
+</p>
+</div>
+<div class="pvalue-equation fragment fade-up">
+our illustrative trial: <span class="math inline">\(p\approx0.009\)</span>
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+<div class="warning-title">
+It is not
+</div>
+<p>
+the probability that <span class="math inline">\(H_0\)</span> is true, nor the probability that the result happened “by chance.”
+</p>
+</div>
+</div>
+</section>
+<section id="a-small-p-value-is-evidence-against-the-reference-model" class="slide level2 concept-slide">
+<h2>A small p-value is evidence against the reference model</h2>
+<div class="eyebrow">
+But evidence is not effect size
+</div>
+<div class="pvalue-split fragment fade-up">
+<div class="pvalue-card">
+<span>p-value</span><strong>compatibility with <span class="math inline">\(H_0\)</span></strong><small>depends strongly on sample size and precision</small>
+</div>
+<div class="pvalue-card">
+<span>effect estimate</span><strong>magnitude + direction</strong><small>answers how much, in the observed scale</small>
+</div>
+<div class="pvalue-card">
+<span>confidence interval</span><strong>precision</strong><small>shows a range of compatible effect values</small>
+</div>
+</div>
+</section>
+<section id="where-does-alpha0.05-enter" class="slide level2 concept-slide">
+<h2>Where does <span class="math inline">\(\alpha=0.05\)</span> enter?</h2>
+<div class="eyebrow">
+A pre-specified decision threshold
+</div>
+<div class="alpha-stage fragment fade-up">
+<div class="alpha-card probability">
+<span>significance level</span><strong><span class="math inline">\(\alpha\)</span></strong><small>long-run Type I error target under Null</small>
+</div>
+<div class="alpha-arrow">
+→
+</div>
+<div class="alpha-card">
+<span>decision rule</span><strong>reject if <span class="math inline">\(p&lt;\alpha\)</span></strong><small>for the chosen testing procedure</small>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+<div class="warning-title">
+<span class="math inline">\(0.05\)</span> is a convention, not a law of nature
+</div>
+<p>
+The threshold should be pre-specified and justified by the scientific and decision context.
+</p>
+</div>
+</div>
+</section>
+<section id="ci-and-hypothesis-test-are-two-views-of-the-same-machinery" class="slide level2 concept-slide">
+<h2>CI and hypothesis test are two views of the same machinery</h2>
+<div class="eyebrow">
+For matching two-sided procedures
+</div>
+<div class="duality-stage fragment fade-up">
+<div class="duality-ci">
+<span>95% CI for <span class="math inline">\(\Delta\)</span></span>
+<div class="duality-track">
+<i></i><b></b>
+</div>
+<small>does not include 0</small>
+</div>
+<div class="duality-equals">
+⇔
+</div>
+<div class="duality-test">
+<span>two-sided test at <span class="math inline">\(\alpha=0.05\)</span></span><strong>reject <span class="math inline">\(H_0:\Delta=0\)</span></strong>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+The interval usually tells us more because it also shows direction and plausible magnitude.
+</div>
+</div>
+</section>
+<section id="hypothesis-testing-workflow" class="slide level2 concept-slide">
+<h2>Hypothesis testing workflow</h2>
+<div class="eyebrow">
+A repeatable sequence
+</div>
+<div class="workflow-5 fragment fade-up">
+<div>
+<span>1</span><strong>Define</strong><small>parameter + null hypothesis</small>
+</div>
+<div>
+<span>2</span><strong>Choose</strong><small>test statistic + assumptions</small>
+</div>
+<div>
+<span>3</span><strong>Calculate</strong><small>statistic + SE</small>
+</div>
+<div>
+<span>4</span><strong>Reference</strong><small>null distribution + p-value</small>
+</div>
+<div>
+<span>5</span><strong>Interpret</strong><small>effect + CI + context</small>
+</div>
+</div>
+</section>
+<section id="try-it-repeat-the-drug-trial" class="slide level2 exercise-slide">
+<h2>Try it: repeat the drug trial</h2>
+<div class="try-label">
+Same population effect · new random trial
+</div>
+<div id="trialWidget" class="trial-widget">
+<div class="w6-control-grid trial-controls">
+<label class="w6-control">patients per arm <span class="math inline">\(n\)</span> = <strong id="trialNValue">80</strong><input id="trialN" type="range" min="20" max="300" value="80" step="10"></label> <button id="trialRedraw" class="w6-button" type="button">Run a new trial</button>
+<div class="w6-output" style="font-size: 1.2em">
+<span>true Δ</span><strong>−6.0 mmHg</strong>
+</div>
+<div class="w6-output" style="font-size: 1.2em">
+<span>common σ</span><strong>14 mmHg</strong>
+</div>
+</div>
+<div class="trial-widget-grid">
+<div class="trial-widget-panel">
+<div class="mini-title">
+observed arm means
+</div>
+<svg id="trialMeansSvg" viewbox="0 0 420 250">
+</svg>
+</div>
+<div class="trial-widget-panel">
+<div class="mini-title">
+estimated treatment effect
+</div>
+<svg id="trialEffectSvg" viewbox="0 0 420 250">
+</svg>
+</div>
+</div>
+<div class="trial-results">
+<div>
+<span style="font-size: 1.3em"><span class="math inline">\(\hat\Delta\)</span></span><strong id="trialDelta">—</strong>
+</div>
+<div>
+<span>95% CI</span><strong id="trialCI">—</strong>
+</div>
+<div>
+<span>p-value</span><strong id="trialP">—</strong>
+</div>
+<div>
+<span>standardized effect</span><strong id="trialD">—</strong>
+</div>
+</div>
+</div>
+</section>
+<section id="what-changes-when-n-changes" class="slide level2 concept-slide">
+<h2>What changes when <span class="math inline">\(n\)</span> changes?</h2>
+<div class="eyebrow">
+Precision is not magnitude
+</div>
+<div class="n-effect-grid fragment fade-up">
+<div class="n-effect-card">
+<span><span class="math inline">\(n\uparrow\)</span></span><strong><span class="math inline">\(\mathrm{SE}\downarrow\)</span></strong><small>sampling distribution narrows</small>
+</div>
+<div class="n-effect-card">
+<span><span class="math inline">\(n\uparrow\)</span></span><strong>CI narrows</strong><small>estimate becomes more precise</small>
+</div>
+<div class="n-effect-card">
+<span><span class="math inline">\(n\uparrow\)</span></span><strong>p can shrink</strong><small>same-size effects become easier to detect</small>
+</div>
+<div class="n-effect-card">
+<span><span class="math inline">\(n\uparrow\)</span></span><strong>true effect unchanged</strong><small>biology did not become stronger</small>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+This is why “statistically significant” cannot substitute for “important.”
+</div>
+</div>
+</section>
+<section id="effect-size-asks-how-much" class="slide level2 concept-slide">
+<h2>Effect size asks “how much?”</h2>
+<div class="eyebrow">
+Magnitude on different scales
+</div>
+<div class="effect-size-grid fragment fade-up">
+<div class="effect-size-card observed-border">
+<span>RAW EFFECT</span> <strong><span class="math inline">\(\hat\Delta = \bar{x}_T - \bar{x}_C\)</span></strong> <small>mmHg · often easiest to interpret clinically</small>
+</div>
+<div class="effect-size-card estimate-border">
+<span>STANDARDIZED EFFECT</span> <strong><span class="math inline">\(d = \frac{\bar{x}_T - \bar{x}_C}{s_{\mathrm{pooled}}}\)</span></strong> <small>difference expressed in SD units</small>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+<div class="warning-title">
+Standardized ≠ automatically meaningful
+</div>
+<p>
+Clinical relevance still needs a domain-specific threshold and benefit–risk context.
+</p>
+</div>
+</div>
+</section>
+<section id="we-hid-something-important-in-our-endpoint" class="slide level2 concept-slide">
+<h2>We hid something important in our endpoint</h2>
+<div class="eyebrow">
+Baseline blood pressure
+</div>
+<div class="baseline-stage fragment fade-up">
+<div class="baseline-arm placebo">
+<strong>placebo</strong><span>baseline ?</span><span>post 138.8</span>
+</div>
+<div class="baseline-arm drug">
+<strong>experimental</strong><span>baseline ?</span><span>post 133.0</span>
+</div>
+<div class="baseline-question">
+Were the groups starting from the same place?<br>Should we compare absolute or fold change relative to baseline?
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Randomization balances baseline variables <strong>in expectation</strong>, not perfectly in every realized trial.
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="warning-box">
+<div class="warning-title">
+Analysis consequence
+</div>
+<p>
+Baseline should be measured and handled according to the pre-specified design—for example with change from baseline or baseline-adjusted analysis. A post-treatment mean alone can hide important context.
+</p>
+</div>
+</div>
+</section>
+<section id="decisions-create-two-kinds-of-errors" class="slide level2 section-slide">
+<h2>Decisions create two kinds of errors</h2>
+<div class="eyebrow">
+Type I, Type II, power
+</div>
+<div class="section-equation">
+reality × decision
+</div>
+<div class="decision-matrix fragment fade-up">
+<div class="matrix-empty">
+
+</div>
+<div class="matrix-head">
+<span class="math inline">\(H_0\)</span> world
+</div>
+<div class="matrix-head">
+<span class="math inline">\(H_1\)</span> world
+</div>
+<div class="matrix-side">
+do not reject <span class="math inline">\(H_0\)</span>
+</div>
+<div class="matrix-good">
+correct<br><small style="font-size: 1.2em"><span class="math inline">\(1-\alpha\)</span></small>
+</div>
+<div class="matrix-beta">
+<strong>Type II error</strong><span><span class="math inline">\(\beta\)</span></span>
+</div>
+<div class="matrix-side">
+reject <span class="math inline">\(H_0\)</span>
+</div>
+<div class="matrix-alpha">
+<strong>Type I error</strong><span><span class="math inline">\(\alpha\)</span></span>
+</div>
+<div class="matrix-good">
+correct<br><small style="font-size: 1.2em"><span class="math inline">\(\text{power}=1-\beta\)</span></small>
+</div>
+</div>
+</section>
+<section id="type-i-error-false-positive" class="slide level2 concept-slide">
+<h2>Type I error: false positive</h2>
+<div class="eyebrow">
+Rejecting a true null
+</div>
+<div class="error-story fragment fade-up">
+<div class="error-world model">
+no real treatment effect
+</div>
+<div class="error-arrow">
+→
+</div>
+<div class="error-data observed">
+an unusually favorable sample
+</div>
+<div class="error-arrow">
+→
+</div>
+<div class="error-decision warning">
+we reject <span class="math inline">\(H_0\)</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+The significance level <span class="math inline">\(\alpha\)</span> controls this long-run error probability for the specified test.
+</div>
+</div>
+</section>
+<section id="type-ii-error-false-negative" class="slide level2 concept-slide">
+<h2>Type II error: false negative</h2>
+<div class="eyebrow">
+Missing a real effect
+</div>
+<div class="error-story fragment fade-up">
+<div class="error-world estimate">
+a real treatment effect exists
+</div>
+<div class="error-arrow">
+→
+</div>
+<div class="error-data observed">
+a noisy or underpowered sample
+</div>
+<div class="error-arrow">
+→
+</div>
+<div class="error-decision probability">
+we do not reject <span class="math inline">\(H_0\)</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="definition-box">
+<div class="definition-title">
+Power
+</div>
+<p>
+<span class="math inline">\(1-\beta\)</span>: probability that the procedure rejects <span class="math inline">\(H_0\)</span> when a specified alternative effect is truly present.
+</p>
+</div>
+</div>
+</section>
+<section id="which-error-is-worse" class="slide level2 concept-slide">
+<h2>Which error is worse?</h2>
+<div class="eyebrow">
+There is no universal answer
+</div>
+<div class="risk-grid fragment fade-up">
+<div class="risk-card warning-border">
+<strong>False positive</strong><span>approve an ineffective or harmful intervention</span><small>patient safety · cost · trust</small>
+</div>
+<div class="risk-card uncertainty-border">
+<strong>False negative</strong><span>discard an actually useful intervention</span><small>missed benefit · lost investment · delayed care</small>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Design is a balance among error rates, meaningful effect sizes, feasibility, and consequences.
+</div>
+</div>
+</section>
+<section id="try-it-type-i-error-type-ii-error-and-power" class="slide level2 exercise-slide">
+<h2>Try it: Type I error, Type II error, and power</h2>
+<div class="try-label">
+Two sampling worlds
+</div>
+<div id="errorWidget" class="error-widget">
+<div class="error-widget-layout">
+<div class="error-controls">
+<label class="w6-control"> null effect <span class="math inline">\(\Delta_0\)</span> = <strong id="errMu0Value">0</strong> <input id="errMu0" type="range" min="-5" max="5" value="0" step="0.5"> </label> <label class="w6-control"> alternative effect <span class="math inline">\(\Delta_1\)</span> = <strong id="errMu1Value">-4</strong> <input id="errMu1" type="range" min="-5" max="5" value="-4" step="0.5"> </label> <label class="w6-control"> common SD <span class="math inline">\(\sigma\)</span> = <strong id="errSigmaValue">14</strong> <input id="errSigma" type="range" min="4" max="24" value="14" step="1"> </label> <label class="w6-control"> patients / arm <span class="math inline">\(n\)</span> = <strong id="errNValue">80</strong> <input id="errN" type="range" min="20" max="300" value="80" step="10"> </label> <label class="w6-control"> <span class="math inline">\(\alpha\)</span> <select id="errAlpha"> <option value="0.10">0.10</option> <option value="0.05" selected="">0.05</option> <option value="0.01">0.01</option> </select> </label> <label class="w6-control"> alternative <select id="errType"> <option value="two">two-sided</option> <option value="less">less</option> <option value="greater">greater</option> </select> </label>
+<div class="error-output-row">
+<div class="w6-output">
+<span>Type I</span><strong id="errAlphaOut">5.0%</strong>
+</div>
+<div class="w6-output">
+<span>Type II</span><strong id="errBetaOut">—</strong>
+</div>
+<div class="w6-output">
+<span>power</span><strong id="errPowerOut">—</strong>
+</div>
+</div>
+</div>
+<div class="error-plot-wrap">
+<svg id="errorSvg" class="error-svg-large" viewbox="0 0 860 500" aria-label="Null and alternative sampling distributions with error regions">
+</svg>
+</div>
+</div>
+</div>
+</section>
+<section id="what-controls-power" class="slide level2 concept-slide">
+<h2>What controls power?</h2>
+<div class="eyebrow">
+Make the two worlds easier to distinguish
+</div>
+<div class="power-grid fragment fade-up">
+<div class="power-card">
+<strong>bigger true effect</strong><span style="font-size: 120%"><span class="math inline">\(|\Delta_1-\Delta_0|\uparrow\)</span></span><small>worlds separate</small>
+</div>
+<div class="power-card">
+<strong>larger sample</strong><span style="font-size: 120%"><span class="math inline">\(n\uparrow\)</span></span><small>SE shrinks</small>
+</div>
+<div class="power-card">
+<strong>less variability</strong><span style="font-size: 120%"><span class="math inline">\(\sigma\downarrow\)</span></span><small>curves narrow</small>
+</div>
+<div class="power-card">
+<strong>larger<span style="font-size: 140%"><span class="math inline">\(\alpha\)</span></span></strong><span>easier rejection</span><small>but more Type I error</small>
+</div>
+</div>
+</section>
+<section id="two-important-concepts" class="slide level2 concept-slide">
+<h2>Two important concepts</h2>
+<div class="fragment fade-up">
+<div class="concept-line">
+Power depends on a specified alternative.
+</div>
+<div class="definition-box">
+Sample-size planning therefore needs an effect size worth detecting—not just an arbitrary desire for “80% power.”
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Non-significant does not mean equivalent.
+</div>
+<div class="warning-box">
+<div class="warning-title">
+<span class="math inline">\(p\ge\alpha\)</span> means
+</div>
+<p>
+we did not obtain enough evidence to reject this null with this procedure. It does <strong>not</strong> prove that the populations are equivalent.
+</p>
+</div>
+</div>
+</section>
+<section id="one-test-is-manageable.-what-about-many" class="slide level2 section-slide">
+<h2>One test is manageable. What about many?</h2>
+<div class="eyebrow">
+Multiplicity
+</div>
+<div class="section-equation">
+more opportunities to be fooled
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Repeating tests creates more false-positive opportunities.
+</div>
+</div>
+<div class="multiplicity-dots fragment fade-up">
+<div class="test-dot">
+1
+</div>
+<div class="test-dot">
+2
+</div>
+<div class="test-dot">
+3
+</div>
+<div class="test-dot">
+4
+</div>
+<div class="test-dot">
+5
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="multiplicity-equation">
+If five tests were independent and each used <span class="math inline">\(\alpha=0.05\)</span>:
+</div>
+<div class="multiplicity-big">
+<span class="math inline">\(\mathbb{P}(\text{at least one Type I error})=1-(1-0.05)^5\approx22.6\%\)</span>
+</div>
+<div class="concept-line fade-up">
+This is assuming every null is true.
+</div>
+</div>
+<aside class="notes">
+<p>The formula assumes independent tests. Correlated endpoints change the exact family-wise probability; the general multiplicity problem remains.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="try-it-independent-test-multiplicity" class="slide level2 exercise-slide">
+<h2>Try it: independent-test multiplicity</h2>
+<div class="try-label">
+A deliberately simple calculation
+</div>
+<div id="multiWidget" class="multi-widget">
+<div class="w6-control-grid multi-controls">
+<label class="w6-control" style="font-size: 0.5em">number of tests <span class="math inline">\(k\)</span> = <strong id="multiKValue">5</strong><input id="multiK" type="range" min="1" max="40" value="5" step="1"></label> <label class="w6-control" style="font-size: 0.5em">per-test <span class="math inline">\(\alpha\)</span><select id="multiAlpha"><option value="0.10">0.10</option><option value="0.05" selected="">0.05</option><option value="0.01">0.01</option></select></label>
+<div class="w6-output" style="font-size: 1.5em">
+<span>at least one false positive</span><strong id="multiFwer">—</strong>
+</div>
+</div>
+<div class="multi-meter">
+<div id="multiFill" class="multi-fill">
+
+</div>
+<span id="multiMeterLabel">—</span>
+</div>
+<div class="multi-note">
+Assumes independent tests and all null hypotheses true.
+</div>
+</div>
+</section>
+<section id="multiplicity-correction-changes-the-decision-rule" class="slide level2 concept-slide">
+<h2>Multiplicity correction changes the decision rule</h2>
+<div class="eyebrow">
+Different goals, different procedures
+</div>
+<div class="correction-grid fragment fade-up">
+<div class="correction-card">
+<strong>Bonferroni</strong><span>simple, conservative</span><small>controls family-wise error</small>
+</div>
+<div class="correction-card">
+<strong>Holm</strong><span>step-down procedure</span><small>controls family-wise error</small>
+</div>
+<div class="correction-card">
+<strong>FDR methods</strong><span>e.g.&nbsp;Benjamini–Hochberg</span><small>control expected false-discovery proportion</small>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Stricter Type I error control usually costs power. Multiplicity is another decision trade-off.
+</div>
+</div>
+<div class="mathematician-gallery fragment fade-up" style="max-width: 28em">
+<div class="portrait-card">
+<img src="figures/Bonferroni.jpg" alt="Carlo Emilio Bonferroni">
+<div class="portrait-name">
+Carlo Emilio Bonferroni
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Holm.jpg" alt="Sture Holm">
+<div class="portrait-name">
+Sture Holm
+</div>
+</div>
+<div class="portrait-card">
+<img src="figures/Benjamini.jpg" alt="Yoav Benjamini">
+<div class="portrait-name">
+Yoav Benjamini
+</div>
+</div>
+</div>
+</section>
+<section id="the-famous-dead-salmon-lesson" class="slide level2 concept-slide">
+<h2>The famous dead-salmon lesson</h2>
+<div class="eyebrow">
+Many comparisons can manufacture discoveries
+</div>
+<div class="salmon-card fade-up">
+<p><img src="figures/salmon.jpg" alt="Dead Salmon" class="salmon-img"></p>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+The point is not that imaging is unreliable—the point is that large families of tests require explicit error control.
+</div>
+</div>
+<aside class="notes">
+<p>Source for lecturer reference: https://prefrontal.org/files/posters/Bennett-Salmon-2009.pdf</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="misconception-check" class="slide level2 exercise-slide">
+<h2>Misconception check</h2>
+<div class="eyebrow">
+Decide before revealing
+</div>
+<div class="quiz-grid">
+<div class="quiz-card fragment fade-up">
+<strong>“<span class="math inline">\(p=0.03\)</span> means there is a 97% chance the treatment works.”</strong>
+<div class="quiz-answer is-false fragment fade-in">
+False · p is calculated assuming <span class="math inline">\(H_0\)</span>.
+</div>
+</div>
+<div class="quiz-card fragment fade-up">
+<strong>“A 95% CI gives the plausible effect magnitude, not just a yes/no answer.”</strong>
+<div class="quiz-answer fragment fade-in">
+Yes · that is one reason intervals are so useful.
+</div>
+</div>
+<div class="quiz-card fragment fade-up">
+<strong>“If <span class="math inline">\(p=0.20\)</span>, we proved there is no effect.”</strong>
+<div class="quiz-answer is-false fragment fade-in">
+False · failure to reject is not proof of equivalence.
+</div>
+</div>
+<div class="quiz-card fragment fade-up">
+<strong>“With a huge <span class="math inline">\(n\)</span>, a tiny effect may become statistically significant.”</strong>
+<div class="quiz-answer fragment fade-in">
+Yes · precision increases with sample size.
+</div>
+</div>
+</div>
+</section>
+<section id="would-you-trust-this-conclusion" class="slide level2 exercise-slide">
+<h2>Would you trust this conclusion?</h2>
+<div class="eyebrow">
+Inference needs more than a p-value
+</div>
+<div class="trust-case fragment fade-up">
+<div class="trust-result">
+<span>Effect</span><strong>−1.2 mmHg</strong>
+</div>
+<div class="trust-result">
+<span>95% CI</span><strong>[−1.5, −0.9]</strong>
+</div>
+<div class="trust-result">
+<span>p-value</span><strong>&lt; 0.001</strong>
+</div>
+<div class="trust-result">
+<span style="font-size: 110%"><span class="math inline">\(n\)</span></span><strong>20,000</strong>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="question-line" style="font-size: 110%">
+Statistically significant? <strong>Yes.</strong>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="question-line" style="font-size: 110%">
+Clinically important? <strong>We still need a clinical threshold.</strong>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="question-line" style="font-size: 110%">
+Trustworthy? <strong>Only after checking design, endpoint, assumptions, missingness, multiplicity, and bias.</strong>
+</div>
+</div>
+</section>
+<section id="week-6-synthesis" class="slide level2 concept-slide">
+<h2>Week 6 synthesis</h2>
+<div class="eyebrow">
+From sample to decision
+</div>
+<div class="synthesis-flow fragment fade-up">
+<div class="synth-node observed-border">
+<strong>estimate</strong><span>what did we observe?</span>
+</div>
+<div class="synth-arrow">
+→
+</div>
+<div class="synth-node uncertainty-border">
+<strong>SE + sampling distribution</strong><span>how much would it vary?</span>
+</div>
+<div class="synth-arrow">
+→
+</div>
+<div class="synth-node estimate-border">
+<strong>CI + effect size</strong><span>how much and how precise?</span>
+</div>
+<div class="synth-arrow">
+→
+</div>
+<div class="synth-node probability-border">
+<strong>test + p-value</strong><span>compatibility with</span><span style="font-size: 110%"><span class="math inline">\(H_0\)</span></span>
+</div>
+<div class="synth-arrow">
+→
+</div>
+<div class="synth-node warning-border">
+<strong>decision</strong><span>errors + consequences + context</span>
+</div>
+</div>
+<div class="fragment fade-up">
+<div class="concept-line">
+Inference is not a single number. It is a structured argument from data under uncertainty.
+</div>
+</div>
+</section>
+<section id="next-week" class="slide level2 section-slide">
+<h2>Next week</h2>
+<div class="eyebrow">
+Week 7
+</div>
+<div class="next-week-grid fragment fade-up">
+<div>
+categorical tests
+</div>
+<div>
+<span class="math inline">\(t\)</span> tests
+</div>
+<div>
+<span class="math inline">\(F\)</span> and ANOVA
+</div>
+<div>
+interactions
+</div>
+<div>
+equivalence
+</div>
+<div>
+agreement
+</div>
+</div>
+<div class="concept-line fragment fade-up" style="margin-top:.8em;">
+Now that we know what a statistical test <em>is</em>, we can choose the right one for the data and question.
+</div>
+<script>
+(function () {
+
+/* =========================================================
+   CORE MATH HELPERS
+   ========================================================= */
+
+let ciSeed = 0;
+let propSeed = 0;
+let trialSeed = 0;
+
+function clamp(x, a, b) {
+  return Math.max(a, Math.min(b, x));
+}
+
+function mulberry32(seed) {
+  return function () {
+    let t = seed += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+function randn(rng) {
+  let u = 0;
+  let v = 0;
+  while (u === 0) u = rng();
+  while (v === 0) v = rng();
+  return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+}
+
+function erf(x) {
+  const sign = x < 0 ? -1 : 1;
+  x = Math.abs(x);
+  const a1 = 0.254829592;
+  const a2 = -0.284496736;
+  const a3 = 1.421413741;
+  const a4 = -1.453152027;
+  const a5 = 1.061405429;
+  const p = 0.3275911;
+  const t = 1 / (1 + p * x);
+  const y = 1 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+  return sign * y;
+}
+
+function normCdf(x, mu = 0, sigma = 1) {
+  return 0.5 * (1 + erf((x - mu) / (sigma * Math.sqrt(2))));
+}
+
+/* Acklam inverse-normal approximation */
+function normInv(p) {
+  if (p <= 0) return -Infinity;
+  if (p >= 1) return Infinity;
+
+  const a = [
+    -3.969683028665376e+01,
+     2.209460984245205e+02,
+    -2.759285104469687e+02,
+     1.383577518672690e+02,
+    -3.066479806614716e+01,
+     2.506628277459239e+00
+  ];
+  const b = [
+    -5.447609879822406e+01,
+     1.615858368580409e+02,
+    -1.556989798598866e+02,
+     6.680131188771972e+01,
+    -1.328068155288572e+01
+  ];
+  const c = [
+    -7.784894002430293e-03,
+    -3.223964580411365e-01,
+    -2.400758277161838e+00,
+    -2.549732539343734e+00,
+     4.374664141464968e+00,
+     2.938163982698783e+00
+  ];
+  const d = [
+     7.784695709041462e-03,
+     3.224671290700398e-01,
+     2.445134137142996e+00,
+     3.754408661907416e+00
+  ];
+
+  const plow = 0.02425;
+  const phigh = 1 - plow;
+  let q;
+  let r;
+
+  if (p < plow) {
+    q = Math.sqrt(-2 * Math.log(p));
+    return (((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) /
+      ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+  }
+
+  if (p > phigh) {
+    q = Math.sqrt(-2 * Math.log(1 - p));
+    return -(((((c[0] * q + c[1]) * q + c[2]) * q + c[3]) * q + c[4]) * q + c[5]) /
+      ((((d[0] * q + d[1]) * q + d[2]) * q + d[3]) * q + 1);
+  }
+
+  q = p - 0.5;
+  r = q * q;
+  return (((((a[0] * r + a[1]) * r + a[2]) * r + a[3]) * r + a[4]) * r + a[5]) * q /
+    (((((b[0] * r + b[1]) * r + b[2]) * r + b[3]) * r + b[4]) * r + 1);
+}
+
+function svgLine(x1, y1, x2, y2, cls) {
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="${cls}"></line>`;
+}
+
+function svgPath(points, cls) {
+  if (!points.length) return "";
+  const d = points.map((p, i) => `${i ? "L" : "M"} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(" ");
+  return `<path d="${d}" class="${cls}"></path>`;
+}
+
+function formatP(p) {
+  if (p < 0.001) return "< 0.001";
+  return p.toFixed(3);
+}
+
+/* =========================================================
+   NORMAL-MEAN CI COVERAGE LAB
+   ========================================================= */
+
+function renderMeanCI() {
+
+  const svg =
+    document.getElementById("ciMeanSvg");
+
+  if (!svg) return;
+
+
+  const mu =
+    Number(
+      document.getElementById("ciMu")?.value || 0
+    );
+
+  const sigma =
+    Number(
+      document.getElementById("ciSigma")?.value || 2
+    );
+
+  const n =
+    Number(
+      document.getElementById("ciN")?.value || 20
+    );
+
+  const levelPct =
+    Number(
+      document.getElementById("ciLevel")?.value || 95
+    );
+
+  const type =
+    document.getElementById("ciType")?.value || "two";
+
+  const k =
+    Number(
+      document.getElementById("ciK")?.value || 100
+    );
+
+
+  /* -------------------------------------------------------
+     Update displayed control values
+     ------------------------------------------------------- */
+
+  const muOut =
+    document.getElementById("ciMuValue");
+
+  const sigmaOut =
+    document.getElementById("ciSigmaValue");
+
+  const nOut =
+    document.getElementById("ciNValue");
+
+  const levelOut =
+    document.getElementById("ciLevelValue");
+
+
+  if (muOut) {
+    muOut.textContent =
+      mu.toFixed(1);
+  }
+
+  if (sigmaOut) {
+    sigmaOut.textContent =
+      sigma.toFixed(1);
+  }
+
+  if (nOut) {
+    nOut.textContent =
+      n;
+  }
+
+  if (levelOut) {
+    levelOut.textContent =
+      `${levelPct}%`;
+  }
+
+
+  /* -------------------------------------------------------
+     Sampling distribution
+     ------------------------------------------------------- */
+
+  const level =
+    levelPct / 100;
+
+  const se =
+    sigma / Math.sqrt(n);
+
+
+  /*
+   * IMPORTANT:
+   *
+   * Do not let mu, sigma, n or confidence change the seed.
+   *
+   * Moving sliders therefore transforms the SAME underlying
+   * repeated samples instead of silently drawing a new set.
+   */
+
+  const rng =
+    mulberry32(
+      6100 +
+      ciSeed * 1009
+    );
+
+
+  let z;
+
+  if (levelPct === 100) {
+
+    z = Infinity;
+
+  } else {
+
+    const alpha =
+      1 - level;
+
+    z =
+      type === "two"
+        ? normInv(1 - alpha / 2)
+        : normInv(1 - alpha);
+  }
+
+
+  const intervals = [];
+
+  let covered = 0;
+
+
+  for (let i = 0; i < k; i++) {
+
+    /*
+     * Same standardized random draw,
+     * transformed according to current SE.
+     */
+
+    const mean =
+      mu +
+      se * randn(rng);
+
+
+    let lo =
+      -Infinity;
+
+    let hi =
+      Infinity;
+
+
+    if (levelPct === 100) {
+
+      /*
+       * 100% confidence:
+       * the interval must cover the entire real line.
+       */
+
+      lo = -Infinity;
+      hi = Infinity;
+
+    } else if (type === "two") {
+
+      lo =
+        mean -
+        z * se;
+
+      hi =
+        mean +
+        z * se;
+
+    } else if (type === "lower") {
+
+      lo =
+        mean -
+        z * se;
+
+      hi =
+        Infinity;
+
+    } else {
+
+      lo =
+        -Infinity;
+
+      hi =
+        mean +
+        z * se;
+    }
+
+
+    const covers =
+      mu >= lo &&
+      mu <= hi;
+
+
+    if (covers) {
+      covered++;
+    }
+
+
+    intervals.push({
+      mean,
+      lo,
+      hi,
+      covers
+    });
+  }
+
+
+  /* -------------------------------------------------------
+     Coverage output
+     ------------------------------------------------------- */
+
+  const coverageOut =
+    document.getElementById("ciCoverage");
+
+
+  if (coverageOut) {
+
+    coverageOut.textContent =
+      `${(
+        100 *
+        covered /
+        k
+      ).toFixed(1)}%`;
+  }
+
+
+  /* -------------------------------------------------------
+     FIXED plotting geometry
+     ------------------------------------------------------- */
+
+  const W = 900;
+  const H = 608;
+
+  const left = 70;
+  const right = 870;
+
+  const top = 28;
+  const base = 555;
+
+
+  /*
+   * Fixed horizontal domain.
+   *
+   * This is the key change:
+   * students now SEE intervals shrink/grow.
+   */
+
+  const xMin = -10;
+  const xMax = 10;
+
+
+  const mapX = x =>
+    left +
+    ((x - xMin) /
+    (xMax - xMin)) *
+    (right - left);
+
+
+  /*
+   * Clip finite values to visible plotting domain.
+   */
+
+  const clipX = x =>
+    Math.max(
+      xMin,
+      Math.min(
+        xMax,
+        x
+      )
+    );
+
+
+  /* -------------------------------------------------------
+     Axes
+     ------------------------------------------------------- */
+
+  let html = "";
+
+
+  html +=
+    svgLine(
+      left,
+      base,
+      right,
+      base,
+      "lab-axis"
+    );
+
+
+  const ticks = [
+    -10,
+    -5,
+    0,
+    5,
+    10
+  ];
+
+
+  ticks.forEach(tick => {
+
+    const x =
+      mapX(tick);
+
+
+    html += `
+      <line
+        x1="${x}"
+        y1="${base}"
+        x2="${x}"
+        y2="${base + 7}"
+        class="lab-axis-tick">
+      </line>
+
+      <text
+        x="${x}"
+        y="${base + 24}"
+        text-anchor="middle"
+        class="lab-axis-label">
+        ${tick}
+      </text>
+    `;
+  });
+
+
+  /* -------------------------------------------------------
+     True population mean
+     ------------------------------------------------------- */
+
+  const truthX =
+    mapX(mu);
+
+
+  html +=
+    svgLine(
+      truthX,
+      top - 4,
+      truthX,
+      base,
+      "lab-truth-line"
+    );
+
+
+  html += `
+    <text
+      x="${truthX + 6}"
+      y="${top + 12}"
+      class="lab-truth-label"
+      style="font-size: 0.4em; font-weight: 600;">
+      true μ = ${mu.toFixed(1)}
+    </text>
+  `;
+
+
+  /* -------------------------------------------------------
+     Draw ALL intervals
+     ------------------------------------------------------- */
+
+  const usableHeight =
+    base - top;
+
+
+  /*
+   * Intervals fill the complete vertical space.
+   *
+   * A small deterministic jitter prevents rows from forming
+   * an excessively rigid raster, especially at k = 1000.
+   */
+
+  intervals.forEach((d, i) => {
+
+    const fraction =
+      (i + 0.5) / k;
+
+
+    const basicY =
+      top +
+      fraction * usableHeight;
+
+
+    /*
+     * deterministic pseudo-jitter:
+     * approximately ±0.35 row spacing
+     */
+
+    const nominalSpacing =
+      usableHeight / k;
+
+
+    const jitter =
+      Math.sin(
+        (i + 1) *
+        12.9898
+      ) *
+      nominalSpacing *
+      0.35;
+
+
+    const y =
+      basicY +
+      jitter;
+
+
+    const cls =
+      d.covers
+        ? "ci-cover"
+        : "ci-miss";
+
+
+    /*
+     * 100% confidence:
+     *
+     * show visually as -Inf ... +Inf.
+     */
+
+    if (levelPct === 100) {
+
+      html +=
+        svgLine(
+          left,
+          y,
+          right,
+          y,
+          cls
+        );
+
+
+      html += `
+        <polyline
+          points="
+            ${left + 8},${y - 3}
+            ${left},${y}
+            ${left + 8},${y + 3}
+          "
+          class="${cls}">
+        </polyline>
+
+        <polyline
+          points="
+            ${right - 8},${y - 3}
+            ${right},${y}
+            ${right - 8},${y + 3}
+          "
+          class="${cls}">
+        </polyline>
+      `;
+
+    } else if (type === "two") {
+
+      const loVisible =
+        clipX(d.lo);
+
+      const hiVisible =
+        clipX(d.hi);
+
+
+      html +=
+        svgLine(
+          mapX(loVisible),
+          y,
+          mapX(hiVisible),
+          y,
+          cls
+        );
+
+
+      /*
+       * Arrowheads indicate interval continues
+       * beyond the fixed plot limits.
+       */
+
+      if (d.lo < xMin) {
+
+        html += `
+          <polyline
+            points="
+              ${left + 8},${y - 3}
+              ${left},${y}
+              ${left + 8},${y + 3}
+            "
+            class="${cls}">
+          </polyline>
+        `;
+      }
+
+
+      if (d.hi > xMax) {
+
+        html += `
+          <polyline
+            points="
+              ${right - 8},${y - 3}
+              ${right},${y}
+              ${right - 8},${y + 3}
+            "
+            class="${cls}">
+          </polyline>
+        `;
+      }
+
+    } else if (type === "lower") {
+
+      const loVisible =
+        clipX(d.lo);
+
+
+      html +=
+        svgLine(
+          mapX(loVisible),
+          y,
+          right,
+          y,
+          cls
+        );
+
+
+      html += `
+        <polyline
+          points="
+            ${right - 8},${y - 3}
+            ${right},${y}
+            ${right - 8},${y + 3}
+          "
+          class="${cls}">
+        </polyline>
+      `;
+
+
+      if (d.lo < xMin) {
+
+        html += `
+          <polyline
+            points="
+              ${left + 8},${y - 3}
+              ${left},${y}
+              ${left + 8},${y + 3}
+            "
+            class="${cls}">
+          </polyline>
+        `;
+      }
+
+    } else {
+
+      const hiVisible =
+        clipX(d.hi);
+
+
+      html +=
+        svgLine(
+          left,
+          y,
+          mapX(hiVisible),
+          y,
+          cls
+        );
+
+
+      html += `
+        <polyline
+          points="
+            ${left + 8},${y - 3}
+            ${left},${y}
+            ${left + 8},${y + 3}
+          "
+          class="${cls}">
+        </polyline>
+      `;
+
+
+      if (d.hi > xMax) {
+
+        html += `
+          <polyline
+            points="
+              ${right - 8},${y - 3}
+              ${right},${y}
+              ${right - 8},${y + 3}
+            "
+            class="${cls}">
+          </polyline>
+        `;
+      }
+    }
+
+
+    /*
+     * Sample mean.
+     *
+     * Only draw it if it falls inside the fixed x-domain.
+     */
+
+    if (
+      d.mean >= xMin &&
+      d.mean <= xMax
+    ) {
+
+      html += `
+        <circle
+          cx="${mapX(d.mean)}"
+          cy="${y}"
+          r="1.7"
+          class="ci-point">
+        </circle>
+      `;
+    }
+  });
+
+
+  /* -------------------------------------------------------
+     Legend, no "showing 60..." text
+     ------------------------------------------------------- */
+
+  html += `
+    <text
+      x="${left}"
+      y="${H - 8}"
+      class="lab-note"
+      style="font-size: 0.6em; font-weight: 600;">
+      green covers μ · red misses μ
+    </text>
+  `;
+
+
+  svg.innerHTML =
+    html;
+}
+
+/* =========================================================
+   NORMAL PROBABILITY GEOMETRY
+   ========================================================= */
+
+function drawTailProbabilitySvg(svgId, type) {
+
+  const svg =
+    document.getElementById(svgId);
+
+  if (!svg) return;
+
+
+  const W = 240;
+  const H = 120;
+
+  const left = 12;
+  const right = 228;
+  const top = 8;
+  const baseline = 91;
+
+  const xMin = -4;
+  const xMax = 4;
+
+  const yMax = 0.43;
+
+
+  const mapX = x =>
+    left +
+    ((x - xMin) /
+    (xMax - xMin)) *
+    (right - left);
+
+
+  const mapY = y =>
+    baseline -
+    (y / yMax) *
+    (baseline - top);
+
+
+  /*
+   * Local PDF helper.
+   * Using a separate name avoids collisions with
+   * the normPdf() already used elsewhere in Week 6.
+   */
+
+  function tailNormPdf(x) {
+    return Math.exp(-0.5 * x * x) /
+      Math.sqrt(2 * Math.PI);
+  }
+
+
+  function areaPath(a, b) {
+
+    const start =
+      Math.max(
+        xMin,
+        a
+      );
+
+    const end =
+      Math.min(
+        xMax,
+        b
+      );
+
+    const step = 0.025;
+
+
+    let d =
+      `M ${mapX(start)} ${baseline}`;
+
+
+    d +=
+      ` L ${mapX(start)} ${mapY(tailNormPdf(start))}`;
+
+
+    for (
+      let x = start + step;
+      x <= end;
+      x += step
+    ) {
+
+      d +=
+        ` L ${mapX(x)} ${mapY(tailNormPdf(x))}`;
+    }
+
+
+    d +=
+      ` L ${mapX(end)} ${mapY(tailNormPdf(end))}`;
+
+    d +=
+      ` L ${mapX(end)} ${baseline} Z`;
+
+
+    return d;
+  }
+
+
+  /* full Normal curve */
+
+  let curve =
+    `M ${mapX(xMin)} ${mapY(tailNormPdf(xMin))}`;
+
+  for (
+    let x = xMin + 0.025;
+    x <= xMax;
+    x += 0.025
+  ) {
+
+    curve +=
+      ` L ${mapX(x)} ${mapY(tailNormPdf(x))}`;
+  }
+
+
+  let html = "";
+
+
+  /*
+   * 95% examples
+   *
+   * two-sided:
+   *   central 95%, alpha/2 in each tail
+   *
+   * lower bound:
+   *   95% to the LEFT of +1.645
+   *
+   * upper bound:
+   *   95% to the RIGHT of -1.645
+   */
+
+  if (type === "two") {
+
+    const z = 1.96;
+
+
+    html += `
+      <path
+        d="${areaPath(-z, z)}"
+        class="tail-main-area">
+      </path>
+
+      <path
+        d="${areaPath(xMin, -z)}"
+        class="tail-alpha-area">
+      </path>
+
+      <path
+        d="${areaPath(z, xMax)}"
+        class="tail-alpha-area">
+      </path>
+    `;
+
+
+    html += `
+      <line
+        x1="${mapX(-z)}"
+        y1="${mapY(tailNormPdf(-z))}"
+        x2="${mapX(-z)}"
+        y2="${baseline}"
+        class="tail-cut">
+      </line>
+
+      <line
+        x1="${mapX(z)}"
+        y1="${mapY(tailNormPdf(z))}"
+        x2="${mapX(z)}"
+        y2="${baseline}"
+        class="tail-cut">
+      </line>
+
+      <text
+        x="${mapX(0)}"
+        y="42"
+        text-anchor="middle"
+        class="tail-prob-label"
+        style="font-size: 0.4em; font-weight: 600;">
+        1−α
+      </text>
+
+      <text
+        x="${mapX(-2.7)}"
+        y="84"
+        text-anchor="middle"
+        class="tail-alpha-label"
+        style="font-size: 0.4em; font-weight: 600;">
+        α/2
+      </text>
+
+      <text
+        x="${mapX(2.7)}"
+        y="84"
+        text-anchor="middle"
+        class="tail-alpha-label"style="font-size: 0.4em; font-weight: 600;">
+        α/2
+      </text>
+    `;
+
+  } else if (type === "lower") {
+
+    const z = 1.645;
+
+
+    html += `
+      <path
+        d="${areaPath(xMin, z)}"
+        class="tail-main-area">
+      </path>
+
+      <path
+        d="${areaPath(z, xMax)}"
+        class="tail-alpha-area">
+      </path>
+    `;
+
+
+    html += `
+      <line
+        x1="${mapX(z)}"
+        y1="${mapY(tailNormPdf(z))}"
+        x2="${mapX(z)}"
+        y2="${baseline}"
+        class="tail-cut">
+      </line>
+
+      <text
+        x="${mapX(-0.25)}"
+        y="42"
+        text-anchor="middle"
+        class="tail-prob-label"
+        style="font-size: 0.4em; font-weight: 600;">
+        1−α
+      </text>
+
+      <text
+        x="${mapX(2.65)}"
+        y="84"
+        text-anchor="middle"
+        class="tail-alpha-label"
+        style="font-size: 0.4em; font-weight: 600;">
+        α
+      </text>
+    `;
+
+  } else if (type === "upper") {
+
+    const z = -1.645;
+
+
+    html += `
+      <path
+        d="${areaPath(z, xMax)}"
+        class="tail-main-area">
+      </path>
+
+      <path
+        d="${areaPath(xMin, z)}"
+        class="tail-alpha-area">
+      </path>
+    `;
+
+
+    html += `
+      <line
+        x1="${mapX(z)}"
+        y1="${mapY(tailNormPdf(z))}"
+        x2="${mapX(z)}"
+        y2="${baseline}"
+        class="tail-cut">
+      </line>
+
+      <text
+        x="${mapX(0.25)}"
+        y="42"
+        text-anchor="middle"
+        class="tail-prob-label"
+        style="font-size: 0.4em; font-weight: 600;">
+        1−α
+      </text>
+
+      <text
+        x="${mapX(-2.65)}"
+        y="84"
+        text-anchor="middle"
+        class="tail-alpha-label"
+        style="font-size: 0.4em; font-weight: 600;">
+        α
+      </text>
+    `;
+  }
+
+
+  /* Normal curve */
+
+  html += `
+    <path
+      d="${curve}"
+      class="tail-curve">
+    </path>
+  `;
+
+
+  /* baseline */
+
+  html += `
+    <line
+      x1="${left}"
+      y1="${baseline}"
+      x2="${right}"
+      y2="${baseline}"
+      class="tail-axis">
+    </line>
+  `;
+
+
+  /* zero */
+
+  html += `
+    <line
+      x1="${mapX(0)}"
+      y1="${baseline}"
+      x2="${mapX(0)}"
+      y2="${baseline + 4}"
+      class="tail-axis">
+    </line>
+
+    <text
+      x="${mapX(0)}"
+      y="${baseline + 13}"
+      text-anchor="middle"
+      class="tail-label">
+      0
+    </text>
+  `;
+
+
+  svg.innerHTML = html;
+}
+
+
+function drawTailProbabilitySvgs() {
+
+  drawTailProbabilitySvg(
+    "tailTwoSvg",
+    "two"
+  );
+
+  drawTailProbabilitySvg(
+    "tailLowerSvg",
+    "lower"
+  );
+
+  drawTailProbabilitySvg(
+    "tailUpperSvg",
+    "upper"
+  );
+}
+
+/* =========================================================
+   NULL-WORLD NORMAL DISTRIBUTION
+   ========================================================= */
+
+function drawNullWorldSvg() {
+
+  const svg =
+    document.getElementById("nullWorldSvg");
+
+  if (!svg) return;
+
+
+  const W = 820;
+  const H = 310;
+
+  const left = 45;
+  const right = 775;
+  const top = 28;
+  const baseline = 260;
+
+  const xMin = -4;
+  const xMax = 4;
+
+  const yMax = 0.43;
+
+
+  const mapX = x =>
+    left +
+    ((x - xMin) /
+    (xMax - xMin)) *
+    (right - left);
+
+
+  const mapY = y =>
+    baseline -
+    (y / yMax) *
+    (baseline - top);
+
+
+  function nullNormPdf(x) {
+
+    return Math.exp(
+      -0.5 * x * x
+    ) /
+    Math.sqrt(
+      2 * Math.PI
+    );
+  }
+
+
+  function areaPath(a, b) {
+
+    const start =
+      Math.max(
+        xMin,
+        a
+      );
+
+    const end =
+      Math.min(
+        xMax,
+        b
+      );
+
+    const step = 0.02;
+
+
+    let d =
+      `M ${mapX(start)} ${baseline}`;
+
+
+    d +=
+      ` L ${mapX(start)} ${mapY(nullNormPdf(start))}`;
+
+
+    for (
+      let x = start + step;
+      x <= end;
+      x += step
+    ) {
+
+      d +=
+        ` L ${mapX(x)} ${mapY(nullNormPdf(x))}`;
+    }
+
+
+    d +=
+      ` L ${mapX(end)} ${mapY(nullNormPdf(end))}`;
+
+    d +=
+      ` L ${mapX(end)} ${baseline} Z`;
+
+
+    return d;
+  }
+
+
+  /* full Normal curve */
+
+  let curve =
+    `M ${mapX(xMin)} ${mapY(nullNormPdf(xMin))}`;
+
+
+  for (
+    let x = xMin + 0.02;
+    x <= xMax;
+    x += 0.02
+  ) {
+
+    curve +=
+      ` L ${mapX(x)} ${mapY(nullNormPdf(x))}`;
+  }
+
+
+  const critical = 1.96;
+
+
+  let html = "";
+
+
+  /* central 95% */
+
+  html += `
+    <path
+      d="${areaPath(-critical, critical)}"
+      class="null-central-area">
+    </path>
+  `;
+
+
+  /* two rejection tails */
+
+  html += `
+    <path
+      d="${areaPath(xMin, -critical)}"
+      class="null-tail-area">
+    </path>
+
+    <path
+      d="${areaPath(critical, xMax)}"
+      class="null-tail-area">
+    </path>
+  `;
+
+
+  /* Normal density */
+
+  html += `
+    <path
+      d="${curve}"
+      class="null-curve">
+    </path>
+  `;
+
+
+  /* baseline */
+
+  html += `
+    <line
+      x1="${left}"
+      y1="${baseline}"
+      x2="${right}"
+      y2="${baseline}"
+      class="null-axis">
+    </line>
+  `;
+
+
+  /* decision bounds */
+
+  [
+    -critical,
+    critical
+  ].forEach(z => {
+
+    html += `
+      <line
+        x1="${mapX(z)}"
+        y1="${mapY(nullNormPdf(z))}"
+        x2="${mapX(z)}"
+        y2="${baseline}"
+        class="decision-bound">
+      </line>
+    `;
+  });
+
+
+  /* labels */
+
+  html += `
+    <text
+      x="${mapX(-critical)}"
+      y="${baseline + 26}"
+      text-anchor="middle"
+      class="null-label">
+      −1.96
+    </text>
+
+    <text
+      x="${mapX(critical)}"
+      y="${baseline + 26}"
+      text-anchor="middle"
+      class="null-label">
+      +1.96
+    </text>
+
+    <text
+      x="${mapX(0)}"
+      y="112"
+      text-anchor="middle"
+      class="null-middle-label">
+      95% of null-world statistics
+    </text>
+
+    <text
+      x="${mapX(-2.75)}"
+      y="${baseline - 18}"
+      text-anchor="middle"
+      class="null-tail-label">
+      2.5%
+    </text>
+
+    <text
+      x="${mapX(2.75)}"
+      y="${baseline - 18}"
+      text-anchor="middle"
+      class="null-tail-label">
+      2.5%
+    </text>
+  `;
+
+
+  svg.innerHTML = html;
+}
+
+/* =========================================================
+   PROPORTION CI COVERAGE LAB (WILSON)
+   ========================================================= */
+
+function binomialDraw(n, p, rng) {
+  let x = 0;
+  for (let i = 0; i < n; i++) if (rng() < p) x++;
+  return x;
+}
+
+function wilsonInterval(x, n, level) {
+  const phat = x / n;
+  const alpha = 1 - level;
+  const z = normInv(1 - alpha / 2);
+  const z2 = z * z;
+  const den = 1 + z2 / n;
+  const center = (phat + z2 / (2 * n)) / den;
+  const half = z * Math.sqrt(phat * (1 - phat) / n + z2 / (4 * n * n)) / den;
+  return [Math.max(0, center - half), Math.min(1, center + half), phat];
+}
+
+function renderPropCI() {
+
+  const svg =
+    document.getElementById("ciPropSvg");
+
+  if (!svg) return;
+
+
+  const p =
+    Number(
+      document.getElementById("propP")?.value || 0.30
+    );
+
+  const n =
+    Number(
+      document.getElementById("propN")?.value || 40
+    );
+
+  const levelPct =
+    Number(
+      document.getElementById("propLevel")?.value || 95
+    );
+
+  const k =
+    Number(
+      document.getElementById("propK")?.value || 100
+    );
+
+
+  /* -------------------------------------------------------
+     Update labels
+     ------------------------------------------------------- */
+
+  const pOut =
+    document.getElementById("propPValue");
+
+  const nOut =
+    document.getElementById("propNValue");
+
+  const levelOut =
+    document.getElementById("propLevelValue");
+
+
+  if (pOut) {
+    pOut.textContent =
+      p.toFixed(2);
+  }
+
+  if (nOut) {
+    nOut.textContent =
+      n;
+  }
+
+  if (levelOut) {
+    levelOut.textContent =
+      `${levelPct}%`;
+  }
+
+
+  /* -------------------------------------------------------
+     Confidence level
+     ------------------------------------------------------- */
+
+  const level =
+    levelPct / 100;
+
+  const alpha =
+    1 - level;
+
+  const z =
+    normInv(
+      1 - alpha / 2
+    );
+
+
+  /*
+   * Only the redraw button changes propSeed.
+   *
+   * Slider movement therefore modifies the same
+   * underlying simulation rather than silently
+   * starting a completely new experiment.
+   */
+
+  const rng =
+    mulberry32(
+      7200 +
+      propSeed * 1009
+    );
+
+
+  const intervals = [];
+
+  let covered = 0;
+
+
+  /* -------------------------------------------------------
+     Simulate repeated samples
+     ------------------------------------------------------- */
+
+  for (let sample = 0; sample < k; sample++) {
+
+    let successes = 0;
+
+
+    for (let i = 0; i < n; i++) {
+
+      if (rng() < p) {
+        successes++;
+      }
+    }
+
+
+    const phat =
+      successes / n;
+
+
+    /* -----------------------------------------------------
+       Wilson confidence interval
+       ----------------------------------------------------- */
+
+    const z2 =
+      z * z;
+
+    const denom =
+      1 +
+      z2 / n;
+
+    const center =
+      (
+        phat +
+        z2 / (2 * n)
+      ) /
+      denom;
+
+    const half =
+      (
+        z *
+        Math.sqrt(
+          phat * (1 - phat) / n +
+          z2 / (4 * n * n)
+        )
+      ) /
+      denom;
+
+
+    const lo =
+      Math.max(
+        0,
+        center - half
+      );
+
+    const hi =
+      Math.min(
+        1,
+        center + half
+      );
+
+
+    const covers =
+      p >= lo &&
+      p <= hi;
+
+
+    if (covers) {
+      covered++;
+    }
+
+
+    intervals.push({
+      phat,
+      lo,
+      hi,
+      covers
+    });
+  }
+
+
+  /* -------------------------------------------------------
+     Coverage output
+     ------------------------------------------------------- */
+
+  const coverageOut =
+    document.getElementById(
+      "propCoverage"
+    );
+
+
+  if (coverageOut) {
+
+    coverageOut.textContent =
+      `${(
+        100 *
+        covered /
+        k
+      ).toFixed(1)}%`;
+  }
+
+
+  /* -------------------------------------------------------
+     Plot geometry
+     ------------------------------------------------------- */
+
+  const W = 900;
+  const H = 608;
+
+  const left = 70;
+  const right = 870;
+
+  const top = 28;
+  const base = 555;
+
+
+  /*
+   * Fixed scale: proportions always live in [0,1].
+   */
+
+  const xMin = 0;
+  const xMax = 1;
+
+
+  const mapX = x =>
+    left +
+    x *
+    (right - left);
+
+
+  /* -------------------------------------------------------
+     Axis
+     ------------------------------------------------------- */
+
+  let html = "";
+
+
+  html +=
+    svgLine(
+      left,
+      base,
+      right,
+      base,
+      "lab-axis"
+    );
+
+
+  const ticks = [
+    0,
+    0.25,
+    0.50,
+    0.75,
+    1
+  ];
+
+
+  ticks.forEach(tick => {
+
+    const x =
+      mapX(tick);
+
+
+    html += `
+      <line
+        x1="${x}"
+        y1="${base}"
+        x2="${x}"
+        y2="${base + 7}"
+        class="lab-axis-tick">
+      </line>
+
+      <text
+        x="${x}"
+        y="${base + 24}"
+        text-anchor="middle"
+        class="lab-axis-label">
+        ${tick.toFixed(
+          tick === 0 || tick === 1
+            ? 0
+            : 2
+        )}
+      </text>
+    `;
+  });
+
+
+  /* -------------------------------------------------------
+     True population proportion
+     ------------------------------------------------------- */
+
+  const truthX =
+    mapX(p);
+
+
+  html +=
+    svgLine(
+      truthX,
+      top - 4,
+      truthX,
+      base,
+      "lab-truth-line"
+    );
+
+
+  html += `
+    <text
+      x="${truthX + 6}"
+      y="${top + 12}"
+      class="lab-truth-label">
+      true p = ${p.toFixed(2)}
+    </text>
+  `;
+
+
+  /* -------------------------------------------------------
+     Draw ALL confidence intervals
+     ------------------------------------------------------- */
+
+  const usableHeight =
+    base - top;
+
+
+  intervals.forEach((d, i) => {
+
+    /*
+     * Spread all k intervals across the complete
+     * plotting height.
+     */
+
+    const fraction =
+      (i + 0.5) / k;
+
+
+    const basicY =
+      top +
+      fraction *
+      usableHeight;
+
+
+    /*
+     * Small deterministic vertical jitter.
+     *
+     * Especially helpful for k = 500 or 1000.
+     */
+
+    const nominalSpacing =
+      usableHeight / k;
+
+
+    const jitter =
+      Math.sin(
+        (i + 1) *
+        12.9898
+      ) *
+      nominalSpacing *
+      0.35;
+
+
+    const y =
+      basicY +
+      jitter;
+
+
+    const cls =
+      d.covers
+        ? "ci-cover"
+        : "ci-miss";
+
+
+    /* interval */
+
+    html +=
+      svgLine(
+        mapX(d.lo),
+        y,
+        mapX(d.hi),
+        y,
+        cls
+      );
+
+
+    /* observed sample proportion */
+
+    html += `
+      <circle
+        cx="${mapX(d.phat)}"
+        cy="${y}"
+        r="1.7"
+        class="ci-point">
+      </circle>
+    `;
+  });
+
+
+  /* -------------------------------------------------------
+     Footer
+     ------------------------------------------------------- */
+
+  html += `
+    <text
+      x="${left}"
+      y="${H - 8}"
+      class="lab-note"
+      style="font-size: 0.6em; font-weight: 600;">
+      green covers p · red misses p
+    </text>
+  `;
+
+
+  svg.innerHTML =
+    html;
+}
+
+/* =========================================================
+   REPEATED DRUG TRIAL
+   ========================================================= */
+
+function renderTrial() {
+  const meansSvg = document.getElementById("trialMeansSvg");
+  const effectSvg = document.getElementById("trialEffectSvg");
+  if (!meansSvg || !effectSvg) return;
+
+  const n = Number(document.getElementById("trialN")?.value || 80);
+  const nOut = document.getElementById("trialNValue");
+  if (nOut) nOut.textContent = n;
+
+  const muC = 140;
+  const muT = 134;
+  const sigma = 14;
+  const seMean = sigma / Math.sqrt(n);
+  const seDiff = sigma * Math.sqrt(2 / n);
+  const rng = mulberry32(8100 + trialSeed * 1031);
+  const zC = randn(rng);
+  const zT = randn(rng);
+  const meanC = muC + seMean * zC;
+  const meanT = muT + seMean * zT;
+  const delta = meanT - meanC;
+  const z = delta / seDiff;
+  const p = 2 * (1 - normCdf(Math.abs(z)));
+  const lo = delta - 1.96 * seDiff;
+  const hi = delta + 1.96 * seDiff;
+  const d = delta / sigma;
+
+  const deltaOut = document.getElementById("trialDelta");
+  const ciOut = document.getElementById("trialCI");
+  const pOut = document.getElementById("trialP");
+  const dOut = document.getElementById("trialD");
+  if (deltaOut) deltaOut.textContent = `${delta.toFixed(1)} mmHg`;
+  if (ciOut) ciOut.textContent = `[${lo.toFixed(1)}, ${hi.toFixed(1)}]`;
+  if (pOut) pOut.textContent = formatP(p);
+  if (dOut) dOut.textContent = d.toFixed(2);
+
+  const left = 55;
+  const right = 390;
+  const top = 28;
+  const base = 205;
+  const yMin = 125;
+  const yMax = 148;
+  const mapY = y => base - ((y - yMin) / (yMax - yMin)) * (base - top);
+
+  let meansHtml = svgLine(70, base, 350, base, "lab-axis");
+  const xs = [145, 285];
+  const vals = [meanC, meanT];
+  const labels = ["placebo", "drug"];
+  vals.forEach((v, i) => {
+    const y = mapY(v);
+    const yLo = mapY(v - 1.96 * seMean);
+    const yHi = mapY(v + 1.96 * seMean);
+    meansHtml += svgLine(xs[i], yHi, xs[i], yLo, i === 0 ? "trial-ci-placebo" : "trial-ci-drug");
+    meansHtml += svgLine(xs[i] - 8, yHi, xs[i] + 8, yHi, i === 0 ? "trial-ci-placebo" : "trial-ci-drug");
+    meansHtml += svgLine(xs[i] - 8, yLo, xs[i] + 8, yLo, i === 0 ? "trial-ci-placebo" : "trial-ci-drug");
+    meansHtml += `<circle cx="${xs[i]}" cy="${y}" r="7" class="${i === 0 ? "trial-dot-placebo" : "trial-dot-drug"}"></circle>`;
+    meansHtml += `<text x="${xs[i]}" y="232" text-anchor="middle" class="lab-axis-label" style="font-size:16px;">${labels[i]}</text>`;
+    meansHtml += `<text x="${xs[i]}" y="${y - 12}" text-anchor="middle" class="trial-value-label">${v.toFixed(1)}</text>`;
+  });
+  meansSvg.innerHTML = meansHtml;
+
+  const eLeft = 45;
+  const eRight = 395;
+  const eBase = 170;
+  const xMin = -16;
+  const xMax = 6;
+  const mapX = x => eLeft + ((x - xMin) / (xMax - xMin)) * (eRight - eLeft);
+  let effectHtml = svgLine(eLeft, eBase, eRight, eBase, "lab-axis");
+  effectHtml += svgLine(mapX(0), 40, mapX(0), eBase + 8, "effect-zero-line");
+  effectHtml += svgLine(mapX(lo), 112, mapX(hi), 112, "trial-effect-ci");
+  effectHtml += svgLine(mapX(lo), 103, mapX(lo), 121, "trial-effect-ci");
+  effectHtml += svgLine(mapX(hi), 103, mapX(hi), 121, "trial-effect-ci");
+  effectHtml += `<circle cx="${mapX(delta)}" cy="112" r="8" class="trial-effect-dot"></circle>`;
+  effectHtml += `<text x="${mapX(0) + 6}" y="55" class="effect-zero-label">null 0</text>`;
+  effectHtml += `<text x="${mapX(delta)}" y="90" text-anchor="middle" class="trial-value-label">${delta.toFixed(1)}</text>`;
+  effectHtml += `<text x="${eLeft}" y="205" class="lab-note" style="font-size:15px; font-weight:600;">95% CI for treatment − placebo</text>`;
+  effectSvg.innerHTML = effectHtml;
+}
+
+/* =========================================================
+   TYPE I / TYPE II / POWER LAB
+   ========================================================= */
+
+function normalPdf(x, mu, sigma) {
+  const z = (x - mu) / sigma;
+  return Math.exp(-0.5 * z * z) / (sigma * Math.sqrt(2 * Math.PI));
+}
+
+function areaPath(xs, mapX, mapY, base, cls) {
+  if (!xs.length) return "";
+  const topPts = xs.map(([x, y]) => [mapX(x), mapY(y)]);
+  let d = `M ${topPts[0][0].toFixed(1)} ${base.toFixed(1)} `;
+  topPts.forEach(p => { d += `L ${p[0].toFixed(1)} ${p[1].toFixed(1)} `; });
+  d += `L ${topPts[topPts.length - 1][0].toFixed(1)} ${base.toFixed(1)} Z`;
+  return `<path d="${d}" class="${cls}"></path>`;
+}
+
+/* =========================================================
+   ERROR-WIDGET NORMAL HELPERS
+   ========================================================= */
+
+function errorNormPdf(x, mu = 0, sigma = 1) {
+
+  const z =
+    (x - mu) / sigma;
+
+  return Math.exp(
+    -0.5 * z * z
+  ) / (
+    sigma *
+    Math.sqrt(2 * Math.PI)
+  );
+}
+
+
+function errorErf(x) {
+
+  const sign =
+    x < 0 ? -1 : 1;
+
+  x =
+    Math.abs(x);
+
+  const a1 = 0.254829592;
+  const a2 = -0.284496736;
+  const a3 = 1.421413741;
+  const a4 = -1.453152027;
+  const a5 = 1.061405429;
+  const p = 0.3275911;
+
+  const t =
+    1 / (1 + p * x);
+
+  const y =
+    1 -
+    (
+      (
+        (
+          (
+            (
+              a5 * t +
+              a4
+            ) * t +
+            a3
+          ) * t +
+          a2
+        ) * t +
+        a1
+      ) * t
+    ) *
+    Math.exp(-x * x);
+
+  return sign * y;
+}
+
+
+function errorNormCdf(x, mu = 0, sigma = 1) {
+
+  return 0.5 *
+    (
+      1 +
+      errorErf(
+        (x - mu) /
+        (
+          sigma *
+          Math.SQRT2
+        )
+      )
+    );
+}
+
+function renderErrorWidget() {
+
+  const svg =
+    document.getElementById("errorSvg");
+
+  if (!svg) return;
+
+
+  const mu0 =
+    Number(
+      document.getElementById("errMu0")?.value || 0
+    );
+
+  const mu1 =
+    Number(
+      document.getElementById("errMu1")?.value || -4
+    );
+
+  const sigma =
+    Number(
+      document.getElementById("errSigma")?.value || 14
+    );
+
+  const n =
+    Number(
+      document.getElementById("errN")?.value || 80
+    );
+
+  const alpha =
+    Number(
+      document.getElementById("errAlpha")?.value || 0.05
+    );
+
+  const type =
+    document.getElementById("errType")?.value || "two";
+
+
+  /* -------------------------------------------------------
+     Live labels
+     ------------------------------------------------------- */
+
+  const mu0Out =
+    document.getElementById("errMu0Value");
+
+  const mu1Out =
+    document.getElementById("errMu1Value");
+
+  const sigmaOut =
+    document.getElementById("errSigmaValue");
+
+  const nOut =
+    document.getElementById("errNValue");
+
+
+  if (mu0Out) {
+    mu0Out.textContent =
+      mu0.toFixed(1);
+  }
+
+  if (mu1Out) {
+    mu1Out.textContent =
+      mu1.toFixed(1);
+  }
+
+  if (sigmaOut) {
+    sigmaOut.textContent =
+      sigma.toFixed(0);
+  }
+
+  if (nOut) {
+    nOut.textContent =
+      n;
+  }
+
+
+  /* -------------------------------------------------------
+     H0 and H1 must actually differ
+     ------------------------------------------------------- */
+
+  const alphaOut =
+    document.getElementById("errAlphaOut");
+
+  const betaOut =
+    document.getElementById("errBetaOut");
+
+  const powerOut =
+    document.getElementById("errPowerOut");
+
+
+  if (alphaOut) {
+    alphaOut.textContent =
+      `${(alpha * 100).toFixed(1)}%`;
+  }
+
+
+  if (
+    Math.abs(mu1 - mu0) <
+    1e-10
+  ) {
+
+    if (betaOut) {
+      betaOut.textContent = "—";
+    }
+
+    if (powerOut) {
+      powerOut.textContent = "—";
+    }
+
+
+    svg.innerHTML = `
+      <text
+        x="430"
+        y="225"
+        text-anchor="middle"
+        class="error-coincide-title">
+        Two worlds coincide
+      </text>
+
+      <text
+        x="430"
+        y="260"
+        text-anchor="middle"
+        class="error-coincide-sub">
+        H₀ and H₁ must represent different parameter values.
+      </text>
+    `;
+
+    return;
+  }
+
+
+  /* -------------------------------------------------------
+     Sampling distribution of treatment-effect estimator
+     
+     n = patients per arm
+     common SD = sigma
+     
+     SE(delta-hat) = sigma * sqrt(2/n)
+     ------------------------------------------------------- */
+
+  const se =
+    sigma *
+    Math.sqrt(
+      2 / n
+    );
+
+
+  /* -------------------------------------------------------
+     Decision boundaries
+     ------------------------------------------------------- */
+
+  let lowerCrit =
+    -Infinity;
+
+  let upperCrit =
+    Infinity;
+
+
+  if (type === "two") {
+
+    const z =
+      normInv(
+        1 - alpha / 2
+      );
+
+    lowerCrit =
+      mu0 -
+      z * se;
+
+    upperCrit =
+      mu0 +
+      z * se;
+
+  } else if (type === "less") {
+
+    const z =
+      normInv(
+        alpha
+      );
+
+    upperCrit =
+      mu0 +
+      z * se;
+
+  } else {
+
+    const z =
+      normInv(
+        1 - alpha
+      );
+
+    lowerCrit =
+      mu0 +
+      z * se;
+  }
+
+
+  /* -------------------------------------------------------
+     Type II error under alternative world
+     ------------------------------------------------------- */
+
+  let beta;
+
+
+  if (type === "two") {
+
+    beta =
+      errorNormCdf(
+        upperCrit,
+        mu1,
+        se
+      ) -
+      errorNormCdf(
+        lowerCrit,
+        mu1,
+        se
+      );
+
+  } else if (type === "less") {
+
+    beta =
+      1 -
+      errorNormCdf(
+        upperCrit,
+        mu1,
+        se
+      );
+
+  } else {
+
+    beta =
+      errorNormCdf(
+        lowerCrit,
+        mu1,
+        se
+      );
+  }
+
+
+  beta =
+    Math.max(
+      0,
+      Math.min(
+        1,
+        beta
+      )
+    );
+
+
+  const power =
+    1 - beta;
+
+
+  if (betaOut) {
+
+    betaOut.textContent =
+      `${(
+        beta * 100
+      ).toFixed(1)}%`;
+  }
+
+
+  if (powerOut) {
+
+    powerOut.textContent =
+      `${(
+        power * 100
+      ).toFixed(1)}%`;
+  }
+
+
+  /* -------------------------------------------------------
+     Fixed plotting geometry
+     ------------------------------------------------------- */
+
+  const W = 860;
+  const H = 500;
+
+  const left = 58;
+  const right = 830;
+
+  const top = 28;
+  const baseline = 350;
+
+
+  /*
+   * CRITICAL CHANGE:
+   * fixed x-axis
+   */
+
+  const xMin = -15;
+  const xMax = 15;
+
+
+  const mapX = x =>
+    left +
+    ((x - xMin) /
+    (xMax - xMin)) *
+    (right - left);
+
+
+  const clipX = x =>
+    Math.max(
+      xMin,
+      Math.min(
+        xMax,
+        x
+      )
+    );
+
+
+  /*
+   * y-scale accommodates both curves but does NOT
+   * change their horizontal width.
+   */
+
+  const peak =
+    errorNormPdf(
+      mu0,
+      mu0,
+      se
+    );
+
+  const yMax =
+    peak * 1.12;
+
+
+  const mapY = y =>
+    baseline -
+    (y / yMax) *
+    (baseline - top);
+
+
+  /* -------------------------------------------------------
+     Density curve builder
+     ------------------------------------------------------- */
+
+  function curvePath(mu) {
+
+    const step = 0.05;
+
+    let d =
+      `M ${mapX(xMin)} ${mapY(errorNormPdf(xMin, mu, se))}`;
+
+
+    for (
+      let x = xMin + step;
+      x <= xMax;
+      x += step
+    ) {
+
+      d +=
+        ` L ${mapX(x)} ${mapY(errorNormPdf(x, mu, se))}`;
+    }
+
+    return d;
+  }
+
+
+  /* -------------------------------------------------------
+     Filled probability area
+     ------------------------------------------------------- */
+
+  function areaPath(
+    mu,
+    a,
+    b
+  ) {
+
+    const start =
+      Math.max(
+        xMin,
+        a
+      );
+
+    const end =
+      Math.min(
+        xMax,
+        b
+      );
+
+
+    if (end <= start) {
+      return "";
+    }
+
+
+    const step = 0.05;
+
+
+    let d =
+      `M ${mapX(start)} ${baseline}`;
+
+    d +=
+      ` L ${mapX(start)} ${mapY(errorNormPdf(start, mu, se))}`;
+
+
+    for (
+      let x = start + step;
+      x <= end;
+      x += step
+    ) {
+
+      d +=
+        ` L ${mapX(x)} ${mapY(errorNormPdf(x, mu, se))}`;
+    }
+
+
+    d +=
+      ` L ${mapX(end)} ${mapY(errorNormPdf(end, mu, se))}`;
+
+    d +=
+      ` L ${mapX(end)} ${baseline} Z`;
+
+
+    return d;
+  }
+
+
+  /* -------------------------------------------------------
+     Double-arrow region helper
+     ------------------------------------------------------- */
+
+  function regionArrow(
+    x1,
+    x2,
+    y,
+    label
+  ) {
+
+    x1 =
+      Math.max(
+        left,
+        Math.min(
+          right,
+          x1
+        )
+      );
+
+    x2 =
+      Math.max(
+        left,
+        Math.min(
+          right,
+          x2
+        )
+      );
+
+
+    if (
+      x2 - x1 <
+      18
+    ) {
+      return "";
+    }
+
+
+    const head = 7;
+
+
+    return `
+      <line
+        x1="${x1 + head}"
+        y1="${y}"
+        x2="${x2 - head}"
+        y2="${y}"
+        class="error-region-arrow">
+      </line>
+
+      <polyline
+        points="
+          ${x1 + head},${y - 5}
+          ${x1},${y}
+          ${x1 + head},${y + 5}
+        "
+        class="error-region-arrow">
+      </polyline>
+
+      <polyline
+        points="
+          ${x2 - head},${y - 5}
+          ${x2},${y}
+          ${x2 - head},${y + 5}
+        "
+        class="error-region-arrow">
+      </polyline>
+
+      <text
+        x="${(x1 + x2) / 2}"
+        y="${y + 23}"
+        text-anchor="middle"
+        class="error-region-label">
+        ${label}
+      </text>
+    `;
+  }
+
+
+  let html = "";
+
+
+  /* =======================================================
+     ERROR REGIONS
+     ======================================================= */
+
+
+  if (type === "two") {
+
+    /*
+     * Type I:
+     * rejection tails under H0
+     */
+
+    html += `
+      <path
+        d="${areaPath(
+          mu0,
+          xMin,
+          lowerCrit
+        )}"
+        class="error-null-area">
+      </path>
+
+      <path
+        d="${areaPath(
+          mu0,
+          upperCrit,
+          xMax
+        )}"
+        class="error-null-area">
+      </path>
+    `;
+
+
+    /*
+     * Type II:
+     * non-rejection region under H1
+     */
+
+    html += `
+      <path
+        d="${areaPath(
+          mu1,
+          lowerCrit,
+          upperCrit
+        )}"
+        class="error-beta-area">
+      </path>
+    `;
+
+  } else if (type === "less") {
+
+    html += `
+      <path
+        d="${areaPath(
+          mu0,
+          xMin,
+          upperCrit
+        )}"
+        class="error-null-area">
+      </path>
+
+      <path
+        d="${areaPath(
+          mu1,
+          upperCrit,
+          xMax
+        )}"
+        class="error-beta-area">
+      </path>
+    `;
+
+  } else {
+
+    html += `
+      <path
+        d="${areaPath(
+          mu0,
+          lowerCrit,
+          xMax
+        )}"
+        class="error-null-area">
+      </path>
+
+      <path
+        d="${areaPath(
+          mu1,
+          xMin,
+          lowerCrit
+        )}"
+        class="error-beta-area">
+      </path>
+    `;
+  }
+
+
+  /* =======================================================
+     CURVES
+     ======================================================= */
+
+  html += `
+    <path
+      d="${curvePath(mu0)}"
+      class="error-null-curve">
+    </path>
+
+    <path
+      d="${curvePath(mu1)}"
+      class="error-alt-curve">
+    </path>
+  `;
+
+
+  /* -------------------------------------------------------
+     Mean markers
+     ------------------------------------------------------- */
+
+  html += `
+    <line
+      x1="${mapX(mu0)}"
+      y1="${mapY(errorNormPdf(mu0, mu0, se))}"
+      x2="${mapX(mu0)}"
+      y2="${baseline}"
+      class="error-mu0-line">
+    </line>
+
+    <line
+      x1="${mapX(mu1)}"
+      y1="${mapY(errorNormPdf(mu1, mu1, se))}"
+      x2="${mapX(mu1)}"
+      y2="${baseline}"
+      class="error-mu1-line">
+    </line>
+
+    <text
+      x="${mapX(mu0)}"
+      y="${mapY(errorNormPdf(mu0, mu0, se)) - 10}"
+      text-anchor="middle"
+      class="error-curve-label null">
+      H₀: Δ = ${mu0.toFixed(1)}
+    </text>
+
+    <text
+      x="${mapX(mu1)}"
+      y="${mapY(errorNormPdf(mu1, mu1, se)) - 10}"
+      text-anchor="middle"
+      class="error-curve-label alt">
+      H₁: Δ = ${mu1.toFixed(1)}
+    </text>
+  `;
+
+
+  /* =======================================================
+     X AXIS
+     ======================================================= */
+
+  html += `
+    <line
+      x1="${left}"
+      y1="${baseline}"
+      x2="${right}"
+      y2="${baseline}"
+      class="error-axis">
+    </line>
+  `;
+
+
+  const ticks = [
+    -15,
+    -10,
+    -5,
+    0,
+    5,
+    10,
+    15
+  ];
+
+
+  ticks.forEach(tick => {
+
+    const x =
+      mapX(tick);
+
+
+    html += `
+      <line
+        x1="${x}"
+        y1="${baseline}"
+        x2="${x}"
+        y2="${baseline + 7}"
+        class="error-axis">
+      </line>
+
+      <text
+        x="${x}"
+        y="${baseline + 25}"
+        text-anchor="middle"
+        class="error-axis-label">
+        ${tick}
+      </text>
+    `;
+  });
+
+
+  /* =======================================================
+     DECISION BOUNDS
+     ======================================================= */
+
+  if (
+    Number.isFinite(lowerCrit) &&
+    lowerCrit >= xMin &&
+    lowerCrit <= xMax
+  ) {
+
+    html += `
+      <line
+        x1="${mapX(lowerCrit)}"
+        y1="${top}"
+        x2="${mapX(lowerCrit)}"
+        y2="${baseline}"
+        class="error-critical">
+      </line>
+    `;
+  }
+
+
+  if (
+    Number.isFinite(upperCrit) &&
+    upperCrit >= xMin &&
+    upperCrit <= xMax
+  ) {
+
+    html += `
+      <line
+        x1="${mapX(upperCrit)}"
+        y1="${top}"
+        x2="${mapX(upperCrit)}"
+        y2="${baseline}"
+        class="error-critical">
+      </line>
+    `;
+  }
+
+
+  /* =======================================================
+     DECISION-REGION DOUBLE ARROWS
+     ======================================================= */
+
+  const arrowY =
+    baseline + 52;
+
+
+  if (type === "two") {
+
+    const lc =
+      mapX(
+        clipX(lowerCrit)
+      );
+
+    const uc =
+      mapX(
+        clipX(upperCrit)
+      );
+
+
+    html +=
+      regionArrow(
+        left,
+        lc,
+        arrowY,
+        "Reject H₀"
+      );
+
+
+    html +=
+      regionArrow(
+        lc,
+        uc,
+        arrowY,
+        "Do not reject H₀"
+      );
+
+
+    html +=
+      regionArrow(
+        uc,
+        right,
+        arrowY,
+        "Reject H₀"
+      );
+
+  } else if (type === "less") {
+
+    const c =
+      mapX(
+        clipX(upperCrit)
+      );
+
+
+    html +=
+      regionArrow(
+        left,
+        c,
+        arrowY,
+        "Reject H₀"
+      );
+
+
+    html +=
+      regionArrow(
+        c,
+        right,
+        arrowY,
+        "Do not reject H₀"
+      );
+
+  } else {
+
+    const c =
+      mapX(
+        clipX(lowerCrit)
+      );
+
+
+    html +=
+      regionArrow(
+        left,
+        c,
+        arrowY,
+        "Do not reject H₀"
+      );
+
+
+    html +=
+      regionArrow(
+        c,
+        right,
+        arrowY,
+        "Reject H₀"
+      );
+  }
+
+
+  /* -------------------------------------------------------
+     Error labels
+     ------------------------------------------------------- */
+
+  html += `
+    <text
+      x="${left + 10}"
+      y="24"
+      class="error-area-label alpha">
+      red = Type I error
+    </text>
+
+    <text
+      x="${left + 155}"
+      y="24"
+      class="error-area-label beta">
+      blue = Type II error
+    </text>
+  `;
+
+
+  svg.innerHTML =
+    html;
+}
+
+/* =========================================================
+   MULTIPLICITY CALCULATOR
+   ========================================================= */
+
+function renderMultiplicity() {
+  const k = Number(document.getElementById("multiK")?.value || 5);
+  const alpha = Number(document.getElementById("multiAlpha")?.value || 0.05);
+  const fwer = 1 - Math.pow(1 - alpha, k);
+
+  const kOut = document.getElementById("multiKValue");
+  const fwerOut = document.getElementById("multiFwer");
+  const fill = document.getElementById("multiFill");
+  const label = document.getElementById("multiMeterLabel");
+  if (kOut) kOut.textContent = k;
+  if (fwerOut) fwerOut.textContent = `${(100 * fwer).toFixed(1)}%`;
+  if (fill) fill.style.width = `${100 * fwer}%`;
+  if (label) label.textContent = `${(100 * fwer).toFixed(1)}%`;
+}
+
+/* =========================================================
+   EVENT BINDING / REVEAL INITIALIZATION
+   ========================================================= */
+
+function bindOnce(id, event, fn) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const key = `bound${event}`;
+  if (el.dataset[key] === "true") return;
+  el.dataset[key] = "true";
+  el.addEventListener(event, fn);
+}
+
+function initWeek06() {
+  renderMeanCI();
+  renderPropCI();
+  renderTrial();
+  renderErrorWidget();
+  renderMultiplicity();
+  drawTailProbabilitySvgs();
+  drawNullWorldSvg();
+
+  ["ciMu", "ciSigma", "ciN", "ciLevel"].forEach(id => bindOnce(id, "input", renderMeanCI));
+  ["ciType", "ciK"].forEach(id => bindOnce(id, "change", renderMeanCI));
+  bindOnce("ciRedraw", "click", function () { ciSeed++; renderMeanCI(); });
+
+  ["propP", "propN", "propLevel"].forEach(id => bindOnce(id, "input", renderPropCI));
+  bindOnce("propK", "change", renderPropCI);
+  bindOnce("propRedraw", "click", function () { propSeed++; renderPropCI(); });
+
+  bindOnce("trialN", "input", renderTrial);
+  bindOnce("trialRedraw", "click", function () { trialSeed++; renderTrial(); });
+
+  ["errMu0", "errMu1", "errSigma", "errN"].forEach(id => bindOnce(id, "input", renderErrorWidget));
+  ["errAlpha", "errType"].forEach(id => bindOnce(id, "change", renderErrorWidget));
+
+  bindOnce("multiK", "input", renderMultiplicity);
+  bindOnce("multiAlpha", "change", renderMultiplicity);
+}
+
+function startWeek06() {
+  requestAnimationFrame(() => requestAnimationFrame(initWeek06));
+}
+
+startWeek06();
+document.addEventListener("DOMContentLoaded", startWeek06);
+window.addEventListener("load", startWeek06);
+
+if (window.Reveal && typeof window.Reveal.on === "function") {
+  window.Reveal.on("ready", startWeek06);
+  window.Reveal.on("slidechanged", startWeek06);
+}
+
+})();
+</script>
 
 
 </section>
@@ -445,7 +4839,7 @@ Content to be developed.
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/mirzahosseini-arash-semmelweis\.github\.io\/statsenpure\/");
+            var filterRegex = new RegExp('/' + window.location.host + '/');
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

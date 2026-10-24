@@ -35,7 +35,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-20a2b14e39b1069e298e1d6689f79ac4.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-e26530a630d0280e258cbf7ec32ee86d.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -162,25 +162,25 @@ Week 2
 Recall from Week 1
 </div>
 <div class="flow-row">
-<div class="flow-node">
+<div class="flow-node" style="font-size: 1em">
 Experiment
 </div>
 <div class="flow-arrow">
 →
 </div>
-<div class="flow-node observed">
+<div class="flow-node observed" style="font-size: 1em">
 Possible outcomes
 </div>
 <div class="flow-arrow">
 →
 </div>
-<div class="flow-node probability">
+<div class="flow-node probability" style="font-size: 1em">
 Events
 </div>
 <div class="flow-arrow">
 →
 </div>
-<div class="flow-node estimate">
+<div class="flow-node estimate" style="font-size: 1em">
 Numbers
 </div>
 </div>
@@ -1400,8 +1400,11 @@ Recognize the formula. Do not memorize it.
 <div class="concept-line">
 <p>For the Gaussian model, <span class="math inline">\(\mu\)</span> moves the center and <span class="math inline">\(\sigma\)</span> controls the spread.</p>
 </div>
-<div class="concept-line">
-<p>Why Gaussian normal distribution is so common in nature: it models an outcome that is the sum of many tiny independent contributions.</p>
+<div class="concept-line" style="font-size:60%">
+<p>Why Gaussian normal distribution appears in nature: it models an outcome that is the sum of many tiny independent contributions, which often takes this shape.</p>
+</div>
+<div class="concept-line" style="font-size:60%">
+<p>Many physical quantities such as mass, time, and concentration cannot be negative. A normal distribution nevertheless has support on the entire real line, so it is an approximation for such quantities.</p>
 </div>
 </div>
 <aside class="notes">
@@ -2036,6 +2039,14 @@ Count events in a fixed exposure interval.
 <label class="mini-control"> λ = <strong id="poissonLambdaValue">3.0</strong> <input id="poissonLambda" type="range" min="0.5" max="8" value="3" step="0.5"> </label> <svg id="poissonPmf" class="mini-pmf" viewbox="0 0 240 135"></svg>
 </div>
 </div>
+<div class="portrait-grid-3 fragment fade-up">
+<div class="portrait-badge warning-accent" style="grid-column: 3;">
+<img src="figures/Poisson.jpg" alt="Denis Poisson" class="portrait-img">
+<div class="portrait-info">
+<strong>Siméon Denis Poisson</strong>
+</div>
+</div>
+</div>
 <div class="fragment fade-up">
 <div class="concept-line">
 <p>Before calculating, identify the experiment that generated the count.</p>
@@ -2119,6 +2130,15 @@ Waiting time until several events; flexible positive skew.
 <svg id="gammaDensity" class="mini-density" viewbox="0 0 240 135"></svg>
 </div>
 </div>
+<!-- Portrait Row (Fades in after all 4 cards) -->
+<div class="portrait-grid-4 fragment fade-up">
+<div class="portrait-badge warning-accent">
+<img src="figures/Dirac.jpg" alt="Paul Dirac" class="portrait-img">
+<div class="portrait-info">
+<strong>Paul Dirac</strong>
+</div>
+</div>
+</div>
 <aside class="notes">
 <p>Keep the Dirac delta simple: a mathematical idealization of all mass at one point. Do not teach generalized functions.</p>
 <style type="text/css">
@@ -2197,9 +2217,23 @@ Very heavy symmetric tails; mean/variance undefined.
 <svg id="cauchyDensity" class="mini-density" viewbox="0 0 240 135"></svg>
 </div>
 </div>
+<div class="portrait-grid-4 fragment fade-up">
+<div class="portrait-badge warning-accent" style="grid-column: 3;">
+<img src="figures/Pareto.jpg" alt="Vilfredo Pareto" class="portrait-img">
+<div class="portrait-info">
+<strong>Vilfredo Pareto</strong>
+</div>
+</div>
+<div class="portrait-badge warning-accent" style="grid-column: 4;">
+<img src="figures/Cauchy.jpg" alt="Augustin-Louis Cauchy" class="portrait-img">
+<div class="portrait-info">
+<strong>Augustin-Louis Cauchy</strong>
+</div>
+</div>
+</div>
 <div class="fragment fade-up">
 <div class="takeaway">
-Real scientific data often choose the distribution for us: counts, proportions, positive times, concentrations, extremes.
+Pareto distribution is common in economics (distribution of resources), while Cauchy shows up when there is resonance phenomenon (e.g.&nbsp;NMR). Real scientific data often choose the distribution for us: counts, proportions, positive times, concentrations, extremes.
 </div>
 </div>
 <aside class="notes">
@@ -2221,7 +2255,7 @@ Real scientific data often choose the distribution for us: counts, proportions, 
 <div class="try-label">
 Checkpoint before calculation
 </div>
-<div class="matching-grid">
+<div class="matching-grid" style="font-size: 1.4em">
 <div class="scenario-list">
 <div class="scenario-item fragment fade-up">
 A. 20 patients each respond or do not respond.
@@ -2257,6 +2291,11 @@ E → Exponential
 </div>
 </div>
 </div>
+<div class="fragment fade-up">
+<div class="takeaway">
+These are candidate models under their characteristic assumptions; recognizing the mechanism comes first.
+</div>
+</div>
 <aside class="notes">
 <p>Let students answer before revealing the right side. The major skill is matching question to distribution, not formula recall.</p>
 <style type="text/css">
@@ -2276,13 +2315,13 @@ E → Exponential
 <div class="try-label">
 Guided exercises
 </div>
-<div class="calc-grid">
+<div class="calc-grid" style="font-size: 1.5em">
 <div class="calc-card fragment fade-up">
 <div class="calc-title">
 Geometric tablet-camera example
 </div>
 <div class="calc-question">
-Fault probability per press is <span class="math inline">\(p=0.001\)</span>. Probability of <span class="math inline">\(1000\)</span> error-free presses?
+Fault probability per press is <span class="math inline">\(p=0.001\)</span> (events are independent). Probability of <span class="math inline">\(1000\)</span> error-free presses?
 </div>
 <div class="calc-answer">
 <span class="math inline">\(0.999^{1000}\approx0.368\)</span>
@@ -2304,7 +2343,7 @@ point vs cumulative probability
 Hypergeometric batch sample
 </div>
 <div class="calc-question">
-A batch has 20 tablets, 3 defective. Sample 5 without replacement.
+A batch has 20 tablets, 3 defective. Sample 5 without replacement, what is the probability of finding no defective tablets?
 </div>
 <div class="calc-answer">
 finite population + no replacement
@@ -2584,7 +2623,7 @@ function drawEmpiricalRuleSvg(svgId) {
   ];
 
   labels.forEach(lbl => {
-    html += `<text x="${mapX(lbl.x)}" y="${baseline + 20}" text-anchor="middle" class="widget-label">${lbl.text}</text>`;
+    html += `<text x="${mapX(lbl.x)}" y="${baseline + 20}" text-anchor="middle" class="widget-label" style="font-size: 0.5em; font-weight: 700;">${lbl.text}</text>`;
   });
 
   svg.innerHTML = html;
@@ -3966,7 +4005,7 @@ if(window.Reveal){ Reveal.on('ready',function(){ initNormal(); drawEmpiricalRule
         }
           var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
           var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/mirzahosseini-arash-semmelweis\.github\.io\/statsenpure\/");
+            var filterRegex = new RegExp('/' + window.location.host + '/');
           var isInternal = (href) => {
               return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
           }

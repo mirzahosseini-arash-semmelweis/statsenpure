@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="689.76pt" height="203.112pt" viewBox="0 0 689.76 203.112" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-14T10:40:22.530645</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 203.112 
+L 689.76 203.112 
+L 689.76 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 10.08 47.502 
+L 679.68 47.502 
+L 679.68 32.949 
+L 10.08 32.949 
+z
+" clip-path="url(#pac26592daa)" style="fill: #edf2f8; stroke: #d9e1ea; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 10.08 47.502 
+L 679.68 47.502 
+L 679.68 32.949 
+L 10.08 32.949 
+z
+" clip-path="url(#pac26592daa)" style="fill: #1f6feb"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 10.08 99.477 
+L 679.68 99.477 
+L 679.68 84.924 
+L 10.08 84.924 
+z
+" clip-path="url(#pac26592daa)" style="fill: #edf2f8; stroke: #d9e1ea; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 10.08 99.477 
+L 43.56 99.477 
+L 43.56 84.924 
+L 10.08 84.924 
+z
+" clip-path="url(#pac26592daa)" style="fill: #c65d09"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 10.08 151.452 
+L 679.68 151.452 
+L 679.68 136.899 
+L 10.08 136.899 
+z
+" clip-path="url(#pac26592daa)" style="fill: #edf2f8; stroke: #d9e1ea; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 43.56 151.452 
+L 70.344 151.452 
+L 70.344 136.899 
+L 43.56 136.899 
+z
+" clip-path="url(#pac26592daa)" style="fill: #c93838"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #182230" x="10.08" y="25.8804" transform="rotate(-0 10.08 25.8804)">Population at baseline</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #182230" x="10.08" y="77.8554" transform="rotate(-0 10.08 77.8554)">Already ill / prevalent</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #182230" x="10.08" y="129.8304" transform="rotate(-0 10.08 129.8304)">New cases during follow-up</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #667085" x="679.68" y="25.8804" transform="rotate(-0 679.68 25.8804)">N = 1,000</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #c65d09" x="679.68" y="78.2712" transform="rotate(-0 679.68 78.2712)">50 cases at baseline = 5% prevalence</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #c93838" x="679.68" y="129.8304" transform="rotate(-0 679.68 129.8304)">40 incident cases among 950 at risk = 4.2% cumulative incidence</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pac26592daa">
+   <rect x="10.08" y="10.08" width="669.6" height="182.952"/>
+  </clipPath>
+ </defs>
+</svg>
