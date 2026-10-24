@@ -30,11 +30,11 @@ Introduction to statistics.
 <div class="compare-grid">
   <div class="metric-card observed-card">
   <div class="metric-label">New drug · response</div>
-  <div class="metric-value observed">72%</div>
+  <div class="metric-value observed">75%</div>
   </div>
   <div class="metric-card model-card">
   <div class="metric-label">Standard treatment · response</div>
-  <div class="metric-value model">65%</div>
+  <div class="metric-value model">63%</div>
   </div>
 </div>
 
@@ -206,7 +206,7 @@ This slide creates retrieval hooks that can be revisited later.
 <div class="warning-label">Case study · Sally Clark</div>
 
 ::: {.example-box}
-A figure presented in court for the probability of a sudden infant death in a family like Clark's was approximately
+A figure presented in court for the probability of a sudden infant death in a family like <a href="https://rss.org.uk/RSS/media/File-library/Membership/Sections/2020/Sally-Clark-RSS-letter-2002.pdf" target="_blank" rel="noopener">Clark's</a> was approximately
 
 ::: {.case-equation .probability}
 $$P(\text{one SIDS death}) \approx \frac{1}{8543}$$
@@ -235,9 +235,6 @@ This is deliberately unresolved. The case will return after the independence sli
 Avoid turning this into a legal-history digression. The statistical point is that multiplication of probabilities encodes assumptions.
 
 The Royal Statistical Society later criticized the calculation because independence was not justified and also warned against confusing P(evidence | hypothesis) with P(hypothesis | evidence).
-
-Source for lecturer reference:
-https://rss.org.uk/RSS/media/File-library/Membership/Sections/2020/Sally-Clark-RSS-letter-2002.pdf
 :::
 
 ## Science needs statistics {.concept-slide}
@@ -251,21 +248,32 @@ Give the same treatment under the same nominal conditions. Why are the measured 
 <div class="response-strip" aria-label="Observed responses vary around an underlying model value">
   <div class="truth"></div>
   <div class="truth-label">underlying target / model</div>
-  <div class="dot fragment fade-in" style="left:34%; top:30%;"></div>
-  <div class="dot fragment fade-in" style="left:53%; top:42%;"></div>
-  <div class="dot fragment fade-in" style="left:43%; top:76%;"></div>
-  <div class="dot fragment fade-in" style="left:29%; top:70%;"></div>
-  <div class="dot fragment fade-in" style="left:18%; top:64%;"></div>
-  <div class="dot fragment fade-in" style="left:79%; top:45%;"></div>
-  <div class="dot fragment fade-in" style="left:70%; top:37%;"></div>
-  <div class="dot fragment fade-in" style="left:50%; top:60%;"></div>
-  <div class="dot fragment fade-in" style="left:39%; top:55%;"></div>
-  <div class="dot fragment fade-in" style="left:47%; top:34%;"></div>
-  <div class="dot fragment fade-in" style="left:65%; top:57%;"></div>
-  <div class="dot fragment fade-in" style="left:57%; top:72%;"></div>
-  <div class="dot fragment fade-in" style="left:61%; top:28%;"></div>
-  <div class="dot fragment fade-in" style="left:24%; top:40%;"></div>
-  <div class="dot fragment fade-in" style="left:74%; top:67%;"></div>
+
+  <!-- Step 1 (3 dots) -->
+  <div class="dot fragment fade-in" data-fragment-index="1" style="left:34%; top:30%;"></div>
+  <div class="dot fragment fade-in" data-fragment-index="1" style="left:53%; top:42%;"></div>
+  <div class="dot fragment fade-in" data-fragment-index="1" style="left:43%; top:76%;"></div>
+
+  <!-- Step 2 (3 dots) -->
+  <div class="dot fragment fade-in" data-fragment-index="2" style="left:29%; top:70%;"></div>
+  <div class="dot fragment fade-in" data-fragment-index="2" style="left:18%; top:64%;"></div>
+  <div class="dot fragment fade-in" data-fragment-index="2" style="left:79%; top:45%;"></div>
+
+  <!-- Step 3 (3 dots) -->
+  <div class="dot fragment fade-in" data-fragment-index="3" style="left:70%; top:37%;"></div>
+  <div class="dot fragment fade-in" data-fragment-index="3" style="left:50%; top:60%;"></div>
+  <div class="dot fragment fade-in" data-fragment-index="3" style="left:39%; top:55%;"></div>
+
+  <!-- Step 4 (3 dots) -->
+  <div class="dot fragment fade-in" data-fragment-index="4" style="left:47%; top:34%;"></div>
+  <div class="dot fragment fade-in" data-fragment-index="4" style="left:65%; top:57%;"></div>
+  <div class="dot fragment fade-in" data-fragment-index="4" style="left:57%; top:72%;"></div>
+
+  <!-- Step 5 (3 dots) -->
+  <div class="dot fragment fade-in" data-fragment-index="5" style="left:61%; top:28%;"></div>
+  <div class="dot fragment fade-in" data-fragment-index="5" style="left:24%; top:40%;"></div>
+  <div class="dot fragment fade-in" data-fragment-index="5" style="left:74%; top:67%;"></div>
+
   <div class="axis-label">measured response →</div>
 </div>
 
@@ -538,11 +546,11 @@ Define union/intersection verbally with the Venn visual: A or B; A and B; not A.
   <!-- Right Column: Portraits (New) -->
   <div class="mathematician-gallery fragment fade-up">
   <div class="portrait-card">
-  <img src="figures/Chebyshev.jpg" alt="Andrey Markov">
+  <img src="figures/Chebyshev.jpg" alt="Pafnuty Chebyshev">
   <div class="portrait-name">Pafnuty Chebyshev</div>
   </div>
   <div class="portrait-card">
-  <img src="figures/Markov.jpg" alt="Pafnuty Chebyshev">
+  <img src="figures/Markov.jpg" alt="Andrey Markov">
   <div class="portrait-name">Andrey Markov</div>
   </div>
   <div class="portrait-card">
@@ -684,15 +692,15 @@ Students often experience these as arbitrary formulas. Teach them as area bookke
 </div>
 
 <div class="condition-row">
-  <div class="condition-card fragment fade-up">
+  <div class="condition-card fragment fade-up" style="font-size: 70%">
   Responders among all patients: $\mathbb{P}({\color{#1f6feb}A})$
   </div>
   
-  <div class="condition-card fragment fade-up">
+  <div class="condition-card fragment fade-up" style="font-size: 70%">
   Responders among female subgroup: $\mathbb{P}({\color{#1f6feb}A} \mid {\color{#c65d09}B})$
   </div>
   
-  <div class="condition-card fragment fade-up probability">
+  <div class="condition-card fragment fade-up probability" style="font-size: 70%">
   $\mathbb{P}({\color{#1f6feb}A} \mid {\color{#c65d09}B}) = \frac{\mathbb{P}({\color{#7b4ab5}A \cap B})}{\mathbb{P}({\color{#c65d09}B})}$
   </div>
 </div>
@@ -727,7 +735,7 @@ Stress that the denominator P(B) is not a trick; it is the size of the new unive
 
 ::: {.fragment .fade-up}
 <div class="warning-box">
-Multiplication is only justified after the independence assumption is justified.
+Multiplication of unconditional probabilities is only justified after the independence assumption is justified.
 </div>
 :::
 
@@ -820,7 +828,7 @@ Use an example verbally: probability of a positive diagnostic test = positives a
 
 ## The direction matters {.checkpoint-slide}
 
-<div class="eyebrow">A common diagnostic mistake</div>
+<div class="eyebrow">A common diagnostic mistake (although values may coincide)</div>
 
 <div class="direction-grid">
   <div class="direction-card fragment fade-up">
@@ -910,6 +918,13 @@ $$
 $$
 </div>
 :::
+
+<div class="mathematician-gallery fragment fade-up" style="height: 7.5em; width: 7.5em">
+  <div class="portrait-card">
+  <img style="object-fit: cover; height: 100%" src="figures/Bayes.gif" alt="Thomas Bayes">
+  <div class="portrait-name">Thomas Bayes</div>
+  </div>
+</div>
 
 ::: {.notes}
 This should feel surprising. Emphasize that the test did not become bad; rather, rare disease plus imperfect specificity creates many false positives.
@@ -1017,8 +1032,8 @@ Before choosing a formula, answer two design questions.
 
 <div class="counting-matrix fragment fade-up">
   <div></div>
-  <div class="matrix-head">Without replacement</div>
-  <div class="matrix-head">With replacement</div>
+  <div class="matrix-head">Without repetition</div>
+  <div class="matrix-head">With repetition</div>
 
   <div class="matrix-side">
   Permutation<br>
@@ -1084,7 +1099,7 @@ Ask what changes if we replace the first ball before the second draw.
 <div class="geometry-grid">
   <div>
   <div class="big-question" style="font-size:0.95em; max-width:22ch;">
-  Choose two random real numbers $X,Y\in[0,1]$. What is $\mathbb{P}(X+Y<1)$?
+  Choose two random real numbers independently $X,Y\in[0,1]$.<p>What is $\mathbb{P}(X+Y<1)$?</p>
   </div>
   <div class="definition-box fragment fade-up">
   $$
@@ -1162,7 +1177,7 @@ mcPlot = {
   <span class="comp-header">True Randomness</span>
   <ul>
   <li>Generated by physical processes (e.g., thermal noise, radioactive decay)</li>
-  <li>Completely unpredictable with <strong>zero repeating patterns</strong></li>
+  <li>Completely unpredictable with <strong>no repeating patterns</strong></li>
   </ul>
   </div>
       

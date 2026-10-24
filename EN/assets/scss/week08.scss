@@ -1,0 +1,107 @@
+/*-- scss:rules --*/
+/* Week 08 — scoped layer over course.scss. Semantic palette inherited. */
+.w8-two {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55em;align-items:stretch;margin-top:.5em}
+.w8-three {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.45em;align-items:stretch;margin-top:.55em}
+.w8-center {align-items:center}
+.w8-card {display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.18em;background:#fff;border:1px solid $line;border-radius:18px;padding:.48em .5em;box-sizing:border-box;min-width:0}
+.w8-card-title {font-size:.68em;font-weight:850;color:$navy;line-height:1.1}
+.w8-card-math {font-size:.73em;font-weight:850;color:$uncertainty;margin:.13em 0}
+.w8-card-sub {font-size:.53em;line-height:1.2;color:$muted;margin:.1em 0;max-width:100%}
+.w8-card-sub strong {color:$ink}
+.w8-note {font-size:.55em;color:$muted;line-height:1.18;margin-top:.45em;text-align:center}
+.w8-caption {font-size:.45em;color:$muted;line-height:1.15;margin-top:.25em;text-align:center}
+.w8-figure-holder {width:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;min-width:0;box-sizing:border-box;background:#fff;border:1px solid $line;border-radius:18px;padding:.14em;margin:.28em auto}
+.w8-figure-holder img {display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;margin:0!important}
+.w8-process {display:grid;grid-template-columns:1fr .15fr 1fr .15fr 1fr;gap:.15em;align-items:center;margin-top:1.05em}
+.w8-step {min-height:3.9em;border:1px solid $line;border-radius:16px;background:#fff;padding:.35em;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.w8-step strong {font-size:.64em;color:$navy}
+.w8-step span {font-size:.51em;color:$muted;margin-top:.22em;line-height:1.18}
+.w8-step-arrow {color:$uncertainty;text-align:center;font-size:1.15em;font-weight:850}
+.w8-mini-table {display:grid;gap:1px;background:$line;border:1px solid $line;border-radius:14px;overflow:hidden;margin:.38em auto;width:100%}
+.w8-mini-table>div {background:#fff;color:$navy;font-size:.55em;line-height:1.12;text-align:center;padding:.25em .2em;min-width:0}
+.w8-mini-table .head {background:$panel;font-weight:850;color:$muted}
+.w8-mini-table .blue {color:$observed;font-weight:800}
+.w8-mini-table .purple {color:$uncertainty;font-weight:800}
+.w8-mini-table .red {color:$warning;font-weight:800}
+.w8-pearson-table {grid-template-columns:1fr 1fr;max-width:11em}
+.w8-rank-table {grid-template-columns:.7fr 1fr 1fr 1fr 1.2fr;margin-top:.6em}
+.w8-coef-table {grid-template-columns:.8fr 2.6fr 1.4fr;margin-top:.75em}
+.w8-levels-table {grid-template-columns:1fr .8fr 2.4fr;margin-top:.65em}
+.w8-coefs-table {grid-template-columns:1fr 2.4fr;margin-top:.65em}
+.w8-stack {display:flex;flex-direction:column;gap:.33em;margin-top:.55em}
+.w8-rule {display:grid;grid-template-columns:1.25fr 3fr;gap:.45em;background:#fff;border:1px solid $line;border-radius:13px;padding:.38em .5em;align-items:center}
+.w8-rule strong {color:$navy;font-size:.6em;line-height:1.15}
+.w8-rule span {color:$muted;font-size:.54em;line-height:1.2}
+/* Inputs deliberately have no grid-placement rules: raw HTML remains shallow for Quarto. */
+.w8-lab {display:grid;grid-template-columns:.66fr 1.34fr;gap:.55em;align-items:start;margin-top:.32em}
+.w8-controls {min-width:0;background:$panel;border:1px solid $line;border-radius:16px;padding:.44em;display:flex;flex-direction:column;gap:.27em;box-sizing:border-box}
+.w8-control {display:block;color:$muted;font-size:.53em;line-height:1.15;font-weight:750;min-width:0}
+.w8-control strong {color:$uncertainty;font-weight:900}
+.w8-control input[type="range"],.w8-control select {display:block;width:100%;margin:.16em 0 0;box-sizing:border-box;accent-color:$uncertainty}
+.w8-control select {background:white;border:1px solid $line;border-radius:9px;color:$navy;padding:.25em;font-size:1em}
+.w8-button {font-size:.52em;font-weight:850;color:$uncertainty;border-radius:11px;border:1px solid rgba($uncertainty,.3);background:rgba($uncertainty,.08);padding:.4em;cursor:pointer;min-height:2.6em;white-space:normal}
+.w8-button:hover {background:rgba($uncertainty,.16)}
+.w8-readouts {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.2em;margin-top:.15em}
+.w8-readouts-one {grid-template-columns:1fr}
+.w8-output {background:#fff;border:1px solid $line;border-radius:10px;padding:.24em .12em;text-align:center;min-width:0}
+.w8-output span {display:block;font-size:.49em;color:$muted;font-weight:750;line-height:1.1}
+.w8-output strong {display:block;font-size:.65em;color:$uncertainty;font-weight:850;line-height:1.1;margin-top:.18em;white-space:nowrap}
+.w8-lab-note {font-size:.43em;line-height:1.2;color:$muted;margin-top:.17em}
+.w8-visual {min-width:0;width:100%}
+.w8-svg {display:block;width:100%;height:10.5em;background:#fbfcfe;border:1px solid #edf1f7;border-radius:14px;box-sizing:border-box}
+.w8-svg-large {height:13.4em}
+.w8-axis {stroke:#98a2b3;stroke-width:1.7}
+.w8-gridline {stroke:#e9eef5;stroke-width:1.1;stroke-dasharray:4 5}
+.w8-tick {fill:$muted;font-size:14px;font-weight:700}
+.w8-axis-title {fill:$navy;font-size:15px;font-weight:800}
+.w8-plot-note {fill:$muted;font-size:13px;font-weight:750}
+.w8-plot-caption {fill:$navy;font-size:15px;font-weight:850}
+.w8-point {fill:$observed;stroke:white;stroke-width:1.7;fill-opacity:.86}
+.w8-fit {fill:none;stroke:$estimate;stroke-width:3.2}
+.w8-true {fill:none;stroke:$model;stroke-width:2.6;stroke-dasharray:8 5}
+.w8-guess {fill:none;stroke:$uncertainty;stroke-width:2.7}
+.w8-residual {stroke:$warning;stroke-opacity:.28;stroke-width:2}
+.w8-band-mean {fill:rgba($estimate,.16);stroke:none}
+.w8-band-prediction {fill:rgba($observed,.11);stroke:none}
+.w8-band-tolerance {fill:rgba($uncertainty,.09);stroke:none}
+.w8-legend {font-size:13px;font-weight:850}
+.w8-diagnostic-widget {display:grid;grid-template-columns:.33fr 1.67fr;gap:.55em;align-items:start;margin-top:.38em}
+.w8-diag-controls,.w8-trans-controls {background:$panel;border:1px solid $line;border-radius:16px;padding:.45em;display:flex;flex-direction:column;gap:.4em;min-width:0}
+.w8-diag-note {color:$muted;font-size:.54em;line-height:1.2}
+.w8-diag-figure {height:14.3em;margin:0}
+.w8-transforms {display:grid;grid-template-columns:.36fr 1.64fr;gap:.55em;align-items:start;margin-top:.4em}
+.w8-trans-equation {font-size:.58em;color:$uncertainty;font-weight:760;line-height:1.25}
+.w8-transform-figure {height:13.6em;margin:0}
+#nonlinearWidget .w8-readouts {grid-template-columns:repeat(2,minmax(0,1fr))}
+.w8-quiz {max-width:31em;margin:1em auto 0;background:#fff;border:1px solid $line;border-radius:20px;padding:.6em;box-sizing:border-box}
+.w8-quiz-question {font-size:.76em;color:$navy;line-height:1.18;font-weight:850;margin-bottom:.5em}
+.w8-quiz-options {display:flex;flex-direction:column;gap:.32em}
+.w8-choice {display:block;width:100%;text-align:left;background:$panel;border:1px solid $line;border-radius:11px;color:$navy;font-size:.56em;font-weight:700;padding:.4em .5em;cursor:pointer}
+.w8-choice:hover {border-color:$observed}
+.w8-choice.is-correct {background:rgba($estimate,.09);border-color:$estimate;color:$estimate}
+.w8-choice.is-wrong {background:rgba($warning,.08);border-color:$warning;color:$warning}
+.w8-quiz-feedback {min-height:1.8em;font-size:.54em;color:$muted;line-height:1.2;margin-top:.5em}
+.w8-quiz-feedback.correct {color:$estimate;font-weight:750}
+.w8-quiz-feedback.wrong {color:$warning;font-weight:750}
+
+.w8-card {
+  .w8-calc-step {display: flex;flex-direction: column;gap: 0.12em;padding: 0.25em 0;border-bottom: 1px dashed $line;font-size: 0.48em;color: $navy;
+    &:last-of-type {border-bottom: none;}
+    &.highlight {background: rgba($observed, 0.06);border-radius: 8px;padding: 0.3em;margin-top: 0.2em;}
+    .w8-step-label {font-weight: 800;color: $muted;font-size: 0.9em;letter-spacing: 0.03em;}
+    .w8-math-detail {font-size: 0.92em;}}
+  .w8-card-math {font-size: 1.1em;text-align: center;margin: 0.15em 0;}
+}
+
+.mathematician-gallery {display: flex;justify-content: center;align-items: stretch;gap: 0.75em;margin: 0.5em auto;width: 100%;max-width: 11em;
+  .portrait-card {flex: 1 1 0;max-width: 5em;min-width: 0;background: #fff;border: 1px solid $line;border-radius: 14px;padding: 0.45em;text-align: center;box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);display: flex;flex-direction: column;align-items: center;
+    img {width: 100%;aspect-ratio: 4 / 5;object-fit: cover;object-position: top center;border-radius: 8px;margin: 0 0 0.3em 0 !important;filter: grayscale(25%);transition: filter 0.25s ease;
+      &:hover {filter: grayscale(0%);}
+    }
+    .portrait-name {font-size: 0.45em;font-weight: 750;color: $navy;line-height: 1.15;margin-top: auto;padding: 0.1em 0.2em;    }
+  }
+}
+
+.inline-label {display: inline-flex !important;align-items: baseline !important;white-space: nowrap !important;gap: 0.25em;
+  > * {display: inline !important;margin: 0 !important;}
+}

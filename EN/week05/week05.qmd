@@ -264,7 +264,7 @@ $$
 <div class="w5-card-title">Manufacturing process</div>
 <div class="w5-card-sub">all tablets this process could produce</div>
 <div class="w5-card-figure">
-<img src="figures/pop_manufacturing.jpg" alt="Conceptual population of tablets from a manufacturing process" class="w5-card-img">
+<img src="figures/pop_manufacturing.png" alt="Conceptual population of tablets from a manufacturing process" class="w5-card-img">
 </div>
 </div>
 
@@ -417,26 +417,41 @@ As independent observations accumulate, sample averages tend to stabilize near t
 <div class="concept-line"><strong>Central Limit Theorem:</strong> The population shape can be skewed, discrete or bounded — yet the distribution of sample means often becomes approximately Gaussian.</div>
 :::
 
+<div class="mathematician-gallery fragment fade-up"  style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/deMoivre.jpg" alt="Abraham de Moivre">
+  <div class="portrait-name">Abraham de Moivre</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Laplace.jpg" alt="Pierre-Simon Laplace">
+  <div class="portrait-name">Pierre-Simon Laplace</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Pólya.jpg" alt="György Pólya">
+  <div class="portrait-name">György Pólya</div>
+  </div>
+</div>
+
 ## Try it: CLT sampling laboratory {.exercise-slide}
 
 <div class="try-label">Interactive sampling distribution</div>
 
 <div class="clt-widget" id="cltWidget">
   <div class="w5-control-row clt-controls">
-  <label class="w5-control">
+  <label class="w5-control" style="font-size: 0.5em">
   source distribution
-  <select id="cltDist">
+  <select id="cltDist" style="font-size: 0.8em;">
   <option value="normal">normal</option>
   <option value="skew">right-skewed continuous</option>
   <option value="bernoulli">binary outcome</option>
   <option value="uniform">uniform</option>
   </select>
   </label>
-  <label class="w5-control">
+  <label class="w5-control" style="font-size: 0.5em">
   sample size n = <strong id="cltNValue">1</strong>
   <input id="cltN" type="range" min="1" max="80" value="1" step="1">
   </label>
-  <label class="w5-control">
+  <label class="w5-control" style="font-size: 0.5em">
   repeated samples k = <strong id="cltKValue">50</strong>
   <input id="cltK" type="range" min="50" max="800" value="50" step="50">
   </label>
@@ -447,11 +462,11 @@ As independent observations accumulate, sample averages tend to stabilize near t
   <div class="clt-panel-row">
   <div class="clt-panel">
   <div class="mini-title">source population</div>
-  <svg id="cltSourceSvg" viewBox="0 0 360 250"></svg>
+  <svg id="cltSourceSvg" viewBox="0 0 350 250"></svg>
   </div>
   <div class="clt-panel">
   <div class="mini-title">sampling distribution of means</div>
-  <svg id="cltMeansSvg" viewBox="0 0 360 250"></svg>
+  <svg id="cltMeansSvg" viewBox="0 0 350 250"></svg>
   </div>
   </div>
 </div>
@@ -497,7 +512,7 @@ $$
 </div>
 
 ::: {.fragment .fade-up}
-<div class="concept-line">Precision improves with sample size, but not linearly.</div>
+<div class="concept-line">Precision improves with sample size, but not linearly. Larger $n$ reduces random sampling uncertainty; it does not automatically correct bias.</div>
 :::
 
 ## CLT is powerful, but not magic {.checkpoint-slide}
@@ -609,7 +624,7 @@ $$
 $$
 Z_1^2+Z_2^2+\cdots+Z_k^2\sim\chi_k^2
 \qquad
-Z_i\sim N(0,1)
+Z_i \overset{\text{iid}}{\sim} \mathcal{N}(0,1)
 $$
 </div>
 
@@ -662,7 +677,7 @@ $$
 </div>
 
 ::: {.fragment .fade-up}
-<div class="concept-line">The $F$ distribution appears when comparing variance-like quantities.</div>
+<div class="concept-line">The $F$ distribution appears when comparing independent variance-like quantities.</div>
 :::
 
 ## Where will F return? {.concept-slide}
@@ -1466,6 +1481,28 @@ function drawCltSource(svgId, dist) {
       "source-path"
     );
 
+  // X-axis ticks for continuous source distributions
+  const ticks =
+    dist === "normal" ? [-4, -2, 0, 2, 4] :
+    dist === "skew" ? [0, 1, 2, 3, 4, 5, 6] :
+    [0, 0.25, 0.5, 0.75, 1];
+  
+  ticks.forEach(v => {
+    const px = left +
+      ((v - support[0]) / (support[1] - support[0])) *
+      (right - left);
+  
+    html += `
+      <line x1="${px}" y1="${base}"
+            x2="${px}" y2="${base + 5}"
+            stroke="#667085" stroke-width="1"/>
+      <text x="${px}" y="${base + 21}"
+            text-anchor="middle"
+            class="w5-label">
+        ${v}
+      </text>
+    `;
+  });
 
   svg.innerHTML = html;
 }
@@ -1638,6 +1675,43 @@ function drawCltHistogram(
     </text>
   `;
 
+  // Adaptive, human-readable x-axis ticks
+  const rawStep = (x1 - x0) / 5;
+  const magnitude = 10 ** Math.floor(Math.log10(rawStep));
+  const multiple = rawStep / magnitude;
+  
+  const tickStep = (
+    multiple <= 1 ? 1 :
+    multiple <= 2 ? 2 :
+    multiple <= 5 ? 5 : 10
+  ) * magnitude;
+  
+  const decimals = Math.max(
+    0,
+    -Math.floor(Math.log10(tickStep))
+  );
+  
+  const firstTick = Math.ceil(x0 / tickStep) * tickStep;
+  
+  for (
+    let tick = firstTick;
+    tick <= x1 + tickStep * 1e-9;
+    tick += tickStep
+  ) {
+    const px = mapX(tick);
+    const label = Number(tick.toFixed(decimals));
+  
+    html += `
+      <line x1="${px}" y1="${base}"
+            x2="${px}" y2="${base + 5}"
+            stroke="#667085" stroke-width="1"/>
+      <text x="${px}" y="${base + 21}"
+            text-anchor="middle"
+            class="w5-label">
+        ${label}
+      </text>
+    `;
+  }
 
   svg.innerHTML = html;
 }

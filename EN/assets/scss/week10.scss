@@ -1,0 +1,139 @@
+/*-- scss:rules --*/
+/* Scoped Week 10 theme — references semantic variables from course.scss. */
+.w10-hero{font-size:1em;color:$navy;font-weight:750;line-height:1.18;text-align:center;margin:.95em auto .7em;max-width:27em}
+.w10-hero strong{color:$uncertainty}
+.w10-card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(6em,1fr));gap:.4em;margin:.5em auto;align-items:stretch}
+.w10-card{background:#fff;border:1px solid $line;border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.17em;text-align:center;min-height:3em;padding:.43em .35em;box-sizing:border-box;min-width:0}
+.w10-card.observed{border-top:7px solid $observed}.w10-card.model{border-top:7px solid $model}.w10-card.estimate{border-top:7px solid $estimate}.w10-card.uncertainty{border-top:7px solid $uncertainty}.w10-card.warning{border-top:7px solid $warning}
+.w10-card-label{color:$muted;font-size:.55em;font-weight:840;text-transform:uppercase;letter-spacing:.025em}
+.w10-card-large{color:$navy;font-size:.80em;font-weight:850;line-height:1.16}
+.w10-card-small{color:$muted;font-size:.55em;line-height:1.19}
+.w10-card-title {font-size:.68em;font-weight:850;color:$navy;line-height:1.1}
+.w10-card-math {font-size:.85em;font-weight:850;color:$uncertainty;margin:.13em 0}
+.w10-card-sub {font-size:.65em;line-height:1.2;color:$muted;margin:.1em 0;max-width:100%}
+.w10-card-sub strong {color:$ink}
+.w10-note {font-size:.55em;color:$muted;line-height:1.18;margin-top:.45em;text-align:center}
+.w10-caption {font-size:.65em;color:$muted;line-height:1.15;margin-top:.5em;text-align:center}
+.w10-evidence-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr) .19fr) minmax(0,1fr);gap:.13em;align-items:center;margin:1.05em 0}
+.w10-evidence-flow>div{background:$panel;border:1px solid $line;border-radius:15px;color:$navy;text-align:center;font-size:.55em;font-weight:850;padding:1.1em .3em}
+.w10-evidence-flow>div span{display:block;color:$muted;font-weight:650;font-size:.82em;margin-top:.4em}
+.w10-evidence-flow>b{font-size:.65em;color:$uncertainty;text-align:center}
+.w10-figure{width:100%;box-sizing:border-box;background:#fff;border:1px solid $line;border-radius:16px;padding:.15em;margin:.36em auto;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.w10-figure img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;margin:0!important}
+.w10-small-note{font-size:.55em;text-align:center;color:$muted;line-height:1.22;margin:.26em auto}
+.w10-step-stack{display:flex;flex-direction:column;gap:.33em;margin:.7em 0}
+.w10-step{display:grid;grid-template-columns:.22fr 1.08fr 2.9fr;align-items:center;gap:.36em;border:1px solid $line;border-radius:13px;background:#fff;padding:.39em .5em}
+.w10-step .w10-num{color:$uncertainty;font-size:.6em;font-weight:850}
+.w10-step strong{color:$navy;font-size:.64em;font-weight:850;line-height:1.13}
+.w10-step>span:last-child{font-size:.55em;line-height:1.2;color:$muted}
+.w10-bigmath{font-size:.88em;text-align:center;color:$uncertainty;font-weight:750;margin:.75em auto}
+.w10-equation{font-size:.68em;color:$uncertainty;text-align:center;font-weight:770;margin:.35em auto}
+.w10-table{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:2px;border:1px solid $line;border-radius:13px;background:$line;overflow:hidden;margin:.57em auto;align-items:stretch}
+.w10-table>div{background:#fff;min-width:0;padding:.4em .43em;color:$navy;font-size:.54em;line-height:1.18;box-sizing:border-box;display:flex;align-items:center}
+.w10-table>.w10-th{background:$panel;color:$muted;font-size:.54em;font-weight:850}
+.w10-formula-pair{display:grid;grid-template-columns:1fr 1fr;gap:.5em;margin:.85em auto}
+.w10-formula-pair>div{display:flex;flex-direction:column;gap:.35em;background:#fff;border:1px solid $line;border-left:5px solid $estimate;border-radius:16px;padding:.6em}
+.w10-formula-pair strong{font-size:.7em;color:$navy}.w10-formula-pair span{font-size:.66em;color:$uncertainty}.w10-formula-pair small{font-size:.51em;color:$muted;line-height:1.22}
+.w10-quote{border-left:7px solid $estimate;background:rgba($estimate,.055);border-radius:14px;color:$navy;font-size:.77em;font-weight:600;line-height:1.38;padding:.85em;margin:.65em auto}
+.w10-quote strong{color:$estimate}
+.w10-summary-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.25em;margin:1em auto}
+.w10-summary-flow>div{background:white;border:1px solid $line;border-top:6px solid $uncertainty;border-radius:14px;padding:.65em .3em;text-align:center}
+.w10-summary-flow strong{display:block;font-size:.67em;color:$navy}.w10-summary-flow span{display:block;font-size:.55em;color:$muted;line-height:1.25;margin-top:.45em}
+
+/* Shared controls and vector charts */
+.w10-lab{display:grid;grid-template-columns:.57fr 1.43fr;gap:.5em;align-items:start;margin-top:.3em}
+.w10-controls{background:$panel;border:1px solid $line;border-radius:16px;padding:.42em;display:flex;flex-direction:column;gap:.24em;min-width:0;box-sizing:border-box}
+.w10-control{display:block;color:$muted;font-size:.55em;font-weight:770;line-height:1.2;min-width:0}
+.w10-control strong{color:$uncertainty;font-weight:900}
+.w10-control input,.w10-control select{display:block;width:100%;box-sizing:border-box;margin:.12em 0 0;color:$navy}
+.w10-control input[type='range']{accent-color:$uncertainty}
+.w10-control input[type='number'],.w10-control select{background:#fff;border:1px solid $line;padding:.26em .35em;border-radius:8px;font-size:1em}
+.w10-button-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.15em;margin:.1em 0}
+.w10-button{background:rgba($uncertainty,.09);border:1px solid rgba($uncertainty,.4);border-radius:8px;color:$uncertainty;padding:.39em .1em;font-size:.45em;line-height:1.2;font-weight:900;cursor:pointer}
+.w10-button:hover{background:rgba($uncertainty,.2)}.w10-button.secondary{background:white;color:$muted;border-color:$line}
+.w10-micro{font-size:.4em;line-height:1.24;color:$muted;margin-top:.18em}
+.w10-two-output{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.23em}
+.w10-output{background:#fff;border:1px solid $line;border-radius:10px;padding:.25em;text-align:center;min-width:0}
+.w10-output>span{display:block;font-size:.55em;color:$muted;font-weight:750;line-height:1.17}
+.w10-output>strong{display:block;font-size:.69em;color:$uncertainty;font-weight:900;margin-top:.17em;white-space:nowrap}
+.w10-visual{min-width:0;width:100%}
+.w10-svg{display:block;width:100%;height:12em;background:#fff;border:1px solid $line;border-radius:16px;box-sizing:border-box;touch-action:none}
+.w10-axis{stroke:#98a2b3;stroke-width:1.8}.w10-gridline{stroke:#e3e9f2;stroke-width:1.2;stroke-dasharray:4 5}
+.w10-tick{fill:$muted;font-size:14px;font-weight:720}.w10-svg-title{fill:$navy;font-size:18px;font-weight:850}
+.w10-svg-label{fill:$navy;font-size:15px;font-weight:800}.w10-svg-muted{fill:$muted;font-size:12px;font-weight:700}
+.w10-roc-line{fill:none;stroke:$uncertainty;stroke-width:3.5;stroke-linejoin:round}.w10-roc-dot{fill:$warning;stroke:#fff;stroke-width:2.5}
+.w10-marker-line{stroke:$warning;stroke-width:2.3;stroke-dasharray:5 4}.w10-roc-best{stroke:$estimate;stroke-width:1.7;stroke-dasharray:4 4}
+.w10-healthy{fill:$observed;opacity:.70}.w10-sick{fill:$model;opacity:.78}.w10-hist-selected{fill:rgba($warning,.075)}
+.w10-ranT{fill:$estimate}.w10-ranC{fill:$observed}.w10-balanceT{fill:$estimate}.w10-balanceC{fill:$observed}
+.w10-power-line{stroke:$uncertainty;stroke-width:3.4;fill:none}.w10-power-dot{fill:$warning;stroke:#fff;stroke-width:2.2}
+.w10-three {display: flex;gap: 0.8em;> * {flex: 1;min-width: 0;}}
+
+/* Diagnostic metrics: five columns each with six readings */
+.w10-conf-widget{display:grid;grid-template-columns:.51fr 1.49fr;gap:.35em;margin-top:.3em;align-items:start}
+.w10-conf-left{background:$panel;border:1px solid $line;border-radius:15px;padding:.35em;min-width:0}
+.w10-conf-right{min-width:0}
+.w10-mini-title{font-size:.55em;font-weight:850;color:$navy;margin:.18em 0 .32em}
+.w10-count-grid{display:grid;grid-template-columns:1fr 1fr;gap:.25em}
+.w10-count-grid .w10-control{font-size:.5em}
+.w10-count-grid input{margin-top:.18em}
+.w10-highlight-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:.2em;margin:.3em 0}
+.w10-highlight-metrics>div{background:#fff;border:1px solid $line;border-radius:9px;padding:.25em;text-align:center}
+.w10-highlight-metrics span{display:block;color:$muted;font-size:.38em;font-weight:750}
+.w10-highlight-metrics strong{display:block;color:$estimate;font-size:.65em;font-weight:900}
+.w10-mini-note{font-size:.37em;color:$muted;line-height:1.22}
+.w10-metric-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.19em;min-width:0}
+.w10-metric-col{display:flex;flex-direction:column;gap:.16em;min-width:0}
+.w10-metric{background:#fff;border:1px solid $line;border-radius:8px;padding:.15em .14em;text-align:center;min-width:0;box-sizing:border-box;min-height:1.6em}
+.w10-metric strong{display:block;color:$navy;font-size:.48em;font-weight:850;line-height:1.02;overflow-wrap:anywhere}
+.w10-metric span{display:block;color:$uncertainty;font-size:.54em;font-weight:900;margin-top:.18em;white-space:nowrap}
+.w10-metric.primary{background:rgba($estimate,.055);border-color:rgba($estimate,.33)}
+.w10-metric.primary span{color:$estimate}
+.w10-metric {&.model {background: rgba($model, 0.08);color: darken($model, 10%);strong { color: inherit; } span{color:$model}}&.observed {background: rgba($observed, 0.08);color: darken($observed, 10%);strong { color: inherit; }span{color:$observed}}&.uncertainty {background: rgba($uncertainty, 0.08);}}
+.w10-metric {
+  position: relative; // Position context for tooltips
+
+  &[data-formula] {
+    cursor: help;
+
+    &:hover::after {
+      content: "Formula: " attr(data-formula);
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 0.35em 0.6em;
+      border-radius: 4px;
+      font-size: 0.72em;
+      font-family: var(--r-math-font, monospace);
+      white-space: nowrap;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      pointer-events: none;
+    }
+
+    /* Small tooltip arrow */
+    &:hover::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% - 2px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-top-color: #0f172a;
+      z-index: 100;
+      pointer-events: none;
+    }
+  }
+}
+
+
+/* Recap quiz */
+.w10-quiz{margin:.8em auto;max-width:31em;background:#fff;border:1px solid $line;border-radius:16px;padding:.62em}
+.w10-quiz-question{font-size:.78em;font-weight:850;color:$navy;line-height:1.27;margin-bottom:.45em}
+.w10-quiz-options{display:flex;flex-direction:column;gap:.27em}
+.w10-choice{display:block;width:100%;border:1px solid $line;border-radius:9px;background:$panel;color:$navy;text-align:left;padding:.43em .5em;font-size:.59em;font-weight:720;cursor:pointer}
+.w10-choice:hover{border-color:$observed}.w10-choice.correct{color:$estimate;border-color:$estimate;background:rgba($estimate,.07)}.w10-choice.wrong{color:$warning;border-color:$warning;background:rgba($warning,.06)}
+.w10-quiz-feedback{min-height:1.8em;color:$muted;font-size:.52em;line-height:1.22;margin-top:.35em}
+.w10-quiz-feedback.correct{color:$estimate}.w10-quiz-feedback.wrong{color:$warning}

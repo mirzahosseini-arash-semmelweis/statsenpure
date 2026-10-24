@@ -26,13 +26,13 @@
 
   .dist-title {
     font-weight: 850;
-    font-size: 0.65em;
+    font-size: 0.75em;
     color: $navy;
     margin-bottom: 0.25em;
   }
 
   .dist-sub {
-    font-size: 0.48em;
+    font-size: 0.75em;
     color: $muted;
     line-height: 1.35;
     margin-bottom: 0.5em;
@@ -84,8 +84,8 @@
 .dist-grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:.45em; align-items:stretch; }
 .dist-grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:.35em; align-items:stretch; }
 .dist-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.55em; box-shadow:0 8px 22px rgba(16,24,40,.045); }
-.dist-card .dist-title { font-size:.6em; color:$navy; font-weight:820; line-height:1.08; }
-.dist-card .dist-sub { margin-top:.18em; font-size:.5em; color:$muted; line-height:1.18; }
+.dist-card .dist-title { font-size:.65em; color:$navy; font-weight:820; line-height:1.08; }
+.dist-card .dist-sub { margin-top:.18em; font-size:.6em; color:$muted; line-height:1.18; }
 .dist-card .dist-eq { margin-top:.32em; font-size:.56em; color:$uncertainty; }
 .dist-card.observed-border { border-top:7px solid $observed; }
 .dist-card.model-border { border-top:7px solid $model; }
@@ -181,7 +181,7 @@
 /* Uniform media container for BOTH Image and Video */
 .media-container {
   width: 100%;
-  height: 7.0em; /* Increased equal height for both media boxes */
+  height: 5.0em; /* Increased equal height for both media boxes */
   margin-top: 0.5em;
   background: #fbfcfe;
   border: 1px solid $line;
@@ -195,7 +195,7 @@
   video {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Scales proportionally inside the card without overflowing */
+    object-fit: cover;
     display: block;
   }
 }
@@ -435,7 +435,7 @@
 .widget-area { fill:rgba($uncertainty,.28); }
 .widget-axis { stroke:#98a2b3; stroke-width:1.5; }
 .widget-line { stroke:$warning; stroke-width:2; stroke-dasharray:5 4; }
-.widget-label { fill:$muted; font-size:10px; font-weight:700; }
+.widget-label { fill:$muted; font-size:20px; font-weight:700; }
 
 .week02-control input:disabled {
   opacity: 0.28;
@@ -564,7 +564,7 @@
 
 .quantile-symbol {
   fill: $uncertainty;
-  font-size: 13px;
+  font-size: 20px;
   font-weight: 800;
 }
 
@@ -734,7 +734,7 @@
 .family-column { background:#fff; border:1px solid $line; border-radius:22px; padding:.5em; }
 .family-heading { font-size:.58em; color:$navy; font-weight:850; margin-bottom:.35em; }
 .family-list { display:grid; grid-template-columns:1fr 1fr; gap:.25em; }
-.family-pill { border-radius:14px; background:#f8fafc; border:1px solid $line; padding:.28em; font-size:.42em; color:$muted; min-height:2.5em; }
+.family-pill { border-radius:14px; background:#f8fafc; border:1px solid $line; padding:.28em; font-size:.52em; color:$muted; min-height:2.5em; }
 .family-pill strong { display:block; color:$uncertainty; font-size:1.12em; }
 
 .dist-card {
@@ -897,6 +897,64 @@
 
 .warning-border .mini-density-fill {
   fill: rgba($warning, .10);
+}
+
+// Parallel 4-column grid for portraits
+.portrait-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); // Exactly matches .dist-grid-4 column widths
+  gap: 16px;                             // Exactly matches .dist-grid-4 gap
+  margin-top: 12px;                      // Vertical gap below the cards
+}
+.portrait-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // Exactly matches .dist-grid-3 column widths
+  gap: 0.45em;                           // Exactly matches .dist-grid-3 gap
+  margin-top: 0.5em;                     // Vertical gap below the cards
+}
+
+// Portrait badge locked directly under Column 1
+.portrait-badge {
+  grid-column: 1; // Forces the item into column 1 without needing empty div spacers
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+  &.warning-accent {
+    border-left: 4px solid #d97706; // Matches Dirac card accent
+  }
+
+  .portrait-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+  }
+
+  .portrait-info {
+    display: flex;
+    flex-direction: column;
+
+    strong {
+      font-size: 0.8em;
+      color: #1e293b;
+      line-height: 1.2;
+    }
+
+    span {
+      font-size: 0.68em;
+      color: #64748b;
+      line-height: 1.2;
+    }
+  }
 }
 
 .matching-grid { display:grid; grid-template-columns:1.15fr .85fr; gap:.55em; align-items:start; }

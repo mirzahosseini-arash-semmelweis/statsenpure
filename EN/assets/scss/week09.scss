@@ -1,0 +1,111 @@
+/*-- scss:rules --*/
+/* Week 09: scoped style layer over global course.scss */
+.w9-two {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.52em;margin-top:.48em;align-items:stretch}
+.w9-three {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.42em;margin-top:.5em;align-items:stretch}
+.w9-center {align-items:center}
+.w9-card {display:flex;flex-direction:column;justify-content:center;align-items:center;gap:.15em;min-width:0;min-height:4em;padding:.46em .44em;box-sizing:border-box;background:#fff;border:1px solid $line;border-radius:17px;text-align:center}
+.w9-card-kicker {color:$muted;letter-spacing:.035em;font-weight:850;font-size:.6em;line-height:1.15}
+.w9-card-large {font-size:.7em;font-weight:850;color:$navy;line-height:1.13}
+.w9-card-math {color:$uncertainty;font-size:.67em;font-weight:800;line-height:1.15;margin:.17em 0}
+.w9-card-sub {color:$muted;font-size:.49em;line-height:1.24;max-width:100%}
+.w9-card-sub strong {color:$navy}
+.w9-caption {font-size:.4em;color:$muted;line-height:1.2;text-align:center;margin:.28em 0}
+.w9-caption a {color:$observed}
+.w9-note {font-size:.52em;line-height:1.25;color:$muted;margin-top:.55em;text-align:center}
+.w9-note strong {color:$ink}
+.w9-figure-holder {display:flex;align-items:center;justify-content:center;width:100%;box-sizing:border-box;background:#fff;border:1px solid $line;border-radius:17px;overflow:hidden;min-width:0;padding:.2em;margin:.3em auto}
+.w9-figure-holder img {display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;margin:0!important}
+/* Model selection matrix */
+.w9-model-matrix {display:grid;grid-template-columns:1.05fr 1.65fr 1.65fr;gap:.18em;margin-top:.55em}
+.w9-model-matrix>div {border-radius:12px;padding:.41em .35em;display:flex;justify-content:center;flex-direction:column;min-width:0;box-sizing:border-box}
+.w9-matrix-corner,.w9-matrix-head,.w9-matrix-rowtitle {background:$panel;color:$muted;text-align:center;font-size:.54em;font-weight:850}
+.w9-matrix-head {background:#e9eef7;color:$navy}
+.w9-matrix-rowtitle {color:$navy}
+.w9-matrix-cell {background:white;border:1px solid $line;min-height:3.3em;text-align:center;gap:.27em}
+.w9-matrix-cell strong {color:$navy;font-size:.75em;line-height:1.1}
+.w9-matrix-cell span {color:$muted;font-size:.55em;line-height:1.2}
+.w9-focus-cell {background:rgba($estimate,.09);border:2px solid rgba($estimate,.58)}
+.w9-focus-cell strong {color:$estimate}
+/* formula treatments */
+.w9-mini-math {text-align:center;margin:.7em auto;color:$uncertainty;font-size:.8em;font-weight:750}
+.w9-big-equation {font-size:.84em;font-weight:700;text-align:center;color:$navy;margin:.8em 0}
+.w9-equation-small {font-size:.73em;text-align:center;color:$uncertainty;font-weight:800;margin:.65em auto}
+.w9-equation-stack {display:flex;flex-direction:column;gap:.32em;margin:.72em auto;max-width:30em}
+.w9-equation-line {display:grid;grid-template-columns:1fr 1.85fr;align-items:center;gap:.35em;padding:.42em .5em;background:#fff;border:1px solid $line;border-radius:14px;min-height:1.5em;box-sizing:border-box}
+.w9-equation-line span {font-size:.58em;font-weight:800;color:$muted}
+.w9-equation-line strong {font-size:.7em;color:$uncertainty;text-align:center;font-weight:820}
+/* GLM list */
+.w9-model-list {display:flex;flex-direction:column;gap:.26em;margin:.55em auto;max-width:33em}
+.w9-model-row {display:grid;grid-template-columns:.8fr 1.2fr .75fr 1.4fr;align-items:center;gap:.25em;background:#fff;border:1px solid $line;border-radius:12px;padding:.5em .5em}
+.w9-model-row.focus {background:rgba($estimate,.065);border-color:rgba($estimate,.4)}
+.w9-model-row>* {font-size:.54em;color:$navy;line-height:1.2}
+.w9-model-row strong {font-weight:850}
+.w9-model-row .w9-chip {background:rgba($uncertainty,.09);border-radius:10px;color:$uncertainty;font-weight:800;text-align:center;padding:.2em .3em}
+/* interactive labs */
+.w9-lab {display:grid;grid-template-columns:.56fr 1.44fr;gap:.54em;align-items:start;margin-top:.35em}
+.w9-controls {display:flex;flex-direction:column;gap:.26em;min-width:0;background:$panel;border:1px solid $line;border-radius:16px;padding:.43em .43em;box-sizing:border-box}
+.w9-control {display:block;color:$muted;font-weight:750;font-size:.47em;line-height:1.24;min-width:0}
+.w9-control strong {color:$uncertainty;font-weight:900}
+.w9-control input[type='range'] {display:block;width:100%;margin:.13em 0 0;accent-color:$uncertainty;box-sizing:border-box}
+.w9-visual {min-width:0;width:100%}
+.w9-svg {display:block;width:100%;height:10.1em;background:$paper;border:1px solid #e7ecf3;border-radius:15px;box-sizing:border-box}
+.w9-svg-large {height:13.9em}
+.w9-readouts {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.22em;margin-top:.27em}
+.w9-readouts-one {grid-template-columns:1fr;margin-top:.02em}
+.w9-output {background:white;border:1px solid $line;border-radius:10px;text-align:center;padding:.17em .12em;min-width:0}
+.w9-output span {color:$muted;font-size:.41em;font-weight:750;line-height:1.13;display:block}
+.w9-output strong {color:$uncertainty;font-size:.65em;font-weight:850;line-height:1.13;display:block;margin-top:.18em;white-space:nowrap}
+.w9-lab-note {color:$muted;font-size:.4em;line-height:1.22;margin-top:.18em}
+.w9-interaction-control {background:rgba($uncertainty,.075);border:1px solid rgba($uncertainty,.3);border-left:4px solid $uncertainty;border-radius:12px;padding:.27em .32em;margin:.06em 0}
+.w9-interaction-title {font-size:.39em;line-height:1.12;color:$uncertainty;font-weight:850;margin-bottom:.3em}
+.w9-axis {stroke:#94a3b8;stroke-width:1.8}
+.w9-gridline {stroke:#e5ebf4;stroke-width:1.1}
+.w9-tick {fill:$muted;font-size:13px;font-weight:680}
+.w9-axis-title {fill:$navy;font-size:15px;font-weight:850}
+.w9-plot-title {fill:$navy;font-size:17px;font-weight:850}
+.w9-plot-note {fill:$muted;font-size:12px;font-weight:700}
+.w9-curve-odds {fill:none;stroke:$estimate;stroke-width:3.1}
+.w9-curve-logit {fill:none;stroke:$uncertainty;stroke-width:3.1}
+.w9-guide {stroke:$warning;stroke-width:1.8;stroke-dasharray:6 6;stroke-opacity:.82}
+.w9-nonsmoker-line {stroke:$observed;stroke-width:3.8;fill:none}
+.w9-smoker-line {stroke:$model;stroke-width:3.8;fill:none}
+.w9-nonsmoker-point {fill:$observed;stroke:white;stroke-width:2.3}
+.w9-smoker-point {fill:$model;stroke:white;stroke-width:2.3}
+.w9-reference-line {stroke:$uncertainty;stroke-width:1.6;stroke-dasharray:6 5;opacity:.7}
+.w9-legend-a {fill:$observed;font-size:13px;font-weight:800}
+.w9-legend-b {fill:$model;font-size:13px;font-weight:800}
+/* effects-view rows */
+.w9-four-rules,.w9-rule-stack {display:flex;flex-direction:column;gap:.27em;margin:.6em 0}
+.w9-rule {display:grid;grid-template-columns:1.02fr 2.8fr;gap:.45em;align-items:center;background:#fff;border:1px solid $line;border-radius:12px;padding:.45em .5em;box-sizing:border-box}
+.w9-rule strong {color:$uncertainty;font-size:.68em;font-weight:850}
+.w9-rule span {color:$muted;font-size:.58em;line-height:1.22}
+.w9-rule-stack .w9-rule strong {color:$navy}
+/* Interpretation table */
+.w9-comparison {display:grid;grid-template-columns:.86fr 1.6fr 1.6fr;gap:2px;background:$line;border:1px solid $line;border-radius:14px;overflow:hidden;margin:.62em auto}
+.w9-comparison>div {background:#fff;padding:.5em .48em;font-size:.56em;line-height:1.2;color:$muted}
+.w9-comparison .w9-compare-head {background:$panel;color:$navy;font-weight:850;font-size:.57em}
+.w9-comparison .w9-compare-label {background:#f8fafc;color:$navy;font-weight:850}
+/* multinomial output table */
+.w9-mini-coef {display:grid;grid-template-columns:1.8fr 1.6fr .6fr .6fr;gap:2px;background:$line;border:1px solid $line;border-radius:13px;overflow:hidden;margin:.55em auto}
+.w9-mini-coef>div {background:#fff;padding:.48em .42em;color:$navy;font-size:.53em;line-height:1.15;text-align:center}
+.w9-mini-coef>div:nth-child(4n+1) {text-align:left}
+.w9-mini-coef>.w9-mini-head {background:$panel;color:$muted;font-weight:850}
+.w9-mini-coef>.w9-coef-em {color:$estimate;font-weight:850}
+/* alternative methods table */
+.w9-alternative-table {display:grid;grid-template-columns:1.2fr 1.28fr 2fr;gap:2px;background:$line;border:1px solid $line;border-radius:13px;overflow:hidden;margin:.62em auto}
+.w9-alternative-table>div {background:#fff;padding:.46em .45em;color:$muted;font-size:.53em;line-height:1.18}
+.w9-alternative-table strong {color:$navy;font-weight:850}
+.w9-alternative-table .w9-alternative-head {background:$panel;color:$navy;font-weight:850;font-size:.57em}
+.w9-condensed {margin-top:.18em}
+.w9-condensed .w9-card {min-height:1.6em;padding:.23em .3em}
+/* quiz style */
+.w9-quiz {width:min(100%,32em);margin:.88em auto 0;padding:.65em;background:#fff;border:1px solid $line;border-radius:18px;box-sizing:border-box}
+.w9-quiz-question {font-size:.77em;color:$navy;font-weight:830;line-height:1.23;margin-bottom:.5em}
+.w9-quiz-options {display:flex;flex-direction:column;gap:.32em}
+.w9-choice {display:block;width:100%;background:$panel;color:$navy;border:1px solid $line;border-radius:11px;text-align:left;padding:.45em .55em;cursor:pointer;font-size:.55em;font-weight:750;line-height:1.17}
+.w9-choice:hover {border-color:$observed}
+.w9-choice.is-correct {background:rgba($estimate,.09);color:$estimate;border-color:$estimate}
+.w9-choice.is-wrong {background:rgba($warning,.08);color:$warning;border-color:$warning}
+.w9-quiz-feedback {min-height:1.85em;font-size:.52em;color:$muted;line-height:1.25;margin-top:.5em}
+.w9-quiz-feedback.correct {color:$estimate;font-weight:750}
+.w9-quiz-feedback.wrong {color:$warning;font-weight:750}

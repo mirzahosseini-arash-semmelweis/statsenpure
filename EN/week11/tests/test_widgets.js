@@ -1,0 +1,21 @@
+const fs=require('fs'),path=require('path');
+const vals=JSON.parse(fs.readFileSync(path.join(__dirname,'widget_manifest.json'),'utf8'));
+const nodes=new Map();
+for(const [id,value] of Object.entries(vals))nodes.set(id,{id,value,innerHTML:'',textContent:'',disabled:false,handlers:{},addEventListener(e,fn){this.handlers[e]=fn;}});
+// document.querySelectorAll used only for quiz collection, not essential for deterministic widget tests.
+global.document={readyState:'complete',getElementById(id){return nodes.get(id)||null;},querySelectorAll(){return[];},addEventListener(){}};
+global.window={addEventListener(){},Reveal:null};
+require('../week11/widgets.js');
+const val=id=>nodes.get(id)?.textContent;
+const assert=(v,msg)=>{if(!v)throw new Error(msg);};
+for(const id of ['rtmSvg','smoothSvg','fourierSvg','gpSvg','markovSvg','wordSvg'])assert(nodes.get(id).innerHTML.length>150,'Unrendered '+id);
+assert(val('rtmCount')==='50','RTM top-10% count should be 50');
+assert(val('gpN')==='0','GP should start with empty prior');
+assert(val('mkDayOut')==='0','Markov day at reset');
+nodes.get('rtmResample').handlers.click();assert(val('rtmNewMean')!=='not repeated','RTM resample');
+nodes.get('mkTen').handlers.click();assert(val('mkDayOut')==='10','Markov ten-day step');
+nodes.get('wordGenerate').handlers.click();assert(Number(val('wordTokens'))===23,'Word tokens');
+nodes.get('smMethod').value='spline';nodes.get('smMethod').handlers.change();
+assert(val('smLambdaOut')!=='—','Smoothing spline output');
+nodes.get('smGcv').handlers.click();assert(Number.isFinite(Number(nodes.get('smLambda').value)),'GCV choose finite lambda');
+console.log('PASS · six SVG widgets, RTM repeat, Markov transition, word generator, spline GCV.');

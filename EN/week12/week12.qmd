@@ -1,6 +1,6 @@
 ---
-title: "Statistics 101"
-subtitle: "Week 12 · Placeholder"
+title: "Statistics for Pharmacists"
+subtitle: "Week 12 · Multivariate statistics and machine learning"
 author: "Graduate Pharmaceutical Studies"
 date: ""
 title-slide-attributes:
@@ -8,10 +8,578 @@ title-slide-attributes:
 format:
   revealjs:
     footer: "Statistics 101 · Week 12"
+    scrollable: false
+    transition: fade
+    theme:
+      - default
+      - ../assets/scss/course.scss
+      - ../assets/scss/week12.scss
+    resources:
+      - figures/**
+      - media/**
+      - data.js
+      - mammoth_umap_data.js
+      - digit_model.js
+      - widgets.js
 ---
+## Multivariate statistics &amp; machine learning {.title-slide}
 
-## Week 12 {.motivation-slide}
+<div class="eyebrow">Week 12 · final lecture</div>
 
-<div class="eyebrow">Course skeleton</div>
+<div class="concept-line" style="margin-top:1em;">How do we reason when <strong>many variables act simultaneously</strong>?</div>
 
-<div class="big-question">Content to be developed.</div>
+## Imagine 200 patients × 2,500 metabolites {.concept-slide}
+
+<div class="w12-eyebrow">LC–MS · hypothetical metabolomics study</div>
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card observed"><strong>Rows: 200 patients</strong><span>Mild cognitive impairment at baseline; prospective follow-up.</span></div><div class="w12-card model"><strong>Columns: 2,500 metabolites</strong><span>Mass-spectrometry signals, intensities and derived features.</span></div><div class="w12-card estimate"><strong>Outcome: progression</strong><span>Could a metabolic fingerprint help predict Alzheimer’s progression over 3 years?</span></div></div>
+
+## The dimensionality is in the variables {.concept-slide}
+
+<div class="w12-eyebrow">High dimension ≠ extra physical dimensions</div>
+
+<div class="w12-figure tall"><img src="figures/high_dimensional_matrices.svg" alt="Synthetic process and metabolomics matrices"></div>
+
+<div class="w12-note">Every column is an distinct measurement type/variable (but might be statistically correlated); every row is a sampled observational unit.</div>
+
+## Process analytical technology: why we care {.concept-slide}
+
+<div class="w12-eyebrow">Industrial pharmaceutical applications</div>
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card observed"><strong>Raw material fingerprints</strong><span>Composition, supplier and batch variability.</span></div><div class="w12-card model"><strong>Process conditions</strong><span>Temperature, pressure, flow, particle size, spectroscopy.</span></div><div class="w12-card estimate"><strong>Quality prediction</strong><span>Potentially detect emerging deviations before a batch is lost.</span></div></div>
+
+<div class="w12-hero" style="font-size:.76em;margin:.6em auto;">Too many measurements for a single-variable scatter plot.</div>
+
+## Two different statistical paradigms {.concept-slide}
+
+<!-- Top Row: Paradigm Shift (Modeling vs. Prediction) -->
+<div class="w12-cards" style="--n:2;">
+  <div class="w12-card model">
+  <div class="w12-eyebrow model">Until Last Week</div>
+  <strong>Statistical Estimation & Modeling</strong>
+  <span><strong style="font-size:120%">Goal:</strong> Explain mechanisms & test hypotheses.</span>
+  <span>Inference, parameters, confidence intervals, and interpretability.</span>
+  </div>
+
+  <div class="w12-card estimate">
+  <div class="w12-eyebrow estimate">This Week</div>
+  <strong>Statistical Learning & Prediction</strong>
+  <span><strong style="font-size:120%">Goal:</strong> Predict outcome on unseen data.</span>
+  <span>Focuses on generalization and predictive accuracy, often trading off interpretability.</span>
+  </div>
+</div>
+
+<!-- Bottom Section Label -->
+<div class="w12-section-label">
+  <span>Statistical Learning splits into two primary paradigms:</span>
+</div>
+
+<!-- Bottom Row: Learning Types (Unsupervised vs. Supervised) -->
+<div class="w12-cards" style="--n:2;">
+  <div class="w12-card uncertainty">
+  <div class="w12-eyebrow uncertainty">1: Unsupervised Learning</div>
+  <strong>Structure Discovery</strong>
+  <span>Analyze features ($X$) without target labels ($Y$). How many useful dimensions? Are samples similar? Are there clusters?</span>
+  <div class="w12-tags">
+  <span>PCA</span><span>UMAP</span><span>Clustering</span>
+  </div>
+  </div>
+
+  <div class="w12-card estimate">
+  <div class="w12-eyebrow estimate">2: Supervised Learning</div>
+  <strong>Outcome Prediction</strong>
+  <span>Map features to labeled targets ($X \rightarrow Y$). Can measured features predict a future or unknown outcome?</span>
+  <div class="w12-tags">
+  <span>LDA / PLS</span><span>Decision Trees</span><span>Neural Networks</span>
+  </div>
+  </div>
+</div>
+
+## Multivariate distributions {.section-break}
+
+<div class="section-kicker">Part II</div>
+<div class="section-title">Multivariate data</div>
+<div class="section-subtitle">We now see what these high dimensional data look like.</div>
+
+## The challenge of high-dimensional data {.concept-slide}
+
+<div class="w12-eyebrow">Many variables · few patients</div>
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card observed"><strong>n = 200 patients</strong><span>How much independent information can we learn?</span></div><div class="w12-card warning"><strong>p = 2,500 variables</strong><span>Correlations, multiple comparisons and overfitting multiply.</span></div><div class="w12-card estimate"><strong>Need parsimonious structure</strong><span>Dimension reduction, regularization and honest validation.</span></div></div>
+
+## First, what does a distribution look like? {.concept-slide}
+
+<div class="w12-eyebrow">Two jointly continuous variables</div>
+
+<div class="w12-figure "><img src="figures/gaussian_contours.svg" alt="Bivariate Gaussian covariance visualizations"></div>
+
+<div class="definition-box"><p>A multivariate Normal distribution has a mean vector and covariance matrix. Covariance controls the orientation of its elliptical contours.</p></div>
+
+## Lab: rotate a multivariate density {.concept-slide}
+
+<div class="w12-eyebrow">Interactive · change spread and correlation</div>
+
+<div class="w12-lab" id="gaussWidget"><div class="w12-controls"><label class="w12-control">distribution<select id="gaussMode"><option value="normal">one bivariate Normal</option><option value="mixture">two latent groups (mixture)</option></select></label><label class="w12-control">SD of X <strong id="gaussSxVal">1.30</strong><input id="gaussSx" type="range" min="0.5" max="2.0" step="0.05" value="1.30"></label><label class="w12-control">SD of Y <strong id="gaussSyVal">0.90</strong><input id="gaussSy" type="range" min="0.5" max="2.0" step="0.05" value="0.90"></label><label class="w12-control">correlation ρ <strong id="gaussRhoVal">0.45</strong><input id="gaussRho" type="range" min="-0.9" max="0.9" step="0.05" value="0.45"></label><div class="w12-micro">Drag the SVG to rotate the density surface. The two-group mixture is not a single Gaussian.</div></div><div class="w12-visual w12-gauss-visual"><svg class="w12-svg rotate w12-gauss-main" id="gaussSvg" viewBox="0 0 900 490" style="height:10em" aria-label="Interactive rotatable bivariate density surface"></svg><div class="w12-gauss-map-card"><div class="w12-gauss-map-title">Top-down view · 200 sampled points and density contours</div><svg class="w12-svg w12-gauss-map" id="gaussScatterSvg" style="height:8em" viewBox="0 0 900 290" aria-label="Synchronized top-down scatter plot and density contours"></svg></div></div></div>
+
+## A mixture is not one Gaussian {.concept-slide}
+
+<div class="w12-eyebrow">The difference matters for interpretation</div>
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card model"><strong>Single multivariate Normal</strong><span>One mode with covariance-defined elliptical contours.</span></div><div class="w12-card uncertainty"><strong>Gaussian mixture</strong><span>Two or more latent subpopulations create a weighted combination of densities.</span></div><div class="w12-card warning"><strong>Beware hidden groups</strong><span>A large overall covariance can be produced by mixing dissimilar populations.</span></div></div>
+
+## What can pair plots still show? {.concept-slide}
+
+<div class="w12-eyebrow">Diagonal = distribution · below = association · above = coefficient</div>
+
+<div class="w12-figure tall"><img src="figures/pairplot.svg" alt="Pairwise histograms, scatterplots and correlations from a synthetic four-marker dataset"></div>
+
+<div class="definition-box"><p>Pairs plots remain useful for a modest number of variables; with 2,500 columns there are over three million distinct variable pairs.</p></div>
+
+## Curse of dimensionality {.concept-slide}
+
+<div class="w12-eyebrow">Distance and density become harder to interpret</div>
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card warning"><strong>Distances may concentrate</strong><span>Nearest and farthest points become harder to distinguish in some high-dimensional settings.</span></div><div class="w12-card observed"><strong>Scaling determines geometry</strong><span>A variable measured in large numerical units may dominate ordinary Euclidean distance.</span></div><div class="w12-card estimate"><strong>Assumptions still matter</strong><span>Feature selection, domain knowledge and task-specific metrics remain essential.</span></div></div>
+
+## Not every “distance” asks the same question {.concept-slide}
+
+<div class="w12-figure "><img src="figures/distance_metrics.svg" alt="Euclidean Manhattan and cosine distances"></div>
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card observed"><strong>Euclidean</strong><span>Straight-line difference between standardized numerical profiles.</span></div><div class="w12-card model"><strong>Manhattan</strong><span>Absolute coordinate differences; emphasizes per-feature offsets.</span></div><div class="w12-card uncertainty"><strong>Cosine</strong><span>Difference of directions; useful for spectral profile shapes.</span></div></div>
+
+## Fingerprint overlap: Tanimoto similarity {.concept-slide}
+
+<div class="w12-eyebrow">Binary chemical fingerprints · bits for structural features</div>
+
+<div class="w12-figure "><img src="figures/tanimoto_fingerprints.svg" alt="Two binary fingerprints with Tanimoto similarity"></div>
+
+<div class="definition-box"><p>For binary fingerprints, the Tanimoto coefficient equals Jaccard similarity: number of features present in both divided by features present in at least one. Distance is one minus similarity.</p></div>
+
+## Between groups: what does “close” mean? {.concept-slide}
+
+<div class="w12-figure tall"><img src="figures/cluster_linkage.svg" alt="Illustrated single complete average and centroid linkage"></div>
+
+<div class="w12-note">Single, complete, average and centroid linkages answer different questions. They may generate different hierarchical cluster trees.</div>
+
+## A covariance-aware distance {.concept-slide}
+
+<div class="w12-eyebrow">Mahalanobis distance</div>
+
+<div class="w12-figure "><img src="figures/mahalanobis.svg" alt="Mahalanobis distance follows ellipse covariance geometry"></div>
+
+<div class="w12-formula">$d_M(x,\mu)=\sqrt{(x-\mu)^T\Sigma^{-1}(x-\mu)}$</div>
+
+<div class="w12-note">Different directions in the cloud are not equally surprising. A 2,500-variable covariance matrix cannot be inverted naively with only 200 patients.</div>
+
+## A pharmaceutical distance problem {.concept-slide}
+
+<div class="w12-eyebrow">Identity checks · sample against chemical reference standard</div>
+
+<div class="w12-figure "><img src="figures/ir_similarity.svg" alt="Synthetic infrared spectra comparing two samples to a reference"></div>
+
+<div class="definition-box fragment fade-up"><p>Spectral comparison needs baseline correction, alignment, appropriate scaling, and a similarity criterion. A metric threshold is not automatic proof of identity.</p></div>
+
+## Multivariate tests exist—briefly {.concept-slide}
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card observed"><strong>Student t test</strong><span>Compares one measured outcome.</span></div><div class="w12-card uncertainty"><strong>Hotelling T²</strong><span>Tests a multivariate mean difference under stronger covariance assumptions.</span></div><div class="w12-card estimate"><strong>Our focus</strong><span>Pattern recognition and prediction, not a catalogue of advanced multivariate tests.</span></div></div>
+
+<div class="w12-note">With more variables than patients, the usual covariance estimate is singular; regularized approaches are needed.</div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/Hotelling.jpg" alt="Harold Hotelling">
+  <div class="portrait-name">Harold Hotelling</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Mahalanobis.webp" alt="P.C. Mahalanobis">
+  <div class="portrait-name">P.C. Mahalanobis</div>
+  </div>
+</div>
+
+## Unsupervised learning {.section-break}
+
+<div class="section-kicker">Part III</div>
+<div class="section-title">Unsupervised learning</div>
+<div class="section-subtitle">We now see how we can extract patterns from data.</div>
+
+## Before pattern recognition: numerical scales are not neutral {.concept-slide}
+
+<div class="w12-eyebrow">Data preprocessing slide · required for a meaningful multivariate comparison</div>
+
+<div class="w12-figure tall"><img src="figures/pca_scaling.svg" alt="The same observations under unscaled, min-max normalized and z-score standardized PCA"></div>
+
+<div class="definition-box fragment fade-up"><p>Without scaling, high-variance units often dominate even when they are not scientifically more informative.</p></div>
+
+## Two common scaling approaches {.concept-slide}
+
+<div class="w12-eyebrow">Transformation is not the same as dimension reduction</div>
+
+<div class="w12-cards" style="--n:2;"><div class="w12-card observed"><strong>Min–max normalization</strong><span><span style="font-size:200%">$x^{*}=(x-\min x)/(\max x-\min x)$</span> · maps observed data range to 0–1.</span></div><div class="w12-card uncertainty"><strong>Z-score standardization</strong><span><span style="font-size:200%">$z=(x-\bar x)/s$</span> · centers at 0 with SD 1.</span></div></div>
+
+## PCA: find a new axis system {.concept-slide}
+
+<div class="w12-eyebrow">Principal component analysis · unsupervised</div>
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card observed"><strong>Inputs</strong><span>A table of standardized metabolite intensities.</span></div><div class="w12-card model"><strong>Orthogonal directions</strong><span>PC1 captures the greatest remaining variance; PC2 is orthogonal and captures the next greatest.</span></div><div class="w12-card estimate"><strong>Outputs</strong><span>New score coordinates for patients + loadings describing each original variable.</span></div></div>
+
+## PCA is blind to disease labels {.concept-slide}
+
+<div class="w12-eyebrow">Variance ≠ class separation</div>
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card warning"><strong>Wrong objective</strong><span>"Choose the 2D view with the greatest separation between sick and healthy patients" is not PCA’s optimization goal.</span></div><div class="w12-card estimate"><strong>Correct objective</strong><span>Choose orthogonal directions with maximal retained data variance.</span></div><div class="w12-card observed"><strong>Possible consequence</strong><span>Class separation can emerge—but it can also hide in a low-variance direction.</span></div></div>
+
+<div class="warning-box fragment fade-up"><p>Principal components are linear combinations of original variables and might not be interpretable, e.g. $\mathrm{PC_1} = 0.316 \, \mathrm{weight} + 0.947 \, \mathrm{hemoglobin} - 0.053 \, \mathrm{age}$, and keep in mind the original variables have already been z-score scaled.</p></div>
+
+## Lab: rotate and find principal directions {.concept-slide}
+
+<div class="w12-eyebrow">3D → 2D projection with unknown group labels</div>
+
+<div class="w12-lab" id="pcaWidget"><div class="w12-controls"><div class="w12-micro">Rotate the three-dimensional point cloud. Try to retain maximum spread in your two-dimensional view; then reveal the mathematically optimal PCA plane.</div><div class="w12-btn-row"><button class="w12-btn" type="button" id="pcaShow">Show PCA</button><button class="w12-btn secondary" type="button" id="pcaReset">Explore again</button></div><div class="w12-output-row" style="--n:1;"><div class="w12-output"><span>Variance retained in current 2D view</span><strong id="pcaVar">—</strong></div><div class="w12-output"><span>View</span><strong id="pcaPlane">Custom viewpoint</strong></div></div><div class="w12-micro">Synthetic standardized hemoglobin, age and weight. The labels of underlying clouds are deliberately hidden.</div></div><div class="w12-visual"><svg id="pcaSvg" class="w12-svg rotate" style="height: 16em" viewBox="0 0 900 480" aria-label="Rotatable PCA point-cloud projection and variable loading vectors"></svg></div></div>
+
+## A metabolomics PCA workflow {.concept-slide}
+
+<div class="w12-flow" style="--n:4;"><div><strong>Prepare</strong><span>Quality control; handling below-detection measurements</span></div><div><strong>Transform</strong><span>Appropriate intensity transform + training-only scaling</span></div><div><strong>Project</strong><span>Compute PC scores and loadings</span></div><div><strong>Interpret</strong><span>Check batch effects, biology and external datasets</span></div></div>
+
+<div class="warning-box fragment fade-up"><p>If PC1 separates instrument batches rather than patients, it may be revealing an unwanted technical artifact.</p></div>
+
+<div class="definition-box fragment fade-up"><p>Explained variance: PCA compresses a dataset by sacrificing some of its variation. The lost variation can still contain clinically relevant information.</p></div>
+
+## Beyond straight-line projections {.concept-slide}
+
+<div class="w12-eyebrow">Neighborhood-based nonlinear dimension reduction</div>
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card observed"><strong>PCA</strong><span>Linear projections; emphasizes global variance.</span></div><div class="w12-card uncertainty"><strong>UMAP / related approaches</strong><span>Seek neighborhood structure in a lower-dimensional map; adjustable neighborhood and spacing parameters.</span></div><div class="w12-card warning"><strong>Projection ≠ proof</strong><span>The exact shape, distances, and apparent clusters depend on method and settings.</span></div></div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/Kohonen.jpg" alt="Teuvo Kohonen">
+  <div class="portrait-name">Teuvo Kohonen</div>
+  </div>
+</div>
+
+## UMAP Lab: Neighborhoods can reshape a projection {.concept-slide}
+
+<div class="w12-eyebrow">Interactive UMAP illustration</div>
+
+<div class="w12-lab" id="nonlinearWidget">
+<div class="w12-controls">
+<label class="w12-control">n_neighbors
+<select id="nonlinK">
+<option value="15">15 nearest neighbors</option>
+<option value="50" selected>50 nearest neighbors</option>
+<option value="200">200 nearest neighbors</option>
+</select>
+</label>
+<div class="w12-micro"><strong>min_dist = 0.25</strong> (fixed). Rotate the 3D mammoth on the left; watch how different UMAP neighborhoods change its 2D representation on the right.</div>
+<div class="w12-micro">The colors identify corresponding observations. The 2D layout and apparent gaps depend on UMAP settings.</div>
+<div class="w12-micro w12-umap-credit">Data and visual idea adapted from <a href="https://github.com/PAIR-code/understanding-umap" target="_blank" rel="noopener">PAIR / Understanding UMAP</a> (Apache-2.0). Based on a <a href="https://3d.si.edu/object/3d/mammuthus-primigenius-blumbach:341c96cd-f967-4540-8ed1-d3fc56d31f12" target="_blank" rel="noopener">Smithsonian 3D mammoth scan</a>. Offline, subsampled, independently precomputed embeddings.</div>
+</div>
+<div class="w12-visual">
+<svg id="nonlinearSvg" class="w12-svg rotate" style="height: 16em" viewBox="0 0 900 470" aria-label="Rotatable three-dimensional mammoth at left and real UMAP projections at right"></svg>
+</div>
+</div>
+
+## Application to molecular spaces {.concept-slide}
+
+<div class="w12-figure tall" style="height: 18em"><img src="figures/fda_aspirin_umap.svg" alt="Aspirin in the FDA drug chemical space"></div>
+
+## From compressed data to discovered groups {.concept-slide}
+
+<div class="w12-eyebrow">Unsupervised clustering</div>
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card observed"><strong>Input</strong><span>Data with no known class labels.</span></div><div class="w12-card model"><strong>Algorithm</strong><span>Defines a notion of same-group membership.</span></div><div class="w12-card estimate"><strong>Output</strong><span>An assigned partition or cluster probabilities—not verified clinical diagnoses.</span></div></div>
+
+<div class="concept-line fragment fade-up" style="font-size: 75%"><p>Look at 3 algorithms.</p><p><strong>K-means</strong> assumes compact groups: minimizes within-cluster squared Euclidean distances from centroids.</p><p><strong>Gaussian mixture</strong> is a probability model: estimates mean, covariance and mixture weight for each component.</p><p><strong>DBSCAN</strong> looks at nearby density: observations within a chosen neighborhood radius and high density grow into clusters; does not require a predefined number of clusters.</p></div>
+
+## Lab: three ways to find clusters {.concept-slide}
+
+<div class="w12-eyebrow">K-means, Gaussian mixture, and density-based clustering</div>
+
+<div class="w12-lab" id="clusterWidget"><div class="w12-controls"><label class="w12-control">point-cloud geometry<select id="clusterShape"><option value="moons">interlocking curved moons</option><option value="blobs">roughly Gaussian blobs</option></select></label><label class="w12-control">clustering method<select id="clusterMethod"><option value="kmeans">K-means</option><option value="gmm">Gaussian mixture</option><option value="dbscan">DBSCAN (density-based)</option></select></label><label class="w12-control">clusters k = <strong id="clusterKVal">2</strong><input id="clusterK" type="range" min="2" max="5" value="2" step="1"></label><label class="w12-control">DBSCAN radius<select id="clusterEps"><option value="0.14">0.14</option><option value="0.21" selected>0.21</option><option value="0.29">0.29</option><option value="0.38">0.38</option></select></label><div class="w12-output-row"><div class="w12-output"><span>Clusters found</span><strong id="clusterNum">—</strong></div><div class="w12-output"><span>Noise points</span><strong id="clusterNoise">—</strong></div></div></div><div class="w12-visual"><svg id="clusterSvg" class="w12-svg" style="height: 14em" viewBox="0 0 900 470" aria-label="Different clustering partitions of the same point cloud"></svg></div></div>
+
+## Clusters are hypotheses, not diagnoses {.concept-slide}
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card warning"><strong>Technical artifacts</strong><span>Batch, instrument or site effects can masquerade as biological subtypes.</span></div><div class="w12-card observed"><strong>Stability</strong><span>Repeat on different samples and preprocessing choices.</span></div><div class="w12-card estimate"><strong>External validity</strong><span>Ask whether patterns replicate and predict clinically meaningful outcomes.</span></div></div>
+
+## Supervised learning {.section-break}
+
+<div class="section-kicker">Part IV</div>
+<div class="section-title">Supervised learning</div>
+<div class="section-subtitle">We now see how algorithms can learn from data.</div>
+
+## Statistical learning: make a useful function {.concept-slide}
+
+<div class="w12-eyebrow">From hand-written rules to fitted models</div>
+
+<div class="w12-figure short"><img src="figures/training_workflow.svg" alt="From problem framing to an untouched test set"></div>
+
+<div class="definition-box fragment fade-up"><p>The goal is low expected loss on future observations, not perfect memorization of training measurements.</p></div>
+
+## Three learning paradigms {.concept-slide}
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card observed"><strong>Unsupervised</strong><span>Inputs X without known labels: PCA, clustering, density models.</span></div><div class="w12-card estimate"><strong>Supervised</strong><span>Labeled pairs (X, Y): classification of disease status or regression of concentration.</span></div><div class="w12-card uncertainty"><strong>Reinforcement</strong><span>Sequential actions with feedback and reward; important, but outside this course.</span></div></div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/Vapnik.jpg" alt="Vladimir Vapnik">
+  <div class="portrait-name">Vladimir Vapnik</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Efron.jpg" alt="Bradley Efron">
+  <div class="portrait-name">Bradley Efron</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Tibshirani.webp" alt="Robert Tibshirani">
+  <div class="portrait-name">Robert Tibshirani</div>
+  </div>
+</div>
+
+## What does the model actually learn? {.concept-slide}
+
+<div class="w12-formula">$\hat f = \arg\min_{f\in\mathcal F}\left\{\frac{1}{n}\sum_{i=1}^n L(y_i,f(x_i)) + \lambda\,\mathrm{penalty}(f)\right\}$</div>
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card observed"><strong>Empirical loss</strong><span>How poorly do predictions agree with labeled training outcomes?</span></div><div class="w12-card model"><strong>Model capacity</strong><span>How flexible is the family of functions?</span></div><div class="w12-card uncertainty"><strong>Regularization</strong><span>How strongly should complexity be restrained?</span></div></div>
+
+## Keep evaluation honest {.concept-slide}
+
+<div class="w12-flow" style="--n:3;"><div><strong>Training</strong><span>Learn fitted parameters</span></div><div><strong>Validation</strong><span>Choose settings and features</span></div><div><strong>Test</strong><span>One final unbiased check on held-out patients</span></div></div>
+
+<div class="w12-figure tall" style="height: 15em"><img src="figures/ml_workflow.svg" alt="Unbiased ML workflow"></div>
+
+## A common pharmaceutical data leak {.concept-slide}
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card warning"><strong>Leakage</strong><span>Scale all 200 patients, use all labels to screen 2,500 metabolites, then split data.</span></div><div class="w12-card estimate"><strong>Correct method</strong><span>Split first. Fit every learned preprocessing and feature-selection step within training folds.</span></div><div class="w12-card observed"><strong>Even harder</strong><span>Related patients, repeated visits and shared batches may require grouped splits.</span></div></div>
+
+## Lab: PCA versus LDA — variance is not discrimination {.concept-slide}
+
+<div class="w12-eyebrow">Same patients · same three biomarkers · different objective</div>
+
+<div class="w12-lab" id="pcaLdaWidget">
+<div class="w12-controls">
+<div class="w12-micro">The three visible clouds are not the groups we want to distinguish. Each cloud contains both <strong>healthy</strong> and <strong>sick</strong> patients. Compare unsupervised PCA against supervised LDA, or drag to explore the 3D data.</div>
+<div class="w12-btn-row"><button class="w12-btn" type="button" id="pcaLdaShowPCA">Show PCA</button><button class="w12-btn" type="button" id="pcaLdaShowLDA">Show LDA</button></div>
+<div class="w12-output-row" style="--n:2;">
+<div class="w12-output"><span>Variance in 2D view</span><strong id="pcaLdaVariance">—</strong></div>
+<div class="w12-output"><span>Visible class separation (Fisher distance)</span><strong id="pcaLdaSeparation">—</strong></div>
+</div>
+<div class="w12-micro">View: <strong id="pcaLdaView">Custom view</strong>. Classes are <strong>synthetic</strong>, assigned using the low-variance PC3 direction; they are not diagnoses. PCA ignores labels. LDA uses labels to separate classes.</div>
+</div>
+<div class="w12-visual"><svg id="pcaLdaSvg" class="w12-svg rotate" style="height: 16em" viewBox="0 0 900 480" aria-label="Rotatable PCA versus LDA projection of the same synthetic cloud with two class labels"></svg></div>
+</div>
+
+<div class="w12-note">With two classes, LDA has exactly one discriminant direction (LD1). The vertical <strong>PC1*</strong> direction in the LDA view is only a perpendicular companion axis for visualization, not a second discriminant.</div>
+
+## Decision trees turn thresholds into rules {.concept-slide}
+
+<div class="w12-figure tall"><img src="figures/decision_tree.svg" alt="A three-level synthetic biomarker classification decision tree"></div>
+
+<div class="definition-box"><p>Each internal node chooses a feature and threshold that reduces an impurity criterion, such as Gini impurity or entropy. Terminal nodes predict class proportions.</p></div>
+
+## Lab: walk down a trained decision tree {.concept-slide}
+
+<div class="w12-eyebrow">Synthetic three-biomarker model · changing inputs changes the path</div>
+
+<div class="w12-lab" id="treeWidget"><div class="w12-controls">
+<div class="w12-micro">Choose three standardized biomarker values. Press <strong>Predict</strong> to follow the decision rules from the root to one of seven leaves.</div>
+<label class="w12-control">Amino acid A = <strong id="treeV0">-0.8</strong><input id="treeF0" type="range" min="-3" max="3" value="-0.8" step="0.1"></label>
+<label class="w12-control">Lipid B = <strong id="treeV1">0.3</strong><input id="treeF1" type="range" min="-3" max="3" value="0.3" step="0.1"></label>
+<label class="w12-control">Metabolite C = <strong id="treeV2">1.5</strong><input id="treeF2" type="range" min="-3" max="3" value="1.5" step="0.1"></label>
+<div class="w12-btn-row"><button id="treePredict" class="w12-btn" type="button">Predict</button></div>
+<div class="w12-output-row" style="--n:3;"><div class="w12-output"><span>Predicted class</span><strong id="treePred">—</strong></div><div class="w12-output"><span>Higher-risk probability</span><strong id="treeProb">—</strong></div><div class="w12-output"><span>Rules used</span><strong id="treeDepth">—</strong></div></div>
+<div class="w12-micro">Illustrative classification tree trained on synthetic observations. Leaf percentages are training-set class proportions, not calibrated clinical probabilities.</div>
+</div><div class="w12-visual">
+<svg id="treeSvg" class="w12-svg w12-tree-svg" style="height: 16em" viewBox="0 0 900 515" aria-label="Seven-leaf classification tree, highlighting a patient prediction path step by step" role="img"></svg>
+<div class="w12-tree-status" id="treeStatus" role="status" aria-live="polite">Set values and press Predict.</div>
+</div></div>
+
+## A tree can memorize noise {.concept-slide}
+
+<div class="w12-eyebrow">The price of highly specific splitting</div>
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card observed"><strong>Shallow tree</strong><span>Interpretable, but may miss real patterns.</span></div><div class="w12-card warning"><strong>Fully grown tree</strong><span>May fit incidental noise and batch artifacts.</span></div><div class="w12-card estimate"><strong>Pruned tree</strong><span>Limit depth/leaf size and validate on new observations.</span></div></div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/Breiman.jpg" alt="Leo Breiman">
+  <div class="portrait-name">Leo Breiman</div>
+  </div>
+</div>
+
+## Random Forest: agreement across trees {.concept-slide}
+
+<div class="w12-figure tall"><img src="figures/random_forest.jpg" alt="Several decision trees combine votes to predict"></div>
+
+<div class="definition-box fragment fade-up"><p>Train many diverse trees on bootstrap samples and subsets of predictors, then aggregate their predictions. A forest often has lower variance than a single unstable tree.</p></div>
+
+## Memorization versus generalization {.concept-slide}
+
+<div class="w12-eyebrow">The central machine-learning problem</div>
+
+<div class="w12-figure "><img src="figures/bias_variance.svg" alt="Polynomial underfit good-fit overfit examples"></div>
+
+<div class="definition-box fragment fade-up"><p>A flexible model can fit all observed points while performing poorly on new measurements. Training error alone cannot detect that.</p></div>
+
+## Bias–variance is a balance {.concept-slide}
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card observed"><strong>High bias · low flexibility</strong><span>Misses the real trend: underfitting.</span></div><div class="w12-card warning"><strong>High variance · high flexibility</strong><span>Learns specific sample fluctuations: overfitting.</span></div><div class="w12-card estimate"><strong>Lower future risk</strong><span>Appropriate complexity, representative data and regularization.</span></div></div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/Samuel.jpg" alt="Arthur Samuel">
+  <div class="portrait-name">Arthur Samuel</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/McCarthy.webp" alt="John McCarthy">
+  <div class="portrait-name">John McCarthy</div>
+  </div>
+</div>
+
+## Lab: polynomial complexity and double descent {.concept-slide}
+
+<div class="w12-eyebrow">A constructed, reproducible minimum-norm Legendre example</div>
+
+<div class="w12-lab" id="doubleWidget"><div class="w12-controls"><label class="w12-control">model assessment<select id="complexMode"><option value="train" selected>training error only</option><option value="split">training and validation errors</option></select></label><label class="w12-control">polynomial degree = <strong id="degreeVal">4</strong><input id="degree" type="range" min="1" max="44" value="4" step="1"></label><button id="complexResplit" type="button" class="w12-btn">Change training sample</button><div class="w12-output-row"><div class="w12-output"><span>Train MSE</span><strong id="complexTrain">—</strong></div><div class="w12-output"><span>Validation MSE</span><strong id="complexVal">—</strong></div></div><div class="w12-micro">14 training points; 120 independent validation points (20 displayed). Blue and purple vertical segments show residuals. Signal: cubic + oscillation + Gaussian noise. Minimum-norm Legendre fits can interpolate from degree 13. The two examples are deliberately selected; second descent is not guaranteed.</div></div><div class="w12-visual"><svg id="complexitySvg" class="w12-svg" style="height: 16em" viewBox="0 0 900 490" aria-label="Overparameterized polynomial fit with training and validation losses"></svg></div></div>
+
+## Why can loss fall again? {.concept-slide}
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card warning"><strong>Near interpolation</strong><span>Model may become numerically unstable: a validation-error peak.</span></div><div class="w12-card uncertainty"><strong>Overparameterized side</strong><span>Infinitely many interpolating functions can exist; the fitting rule selects one.</span></div><div class="w12-card estimate"><strong>Implicit regularization</strong><span>The minimum-norm solution may generalize better in some settings.</span></div></div>
+
+<div class="definition-box fragment fade-up"><p>Double descent does not replace the bias–variance idea, and adding parameters does not reliably improve future predictions.</p></div>
+
+## How do neural networks use predictors? {.concept-slide}
+
+<div class="w12-eyebrow">From regression to multilayer flexible mappings</div>
+
+<video class="w12-video" style="height: 16em" data-autoplay muted loop playsinline><source src="media/perceptron.mp4" type="video/mp4"></video>
+
+## A network is a composition of small functions {.concept-slide}
+
+<div class="w12-eyebrow">The nonlinear activations matter</div>
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card observed"><strong>Input layer</strong><span>Features: metabolite abundance, age, treatment and so on.</span></div><div class="w12-card model"><strong>Hidden layers</strong><span>Many neurons with learned weights and nonlinear transformations.</span></div><div class="w12-card estimate"><strong>Output layer</strong><span>Class logits/probabilities or a continuous prediction, depending on task.</span></div></div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/McCulloch.webp" alt="Warren S. McCulloch">
+  <div class="portrait-name">Warren S. McCulloch</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Pitts.jpg" alt="Walter Pitts">
+  <div class="portrait-name">Walter Pitts</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Rosenblatt.jpg" alt="Frank Rosenblatt">
+  <div class="portrait-name">Frank Rosenblatt</div>
+  </div>
+</div>
+
+## Animation: feedforward neural network {.concept-slide}
+
+<video class="w12-video" style="height: 20em" data-autoplay muted loop playsinline><source src="media/feedforward.mp4" type="video/mp4"></video>
+
+## What makes a neural net flexible? {.concept-slide}
+
+<div class="w12-cards" style="--n:4;"><div class="w12-card observed"><strong>Weights and biases</strong><span>Parameters learned from labeled data.</span></div><div class="w12-card uncertainty"><strong>Depth and width</strong><span>Hyperparameters determining capacity and possible function shapes.</span></div><div class="w12-card model"><strong>Activation functions</strong><span>Nonlinearity enables curved and discontinuous-like decision boundaries.</span></div><div class="w12-card warning"><strong>Capacity ≠ validity</strong><span>A large model can learn artifacts as easily as meaningful signals.</span></div></div>
+
+## Training uses a loss function {.concept-slide}
+
+<div class="w12-eyebrow">Classification · compare truth and predicted probabilities</div>
+
+<div class="w12-formula">$L=-\sum_{k=1}^{K}\mathbf{1}\{Y=k\}\log \hat p_k$</div>
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card model"><strong>Forward pass</strong><span>Compute predictions under current weights.</span></div><div class="w12-card warning"><strong>Loss</strong><span>Quantify prediction error on labeled examples.</span></div><div class="w12-card estimate"><strong>Weight update</strong><span>Change parameters to reduce the training objective.</span></div></div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/Rumelhart.jpg" alt="David Rumelhart">
+  <div class="portrait-name">David Rumelhart</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Hopfield.webp" alt="John Hopfield">
+  <div class="portrait-name">John Hopfield</div>
+  </div>
+</div>
+
+## Animation: backpropagation {.concept-slide}
+
+<video class="w12-video" style="height: 20em" data-autoplay muted loop playsinline><source src="media/backpropagation.mp4" type="video/mp4"></video>
+
+## The famous handwritten-digit task {.concept-slide}
+
+<video class="w12-video" style="height: 20em" data-autoplay muted loop playsinline><source src="media/MNISTdepiction.mp4" type="video/mp4"></video>
+
+## Lab: draw a digit · run the real network {.concept-slide}
+
+<div class="w12-eyebrow">Works fully offline · browser inference using bundled weights</div>
+
+<div class="w12-digit-lab" id="digitWidget"><div class="w12-digit-pad"><canvas id="digitCanvas" width="280" height="280" aria-label="Draw a single white digit on the black canvas"></canvas><div class="w12-btn-row" style="width:100%;"><button class="w12-btn" type="button" id="digitPredict">Predict digit</button><button class="w12-btn secondary" type="button" id="digitClear">Clear</button></div><div class="w12-digit-label">Use mouse / finger to draw one digit</div></div><div class="w12-digit-pad"><div class="w12-digit-label">Resized 28 × 28 input</div><canvas id="digitPixels" width="112" height="112" aria-label="Network input after preprocessing"></canvas><div class="w12-micro">Shows actual input pixels passed to the model.</div></div><div class="w12-digit-preds"><div id="digitResult">Draw a digit</div><div id="digitProbs"></div><div class="w12-warning">Demo only. Trained on an 8×8 handwritten-digits dataset, resampled to 28×28—not on MNIST. Test-set accuracy on that source does not guarantee comparable accuracy on hand-drawn inputs.</div></div></div>
+
+## What can an impressive digit demo prove? {.concept-slide}
+
+<div class="w12-cards" style="--n:3;"><div class="w12-card estimate"><strong>It can prove</strong><span>A trained model can use learned pixel patterns for offline predictions.</span></div><div class="w12-card warning"><strong>It cannot prove</strong><span>That a medical model generalizes to unseen hospitals, instruments, patients or disease prevalences.</span></div><div class="w12-card observed"><strong>For real pharmacy use</strong><span>Require clinical endpoints, calibrated uncertainty, validation and regulatory considerations.</span></div></div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/Hinton.jpg" alt="Geoffrey Hinton">
+  <div class="portrait-name">Geoffrey Hinton</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/LeCun.avif" alt="Yann LeCun">
+  <div class="portrait-name">Yann LeCun</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Bengio.jpg" alt="Yoshua Bengio">
+  <div class="portrait-name">Yoshua Bengio</div>
+  </div>
+</div>
+
+## Back to the metabolomics example {.concept-slide}
+
+<div class="w12-eyebrow">200 patients · 2,500 metabolites · 3-year follow-up</div>
+
+<div class="w12-flow" style="--n:4;"><div><strong>Acquire</strong><span>Representative cohorts + trusted labels</span></div><div><strong>Prepare</strong><span>QC, leakage-proof scaling, batch effects</span></div><div><strong>Train</strong><span>Compare baseline and complex methods</span></div><div><strong>Validate</strong><span>Independent patients and sites</span></div></div>
+
+<div class="definition-box fragment fade-up"><p>A trustworthy model is one whose performance survives critical evaluation beyond the dataset on which it was developed.</p></div>
+
+## Question 1 · unsupervised or supervised? {.concept-slide}
+
+<div class="w12-quiz" data-q="1"><div class="w12-quiz-q">Which statement describes PCA?</div><div class="w12-choices"><button type="button" class="w12-choice" data-choice="A">A. It chooses axes with the highest separation of disease labels.</button><button type="button" class="w12-choice" data-choice="B">B. It chooses directions retaining maximal sample variance.</button><button type="button" class="w12-choice" data-choice="C">C. It assigns each patient a verified disease subtype.</button><div class="w12-quiz-feedback">Choose one.</div></div></div>
+
+## Question 2 · preprocessing {.concept-slide}
+
+<div class="w12-quiz" data-q="2"><div class="w12-quiz-q">Why could unscaled PCA be misleading for hemoglobin, weight and age?</div><div class="w12-choices"><button type="button" class="w12-choice" data-choice="A">A. Scaling never changes principal components.</button><button type="button" class="w12-choice" data-choice="B">B. PCA is invariant to units and variance.</button><button type="button" class="w12-choice" data-choice="C">C. The variable with greater numerical variance can dominate the projected directions.</button><div class="w12-quiz-feedback">Choose one.</div></div></div>
+
+## Question 3 · interpreting clusters {.concept-slide}
+
+<div class="w12-quiz" data-q="3"><div class="w12-quiz-q">Which conclusion is justified after K-means identifies three clusters of metabolomic profiles?</div><div class="w12-choices"><button type="button" class="w12-choice" data-choice="A">A. The three clusters are different Alzheimer’s subtypes.</button><button type="button" class="w12-choice" data-choice="B">B. The chosen algorithm found three groups under its assumptions; biological meaning needs validation.</button><button type="button" class="w12-choice" data-choice="C">C. The algorithm has therefore demonstrated treatment causality.</button><div class="w12-quiz-feedback">Choose one.</div></div></div>
+
+## Question 4 · evaluation {.concept-slide}
+
+<div class="w12-quiz" data-q="4"><div class="w12-quiz-q">What is a defensible use of the final test set?</div><div class="w12-choices"><button type="button" class="w12-choice" data-choice="A">A. Evaluate a fully chosen pipeline once at the end.</button><button type="button" class="w12-choice" data-choice="B">B. Use it repeatedly to choose model depth and features.</button><button type="button" class="w12-choice" data-choice="C">C. Fit preprocessing on all patients before splitting.</button><div class="w12-quiz-feedback">Choose one.</div></div></div>
+
+## Question 5 · generalization {.concept-slide}
+
+<div class="w12-quiz" data-q="5"><div class="w12-quiz-q">A deep decision tree has nearly zero training error but high validation error. What is most plausible?</div><div class="w12-choices"><button type="button" class="w12-choice" data-choice="A">A. It must be unbiased in future patients.</button><button type="button" class="w12-choice" data-choice="B">B. It cannot classify any observations.</button><button type="button" class="w12-choice" data-choice="C">C. It has probably overfit incidental training patterns.</button><div class="w12-quiz-feedback">Choose one.</div></div></div>
+
+## Question 6 · real-world interpretation {.concept-slide}
+
+<div class="w12-quiz" data-q="6"><div class="w12-quiz-q">A model recognizes handwritten digits with high accuracy on a held-out dataset. Which claim follows?</div><div class="w12-choices"><button type="button" class="w12-choice" data-choice="A">A. It will necessarily diagnose disease with equal accuracy.</button><button type="button" class="w12-choice" data-choice="B">B. It has demonstrated prediction on its tested digit data, not clinical validity.</button><button type="button" class="w12-choice" data-choice="C">C. Its predictions prove which pixels cause the digit to be what it is.</button><div class="w12-quiz-feedback">Choose one.</div></div></div>
+
+## One intellectual framework, twelve weeks {.concept-slide}
+
+<div class="w12-flow" style="--n:4;"><div><strong>Probability</strong><span>Describe uncertainty</span></div><div><strong>Inference</strong><span>Estimate from samples</span></div><div><strong>Modeling</strong><span>Relate variables appropriately</span></div><div><strong>Prediction</strong><span>Generalize to unseen data</span></div></div>
+
+<div class="w12-hero" style="font-size:.82em;margin:.75em auto;">The same principles persist as models grow more complex.</div>
+
+## The final course takeaway {.title-slide}
+
+<div class="w12-eyebrow">Statistics 101 · Graduate Pharmaceutical Studies</div>
+
+<div class="w12-quote">Good statistical thinking means knowing <strong>what the evidence supports, what remains uncertain, and when a confident model can still be wrong.</strong></div>
+
+<div class="w12-hero">The goal was never to memorize a list of tests. <strong>It was to reason about scientific evidence.</strong></div>
+
+<script src="data.js"></script>
+<script src="mammoth_umap_data.js"></script>
+<script src="digit_model.js"></script>
+<script src="widgets.js"></script>

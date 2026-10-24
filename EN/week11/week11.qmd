@@ -1,6 +1,6 @@
 ---
-title: "Statistics 101"
-subtitle: "Week 11 · Placeholder"
+title: "Statistics for Pharmacists"
+subtitle: "Week 11 · Time, survival, smoothing"
 author: "Graduate Pharmaceutical Studies"
 date: ""
 title-slide-attributes:
@@ -8,10 +8,564 @@ title-slide-attributes:
 format:
   revealjs:
     footer: "Statistics 101 · Week 11"
+    scrollable: false
+    transition: fade
+    theme:
+      - default
+      - ../assets/scss/course.scss
+      - ../assets/scss/week11.scss
+    resources:
+      - figures/**
+      - media/**
+      - widgets.js
 ---
+## Time, survival, smoothing {.title-slide}
 
-## Week 11 {.motivation-slide}
+<div class="eyebrow">Week 11</div>
 
-<div class="eyebrow">Course skeleton</div>
+<div class="concept-line" style="margin-top:1em;">What changes when observations have <strong>temporal structure?</strong></div>
 
-<div class="big-question">Content to be developed.</div>
+## The unifying change {.concept-slide}
+
+<div class="eyebrow">From exchangeable observations to a path through time</div>
+
+<div class="w11-flow"><div><strong>Trajectory</strong><span>What happened?</span></div><div><strong>Dependence</strong><span>How is today related to yesterday?</span></div><div><strong>Events</strong><span>How long until something occurs?</span></div><div><strong>Prediction</strong><span>What happens next, with uncertainty?</span></div></div>
+
+<div class="definition-box fragment fade-up"><p>The order of measurements can contain information. Ignoring it may yield overly confident or misleading answers.</p></div>
+
+## Why is time not just another $x$-variable? {.concept-slide}
+
+<div class="eyebrow">Two scatter plots may look equally convincing</div><div class="w11-figure" style="height:12.0em;"><img src="figures/time_vs_independent.svg" alt="time vs independent"></div><div class="w11-under">For independent cells, the order is arbitrary; for successive IL-6 measurements from a patient, order is part of the experiment.</div>
+
+## Longitudinal versus time-series data {.concept-slide}
+
+<div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Longitudinal</strong><span>Many subjects; each may be measured repeatedly at several visits.</span></div><div class="w11-card model"><strong>Time series</strong><span>One process observed in order; adjacent observations can be dependent.</span></div><div class="w11-card uncertainty"><strong>Both</strong><span>Temporal dependence, irregular sampling and missing visits need attention.</span></div></div>
+
+<div class="definition-box fragment fade-up"><p>Repeated measurements do not logically imply autocorrelation, but they often do in biomedical settings.</p></div>
+
+<div class="concept-line fragment fade-up"><p>Longitudinal data can be handled with repeated-measured ANOVA, but modern applications use mixed-effects regression modeling.</p></div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/Laird.jpg" alt="Nan Laird">
+  <div class="portrait-name">Nan Laird</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Ware.jpg" alt="James Ware">
+  <div class="portrait-name">James Ware</div>
+  </div>
+</div>
+
+## Three common response shapes {.concept-slide}
+
+<div class="w11-figure" style="height:11.8em;"><img src="figures/trajectory_types.svg" alt="trajectory types"></div><div class="w11-under">Growth toward a plateau · elimination/decay · peak and recovery. Each requires different summary questions.</div>
+
+## Plot individual trajectories first {.concept-slide}
+
+<div class="eyebrow">Drug A versus Drug B · n = 10 per arm</div><div class="w11-figure" style="height:12em;"><img src="figures/pk_group_trajectories.svg" alt="pk group trajectories"></div><div class="w11-under">Faint curves are patients; bold curves are sample means; shaded bands illustrate 95% pointwise mean CIs.</div>
+
+## Why not six separate $t$ tests? {.concept-slide}
+
+<div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Repeated measures</strong><span>Each person contributes a correlated trajectory.</span></div><div class="w11-card warning"><strong>Multiplicity</strong><span>Comparing each time point repeatedly creates many opportunities for false alarms.</span></div><div class="w11-card model"><strong>Missing pattern</strong><span>An isolated p-value can conceal timing, amplitude and overall exposure.</span></div></div>
+
+<div class="definition-box fragment fade-up"><p>A scientifically meaningful <strong>trajectory-level endpoint</strong> can sometimes replace a much more complicated analysis.</p></div>
+
+## Reduce a whole trajectory to interpretable endpoints {.concept-slide}
+
+<div class="w11-table" style="--n:3; font-size: 120%"><div class="head">Question</div><div class="head">Summarize with</div><div class="head">Interpretation</div><div>Overall exposure</div><div>$\mathrm{AUC}$, time average</div><div>Depends on observation window and baseline</div><div>Peak response</div><div>$C_{\max}$ / $C_{\min}$</div><div>Response magnitude</div><div>When is the peak?</div><div>$t_{\max}$</div><div>Timing of response</div><div>Change / decay rate</div><div>Slope or rate constant</div><div>Kinetic behavior</div><div>How long above target?</div><div>Time above threshold</div><div>Duration of target attainment</div><div>Starting / baseline level</div><div>$C_{\text{baseline}}$</div><div>Initial/final response / reference status</div></div><div class="w11-under">Prespecify endpoints; changing definitions after seeing data introduces bias.</div>
+
+## Pharmacokinetics: the shape has meaning {.concept-slide}
+
+<div class="w11-figure" style="height:11.8em;"><img src="figures/pk_anatomy.svg" alt="pk anatomy"></div><div class="w11-under">$\mathrm{AUC}$ = area under concentration versus time; $C_{\max}$ = peak concentration; $t_{\max}$ = peak time.</div>
+
+## PK quantities should not be confused {.concept-slide}
+
+<div class="w11-cards" style="--n:3;"><div class="w11-card uncertainty"><strong>AUC</strong><span>Total concentration–time exposure, not administered dose.</span></div><div class="w11-card estimate"><strong>Time above threshold</strong><span>Especially important for time-dependent antimicrobial pharmacodynamics.</span></div><div class="w11-card model"><strong>Clearance</strong><span>Under a simple one-compartment model with first-order elimination, <span style="font-size: 200%">$CL=k V_d$</span>.</span></div></div><div class="definition-box"><p>The elimination-rate constant $k$ has units of inverse time. Zero-order and first-order elimination follow different kinetic equations.</p></div>
+
+## An HPLC chromatogram is also time-indexed {.concept-slide}
+
+<div class="w11-figure" style="height:11.5em;"><img src="figures/chromatogram.svg" alt="chromatogram"></div><div class="w11-under">Peak position = retention time; integrated detector response = peak area. Calibration is required to infer analyte amount.</div>
+
+## Can we remove time by design? {.concept-slide}
+
+<div class="eyebrow">Repeated blood pressure during one clinic visit</div><div class="w11-figure" style="height:11.3em;"><img src="figures/bp_stabilization.svg" alt="bp stabilization"></div>
+
+<div class="definition-box fragment fade-up"><p>If an acquisition protocol <strong>prespecifies</strong> a stabilization phase, averaging later readings can yield one patient-level endpoint. Do not discard early values <em>post hoc</em> merely because they differ.</p></div>
+
+## Regression to the mean {.concept-slide}
+
+<div class="eyebrow">Selection on extreme measurements</div><div class="w11-cards" style="--n:2;"><div class="w11-card observed"><strong>At screening</strong><span>A patient is selected partly because of a genuinely high value, partly because of random positive noise.</span></div><div class="w11-card model"><strong>At repeat testing</strong><span>The same person often has a less extreme observed value even without effective treatment.</span></div></div><div class="w11-math">$Y_{it}=\mu_i+\varepsilon_{it}$</div><div class="w11-under">Persistent person-specific level $\mu_i$ + measurement-to-measurement fluctuation $\varepsilon_{it}$.</div>
+
+## Lab: watch regression to the mean {.concept-slide}
+
+<div class="w11-lab" id="rtmWidget"><div class="w11-controls"><label class="w11-control">Select top <strong id="rtmTopV">10</strong> % of original readings<input id="rtmTop" type="range" min="2" max="30" value="10" step="1"></label><div class="w11-btn-row"><button class="w11-btn " id="rtmResample" type="button">Repeat selected</button><button class="w11-btn secondary" id="rtmNew" type="button">New cohort</button><button class="w11-btn secondary" id="rtmReset" type="button">Reset</button></div><div class="w11-micro">Same selected people remain highlighted. Only their repeat measurement changes; the cohort is not reselected.</div></div><div class="w11-visual"><svg id="rtmSvg" class="w11-svg" style="height:13.6em;" viewBox="0 0 900 460" aria-label="Regression to the mean: screen top measurements and repeat"></svg><div class="w11-readout" style="--n:3;"><div class="w11-output"><span>Initial selected mean</span><strong id="rtmOldMean">—</strong></div><div class="w11-output"><span>Most recent mean</span><strong id="rtmNewMean">—</strong></div><div class="w11-output"><span>Selection size</span><strong id="rtmCount">—</strong></div></div></div></div>
+
+## The placebo-group surprise {.concept-slide}
+
+<div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Screen</strong><span>Recruit only people with unusually elevated blood pressure.</span></div><div class="w11-card model"><strong>Follow up</strong><span>Even without an active effect, their average may decrease on repeat measurement.</span></div><div class="w11-card estimate"><strong>Interpret</strong><span>A control arm helps separate spontaneous variation from a treatment effect.</span></div></div>
+
+<div class="warning-box fragment fade-up"><p>A reduction after treatment <strong>alone</strong> is not proof that the treatment caused it (SYMPLICITY HTN-3 clinical trial 2011).</p></div>
+
+## Autocorrelation {.section-break}
+
+<div class="section-kicker">Part II</div>
+<div class="section-title">Time-series analysis</div>
+<div class="section-subtitle">We now see how we can analyze trends in time-series data.</div>
+
+## A fitted time curve can still be useful {.concept-slide}
+
+<div class="w11-cards" style="--n:3;"><div class="w11-card estimate"><strong>Regression</strong><span>Fit a prespecified exponential, logistic or other trajectory.</span></div><div class="w11-card model"><strong>Coefficients</strong><span>Compare rate, peak, delay, plateau, or asymptote.</span></div><div class="w11-card warning"><strong>Danger</strong><span>Repeated observations can have correlated residuals.</span></div></div><div class="w11-figure" style="height:12.0em;"><img src="figures/temporal_band_warning.svg" alt="temporal band warning"></div><div class="w11-under">Bands intentionally schematic. The broader band illustrates why independence assumptions can understate uncertainty; actual widths depend on the fitted correlation model.</div>
+
+<div class="warning-box fragment fade-up"><p>Correlation changes <strong>uncertainty</strong>: same trend; different standard-error assumptions.</p></div>
+
+## Autocorrelation means a lag matters {.concept-slide}
+
+<div class="w11-math">$\rho(k)=\operatorname{Corr}(Y_t,Y_{t-k})$</div><div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Lag 1</strong><span>The similarity of consecutive values.</span></div><div class="w11-card uncertainty"><strong>Lag 6</strong><span>The similarity of values separated by six time steps.</span></div><div class="w11-card model"><strong>Differencing</strong><span><span style="font-size: 200%">$Y_t-Y_{t-1}$</span> is a separate transformation, not the definition of autocorrelation.</span></div></div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/Yule.jpg" alt="George Udny Yule">
+  <div class="portrait-name">George Udny Yule</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Levy.jpg" alt="Paul Lévy">
+  <div class="portrait-name">Paul Lévy</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Khinchin.gif" alt="Aleksandr Khinchin">
+  <div class="portrait-name">Aleksandr Khinchin</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Wiener.png" alt="Norbert Wiener">
+  <div class="portrait-name">Norbert Wiener</div>
+  </div>
+</div>
+
+## Three contrasting dependence structures {.concept-slide}
+
+<div class="w11-figure" style="height:12.2em;"><img src="figures/acf_structures.svg" alt="acf structures"></div><div class="w11-under">AR(1): correlation decays across lags. Compound symmetry: an illustrative equal within-subject correlation. White noise: no serial correlation.</div>
+
+<div class="concept-line fragment fade-up" style="font-size: 70%">Examples include<p><strong>First-order autoregressive:</strong> lake water temperature, where recent history has greatest impact on present (short memory)</p><p><strong>Compound symmetry / exchangeable:</strong> epidemiological viral endemic (lagging memory)</p><p><strong>Independent / Identity:</strong> White noise (no memory)</p></div>
+
+## A random walk is not independent observations {.concept-slide}
+
+<div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Steps</strong><span>Independent changes: <span style="font-size: 200%">$X_{t+1}-X_t=\epsilon_t$</span>.</span></div><div class="w11-card model"><strong>Positions</strong><span>Accumulated history: <span style="font-size: 200%">$X_t=\sum_{j\le t}\epsilon_j$</span>.</span></div><div class="w11-card uncertainty"><strong>Consequence</strong><span>Even independent steps can create strongly dependent position values.</span></div></div><div class="definition-box"><p>An ideal symmetric lattice walk in 1D or 2D returns with probability 1; in 3D it may return, but the return probability is below 1.</p></div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/Brown.jpg" alt="Robert Brown">
+  <div class="portrait-name">Robert Brown</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Einstein.jpg" alt="Albert Einstein">
+  <div class="portrait-name">Albert Einstein</div>
+  </div>
+</div>
+
+## Random walk: 2D versus 3D {.concept-slide}
+
+<div class="eyebrow">An animation of accumulated chance</div><video class="w11-video" style="height: 16em" data-autoplay muted loop playsinline><source src="media/random_walk_2d_3d.mp4" type="video/mp4"></video>
+
+## Time-series decomposition {.concept-slide}
+
+<div class="eyebrow">Trend + seasonal component + slower cycle + noise</div><div class="w11-figure" style="height:12.5em;"><img src="figures/decomposition.svg" alt="decomposition"></div><div class="w11-under">The components are modeling choices, not automatically identifiable features of every signal.</div>
+
+## Signal processing {.section-break}
+
+<div class="section-kicker">Part III</div>
+<div class="section-title">Signal processing</div>
+<div class="section-subtitle">We now see how we can smooth, filter, and decompose time-series measurements.</div>
+
+## Smoothing: what should survive? {.concept-slide}
+
+<div class="w11-cards" style="--n:3;"><div class="w11-card estimate"><strong>Signal</strong><span>Structured variation relevant to the scientific question.</span></div><div class="w11-card observed"><strong>Noise</strong><span>Variation we hope to attenuate, which may itself contain meaningful events.</span></div><div class="w11-card warning"><strong>Trade-off</strong><span>Aggressive smoothing erases sharp peaks and can bias maxima or event timing.</span></div></div><div class="definition-box fragment fade-up"><p>Choose a smoother with the scientific endpoint in mind, not only how pleasing the final curve looks.</p></div>
+
+## Moving average {.concept-slide}
+
+<div class="w11-method-layout">
+  <div class="w11-method-intro">
+  <div class="w11-math">$\widehat y_t=\dfrac{1}{2k+1}\sum_{j=-k}^{k}y_{t+j}$</div><div class="w11-cards" style="--n:2;"><div class="w11-card estimate"><strong>Window width</strong><span>A wider window attenuates short-term fluctuation.</span></div><div class="w11-card warning"><strong>Cost</strong><span>Sharp peaks flatten; edge values need special handling.</span></div></div><div class="w11-under">A simple local average is not a regression model for the underlying mechanism.</div>
+  </div>
+  <div class="w11-method-media">
+  <div class="w11-method-visual">
+  <video data-autoplay muted loop playsinline>
+  <source src="media/MovingAverageWindow.mp4" type="video/mp4">
+  </video>
+  </div>
+  <div class="w11-method-portraits">
+  <!-- Empty intentionally, to preserve alignment -->
+  </div>
+  </div>
+</div>
+
+## Savitzky–Golay / LOESS: local polynomial fitting {.concept-slide}
+
+<div class="w11-method-layout">
+  <div class="w11-method-intro">
+  <div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Within each window</strong><span>Fit a low-degree polynomial to nearby observed points.</span></div><div class="w11-card estimate"><strong>At the window center</strong><span>Use the fitted central value; then slide the window.</span></div><div class="w11-card model"><strong>In practice</strong><span>Retains local peaks and derivatives better than a boxcar average in many settings.</span></div></div><div class="definition-box fragment fade-up" style="font-size: 70%"><p>Polynomial degree must be smaller than the odd window length; excessive degree may overfit noise.</p></div>
+  </div>
+  <div class="w11-method-media">
+  <div class="w11-method-visual">
+  <video data-autoplay muted loop playsinline>
+  <source src="media/SavitzkyGolayMovingWindow.mp4" type="video/mp4">
+  </video>
+  </div>
+  <div class="w11-method-portraits">
+  <div class="mathematician-gallery fragment fade-up">
+  <div class="portrait-card">
+  <img src="figures/Golay.jpg" alt="Marcel J.E. Golay">
+  <div class="portrait-name">Marcel J.E. Golay</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Cleveland.jpg" alt="William S. Cleveland">
+  <div class="portrait-name">William S. Cleveland</div>
+  </div>
+  </div>
+  </div>
+  </div>
+</div>
+
+## Smoothing splines: let curvature cost something {.concept-slide}
+
+<div class="w11-method-layout">
+  <div class="w11-method-intro">
+  <div class="w11-math">$\min_f\;\sum_i (y_i-f(t_i))^2 + \lambda\!\int [f\prime\prime(t)]^2\,dt$</div><div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Small λ</strong><span>Fit follows data more closely; can appear jagged.</span></div><div class="w11-card model"><strong>Large λ</strong><span>Favors less curvature; approaches a straight line.</span></div><div class="w11-card uncertainty"><strong>Natural boundaries</strong><span>The second derivative vanishes at the endpoints; slope need not vanish.</span></div></div>
+  </div>
+  <div class="w11-method-media">
+  <div class="w11-method-visual">
+  <img
+  src="figures/smoothing_spline_static.svg"
+  alt="Smoothing spline shown as adjoining cubic pieces">
+  </div>
+  <div class="w11-method-portraits" style="height:5em">
+  <div class="mathematician-gallery fragment fade-up">
+  <div class="portrait-card">
+  <img src="figures/Schoenberg.jpg" alt="Isaac Jacob Schoenberg">
+  <div class="portrait-name">Isaac Jacob Schoenberg</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Wahba.jpg" alt="Grace Wahba">
+  <div class="portrait-name">Grace Wahba</div>
+  </div>
+  </div>
+  </div>
+  </div>
+</div>
+
+## Lab: compare smoothing methods on the same data {.concept-slide}
+
+<div class="w11-lab" id="smoothWidget"><div class="w11-controls"><label class="w11-control">Method<select id="smMethod"><option value="mean">Moving average</option><option value="sg">Savitzky–Golay</option><option value="spline">Smoothing spline</option></select></label><label class="w11-control">Odd window size <strong id="smWindowV">7</strong><input id="smWindow" type="range" min="3" max="21" value="7" step="2"></label><label class="w11-control">Polynomial degree <strong id="smDegreeV">3</strong><input id="smDegree" type="range" min="1" max="4" value="3" step="1"></label><label class="w11-control">Curvature penalty (log₁₀ λ) <strong id="smLambdaV">-1</strong><input id="smLambda" type="range" min="-4" max="3" value="-1" step="0.25"></label><div class="w11-btn-row"><button class="w11-btn " id="smGcv" type="button">Choose λ by GCV</button><button class="w11-btn secondary" id="smNew" type="button">New data</button></div><div class="w11-micro">Spline panel uses a finite-difference curvature penalty, a close discrete analogue; GCV selects its penalty.</div></div><div class="w11-visual"><svg id="smoothSvg" class="w11-svg" viewBox="0 0 900 460" style="height:13em" aria-label="Compare moving average, local polynomials and curvature smoothing"></svg><div class="w11-readout" style="--n:3;"><div class="w11-output"><span>Method</span><strong id="smMethodOut">—</strong></div><div class="w11-output"><span>RMSE to truth</span><strong id="smRmseOut">—</strong></div><div class="w11-output"><span>Selected λ</span><strong id="smLambdaOut">—</strong></div></div></div></div>
+
+## Filtering asks a different question {.concept-slide}
+
+<div class="w11-cards" style="--n:3;"><div class="w11-card estimate"><strong>Smoothing</strong><span>Attenuate fluctuations locally or by roughness penalty.</span></div><div class="w11-card uncertainty"><strong>Fourier view</strong><span>Express the signal as a superposition of frequencies.</span></div><div class="w11-card model"><strong>Filtering</strong><span>Keep or attenuate frequency ranges, then reconstruct.</span></div></div><div class="w11-under">A sudden event spreads energy across frequencies; suppressing high frequencies can blur clinically important spikes.</div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/Fourier.jpg" alt="Joseph Fourier">
+  <div class="portrait-name">Joseph Fourier</div>
+  </div>
+</div>
+
+## A signal can be made from sinusoidal parts {.concept-slide}
+
+<div class="w11-math">$y(t)=\sum_j A_j\sin(2\pi f_jt+\phi_j)$</div><div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Amplitude <em>A</em></strong><span>Controls how strong a component is.</span></div><div class="w11-card uncertainty"><strong>Frequency <em>f</em></strong><span>Controls cycles per unit time.</span></div><div class="w11-card model"><strong>Phase <em>ϕ</em></strong><span>Shifts the component through time; magnitude need not change.</span></div></div>
+
+<div class="w11-figure" style="height:12.2em;"><img src="figures/fourier_transform.svg" alt="Fourier transform"></div>
+
+## Lab: a Fourier magnitude spectrum {.concept-slide}
+
+<div class="w11-lab" id="fourierWidget">
+  <div class="w11-controls">
+  <label class="w11-control">Component 1 amplitude <strong id="ftA1V">2</strong><input id="ftA1" type="range" min="0" max="3" value="2" step="0.1"></label>
+  <label class="w11-control">Component 1 frequency <strong id="ftF1V">3</strong><input id="ftF1" type="range" min="1" max="15" value="3" step="1"></label>
+  <label class="w11-control">Component 1 phase <strong id="ftP1V">0</strong><input id="ftP1" type="range" min="0" max="6.28" value="0" step="0.2"></label>
+  <label class="w11-control">Component 2 amplitude <strong id="ftA2V">1.2</strong><input id="ftA2" type="range" min="0" max="3" value="1.2" step="0.1"></label>
+  <label class="w11-control">Component 2 frequency <strong id="ftF2V">8</strong><input id="ftF2" type="range" min="1" max="15" value="8" step="1"></label>
+  <label class="w11-control">Component 2 phase <strong id="ftP2V">1.2</strong><input id="ftP2" type="range" min="0" max="6.28" value="1.2" step="0.2"></label>
+  </div>
+  <div class="w11-visual">
+  <svg id="fourierSvg" class="w11-svg" viewBox="0 0 900 460" style="height:14em" aria-label="Wave components and discrete Fourier magnitudes"></svg>
+  <div class="w11-readout" style="--n:2;">
+  <div class="w11-output"><span>Dominant frequency</span><strong id="ftDom">—</strong></div>
+  <div class="w11-output"><span>Peak magnitude</span><strong id="ftMag">—</strong></div>
+  </div>
+  </div>
+</div>
+
+## Frequency-selective filtering {.concept-slide}
+
+<div class="w11-figure" style="height:11.8em;"><img src="figures/fourier_filter.svg" alt="fourier filter"></div><div class="definition-box"><p>Remove unwanted bands, but beware of losing slow biological trends or fast clinically meaningful transients.</p></div>
+
+## The measurement system can blur hidden events {.concept-slide}
+
+<div class="eyebrow">Convolution: an instrument response shapes what we see</div><div class="w11-math">$y(t)=(x*h)(t)+\varepsilon(t)$</div><div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Hidden input <em>x</em></strong><span>A neural impulse or narrow chromatographic peak.</span></div><div class="w11-card model"><strong>Response <em>h</em></strong><span>A slower hemodynamic or instrument impulse response.</span></div><div class="w11-card uncertainty"><strong>Observed <em>y</em></strong><span>Overlapping, blurred responses plus noise.</span></div></div>
+
+## Deconvolution: reconstruct, never magically undo {.concept-slide}
+
+<div class="w11-figure" style="height:11.6em;"><img src="figures/deconvolution.svg" alt="deconvolution"></div><div class="w11-under">Regularization is required because division by a near-zero Fourier component amplifies noise. Exact millisecond timing cannot generally be recovered from a slow fMRI signal.</div>
+
+## Survival analysis {.section-break}
+
+<div class="section-kicker">Part IV</div>
+<div class="section-title">Survival analysis</div>
+<div class="section-subtitle">We now see how lifetime expectancy can be estimated.</div>
+
+## A different time question: time until an event {.concept-slide}
+
+<div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Event</strong><span>Death, relapse, adverse effect, or another defined endpoint.</span></div><div class="w11-card model"><strong>Start time</strong><span>Diagnosis, first dose, randomization or enrollment.</span></div><div class="w11-card uncertainty"><strong>Complication</strong><span>Some people have not had an event by their last known follow-up.</span></div></div><div class="definition-box fragment fade-up"><p>Survival analysis is about <strong>time to event</strong>, not necessarily death.</p></div>
+
+## Censoring differs from truncation {.concept-slide}
+
+<div class="w11-table" style="--n:2;font-size:120%;grid-template-columns: 1fr 2fr;"><div class="head">Mechanism</div><div class="head">What is known?</div><div>Right censor</div><div>Event time exceeds the final observation time. We only know the event time is greater than the last known check.</div><div>Left censor</div><div>Event happened before the first reliable observation.</div><div>Interval censor</div><div>Event happened in between two inspection or check-in times, rather than at a precise timestamp.</div><div>Left truncation</div><div>Observations below a certain threshold are left out of the sample.</div><div>Right truncation</div><div>Observations above a certain threshold are excluded from the dataset.</div></div>
+
+<div class="definition-box fragment fade-up">Censoring is <em>partial</em> information: the subject is included in the study, but the exact time of the event is unknown; we only know that the event happened within a certain range or relative to a specific point.</div>
+
+<div class="definition-box fragment fade-up">With truncation, data points outside a specific range are <em>completely excluded</em> from the dataset; if an observation is truncated, we do not even know it exists.</div>
+
+## What timelines actually look like {.concept-slide}
+
+<div class="w11-figure" style="height:12.1em;"><img src="figures/censoring_truncation.svg" alt="censoring truncation"></div><div class="w11-under">Cross: observed event; tick: right censor; other rows show differing information/selection mechanisms.</div>
+
+## Kaplan–Meier: multiply conditional survival {.concept-slide}
+
+<div class="w11-math">$\widehat S(t)=\prod_{t_i\le t}\left(1-\dfrac{d_i}{r_i}\right)$</div><div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong style="font-size:120%">$r_i$</strong><span>Number still at risk immediately before event time $t_i$.</span></div><div class="w11-card warning"><strong style="font-size:120%">$d_i$</strong><span>Number with the event at that time.</span></div><div class="w11-card estimate"><strong style="font-size:120%">$1-d_i/r_i$</strong><span>Probability of surviving this event time, conditional on the risk set.</span></div></div><div class="w11-under">Right censoring reduces subsequent risk sets but does not itself cause a drop in the KM curve.</div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/Kaplan.jpg" alt="Edward L. Kaplan">
+  <div class="portrait-name">Edward L. Kaplan</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Meier.jpg" alt="Paul Meier">
+  <div class="portrait-name">Paul Meier</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Nelson.jpg" alt="Wayne Nelson">
+  <div class="portrait-name">Wayne Nelson</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Aalen.jpg" alt="Odd Aalen">
+  <div class="portrait-name">Odd Aalen</div>
+  </div>
+</div>
+
+## Work out the first few KM steps {.concept-slide}
+
+<div class="w11-table" style="--n:6;font-size:120%"><div class="head">Time</div><div class="head">At risk&nbsp;$r_i$</div><div class="head">Events&nbsp;$d_i$</div><div class="head">Censored&nbsp;$c_i$</div><div class="head">Conditional factor</div><div class="head">Cumulative&nbsp;$\hat S(t)$</div><div>Month 1</div><div>8</div><div>1</div><div>0</div><div>$7/8$</div><div>$7/8 = 0.875$</div><div>Month 2</div><div>7</div><div>2</div><div>1 (right censored)</div><div>$5/7$</div><div>$(7/8)(5/7)=0.625$</div><div>Month 3</div><div>4</div><div>1</div><div>0</div><div>$3/4$</div><div>$0.625(3/4)=0.469$</div></div><div class="w11-under">Illustrative risk sets: one person was censored after month 2 but before month 3. The product gives cumulative survival.</div>
+
+## Compare two Kaplan–Meier curves {.concept-slide}
+
+<div class="w11-figure" style="height:12.1em;"><img src="figures/km_two_groups.svg" alt="km two groups"></div><div class="w11-under">Hypothetical therapies; right-censor marks (+). Confidence bands are schematic, not formal Greenwood bands.</div>
+
+## A survival plot does not by itself prove a difference {.concept-slide}
+
+<div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Visual evidence</strong><span>Step heights and separation suggest differences in event timing.</span></div><div class="w11-card estimate"><strong>Inference</strong><span>A log-rank test or Cox model addresses a defined comparison.</span></div><div class="w11-card warning"><strong>Limitations</strong><span>Censoring, competing events and non-proportional hazards matter.</span></div></div><div class="definition-box"><p>Median survival is the first time at which estimated $S(t)$ reaches or falls below $0.5$; it may be unreached.</p></div>
+
+## Hazard: the danger conditional on survival {.concept-slide}
+
+<div class="w11-math">$h(t)=\lim_{\Delta t\to0}\dfrac{\mathbb{P}(t\le T<t+\Delta t\mid T\ge t)}{\Delta t}$</div><div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Survival</strong><span><span style="font-size:200%">$S(t)$</span>: Probability event time is later than <span style="font-size:200%">$t$</span>.</span></div><div class="w11-card estimate"><strong>CDF</strong><span><span style="font-size:200%">$1-S(t)$</span>: Probability the event has occurred by <span style="font-size:200%">$t$</span>.</span></div><div class="w11-card warning"><strong>Hazard</strong><span><span style="font-size:200%">$h(t)$</span>: An instantaneous conditional event rate (probability density), not a probability.</span></div></div>
+
+<div class="definition-box"><p>Intuition: While the survival function tells us the probability of making it past a certain point, the hazard function tells us how intense the danger is at that moment, given that we have survived up to that moment.</p></div>
+
+## Hazard can rise, fall, or stay constant {.concept-slide}
+
+<div class="w11-figure" style="height:11.8em;"><img src="figures/hazard_shapes.svg" alt="hazard shapes"></div><div class="w11-under">Illustrative mechanisms: wear-out, early vulnerability, and memoryless exponential survival.</div>
+
+## The area under survival measures time {.concept-slide}
+
+<div class="w11-math">$E[T]=\int_0^\infty S(t)\,dt$</div><div class="definition-box"><p>Mean or expected survival time is <strong>life expectancy</strong>.</p><p>With incomplete follow-up, <strong>restricted mean survival time</strong> (RMST) integrates only to a prespecified horizon $\tau$.</p></div><div class="w11-cards" style="--n:2;"><div class="w11-card observed"><strong>Survival</strong><span>How much of the population remains event-free?</span></div><div class="w11-card model"><strong>Hazard</strong><span>How intense is the instantaneous event rate?</span></div></div>
+
+## Survival curves can also be modeled parametrically {.concept-slide}
+
+<div class="w11-figure" style="height:11.4em;"><img src="figures/survival_families.svg" alt="survival families"></div><div class="w11-under">Different distributions imply different time-dependent hazards. Model choice is substantive, not decorative.</div>
+
+## Cox regression keeps baseline hazard flexible {.concept-slide}
+
+<div class="w11-math">$h(t\mid x)=h_0(t)\exp(\beta_1x_1+\cdots+\beta_px_p)$</div><div class="w11-cards" style="--n:3;"><div class="w11-card model"><strong>Baseline hazard</strong><span>Time-changing hazard at the reference covariate profile.</span></div><div class="w11-card estimate"><strong>Exponential multiplier</strong><span>Covariates multiply the instantaneous hazard.</span></div><div class="w11-card warning"><strong>Primary assumption</strong><span>Covariate hazard ratios are constant over time in a proportional-hazards model.</span></div></div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 32em">
+  <div class="portrait-card">
+  <img src="figures/Cox.jpg" alt="David Cox">
+  <div class="portrait-name">David Cox</div>
+  </div>
+</div>
+
+## Same changing baseline; different hazard multipliers {.concept-slide}
+
+<div class="w11-figure" style="height:11.9em;"><img src="figures/cox_profiles.svg" alt="cox profiles"></div><div class="w11-under">Hazard ratio 1.8 means 80% higher instantaneous hazard (at a given time), not 80% higher probability of an event.</div>
+
+<div class="definition-box fragment fade-up" style="font-size:70%"><p>Baseline hazard $h_0(t)$: general instantaneous hazard, applies to reference covariate profile</p><p>Hazard ratio $e^{\beta_i}$: $+1$ unit increase in $x_i$ multiplies baseline hazard by this much.</p><p>Proportional hazards assumption: if smoking increase instantaneous hazard by 2× at 40 years of age, it must also increase it by 2× at 60 years of age. The absolute amount of danger may change over time if baseline hazard changes, but the relative difference between the groups is locked in parallel.</p></div>
+
+## What if proportional hazards fails? {.concept-slide}
+
+<div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Check</strong><span>Curves and diagnostics may suggest time-varying effects.</span></div><div class="w11-card model"><strong>Alternatives</strong><span>Time-varying coefficients, stratified Cox, or accelerated failure-time models.</span></div><div class="w11-card uncertainty"><strong>Scope</strong><span>These are honorable mentions; learn the interpretation of HR and KM first.</span></div></div>
+
+## Prediction {.section-break}
+
+<div class="section-kicker">Part V</div>
+<div class="section-title">Prediction</div>
+<div class="section-subtitle">We now see how data can enable us to predict missing values.</div>
+
+## Missing values: fit the observed, then predict {.concept-slide}
+
+<div class="w11-figure" style="height:11.7em;"><img src="figures/model_imputation.svg" alt="model imputation"></div><div class="w11-under">Predictions are estimates, not newly observed patient measurements. Imputation uncertainty must be represented for formal inference.</div>
+
+## No simple formula for the response curve? {.concept-slide}
+
+<div class="eyebrow">Gaussian-process regression</div>
+
+<div class="w11-method-layout" style="--intro-height: 3.5em;">
+  <div class="w11-method-intro">
+  <div class="w11-cards" style="--n:3;"><div class="w11-card model"><strong>A function prior</strong><span>We describe possible response curves with a mean and covariance kernel.</span></div><div class="w11-card uncertainty"><strong>Nearby experiments</strong><span>Can be more similar under a smooth kernel; different kernels encode different beliefs on smooth/jagged/periodic functions.</span></div><div class="w11-card estimate"><strong>Posterior</strong><span>Each new measurement updates both mean prediction and uncertainty.</span></div></div>
+  </div>
+  <div class="w11-method-media">
+  <div class="w11-method-visual fragment fade-up">
+  <img
+  src="figures/kriging_Gold_diagram_light.svg"
+  alt="Kriging Gaussian process schematic">
+  </div>
+  <div class="w11-method-portraits">
+  <div class="mathematician-gallery fragment fade-up">
+  <div class="portrait-card">
+  <img src="figures/Krige.jpg" alt="Danie G. Krige">
+  <div class="portrait-name">Danie G. Krige</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Mockus.jpg" alt="Jonas Mockus">
+  <div class="portrait-name">Jonas Mockus</div>
+  </div>
+  </div>
+  </div>
+  </div>
+</div>
+
+## Lab: the next experiment reduces uncertainty {.concept-slide}
+
+<div class="w11-lab" id="gpWidget"><div class="w11-controls"><label class="w11-control">Kernel length scale <strong id="gpLengthV">1.2</strong><input id="gpLength" type="range" min="0.3" max="3.5" value="1.2" step="0.1"></label><label class="w11-control">Acquisition score<select id="gpAcq"><option value="unc">Maximum uncertainty</option><option value="ucb">Mean + 1.5 × SD</option></select></label><div class="w11-btn-row"><button class="w11-btn " id="gpSuggest" type="button">Suggest next x</button><button class="w11-btn secondary" id="gpReset" type="button">Clear samples</button></div><div class="w11-micro">Click anywhere within the plot to sample that experimental condition. Synthetic truth is visible faintly as a teaching aid; an experimenter would not know it.</div></div><div class="w11-visual"><svg id="gpSvg" class="w11-svg" style="height:15em" viewBox="0 0 900 460" aria-label="Gaussian-process predictive mean and uncertainty on sampled x locations"></svg><div class="w11-readout" style="--n:3;"><div class="w11-output"><span>Samples</span><strong id="gpN">—</strong></div><div class="w11-output"><span>Latest sample</span><strong id="gpLast">—</strong></div><div class="w11-output"><span>Suggested x</span><strong id="gpNext">—</strong></div></div></div></div>
+
+## Prediction can help plan the next experiment {.concept-slide}
+
+<div class="w11-cards" style="--n:3;"><div class="w11-card uncertainty"><strong>Explore</strong><span>Sample where uncertainty is largest.</span></div><div class="w11-card estimate"><strong>Exploit</strong><span>Sample where predicted outcome is promising.</span></div><div class="w11-card model"><strong>Balance</strong><span>An acquisition function scores where the next measurement may be most useful.</span></div></div><div class="definition-box"><p>This is the intuition behind Bayesian optimization. It is <strong>not</strong> guaranteed to find the optimum from a handful of observations.</p></div>
+
+## What if the process moves between discrete states? {.concept-slide}
+
+<div class="eyebrow">Nosocomial infection example</div><div class="w11-figure" style="height:16.7em;justify-content:contain"><img src="figures/markov_states.svg" alt="markov states"></div><div class="w11-under">A Markov model represents transition probabilities among susceptible, infected and recovered states. Arrows are illustrative daily probabilities.</div>
+
+## The Markov property {.concept-slide}
+
+<div class="w11-math">$\mathbb{P}(X_{t+1}=j\mid X_t=i,\mathrm{history})=\mathbb{P}(X_{t+1}=j\mid X_t=i)$</div><div class="w11-cards" style="--n:3;"><div class="w11-card model"><strong>Memoryless</strong><span>Given today’s state, yesterday adds no predictive information in this model.</span></div><div class="w11-card uncertainty"><strong>Transition matrix</strong><span>Each row lists possible next states; row probabilities sum to 1.</span></div><div class="w11-card warning"><strong>Not universal</strong><span>Real infection history and immunity may require richer states or models.</span></div></div>
+
+## Lab: follow one patient through a Markov chain {.concept-slide}
+
+<div class="w11-lab" id="markovWidget"><div class="w11-controls"><div class="w11-btn-row"><button class="w11-btn " id="mkDay" type="button">Tomorrow</button><button class="w11-btn secondary" id="mkTen" type="button">+10 days</button><button class="w11-btn secondary" id="mkReset" type="button">Reset patient</button></div><div class="w11-micro">Current patient path is sampled stochastically. The bars display the theoretical population-state distribution after the same number of steps.</div></div><div class="w11-visual"><svg id="markovSvg" class="w11-svg" style="height:15em" viewBox="0 0 900 460" aria-label="Markov transition simulation and state probabilities"></svg><div class="w11-readout" style="--n:3;"><div class="w11-output"><span>Day</span><strong id="mkDayOut">—</strong></div><div class="w11-output"><span>Patient state</span><strong id="mkState">—</strong></div><div class="w11-output"><span>Long-run probability of infection</span><strong id="mkStable">—</strong></div></div></div></div>
+
+## Repeated matrix multiplication {.concept-slide}
+
+<div class="w11-math">$\boldsymbol\pi_{t+1}=\boldsymbol\pi_t \mathbb{P}$</div><div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Starting distribution</strong><span><span style="font-size:200%">$\boldsymbol\pi_0=(1,0,0)$</span>: all initially susceptible.</span></div><div class="w11-card estimate"><strong>Next day</strong><span><span style="font-size:200%">$\boldsymbol\pi_1=\boldsymbol\pi_0 \mathbb{P}$</span>.</span></div><div class="w11-card model"><strong>Long run</strong><span>If the chain is irreducible and aperiodic, distributions converge to a stationary vector.</span></div></div>
+
+## A tiny Markov model can even generate text {.concept-slide}
+
+<div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Training</strong><span>Count which word follows which in a small public-domain-style toy vocabulary.</span></div><div class="w11-card model"><strong>Generation</strong><span>Draw each next token using the transition probabilities of the current token.</span></div><div class="w11-card warning"><strong>Limit</strong><span>Local transitions are not genuine understanding or long-context language modeling.</span></div></div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap');
+
+  .w11-corpus-card {
+    margin-top: 1.25rem;
+    padding: 1rem 1.5rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #1f6feb; /* Obs blue accent */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+
+  .w11-corpus-header {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+  }
+
+  .w11-corpus-verses {
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: #0f172a;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.4rem 1.5rem;
+  }
+
+  .w11-corpus-verses span::before {
+    content: "“";
+    color: #1f6feb;
+    margin-right: 2px;
+  }
+
+  .w11-corpus-verses span::after {
+    content: "”";
+    color: #1f6feb;
+    margin-left: 2px;
+  }
+</style>
+
+<div class="w11-corpus-card">
+  <div class="w11-corpus-header">Sample Training Verses</div>
+  <div class="w11-corpus-verses">
+  <span>the soft night holds the silver stars</span>
+  <span>the silent river follows the moon</span>
+  <span>the green river hears the distant rain</span>
+  <span>the stars rest above the sleeping garden</span>
+  <span>a soft wind crosses the open field</span>
+  <span>night draws a curtain over the river</span>
+  <span>the distant hills remember summer light</span>
+  <span>soft shadows follow quiet footsteps</span>
+  <span>river water gathers beneath the moon</span>
+  <span>the night folds around the quiet stars</span>
+  <span>stars in the river move with the tide</span>
+  <span>the wind whispers through the silver trees</span>
+  <span>soft light returns beyond the hills</span>
+  <span>the river carries echoes of the night</span>
+  <span>green leaves sway when the wind wakes</span>
+  <span>the sleeping garden waits for morning light</span>
+  </div>
+</div>
+
+## Lab: a very small text generator {.concept-slide}
+
+<div class="w11-lab" id="wordWidget"><div class="w11-controls"><label class="w11-control">Starting word<select id="wordStart"><option value="the">the</option><option value="night">night</option><option value="soft">soft</option><option value="river">river</option><option value="stars">stars</option></select></label><div class="w11-btn-row"><button class="w11-btn " id="wordGenerate" type="button">Generate new verse</button><button class="w11-btn secondary" id="wordReset" type="button">Reset</button></div><div class="w11-micro">Offline miniature transition table only; not trained on 1,000 actual poems or on proprietary text.</div></div><div class="w11-visual"><svg id="wordSvg" class="w11-svg" viewBox="0 0 900 460" aria-label="Simple next-word Markov text generation"></svg><div class="w11-readout" style="--n:2;"><div class="w11-output"><span>Tokens</span><strong id="wordTokens">—</strong></div><div class="w11-output"><span>Unique words</span><strong id="wordUnique">—</strong></div></div></div></div><div class="w11-verse-box"><div class="w11-verse-badge">Generated Verse</div><div class="w11-verse-content" id="wordText" aria-live="polite">Select a starting word and generate.</div></div>
+
+## The common framework {.concept-slide}
+
+<div class="w11-table" style="--n:3;"><div class="head">What is changing?</div><div class="head">Method introduced</div><div class="head">Crucial caution</div><div>Repeated values</div><div>Longitudinal summaries / correlation</div><div>Do not treat every visit as independent</div><div>Signal shape</div><div>Smoothers / frequency analysis</div><div>Removing noise can also remove signal</div><div>Time to event</div><div>Kaplan–Meier / Cox</div><div>Censoring and hazard ≠ probability</div><div>Unknown response function</div><div>Gaussian process</div><div>Kernel assumptions control prediction</div><div>Discrete evolving states</div><div>Markov chain</div><div>Current-state sufficiency is an assumption</div></div>
+
+## Exercise 1: the repeated-measures trap {.concept-slide}
+
+<div class="w11-quiz" data-q="1"><div class="w11-quiz-q">Blood pressure is recorded six times per patient. Which analysis is invalid if it ignores within-person dependence?</div><div class="w11-choices"><button type="button" class="w11-choice" data-choice="A">A. Treat all readings as independent patients</button><button type="button" class="w11-choice" data-choice="B">B. Prespecify and compare one patient-level summary</button><button type="button" class="w11-choice" data-choice="C">C. Fit a model that accounts for patient clustering</button></div><div class="w11-feedback">Choose one response.</div></div>
+
+## Exercise 2: a time-to-event misconception {.concept-slide}
+
+<div class="w11-quiz" data-q="2"><div class="w11-quiz-q">At month 6, a subject has not had the event but leaves the study. In a standard KM analysis they are…</div><div class="w11-choices"><button type="button" class="w11-choice" data-choice="A">A. Counted as an event at month 6</button><button type="button" class="w11-choice" data-choice="B">B. Right censored at month 6</button><button type="button" class="w11-choice" data-choice="C">C. Excluded from every earlier risk set</button></div><div class="w11-feedback">Choose one response.</div></div>
+
+## Exercise 3: the wrong interpretation {.concept-slide}
+
+<div class="w11-quiz" data-q="3"><div class="w11-quiz-q">Cox regression reports HR = 1.5. Which statement is best?</div><div class="w11-choices"><button type="button" class="w11-choice" data-choice="A">A. Instantaneous event hazard is 50% greater, conditional on the model</button><button type="button" class="w11-choice" data-choice="B">B. The 10-year event probability is exactly 50% greater</button><button type="button" class="w11-choice" data-choice="C">C. Average survival time is exactly 50% shorter</button></div><div class="w11-feedback">Choose one response.</div></div>
+
+## Exercise 4: what does more data buy? {.concept-slide}
+
+<div class="w11-quiz" data-q="4"><div class="w11-quiz-q">Why can a new Gaussian-process measurement be particularly useful near an unsampled region?</div><div class="w11-choices"><button type="button" class="w11-choice" data-choice="A">A. It guarantees the global optimum</button><button type="button" class="w11-choice" data-choice="B">B. It can reduce posterior uncertainty nearby, depending on the kernel</button><button type="button" class="w11-choice" data-choice="C">C. It eliminates the need to make any correlation assumptions</button></div><div class="w11-feedback">Choose one response.</div></div>
+
+## Week 11 in one sentence {.concept-slide}
+
+<div class="w11-hero">Model what time does to <strong>dependence, uncertainty, event occurrence, and prediction</strong>.</div><div class="w11-flow"><div><strong>Trajectory</strong><span>Summarize intelligently</span></div><div><strong>Dependence</strong><span>Respect correlation</span></div><div><strong>Survival</strong><span>Honor censoring</span></div><div><strong>Prediction</strong><span>Show uncertainty</span></div></div>
+
+## Next: Week 12 {.concept-slide}
+
+<div class="eyebrow">From structured models to learning from many variables</div><div class="w11-cards" style="--n:3;"><div class="w11-card observed"><strong>Multivariate structure</strong><span>Principal components, factors and clustering.</span></div><div class="w11-card estimate"><strong>Prediction</strong><span>Generalization, validation and model capacity.</span></div><div class="w11-card uncertainty"><strong>Machine learning</strong><span>A wider collection of methods, not a replacement for statistical reasoning.</span></div></div><div class="definition-box"><p>The last week asks: when patterns are high-dimensional, how can models learn without fooling us?</p></div>
+
+<script src="widgets.js"></script>

@@ -154,14 +154,21 @@ $$
 </div>
 
 <div class="info-card-row">
-<div class="info-card fragment fade-up"><div class="p">$P(x)=1$</div><div class="bits">0 bits</div></div>
-<div class="info-card fragment fade-up"><div class="p">$P(x)=1/2$</div><div class="bits">1 bit</div></div>
-<div class="info-card fragment fade-up"><div class="p">$P(x)=1/8$</div><div class="bits">3 bits</div></div>
+<div class="info-card fragment fade-up"><div class="p">$\mathbb{P}(x)=1$</div><div class="bits">0 bits</div></div>
+<div class="info-card fragment fade-up"><div class="p">$\mathbb{P}(x)=1/2$</div><div class="bits">1 bit</div></div>
+<div class="info-card fragment fade-up"><div class="p">$\mathbb{P}(x)=1/8$</div><div class="bits">3 bits</div></div>
 </div>
 
 ::: {.fragment .fade-up}
 <div class="concept-line">Rare events are more surprising, so observing them carries more information.</div>
 :::
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 28em">
+  <div class="portrait-card">
+  <img src="figures/Shannon.jpg" alt="Claude Elwood Shannon">
+  <div class="portrait-name">Claude Elwood Shannon</div>
+  </div>
+</div>
 
 ## Try it: probability and surprise {.exercise-slide}
 
@@ -232,15 +239,10 @@ $$
 <div class="w4-card model-border fragment fade-up"><div class="w4-card-title">Statistical-mechanical entropy</div><div class="w4-card-sub">uncertainty over possible microstates</div><div class="w4-card-eq">shared mathematical structure</div></div>
 </div>
 
-::: {.fragment .fade-up}
-<div class="concept-line">Both quantify uncertainty over possible states.</div>
-:::
-
-<div class="timeline">
-  <div class="timeline-step fragment fade-up">
-  <div class="label">Claude Elwood Shannon</div>
-  <img src="figures/Shannon.jpg" alt="Claude Shannon" class="step-image">
-  </div>
+<div class="w4-card fragment fade-up" style="padding:.02em">
+<div class="w4-card-figure">
+<img src="figures/shannon_weather_coding.svg" alt="Shannon variable length coding decision tree" class="w4-card-img" style="height:15em">
+</div>
 </div>
 
 ## Types of variables {.section-break}
@@ -467,11 +469,11 @@ $$
 </div>
 
 <div class="missing-reasons fragment fade-up">
-  <div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.62em; color: #475569;">measurement failed</div>
-  <div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.62em; color: #475569;">patient skipped visit</div>
-  <div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.62em; color: #475569;">not applicable</div>
-  <div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.62em; color: #475569;">data-entry loss</div>
-  <div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.62em; color: #475569;">dropout</div>
+  <div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.72em; color: #475569;">measurement failed</div>
+  <div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.72em; color: #475569;">patient skipped visit</div>
+  <div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.72em; color: #475569;">not applicable</div>
+  <div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.72em; color: #475569;">data-entry loss</div>
+  <div class="missing-reason" style="background: #fefae0; border: 1px solid #cbd5e1; border-radius: 999px; padding: 0.3em 0.7em; font-size: 0.72em; color: #475569;">dropout</div>
 </div>
 
 ## Handling missing values {.concept-slide}
@@ -737,16 +739,6 @@ $$
 
 </div>
 
-<!-- ## Visualization is analysis, not decoration {.concept-slide} -->
-
-<!-- <div class="eyebrow">Choose encodings that match the data and question</div> -->
-
-<!-- <div class="w4-grid-3"> -->
-<!-- <div class="w4-card warning-border fragment fade-up"><div class="w4-card-title">Too many pie slices</div><div class="w4-card-sub">hard to compare 18 categories</div></div> -->
-<!-- <div class="w4-card warning-border fragment fade-up"><div class="w4-card-title">Line plot for unordered categories</div><div class="w4-card-sub">implies continuity or order that may not exist</div></div> -->
-<!-- <div class="w4-card warning-border fragment fade-up"><div class="w4-card-title">3D bars</div><div class="w4-card-sub">perspective distorts values</div></div> -->
-<!-- </div> -->
-
 ## Visualization is analysis, not decoration {.concept-slide}
 
 <div class="eyebrow">Choose encodings that match the data and question</div>
@@ -951,7 +943,7 @@ function renderQuery(){ const dia=document.getElementById('qDiabetes').value, se
  const filters=[p=> dia==='any'||String(p.diabetes)===dia, p=> sex==='any'||p.sex===sex, p=> bp==='any'||bpStatus(p.bp)===bp, p=> stage==='any'||String(p.stage)===stage, p=> p.height>=h];
  const active=[dia!=='any', sex!=='any', bp!=='any', stage!=='any', h>150];
  let out=patients.filter(p=>{ const results=filters.map(f=>f(p)); if(!active.some(Boolean)) return true; return logic==='and'?results.every((r,i)=>!active[i]||r):results.some((r,i)=>active[i]&&r); });
- document.getElementById('qCount').textContent=out.length; const tbl=document.getElementById('qTable'); let html='<div class="head">ID</div><div class="head">sex</div><div class="head">stage</div><div class="head">diabetes</div><div class="head">height</div><div class="head">BP</div><div class="head">status</div>'; out.slice(0,6).forEach(p=>{ html+=`<div>${p.id}</div><div>${p.sex}</div><div>${p.stage}</div><div>${p.diabetes}</div><div>${p.height}</div><div>${p.bp}</div><div>${bpStatus(p.bp)}</div>`; }); tbl.innerHTML=html; }
+ document.getElementById('qCount').textContent=out.length; const tbl=document.getElementById('qTable'); let html='<div class="head">ID</div><div class="head">sex</div><div class="head">stage</div><div class="head">diabetes</div><div class="head">height</div><div class="head">BP</div><div class="head">status</div>'; out.slice(0,10).forEach(p=>{ html+=`<div>${p.id}</div><div>${p.sex}</div><div>${p.stage}</div><div>${p.diabetes}</div><div>${p.height}</div><div>${p.bp}</div><div>${bpStatus(p.bp)}</div>`; }); tbl.innerHTML=html; }
 
 function barSvg(svgId, values, labels, colors){ const svg=document.getElementById(svgId); if(!svg) return; const W=500,H=300,left=55,right=30,top=20,bottom=245; const max=Math.max(...values)*1.15; let html=makeAxis(svg,W,H,left,bottom,right,top); values.forEach((v,i)=>{ const bw=80; const gap=(W-left-right-values.length*bw)/(values.length+1); const x=left+gap+i*(bw+gap); const y=bottom-v/max*(bottom-top); html += `<rect x="${x}" y="${y}" width="${bw}" height="${bottom-y}" class="${colors?.[i]||'plot-bar'}"/><text x="${x+bw/2}" y="${bottom+18}" text-anchor="middle" class="plot-label">${labels[i]}</text><text x="${x+bw/2}" y="${y-6}" text-anchor="middle" class="plot-label">${v}</text>`; }); svg.innerHTML=html; }
 function drawOneCat(){ const f=patients.filter(p=>p.sex==='F').length, m=patients.length-f; barSvg('plotOneCat',[f,m],['F','M'],['plot-bar','plot-bar2']); }

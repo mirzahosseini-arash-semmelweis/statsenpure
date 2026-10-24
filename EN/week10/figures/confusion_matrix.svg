@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="578.16pt" height="275.692162pt" viewBox="0 0 578.16 275.692162" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-14T10:40:22.566937</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 275.692162 
+L 578.16 275.692162 
+L 578.16 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 132.84 130.892962 
+L 322.56 130.892962 
+L 322.56 56.048962 
+L 132.84 56.048962 
+z
+" clip-path="url(#p9a16fd316b)" style="fill: #e8f7ec; stroke: #18864b; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 344.88 130.892962 
+L 534.6 130.892962 
+L 534.6 56.048962 
+L 344.88 56.048962 
+z
+" clip-path="url(#p9a16fd316b)" style="fill: #fceeed; stroke: #c93838; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 132.84 223.200562 
+L 322.56 223.200562 
+L 322.56 148.356562 
+L 132.84 148.356562 
+z
+" clip-path="url(#p9a16fd316b)" style="fill: #fceeed; stroke: #c93838; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 344.88 223.200562 
+L 534.6 223.200562 
+L 534.6 148.356562 
+L 344.88 148.356562 
+z
+" clip-path="url(#p9a16fd316b)" style="fill: #e8f7ec; stroke: #18864b; stroke-width: 1.8; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #182230" x="227.7" y="80.996962" transform="rotate(-0 227.7 80.996962)">True positive (TP)</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 22px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #18864b" x="227.7" y="110.934562" transform="rotate(-0 227.7 110.934562)">38</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #182230" x="439.74" y="80.996962" transform="rotate(-0 439.74 80.996962)">False negative (FN)</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 22px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #c93838" x="439.74" y="110.934562" transform="rotate(-0 439.74 110.934562)">8</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #182230" x="227.7" y="173.304563" transform="rotate(-0 227.7 173.304563)">False positive (FP)</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 22px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #c93838" x="227.7" y="203.242163" transform="rotate(-0 227.7 203.242163)">12</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #182230" x="439.74" y="173.304563" transform="rotate(-0 439.74 173.304563)">True negative (TN)</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 22px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #18864b" x="439.74" y="203.242163" transform="rotate(-0 439.74 203.242163)">142</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #182230" x="339.3" y="23.616562" transform="rotate(-0 339.3 23.616562)">Test says</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #667085" x="227.7" y="48.564562" transform="rotate(-0 227.7 48.564562)">Positive</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #667085" x="439.74" y="48.564562" transform="rotate(-0 439.74 48.564562)">Negative</text>
+   </g>
+   <g id="text_12">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #182230" x="54.72" y="101.771812" transform="rotate(-0 54.72 101.771812)">Sick</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #182230" x="54.72" y="194.032537" transform="rotate(-0 54.72 194.032537)">Healthy</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p9a16fd316b">
+   <rect x="10.08" y="16.132162" width="558" height="249.48"/>
+  </clipPath>
+ </defs>
+</svg>

@@ -1,6 +1,6 @@
 ---
-title: "Statistics 101"
-subtitle: "Week 8 · Placeholder"
+title: "Statistics for Pharmacists"
+subtitle: "Week 8 · Relationships and regression"
 author: "Graduate Pharmaceutical Studies"
 date: ""
 title-slide-attributes:
@@ -8,10 +8,1078 @@ title-slide-attributes:
 format:
   revealjs:
     footer: "Statistics 101 · Week 8"
+    scrollable: false
+    theme:
+      - default
+      - ../assets/scss/course.scss
+      - ../assets/scss/week08.scss
+    resources:
+      - figures/**
 ---
 
-## Week 8 {.motivation-slide}
+## Relationships and regression {.title-slide}
 
-<div class="eyebrow">Course skeleton</div>
+<div class="eyebrow">Week 8</div>
 
-<div class="big-question">Content to be developed.</div>
+<div class="concept-line" style="margin-top:1em;">How are variables related — and can one help explain another?</div>
+
+::: {.notes}
+We finished comparing groups. This week we move from group labels to quantitative predictors and modeling, using analytical chemistry as our narrative spine.
+:::
+
+## From group differences to relationships {.motivation-slide}
+
+<div class="eyebrow">A missing piece from Week 7</div>
+
+<div class="w8-three fragment fade-up">
+<div class="w8-card observed-border"><div class="w8-card-title">Compare groups</div><div class="w8-card-math">$\bar x_A-\bar x_B$</div><div class="w8-card-sub">Does treatment A differ from B?</div></div>
+<div class="w8-card estimate-border"><div class="w8-card-title">Relate measurements</div><div class="w8-card-math">$y=f(x)+\varepsilon$</div><div class="w8-card-sub">How does response vary with dose?</div></div>
+<div class="w8-card model-border"><div class="w8-card-title">Predict a response</div><div class="w8-card-math">$\hat y=f(x)$</div><div class="w8-card-sub">What do we expect at a new concentration?</div></div>
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">In chemistry, calibration is already a form of statistical modeling.</div>
+:::
+
+## Our motivating question: tablet API assay {.concept-slide}
+
+<div class="eyebrow">What the detector measures is not what we want</div>
+
+<div class="w8-figure-holder" style="height:12.2em;"><img src="figures/hplc_hook.svg" alt="Synthetic HPLC chromatogram and concentration-absorbance calibration plot"></div>
+
+<div class="w8-caption">Synthetic demonstration: chromatographic separation identifies the API signal; standards connect detector absorbance to known concentration.</div>
+
+## How do we know concentration? {.concept-slide}
+
+<div class="eyebrow">Build a reference relationship</div>
+
+<div class="w8-process fragment fade-up">
+<div class="w8-step"><strong>Known standards</strong><span class="inline-label">prepare API solutions with chosen concentrations<span style="font-size: 200%">$x$</span></span></div>
+<div class="w8-step-arrow">→</div>
+<div class="w8-step"><strong>Measured signal</strong><span class="inline-label">record UV absorbance<span style="font-size: 200%">$y$</span>after HPLC separation</span></div>
+<div class="w8-step-arrow">→</div>
+<div class="w8-step"><strong>Calibration model</strong><span class="inline-label">estimate<span style="font-size: 200%">$y=\beta_0+\beta_1x+\varepsilon$</span></span></div>
+</div>
+
+<div class="definition-box fragment fade-up"><div class="definition-title">Two jobs, two questions</div><p><strong>Association</strong> describes co-variation; <strong>regression</strong> specifies a model for a response given predictors.</p></div>
+
+## Association {.section-break}
+
+<div class="section-kicker">Part I</div>
+<div class="section-title">How do two variables change together?</div>
+<div class="section-subtitle">Direction, strength, shape — but not yet a causal explanation.</div>
+
+## Look at cell cultures {.concept-slide}
+
+<div class="eyebrow">Cell diameter and growth rate</div>
+
+<div class="w8-figure-holder" style="height:12.8em;"><img src="figures/cells_scatter.svg" alt="Scatter of synthetic cell size and growth rate with a positive regression line"></div>
+
+<div class="concept-line">A scatterplot is the first diagnostic for two numerical variables.</div>
+
+## Pearson's correlation $r$ {.concept-slide}
+
+<div class="eyebrow">How closely do points follow a straight line?</div>
+
+<div class="w8-three fragment fade-up">
+<div class="w8-card observed-border"><div class="w8-card-math">$r\approx +1$</div><div class="w8-card-sub">strong positive <em>linear</em> co-movement</div></div>
+<div class="w8-card uncertainty-border"><div class="w8-card-math">$r\approx 0$</div><div class="w8-card-sub">little linear co-movement; a curve may remain</div></div>
+<div class="w8-card model-border"><div class="w8-card-math">$r\approx -1$</div><div class="w8-card-sub">strong negative <em>linear</em> co-movement</div></div>
+</div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">
+$$r=\frac{\sum_i(x_i-\bar x)(y_i-\bar y)}{\sqrt{\sum_i(x_i-\bar x)^2\sum_i(y_i-\bar y)^2}}$$
+</div>
+:::
+
+<div class="w8-note fragment fade-up">
+  <strong>Covariance $\text{Cov}(x,y) = \frac{1}{n-1}\sum_i(x_i-\bar x)(y_i-\bar y)$:</strong> Measures joint variation. Its units are <em>$(\text{unit}_x \cdot \text{unit}_y)$</em>, making it scale-dependent.
+</div>
+
+<div class="w8-note fragment fade-up">
+  <strong>Correlation $r$:</strong> Standardizes covariance by dividing out standard deviations. Unitless; unchanged by positive linear transformations. Undefined if either variable is constant.
+</div>
+
+## A small worked example {.concept-slide}
+
+<div class="eyebrow">Pearson correlation from five measurements</div>
+
+<div class="w8-two w8-center">
+  <!-- Left Column: Overlay Grid Container -->
+  <div style="display: grid; align-items: start; justify-items: center; width: 100%;">
+    
+  <!-- Base Table -->
+  <div class="w8-mini-table w8-pearson-table" style="grid-area: 1 / 1; font-size: 110%;">
+  <div class="head">Cell size</div><div class="head">Growth</div>
+  <div>10</div><div>2</div>
+  <div>12</div><div>3</div>
+  <div>14</div><div>3</div>
+  <div>16</div><div>5</div>
+  <div>18</div><div>6</div>
+  </div>
+
+  <!-- SVG Fragment Overlay (Covers the table on fade-up) -->
+  <div class="fragment fade-up" style="grid-area: 1 / 1; text-align: center; width: 100%; background: #ffffff; z-index: 2; padding: 4px; border-radius: 6px;">
+  <img src="figures/r_squared_decomposition.svg" alt="R2 decomposition" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+  <div class="w8-card-sub" style="margin-top: 8px; font-size: 90%;">
+  $R^2$ has an intuitive meaning of ratio of explained variance by the model
+  </div>
+  </div>
+
+  </div>
+
+  <!-- Right Column: Step-by-step calculation -->
+  <div class="w8-card estimate-border" style="font-size:120%">
+  <div class="w8-card-title">Step-by-step calculation</div>
+  <div class="w8-calc-step"><div class="w8-step-label">1: Means</div><div>$\bar x = 14,\quad \bar y = 3.8$</div></div>
+  <div class="w8-calc-step"><div class="w8-step-label">2: Sum of products (Numerator)</div><div class="w8-math-detail">$\sum(x_i-\bar x)(y_i-\bar y) = (-4)(-1.8) + (-2)(-0.8) + 0 + (2)(1.2) + (4)(2.2) = \mathbf{20}$</div></div>
+  <div class="w8-calc-step"><div class="w8-step-label">3: Sums of squares (Denominator)</div><div>$SS_x = \sum(x_i-\bar x)^2 = 16 + 4 + 0 + 4 + 16 = \mathbf{40}$</div><div>$SS_y = \sum(y_i-\bar y)^2 = 3.24 + 0.64 + 0.64 + 1.44 + 4.84 = \mathbf{10.8}$</div></div>
+  <div class="w8-calc-step highlight"><div class="w8-step-label">4: Pearson $r$</div><div class="w8-card-math">$r = \dfrac{20}{\sqrt{40 \cdot 10.8}} = \dfrac{20}{\sqrt{432}} \approx \mathbf{0.962}$</div></div>
+  <div class="w8-card-sub">Positive, strong linear association in this sample.</div>
+  </div>
+</div>
+
+## Nine very different patterns {.concept-slide}
+
+<div class="eyebrow">Correlation is not a slope detector</div>
+
+<div class="w8-figure-holder" style="height:15.5em;"><img src="figures/correlation_gallery.svg" alt="Nine scatterplot patterns including steep, gentle, noisy, nonlinear, constant and negative relations"></div>
+
+<div class="w8-caption">Same $|r|$ can occur with steep or gentle slopes; a strong nonlinear relationship can have $r\approx0$. A perfectly constant response has undefined $r$.</div>
+
+## What if only the ordering matters? {.concept-slide}
+
+<div class="eyebrow">Spearman's rank correlation</div>
+
+<div class="w8-two fragment fade-up">
+<div class="w8-card observed-border"><div class="w8-card-title">Pearson</div><div class="w8-card-math">$r(x,y)$</div><div class="w8-card-sub">Strength of <strong>linear</strong> association in original values</div></div>
+<div class="w8-card uncertainty-border"><div class="w8-card-title">Spearman</div><div class="w8-card-math">$\rho(\operatorname{rank}x,\operatorname{rank}y)$</div><div class="w8-card-sub">Strength of <strong>monotonic</strong> association; resistant to changes of scale</div></div>
+</div>
+
+<div class="concept-line fragment fade-up">A logarithmic curve can be monotonic even when it is not straight.</div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 24em">
+  <div class="portrait-card">
+  <img src="figures/Galton.jpg" alt="Francis Galton">
+  <div class="portrait-name">Francis Galton</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Pearson.jpg" alt="Karl Pearson">
+  <div class="portrait-name">Karl Pearson</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Spearman.jpg" alt="Charles Spearman">
+  <div class="portrait-name">Charles Spearman</div>
+  </div>
+</div>
+
+## Rank the observations first {.concept-slide}
+
+<div class="eyebrow">Worked rank transformation (ties get average ranks)</div>
+
+<div class="w8-mini-table w8-rank-table fragment fade-up"><div class="head">Subject</div><div class="head">Size</div><div class="head">Size rank</div><div class="head">Growth</div><div class="head">Growth rank</div>
+<div>A</div><div>10</div><div class="blue">1</div><div>2</div><div class="purple">1</div>
+<div>B</div><div>12</div><div class="blue">2</div><div>3</div><div class="purple">2.5</div>
+<div>C</div><div>14</div><div class="blue">3</div><div>3</div><div class="purple">2.5</div>
+<div>D</div><div>16</div><div class="blue">4</div><div>5</div><div class="purple">4</div>
+<div>E</div><div>18</div><div class="blue">5</div><div>6</div><div class="purple">5</div></div>
+
+::: {.fragment .fade-up}
+<div class="concept-line">Now apply Pearson's formula to the two <strong>rank columns</strong>.</div>
+:::
+
+## What if both variables are categorical? {.concept-slide}
+
+<div class="eyebrow">Small / medium / large × slow / medium / fast</div>
+
+<div class="w8-two w8-center">
+<div class="w8-figure-holder" style="height:10em;"><img src="figures/ordinal_table.svg" alt="Three by three frequency table for ordinal size and growth categories"><div class="w8-card-sub" style="margin-top: 8px; font-size: 90%;">Cramér's $V = \mathbf{0.530}$</div></div>
+<div class="w8-card uncertainty-border"><div class="w8-card-title">Cramér's $V$</div><div class="w8-card-math">$V=\sqrt{\dfrac{\chi^2}{n\min(r-1,c-1)}}$</div><div class="w8-card-sub">$0$ to $1$: strength of contingency-table association, without direction or ordering.</div><div class="w8-card-sub">For ordered categories, rank-based measures may retain more information.</div></div>
+</div>
+
+<div class="mathematician-gallery fragment fade-up">
+  <div class="portrait-card">
+  <img src="figures/Cramér.jpg" alt="Harald Cramér">
+  <div class="portrait-name">Harald Cramér</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Rao.png" alt="C.R. Rao">
+  <div class="portrait-name">C.R. Rao</div>
+  </div>
+</div>
+
+## Association is not agreement or causation {.concept-slide}
+
+<div class="w8-three fragment fade-up">
+<div class="w8-card observed-border"><div class="w8-card-title">Association</div><div class="w8-card-sub">Do measurements co-vary?</div></div>
+<div class="w8-card uncertainty-border"><div class="w8-card-title">Agreement</div><div class="w8-card-sub">Are two methods close enough to exchange?</div></div>
+<div class="w8-card model-border"><div class="w8-card-title">Causation</div><div class="w8-card-sub">Would intervening on $x$ change $y$?</div></div>
+</div>
+
+<div class="warning-box fragment fade-up"><div class="warning-title">Remember Weeks 3 and 7</div><p>A high $r$ cannot establish that changing cell size causes growth to accelerate; shared causes, selection, or reverse direction remain possible.</p></div>
+
+## Regression {.section-break}
+
+<div class="section-kicker">Part II</div>
+<div class="section-title">Fit a response model</div>
+<div class="section-subtitle">Return to the calibration standards.</div>
+
+## A line can translate detector signal {.concept-slide}
+
+<div class="eyebrow">Simple linear regression</div>
+
+$$Y_i=\beta_0+\beta_1x_i+\varepsilon_i \qquad\Longrightarrow \qquad \hat y_i=\hat\beta_0+\hat\beta_1x_i$$
+
+<div class="w8-three fragment fade-up">
+<div class="w8-card model-border"><div class="w8-card-math">$\beta_0$</div><div class="w8-card-sub">intercept; expected absorbance when concentration is zero</div></div>
+<div class="w8-card estimate-border"><div class="w8-card-math">$\beta_1$</div><div class="w8-card-sub">slope; absorbance increase per mg/L</div></div>
+<div class="w8-card observed-border"><div class="w8-card-math">$\varepsilon$</div><div class="w8-card-sub">unmodeled measurement variation around the line</div></div>
+</div>
+
+## Try to fit the calibration line {.exercise-slide}
+
+<div class="eyebrow">Adjust the slope and intercept to minimize vertical errors</div>
+
+<div class="w8-lab" id="olsWidget">
+<div class="w8-controls">
+<label class="w8-control">intercept = <strong id="olsInterceptValue">0.22</strong><input id="olsIntercept" type="range" min="-0.15" max="0.35" step="0.01" value="0.22"></label>
+<label class="w8-control">slope = <strong id="olsSlopeValue">0.040</strong><input id="olsSlope" type="range" min="0.01" max="0.12" step="0.002" value="0.04"></label>
+<button id="olsFit" class="w8-button" type="button">Show least-squares fit</button>
+<div class="w8-readouts w8-readouts-one"><div class="w8-output"><span>sum of squared errors (SSE)</span><strong id="olsSseOut">—</strong></div></div>
+<div class="w8-lab-note">Blue points = standards; faint red segments = vertical residuals.</div>
+</div>
+<div class="w8-visual"><svg id="olsSvg" class="w8-svg w8-svg-large" viewBox="0 0 900 490" aria-label="Manual OLS line fitting to absorbance standards"></svg></div>
+</div>
+
+## Why square the residuals? {.concept-slide}
+
+<div class="eyebrow">Ordinary least squares</div>
+
+$$\underbrace{SSE}_{\text{residual sum of squares}}=\sum_{i=1}^{n}\left[y_i-(\beta_0+\beta_1x_i)\right]^2$$
+
+<div class="w8-three fragment fade-up">
+<div class="w8-card observed-border"><div class="w8-card-title">Observe</div><div class="w8-card-math">$e_i=y_i-\hat y_i$</div><div class="w8-card-sub">vertical residual for each standard</div></div>
+<div class="w8-card uncertainty-border"><div class="w8-card-title">Square</div><div class="w8-card-math">$e_i^2\ge 0$</div><div class="w8-card-sub">positive and negative residuals cannot cancel</div></div>
+<div class="w8-card estimate-border"><div class="w8-card-title">Minimize</div><div class="w8-card-math">$\arg\min_{b_0,b_1}SSE$</div><div class="w8-card-sub">best line for this loss criterion</div></div>
+</div>
+
+## A fitted line also has uncertainty {.concept-slide}
+
+<div class="eyebrow">Results from the same calibration</div>
+
+<div class="w8-two fragment fade-up">
+<div class="w8-card estimate-border"><div class="w8-card-title">Parameter estimates</div><div class="w8-card-math">$\hat\beta_0\pm\mathrm{SE}_{\hat\beta_0},\hat\beta_1\pm\mathrm{SE}_{\hat\beta_1}$</div><div class="w8-card-sub">Each gets a standard error and confidence interval.</div></div>
+<div class="w8-card uncertainty-border"><div class="w8-card-title">Fit summaries</div><div class="w8-card-math">$R^2,\;p$</div><div class="w8-card-sub">$R^2$: fraction of sample variation explained. Slope $p$: evidence against $H_0:\beta_1=0$.</div></div>
+</div>
+
+::: {.fragment .fade-up}
+<div class="w8-note">In <strong>simple OLS with an intercept</strong>, $R^2=r^2$; this identity does not automatically hold for other models.</div>
+:::
+
+## Three different uncertainty questions {.concept-slide}
+
+<div class="eyebrow">The center line is not enough</div>
+
+<div class="w8-three fragment fade-up">
+<div class="w8-card estimate-border"><div class="w8-card-title">Confidence band</div><div class="w8-card-sub">Where might the unknown <strong>mean response</strong> line be?</div><div class="w8-card-math">$E(y\mid x)$</div></div>
+<div class="w8-card observed-border"><div class="w8-card-title">Prediction band</div><div class="w8-card-sub">Where might a <strong>single new measurement</strong> fall?</div><div class="w8-card-math">$y_{\mathrm{new}}\mid x$</div></div>
+<div class="w8-card uncertainty-border"><div class="w8-card-title">Tolerance band</div><div class="w8-card-sub">Which range contains a specified <strong>fraction of the population</strong> with stated confidence?</div><div class="w8-card-math">$95\%/95\%$</div></div>
+</div>
+
+## Explore confidence, prediction, and tolerance {.exercise-slide}
+
+<div class="eyebrow">Repeated calibrations from the same generating model</div>
+
+<div class="w8-lab" id="bandWidget">
+<div class="w8-controls">
+<label class="w8-control">uncertainty displayed<select id="bandType"><option value="all">all three bands</option><option value="mean">mean confidence (95%, pointwise)</option><option value="prediction">prediction (95%, pointwise)</option><option value="tolerance">tolerance (95% content / 95% confidence, approximate)</option></select></label>
+<label class="w8-control">measurement SD = <strong id="bandSdValue">0.060</strong><input id="bandSd" type="range" min="0.02" max="0.15" value="0.06" step="0.01"></label>
+<button id="bandNew" class="w8-button" type="button">Draw new data</button>
+<button id="bandAdd" class="w8-button" type="button">Add one measurement</button>
+<div class="w8-readouts"><div class="w8-output"><span>sample size</span><strong id="bandNOut">—</strong></div><div class="w8-output"><span style="font-size: 100%">$R^2$</span><strong id="bandR2Out">—</strong></div><div class="w8-output"><span style="font-size: 100%">$p$</span><strong id="bandPOut">—</strong></div></div>
+</div>
+<div class="w8-visual"><svg id="bandSvg" class="w8-svg w8-svg-large" viewBox="0 0 900 500" aria-label="OLS fit with confidence prediction and approximate tolerance bands"></svg></div>
+</div>
+
+<div class="w8-caption">Tolerance limits are conservative pointwise normal-theory approximations, not a simultaneous calibration band. Observations are simulated; exact inference requires a validated assay model.</div>
+
+## Use the calibration curve inversely {.concept-slide}
+
+<div class="eyebrow">Unknown tablet concentration from UV absorbance</div>
+
+<div class="w8-two w8-center" style="gap: 0.6em; align-items: stretch; margin-top: 0.3em;">
+  <!-- Point Estimate Card -->
+  <div class="w8-card estimate-border" style="flex: 0.85; min-width: 0;">
+  <div class="w8-card-title">1: Point Prediction</div>
+    
+  <div style="font-size: 0.56em; color: $navy; margin: 0.3em 0;">
+  $$\hat y = 0.050 + 0.075x, \quad A_{\mathrm{obs}} = 0.650$$
+  </div>
+
+  <div class="w8-card-math" style="font-size: 0.65em; margin: 0.3em 0;">
+  $$\hat x = \frac{0.650 - 0.050}{0.075} = \mathbf{8.0\text{ mg/L}}$$
+  </div>
+
+  <div class="w8-card-sub" style="font-size: 0.52em; line-height: 1.3; margin-top: 0.6em;">
+  <strong>Assigned Uncertainties:</strong><br>• Measurement error (known from measuring triplicate): $\mathrm{SE}_{Abs} = 0.003$<br>• Intercept error (known from calibration): $\mathrm{SE}_{\beta_0} = 0.040$<br>• Slope error (known from calibration): $\mathrm{SE}_{\beta_1} = 0.002$</div>
+  </div>
+
+  <!-- Delta Method Card -->
+  <div class="w8-card warning-border fragment fade-up" style="flex: 1.15; min-width: 0;">
+  <div class="w8-card-title">2: Delta Method (Propagation of Uncertainty)</div>
+
+  <div style="font-size: 0.52em; color: $navy; margin: 0.25em 0;">
+  $$\mathrm{SE}(\hat x) \approx \sqrt{ \left(\tfrac{\partial \hat x}{\partial Abs}\right)^2\!\mathrm{SE}_{Abs}^2 + \left(\tfrac{\partial \hat x}{\partial \beta_0}\right)^2\!\mathrm{SE}_{\beta_0}^2 + \left(\tfrac{\partial \hat x}{\partial \beta_1}\right)^2\!\mathrm{SE}_{\beta_1}^2 }$$
+  </div>
+
+  <!-- Partial derivative terms breakdown -->
+  <div class="w8-calc-step" style="font-size: 0.52em; text-align: left; background: rgba(0,0,0,0.02); padding: 0.3em; border-radius: 6px;">
+  <div>• <strong>Assay ($Abs$):</strong> $\left(\frac{1}{0.075} \cdot 0.003\right)^2 = 0.040^2 = \mathbf{0.0016}$</div>
+  <div>• <strong>Intercept ($\beta_0$):</strong> $\left(-\frac{1}{0.075} \cdot 0.040\right)^2 = (-0.533)^2 = \mathbf{0.2844}$</div>
+  <div>• <strong>Slope ($\beta_1$):</strong> $\left(-\frac{8.0}{0.075} \cdot 0.002\right)^2 = (-0.213)^2 = \mathbf{0.0455}$</div>
+  </div>
+
+  <div class="w8-card-math" style="font-size: 0.62em; margin-top: 0.3em;">
+  $$\mathrm{SE}(\hat x) = \sqrt{0.0016 + 0.2844 + 0.0455} \approx \mathbf{0.576\text{ mg/L}}$$
+  </div>
+
+  <div class="w8-card-sub" style="font-size: 0.52em; font-weight: 700; color: $observed;">
+  Approx. 95% CI: $8.0 \pm 1.15\text{ mg/L}$ ($6.85 \text{ to } 9.15\text{ mg/L}$)
+  </div>
+  </div>
+</div>
+
+<div class="w8-caption fragment fade-up" style="margin-top: 0.35em; font-size: 60%">
+  <strong>Key Takeaway:</strong> The calibration parameters ($\beta_0, \beta_1$) account for over $99.5\%$ of total variance ($0.3299\text{ (mg/L)}^2$), while the single-measurement assay noise ($Abs$) contributes less than $0.5\%$ ($0.0016\text{ (mg/L)}^2$).
+</div>
+
+<div class="w8-note fragment fade-up">
+  In this calculation covariance between parameters was ignored.
+</div>
+
+## Assumptions are about errors {.concept-slide}
+
+<div class="eyebrow">Classical simple OLS model</div>
+
+<div class="w8-stack fragment fade-up">
+<div class="w8-rule"><strong>Conditional mean</strong><span>Correct functional shape: the relationship is really linear</span></div>
+<div class="w8-rule"><strong>Independence</strong><span>Measurement errors do not systematically depend on one another</span></div>
+<div class="w8-rule"><strong>Common variance</strong><span>Variance is near-constant across calibration levels</span></div>
+<div class="w8-rule"><strong>Normal errors (for small-sample inference)</strong><span>The error term is approximately normal (with zero mean), individual observed values need not be normal</span></div>
+</div>
+
+## Inspect the diagnostics {.exercise-slide}
+
+<div class="eyebrow">Six simulated cases · fitted curve and diagnostic plots</div>
+
+<div class="w8-diagnostic-widget" id="diagnosticWidget">
+<div class="w8-diag-controls"><label class="w8-control">choose the generating case<select id="diagChoice"><option value="good_tight">good fit · tight positive relation</option><option value="good_loose">good fit · loose negative relation</option><option value="nonnormal">non-normal errors</option><option value="curvature">missed nonlinear trend</option><option value="outliers">outliers / influential observations</option><option value="hetero">heteroscedasticity</option></select></label><div class="w8-diag-note" id="diagInterpretation">Check residual patterns, not just $R^2$.</div></div>
+<div class="w8-figure-holder w8-diag-figure"><img id="diagImage" src="figures/diagnostic_good_tight.svg" alt="Four regression diagnostic charts"></div>
+</div>
+
+## Learn to recognize the warning signs {.concept-slide}
+
+<div class="w8-three fragment fade-up">
+<div class="w8-card observed-border"><div class="w8-card-title">Residual vs fitted</div><div class="w8-card-sub">Should show no systematic curvature and roughly comparable spread.</div></div>
+<div class="w8-card uncertainty-border"><div class="w8-card-title">Normal QQ</div><div class="w8-card-sub">Pronounced departures suggest skew/heavy tails or unusual observations.</div></div>
+<div class="w8-card model-border"><div class="w8-card-title">Residual vs leverage</div><div class="w8-card-sub">Large residuals at high-leverage $x$ values merit influence assessment (e.g., Cook's distance).</div></div>
+</div>
+
+<div class="warning-box fragment fade-up"><div class="warning-title">An excellent $R^2$ can hide a misspecified model</div><p>Residual checks examine the assumptions that a good-looking fitted line alone cannot certify.</p></div>
+
+## When does the intercept mean something? {.concept-slide}
+
+<div class="w8-two fragment fade-up">
+<div class="w8-card model-border"><div class="w8-card-title">Absorbance at zero API</div><div class="w8-card-sub">Blank-corrected response should often be near zero; a nonzero intercept can suggest background or bias. Do not force zero without validation.</div></div>
+<div class="w8-card observed-border"><div class="w8-card-title">Blood pressure at zero height</div><div class="w8-card-sub">Outside the meaningful physiological domain; the fitted intercept is a mathematical reference, not a real patient.</div></div>
+</div>
+
+<div class="concept-line fragment fade-up">Interpret a coefficient only where its reference condition makes scientific sense.</div>
+
+## Interpolation vs extrapolation {.concept-slide}
+
+<div class="w8-two fragment fade-up">
+  <!-- Interpolation Card -->
+  <div class="w8-card estimate-border">
+  <div class="w8-card-title">Interpolation</div>
+  <div class="w8-card-math">$x\in[x_{\min},x_{\max}]$</div>
+    
+  <div style="margin: 10px 0; text-align: center;">
+  <img src="figures/interpolation.svg" alt="Interpolation range plot" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+  </div>
+    
+  <div class="w8-card-sub">Inside the validated concentration range: still check precision, curvature, matrix effects.</div>
+  </div>
+
+  <!-- Extrapolation Card -->
+  <div class="w8-card warning-border">
+  <div class="w8-card-title">Extrapolation</div>
+  <div class="w8-card-math">$x\notin[x_{\min},x_{\max}]$</div>
+    
+  <div style="margin: 10px 0; text-align: center;">
+  <img src="figures/extrapolation.svg" alt="Extrapolation range plot" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+  </div>
+    
+  <div class="w8-card-sub">Outside observed calibration levels: model form and analytical response may change.</div>
+  </div>
+</div>
+
+<div class="warning-box fragment fade-up" style="font-size: 70%"><div class="warning-title">Do not use a calibration line indefinitely</div><p>Dilute/reprepare an unknown to bring it into the validated calibration range when appropriate.</p></div>
+
+## Transforming relationships {.section-break}
+
+<div class="section-kicker">Part III</div>
+<div class="section-title">Not every useful relationship is straight</div>
+<div class="section-subtitle">Sometimes a theory-motivated transformation makes fitting simpler.</div>
+
+## A curved relationship may become linear {.exercise-slide}
+
+<div class="eyebrow">The transformation must match the physical model</div>
+
+<div class="w8-transforms" id="transformWidget">
+<div class="w8-trans-controls"><label class="w8-control">relationship<select id="transformChoice"><option value="exponential">exponential · initial bacterial growth</option><option value="power">power · allometry</option><option value="hyperbolic">hyperbolic · enzyme kinetics</option><option value="logarithmic">logarithmic · membrane potential</option></select></label><div class="w8-trans-equation" id="transformEquation">$y=a e^{bx}\quad\Longrightarrow\quad\log y=\log a+bx$</div></div>
+<div class="w8-figure-holder w8-transform-figure"><img id="transformImage" src="figures/transform_exponential.svg" alt="Relationship in original and transformed coordinates"></div>
+</div>
+
+## Transformation is not a free fix {.concept-slide}
+
+<div class="w8-stack fragment fade-up">
+<div class="w8-rule"><strong>Exponential</strong><span style="font-size: 60%"><span style="font-size: 180%">$y=a\,e^{b\,x}$</span> transforms to <span style="font-size: 180%">$\log y=\log a+b\,x$</span> for <span style="font-size: 180%">$y>0$</span>, but error remains multiplicative on original scale.</span></div>
+<div class="w8-rule"><strong>Power / allometry</strong><span style="font-size: 60%"><span style="font-size: 180%">$y=a\,x^b$</span> transforms to <span style="font-size: 180%">$\log y=\log a+b\,\log x$</span> for <span style="font-size: 180%">$x,y>0$</span>, but error remains multiplicative on original scale.</span></div>
+<div class="w8-rule"><strong>Inverse / hyperbolic</strong><span style="font-size: 60%"><span style="font-size: 180%">$y=\frac{a\,x}{b+x}$</span> transforms to <span style="font-size: 180%">$\frac{1}{y}=\frac{1}{a}+\frac{b}{a}\,\frac{1}{x}$</span> but reciprocal transformation amplifies noise at low <span style="font-size: 180%">$x$</span>.</span></div>
+<div class="w8-rule"><strong>Logarithmic</strong><span style="font-size: 60%"><span style="font-size: 180%">$y=a+b\,\log x$</span> would transform to <span style="font-size: 180%">$e^y=e^a\,x^b$</span>, but we can just fit <span style="font-size: 180%">$y$</span> versus <span style="font-size: 180%">$\log x$</span> for <span style="font-size: 180%">$x>0$</span>.</span></div>
+</div>
+
+<div class="concept-line fragment fade-up" style="font-size: 100%">Changing the scale changes the error model and what squared deviations mean. Direct nonlinear fitting is often preferable to transforming noisy response data.</div>
+
+<div class="concept-line fragment fade-up" style="font-size: 100%">Further generalizing the above relationships renders linear transformation impossible altogether. For example $y=a\,e^{b\,(x-c)}+d$, where $d$ represents a constant shift in the response and $c$ a time lag in the measurement.</div>
+
+## Least squares under the hood {.section-break}
+
+<div class="section-kicker">Part IV</div>
+<div class="section-title">What is the computer minimizing?</div>
+<div class="section-subtitle">Two points solve a line; more points demand a compromise.</div>
+
+## Two points vs many points {.concept-slide}
+
+<div class="eyebrow">The overdetermined system</div>
+
+<div class="w8-two fragment fade-up">
+<div class="w8-card observed-border"><div class="w8-card-title">Exactly two distinct $x$ values</div><div class="w8-card-math">$\begin{aligned}y_1&=\beta_0+\beta_1x_1\\ y_2&=\beta_0+\beta_1x_2\end{aligned}$</div><div class="w8-card-sub">A unique line passes through both observations.</div></div>
+<div class="w8-card uncertainty-border"><div class="w8-card-title">Many noisy standards</div><div class="w8-card-math">$\begin{aligned}y_1=&\beta_0+\beta_1x_1\\ y_2=&\beta_0+\beta_1x_2\\ y_3=&\beta_0+\beta_1x_3\\ &...\\ \mathbf y&\approx X\boldsymbol\beta\end{aligned}$</div><div class="w8-card-sub">Usually no single line fits all points exactly.</div></div>
+</div>
+
+<div class="concept-line fragment fade-up">Least squares chooses the best compromise <em>for vertical squared residuals</em>.</div>
+
+## The linear algebra shortcut {.concept-slide}
+
+$$
+\underbrace{\begin{bmatrix}y_1\\y_2\\\vdots\\y_n\end{bmatrix}}_{\mathbf y}
+\approx
+\underbrace{\begin{bmatrix}1&x_1\\1&x_2\\\vdots&\vdots\\1&x_n\end{bmatrix}}_X
+\underbrace{\begin{bmatrix}\beta_0\\\beta_1\end{bmatrix}}_{\boldsymbol\beta}
+$$
+
+::: {.fragment .fade-up}
+$$
+\hat{\boldsymbol\beta}=(X^\mathsf TX)^{-1}X^\mathsf T\mathbf y
+$$
+:::
+
+<div class="w8-note fragment fade-up">Displayed for full-column-rank $X$; practical software uses numerically stable QR/SVD methods rather than explicitly computing the inverse.</div>
+
+## Vertical or horizontal residuals? {.concept-slide}
+
+<div class="eyebrow">Different errors-in-variables assumptions → different answers</div>
+
+<div class="w8-figure-holder" style="height:13.4em;"><img src="figures/residual_directions.svg" alt="Comparison of least squares minimizing vertical, horizontal and orthogonal errors"></div>
+
+<div class="w8-caption">Ordinary $Y$-on-$X$ OLS minimizes vertical deviations, conditional on recorded $x$. Horizontal regression and orthogonal/TLS target different losses; none by itself proves causal direction.</div>
+
+## Nonlinear regression {.section-break}
+
+<div class="section-kicker">Part V</div>
+<div class="section-title">When theory specifies a curved response</div>
+<div class="section-subtitle">Potentiometric titration: iterative fitting instead of a closed-form line.</div>
+
+## A titration sigmoid {.concept-slide}
+
+<div class="w8-figure-holder" style="height:12.6em;"><img src="figures/titration.svg" alt="Simulated potentiometric titration sigmoid"></div>
+
+$$
+\Delta V(\mathrm{pH}) = a_0 + \frac{D}{1 + 10^{\mathrm{p}K_a - \mathrm{pH}}}
+$$
+
+<div class="w8-caption">An illustrative sigmoid approximation to one transition, not a universal electrochemical titration equation. Here $\Delta V$ is the volume difference obtained from difference titration, $a_0$ is base of titration curve (should be at $0$), and $D > 0$ controls titration step size.</div>
+
+## Try iterative nonlinear fitting {.exercise-slide}
+
+<div class="eyebrow">Change initial guesses; watch damped Gauss–Newton steps</div>
+
+<div class="w8-lab" id="nonlinearWidget">
+<div class="w8-controls">
+<label class="w8-control">initial $\mathrm{p}K_a$ = <strong id="nlKValue">2.0</strong><input id="nlV" type="range" min="1" max="7" step="0.2" value="2"></label>
+<label class="w8-control">initial step size $D$ = <strong id="nlDValue">0.8</strong><input id="nlK" type="range" min="0.3" max="1.5" step="0.1" value="0.8"></label>
+<label class="w8-control">iteration steps = <strong id="nlStepsValue">12</strong><input id="nlSteps" type="range" min="1" max="25" step="1" value="12"></label>
+<button id="nlRun" class="w8-button" type="button">Start iterations</button>
+<div class="w8-readouts"><div class="w8-output"><span class="inline-label">fitted <span style="font-size: 200%">$\mathrm{p}K_a$</span></span><strong id="nlVOut">—</strong></div><div class="w8-output"><span class="inline-label">fitted <span style="font-size: 200%">$D$</span></span><strong id="nlKOut">—</strong></div><div class="w8-output"><span class="inline-label">SE of <span style="font-size: 200%">$\mathrm{p}K_a$</span></span><strong id="nlSeVOut">—</strong></div><div class="w8-output"><span class="inline-label">SE of <span style="font-size: 200%">$D$</span></span><strong id="nlSeKOut">—</strong></div><div class="w8-output"><span class="inline-label">descriptive <span style="font-size: 200%">$R^2$</span></span><strong id="nlR2Out">—</strong></div><div class="w8-output"><span class="inline-label">step · SSE</span><strong id="nlStepOut">—</strong></div></div>
+</div>
+<div class="w8-visual"><svg id="nlSvg" class="w8-svg w8-svg-large" viewBox="0 0 900 490" aria-label="Iterative nonlinear sigmoid fit"></svg></div>
+</div>
+
+<div class="w8-caption">For clarity the lower asymptote is held at $0$ mL. The widget estimates $\mathrm{p}K_a$ and step size; displayed parameter SEs are local linear approximations.</div>
+
+## What nonlinear fitting changes {.concept-slide}
+
+<div class="w8-three fragment fade-up">
+<div class="w8-card observed-border"><div class="w8-card-title">Specify the curve</div><div class="w8-card-sub">Chemistry or physiology motivates the equation, not just convenient flexibility.</div></div>
+<div class="w8-card uncertainty-border"><div class="w8-card-title">Find starting values</div><div class="w8-card-sub">Iterative algorithms may converge slowly, fail, or reach a local solution.</div></div>
+<div class="w8-card estimate-border"><div class="w8-card-title">Assess uncertainty</div><div class="w8-card-sub">Inspect residuals, parameter SE/CI, identifiability; descriptive $R^2$ is not enough.</div></div>
+</div>
+
+<div class="w8-note fragment fade-up">Nonlinear regression can still minimize an SSE; what becomes nonlinear is the dependence of predictions on unknown parameters.</div>
+
+<div class="concept-line fragment fade-up" style="font-size:80%">
+  <strong>How do iterations move from starting values?</strong> Unlike linear regression—where linear algebra takes us straight to the exact global solution in one step (or via Dantzig's simplex algorithm in linear programming)—nonlinear models require iterative optimization algorithms.
+</div>
+
+<div class="concept-line fragment fade-up" style="font-size:80%">
+  <strong>Gradient-guided vs. derivative-free search:</strong> Algorithms like the <em>Damped Gauss-Newton</em> (seen in our widget) or <em>Levenberg-Marquardt</em> use local gradient and curvature directions as a guide to nudge parameters toward lower SSE. When gradients cannot be calculated, derivative-free algorithms (e.g., Nelder-Mead, grid/random search, or evolutionary algorithms) explore the parameter space instead—an entire optimization discipline beyond our scope.
+</div>
+
+## Multiple linear regression {.section-break}
+
+<div class="section-kicker">Part VI</div>
+<div class="section-title">More than one explanatory variable</div>
+<div class="section-subtitle">Condition on the other variables when interpreting a coefficient.</div>
+
+## Weight, height, and systolic BP {.concept-slide}
+
+<div class="eyebrow">A plane rather than a line</div>
+
+$$
+\widehat{SBP}=\hat\beta_0+\hat\beta_1\,\mathrm{weight}+\hat\beta_2\,\mathrm{height}
+$$
+
+<div class="w8-figure-holder" style="height:12.2em;"><img src="figures/multiple_regression.svg" alt="Multiple regression plane and predictor scatterplot for synthetic height weight and blood pressure"></div>
+
+## Read coefficients conditionally {.concept-slide}
+
+<div class="w8-mini-table w8-coef-table fragment fade-up" style="font-size: 120%"><div class="head">Term</div><div class="head">Interpretation</div><div class="head">When valid?</div>
+<div>$\beta_0$</div><div>Predicted SBP at weight 0 and height 0</div><div class="red">not physiologically meaningful</div>
+<div>$\beta_1$</div><div>Expected SBP change for +1 kg <strong>holding height constant</strong></div><div>within supported range</div>
+<div>$\beta_2$</div><div>Expected SBP change for +1 cm <strong>holding weight constant</strong></div><div>within supported range</div></div>
+
+<div class="concept-line fragment fade-up">“Adjusted for” is not the same as “caused by.”</div>
+
+## Multicollinearity hides unique effects {.concept-slide}
+
+<div class="eyebrow">Height and weight may carry overlapping information</div>
+
+<div class="w8-two w8-center">
+<div class="w8-figure-holder" style="height:16.7em;"><img src="figures/pairs_plot.svg" alt="Pairs plot for synthetic height weight systolic blood pressure"></div>
+<div class="w8-card uncertainty-border"><div class="w8-card-title">The issue</div><div class="w8-card-sub">High predictor correlation can enlarge individual coefficient SEs, destabilize estimates, and complicate interpretation.</div><div class="w8-card-sub">It does <strong>not</strong> inherently invalidate every prediction; evaluate design, range, variable importance, and the scientific estimand.</div></div>
+</div>
+
+## General linear models {.section-break}
+
+<div class="section-kicker">Part VII</div>
+<div class="section-title">Numeric predictors + categorical factors</div>
+<div class="section-subtitle">Same additive linear-model machinery as ANOVA.</div>
+
+## Absorbance depends on more than concentration {.concept-slide}
+
+<div class="eyebrow">Solvent + wavelength as explanatory factors</div>
+
+$$
+\mathrm{Abs}=\beta_0+\beta_1c+\beta_2I_{\mathrm{water}}+\beta_3I_{280}+\beta_4I_{320}+\varepsilon
+$$
+
+<div class="w8-mini-table w8-levels-table fragment fade-up" style="font-size: 120%"><div class="head">Predictor</div><div class="head">Type</div><div class="head">Reference / contrast</div>
+<div>concentration</div><div>numeric</div><div>1 mg/L increase</div>
+<div>solvent</div><div>categorical</div><div>MeOH reference; water vs MeOH</div>
+<div>wavelength</div><div>categorical</div><div>250 nm reference; 280 or 320 vs 250</div></div>
+
+<div class="concept-line fragment fade-up">In this equation $I$ is called dummy/indicator variable, but the interpretation of its $\beta$ is important, which we will see next.</div>
+
+## Without interactions: parallel lines {.concept-slide}
+
+<div class="w8-figure-holder" style="height:12.5em;"><img src="figures/factor_additive.svg" alt="Absorbance by concentration wavelength and solvent with parallel slopes"></div>
+
+<div class="concept-line" style="font-size: 70%; margin: 0em;">Categorical main effects shift intercepts; every group shares the same concentration slope.</div>
+
+<div class="w8-two w8-center" style="margin-top: 0.4em; align-items: start; gap: 0.8em;">
+  <!-- Left Side: Coefficient Table -->
+  <div style="flex: 1; min-width: 0;">
+  <div class="w8-mini-table w8-coefs-table">
+  <div class="head">Term</div><div class="head">Interpretation</div>
+  <div>$\beta_0$</div><div>Absorbance at $c=0$ mg/L, in MeOH at $250$ nm</div>
+  <div>$\beta_1$</div><div>Extinction coefficient (times cuvette length), shared in all conditions</div>
+  </div>
+  </div>
+
+  <!-- Right Side: Coefficient Table -->
+  <div style="flex: 1; min-width: 0;">
+  <div class="w8-mini-table w8-coefs-table">
+  <div class="head">Term</div><div class="head">Interpretation</div>
+  <div>$\beta_2$</div><div>Absorbance change when switching from MeOH to water</div>
+  <div>$\beta_3$</div><div>Absorbance change when switching from $250$ to $280$ nm</div>
+  <div>$\beta_4$</div><div>Absorbance change when switching from $250$ to $320$ nm</div>
+  </div>
+  </div>
+</div>
+
+## Concentration × wavelength interaction {.concept-slide}
+
+<div class="w8-figure-holder" style="height:12.5em;"><img src="figures/factor_wavelength_interaction.svg" alt="Model with concentration by wavelength interaction and different slopes"></div>
+
+<div class="concept-line" style="font-size: 70%; margin: 0em;">An interaction allows a different concentration slope at $250$, $280$, and $320$ nm; solvent shifts the intercept only in this model.</div>
+
+<div class="w8-two w8-center" style="margin-top: 0.4em; align-items: start; gap: 0.8em; grid-template-columns: 0.8fr 1.2fr;">
+  <!-- Left Side: Coefficient Table -->
+  <div style="flex: 1; min-width: 0;">
+  <div class="w8-mini-table w8-coefs-table">
+  <div class="head">Term</div><div class="head">Interpretation</div>
+  <div>$\beta_0$</div><div>Absorbance at $c=0$ mg/L, in MeOH at $250$ nm</div>
+  <div>$\beta_1$</div><div>Extinction coefficient, at $250$ nm</div>
+  <div>$\beta_2$</div><div>Absorbance change when switching from MeOH to water</div>
+  </div>
+  </div>
+
+  <!-- Right Side: Coefficient Table -->
+  <div style="flex: 1; min-width: 0;">
+  <div class="w8-mini-table w8-coefs-table">
+  <div class="head">Term</div><div class="head">Interpretation</div>
+  <div>$\beta_3$</div><div>Absorbance shift at $c=0$ mg/L when switching from $250$ to $280$ nm</div>
+  <div>$\beta_4$</div><div>Absorbance shift at $c=0$ mg/L when switching from $250$ to $320$ nm</div>
+  <div>$\beta_5$</div><div>Extinction coefficient change when switching from $250$ to $280$ nm</div>
+  <div>$\beta_6$</div><div>Extinction coefficient change when switching from $250$ to $320$ nm</div>
+  </div>
+  </div>
+</div>
+
+## What if even the spectral shape changes? {.concept-slide}
+
+<div class="w8-two w8-center">
+<div class="w8-figure-holder" style="height:12em;"><img src="figures/spectra.svg" alt="Synthetic solvent-dependent UV absorbance spectra"></div>
+<div class="w8-card model-border"><div class="w8-card-title">Solvent-dependent wavelength effect</div><div class="w8-card-sub">A full $c\times\mathrm{wavelength}\times\mathrm{solvent}$ interaction allows concentration slopes to vary with wavelength <em>and</em> solvent.</div><div class="w8-card-sub">Plausible physical model; more parameters require enough calibration observations.</div></div>
+</div>
+
+## Full interactions: different line families {.concept-slide}
+
+<div class="w8-figure-holder" style="height:12.6em;"><img src="figures/factor_full_interaction.svg" alt="Three-way concentration wavelength solvent interaction"></div>
+
+<div class="concept-line" style="font-size: 70%; margin: 0em;">Every solvent–wavelength combination may have its own intercept and slope. More flexible ≠ automatically more reliable or more interpretable.</div>
+
+## A cubic relationship can still be a linear model {.concept-slide}
+
+<div class="eyebrow">Cell size, growth, and a hormone factor</div>
+
+$$
+\mathrm{growth}=\beta_0+\beta_1x+\beta_2x^2+\beta_3x^3+\beta_4I_{\mathrm{hormone}}+\varepsilon
+$$
+
+<div class="w8-figure-holder" style="height:11.7em;"><img src="figures/cubic_hormone.svg" alt="Cubic trend for bacterial growth by size with hormone factor shift"></div>
+
+<div class="w8-caption">Linear <strong>in coefficients</strong>, even if nonlinear <strong>in the predictor</strong>. Polynomial regression is a general linear model, not nonlinear parameter fitting.</div>
+
+## Can more flexible models always win? {.exercise-slide}
+
+<div class="eyebrow">Fit polynomials to the same sample</div>
+
+<div class="w8-lab" id="polyWidget">
+<div class="w8-controls">
+<label class="w8-control">polynomial degree = <strong id="polyDegreeValue">3</strong><input id="polyDegree" type="range" min="1" max="15" value="3" step="1"></label>
+<button id="polyNew" class="w8-button" type="button">Draw new sample</button>
+<div class="w8-readouts"><div class="w8-output"><span style="font-size:110%">$R^2$</span><strong id="polyR2Out">—</strong></div><div class="w8-output"><span>AIC*</span><strong id="polyAicOut">—</strong></div><div class="w8-output"><span>best AIC degree</span><strong id="polyBestOut">—</strong></div></div>
+<div class="w8-lab-note">*Within-sample Gaussian AIC with a common additive constant omitted; lower is preferred among these fits.</div>
+</div>
+<div class="w8-visual"><svg id="polySvg" class="w8-svg w8-svg-large" viewBox="0 0 900 500" aria-label="Polynomial fitted models and AIC by degree"></svg></div>
+</div>
+
+## Good fit is not the whole goal {.concept-slide}
+
+<div class="w8-three fragment fade-up">
+<div class="w8-card observed-border"><div class="w8-card-title">Training $R^2$</div><div class="w8-card-sub">Never decreases when polynomial terms are added using the same observations.</div></div>
+<div class="w8-card uncertainty-border"><div class="w8-card-title">Akaike Information Criterion</div><div class="w8-card-math">$n\log(SSE/n)+2k$</div><div class="w8-card-sub">Rewards fit, penalizes parameters; choose the <strong>lowest</strong> score.</div></div>
+<div class="w8-card estimate-border"><div class="w8-card-title">Scientific adequacy</div><div class="w8-card-sub">Mechanism, residual diagnostics, parameter stability, and external validation still matter.</div></div>
+</div>
+
+<div class="w8-note fragment fade-up">AIC scores have meaning only <em>relative to comparable models fitted to the same observations and response scale</em>. The formula shown omits a common Gaussian constant.</div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 8em">
+  <div class="portrait-card">
+  <img src="figures/Akaike.jpg" alt="Hirotugu Akaike">
+  <div class="portrait-name">Hirotugu Akaike</div>
+  </div>
+</div>
+
+## Choose a modeling approach {.exercise-slide}
+
+<div class="eyebrow">Predict the best starting point</div>
+
+<div class="w8-quiz" id="quizModel">
+<div class="w8-quiz-question">You measure absorbance at 8 known API concentrations, all using one solvent and one wavelength. Which starting model?</div>
+<div class="w8-quiz-options"><button class="w8-choice" data-q="model" data-a="A">A · Paired $t$ test</button><button class="w8-choice" data-q="model" data-a="B">B · Simple linear regression</button><button class="w8-choice" data-q="model" data-a="C">C · Cohen's kappa</button></div>
+<div class="w8-quiz-feedback" id="quizModelFeedback">Choose an answer.</div>
+</div>
+
+## Interpret the model correctly {.exercise-slide}
+
+<div class="w8-quiz" id="quizCoef">
+<div class="w8-quiz-question">In $SBP\sim\mathrm{weight}+\mathrm{height}$, what does the weight coefficient represent?</div>
+<div class="w8-quiz-options"><button class="w8-choice" data-q="coef" data-a="A">A · The causal effect of gaining 1 kg</button><button class="w8-choice" data-q="coef" data-a="B">B · The expected SBP difference per kg, at fixed height</button><button class="w8-choice" data-q="coef" data-a="C">C · The correlation of height and weight</button></div>
+<div class="w8-quiz-feedback" id="quizCoefFeedback">Choose an answer.</div>
+</div>
+
+## Read the diagnostic evidence {.exercise-slide}
+
+<div class="w8-quiz" id="quizDiag">
+<div class="w8-quiz-question">A line has $R^2=0.95$, but residuals trace a pronounced U-shape. Best next step?</div>
+<div class="w8-quiz-options"><button class="w8-choice" data-q="diag" data-a="A">A · Trust the line because $R^2$ is high</button><button class="w8-choice" data-q="diag" data-a="B">B · Investigate nonlinear form and model adequacy</button><button class="w8-choice" data-q="diag" data-a="C">C · Delete all residuals</button></div>
+<div class="w8-quiz-feedback" id="quizDiagFeedback">Choose an answer.</div>
+</div>
+
+## Interpolation or extrapolation? {.exercise-slide}
+
+<div class="w8-quiz" id="quizExtra">
+<div class="w8-quiz-question">Standards span 1–12 mg/L. An unknown gives a response corresponding to 21 mg/L. What is defensible?</div>
+<div class="w8-quiz-options"><button class="w8-choice" data-q="extra" data-a="A">A · Report 21 mg/L directly because the line exists</button><button class="w8-choice" data-q="extra" data-a="B">B · Dilute/reprepare and repeat within the validated range</button><button class="w8-choice" data-q="extra" data-a="C">C · Use the correlation coefficient as the concentration</button></div>
+<div class="w8-quiz-feedback" id="quizExtraFeedback">Choose an answer.</div>
+</div>
+
+## Week 8 synthesis {.concept-slide}
+
+<div class="w8-stack fragment fade-up">
+<div class="w8-rule"><strong>Association</strong><span>Scatterplots first; Pearson for linear and Spearman for monotonic patterns.</span></div>
+<div class="w8-rule"><strong>Model</strong><span>Specify conditional mean, estimate coefficients, examine uncertainty.</span></div>
+<div class="w8-rule"><strong>Check</strong><span>Residuals, domain, design, collinearity, influential cases, scientific plausibility.</span></div>
+<div class="w8-rule"><strong>Choose</strong><span>Complexity earns its place through explanatory value and reliable prediction.</span></div>
+</div>
+
+## Next week {.section-slide}
+
+<div class="eyebrow">From responses to probabilities</div>
+
+<div class="concept-line">When the outcome is <strong>yes / no</strong>, a straight-line mean model no longer makes sense.</div>
+
+<div class="w8-three fragment fade-up"><div class="w8-card observed-border"><div class="w8-card-title">Continuous response</div><div class="w8-card-math">$E(y\mid x)$</div></div><div class="w8-card uncertainty-border"><div class="w8-card-title">Binary outcome</div><div class="w8-card-math">$\mathbb{P}(y=1\mid x)$</div></div><div class="w8-card estimate-border"><div class="w8-card-title">Week 9</div><div class="w8-card-math">logit + GLMs</div></div></div>
+
+<!-- Week 08 uses one isolated JS block and one initialization point. -->
+<script>
+(function(){
+'use strict';
+/* One script / one initializer. Every widget is scoped to Week 08. */
+const $=id=>document.getElementById(id);
+const num=(id,def)=>{const el=$(id);return el?Number(el.value):def;};
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const setText=(id,value)=>{if($(id))$(id).textContent=String(value);};
+const pFormat=p=>!Number.isFinite(p)?'—':p<.001?'<0.001':p.toFixed(3);
+const axis=(x1,y1,x2,y2,cls='w8-axis')=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="${cls}"></line>`;
+const path=(xy,cls)=>`<path class="${cls}" d="${xy.map((p,i)=>`${i?'L':'M'}${p[0].toFixed(2)},${p[1].toFixed(2)}`).join(' ')}"></path>`;
+const rng32=seed=>()=>{let t=seed+=0x6d2b79f5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296;};
+function randn(r){const u=Math.max(1e-12,r()),v=r();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+function logGamma(z){const p=[.9999999999998099,676.5203681218851,-1259.1392167224028,771.32342877765313,-176.61502916214059,12.507343278686905,-.1385710952657201,9.9843695780195716e-6,1.5056327351493116e-7];if(z<.5)return Math.log(Math.PI)-Math.log(Math.sin(Math.PI*z))-logGamma(1-z);z--;let a=p[0];for(let i=1;i<9;i++)a+=p[i]/(z+i);const t=z+7.5;return .5*Math.log(2*Math.PI)+(z+.5)*Math.log(t)-t+Math.log(a);}
+function betacf(a,b,x){const EPS=3e-12,FPMIN=1e-300;let qab=a+b,qap=a+1,qam=a-1,c=1,d=1-qab*x/qap;if(Math.abs(d)<FPMIN)d=FPMIN;d=1/d;let h=d;for(let m=1;m<201;m++){const m2=2*m;let aa=m*(b-m)*x/((qam+m2)*(a+m2));d=1+aa*d;if(Math.abs(d)<FPMIN)d=FPMIN;c=1+aa/c;if(Math.abs(c)<FPMIN)c=FPMIN;d=1/d;h*=d*c;aa=-(a+m)*(qab+m)*x/((a+m2)*(qap+m2));d=1+aa*d;if(Math.abs(d)<FPMIN)d=FPMIN;c=1+aa/c;if(Math.abs(c)<FPMIN)c=FPMIN;d=1/d;const del=d*c;h*=del;if(Math.abs(del-1)<EPS)break;}return h;}
+function betai(a,b,x){if(x<=0)return 0;if(x>=1)return 1;const bt=Math.exp(logGamma(a+b)-logGamma(a)-logGamma(b)+a*Math.log(x)+b*Math.log(1-x));return x<(a+1)/(a+b+2)?bt*betacf(a,b,x)/a:1-bt*betacf(b,a,1-x)/b;}
+function tCdf(t,v){let x=v/(v+t*t),b=betai(v/2,.5,x);return t>=0?1-.5*b:.5*b;}
+function tInv(p,v){let a=-40,b=40;for(let i=0;i<65;i++){let mid=(a+b)/2;if(tCdf(mid,v)<p)a=mid;else b=mid;}return(a+b)/2;}
+function gammaQ(a,x){if(x<=0)return 1;const EPS=3e-12,FPMIN=1e-300;if(x<a+1){let ap=a,sum=1/a,d=sum;for(let j=1;j<=200;j++){ap++;d*=x/ap;sum+=d;if(Math.abs(d)<Math.abs(sum)*EPS)break;}return clamp(1-sum*Math.exp(-x+a*Math.log(x)-logGamma(a)),0,1);}let b=x+1-a,c=1/FPMIN,d=1/b,h=d;for(let i=1;i<=200;i++){const an=-i*(i-a);b+=2;d=an*d+b;if(Math.abs(d)<FPMIN)d=FPMIN;c=b+an/c;if(Math.abs(c)<FPMIN)c=FPMIN;d=1/d;const del=d*c;h*=del;if(Math.abs(del-1)<EPS)break;}return clamp(Math.exp(-x+a*Math.log(x)-logGamma(a))*h,0,1);}
+function chiInv(p,df){let low=0,high=df+12*Math.sqrt(df+1)+20;for(let i=0;i<75;i++){let m=(low+high)/2;if(1-gammaQ(df/2,m/2)<p)low=m;else high=m;}return(low+high)/2;}
+function reg(xs,ys){const n=xs.length,xbar=xs.reduce((a,b)=>a+b,0)/n,ybar=ys.reduce((a,b)=>a+b,0)/n;let sxx=0,sxy=0,syy=0;for(let i=0;i<n;i++){const dx=xs[i]-xbar,dy=ys[i]-ybar;sxx+=dx*dx;sxy+=dx*dy;syy+=dy*dy;}const b=sxy/sxx,a=ybar-b*xbar,sse=xs.reduce((s,x,i)=>s+(ys[i]-a-b*x)**2,0),df=n-2,s=Math.sqrt(sse/df),r2=syy>0?clamp(1-sse/syy,0,1):1,t=b/(s/Math.sqrt(sxx)),p=2*(1-tCdf(Math.abs(t),df));return{n,a,b,sse,s,df,r2,p,xbar,sxx};}
+function axesFrame({L=75,R=856,T=40,B=410,x0=0,x1=12,y0=0,y1=1.1,xticks=[0,2,4,6,8,10,12],yticks=[0,.2,.4,.6,.8,1],xlabel='Concentration (mg/L)',ylabel='Absorbance (AU)'}){
+ const mx=x=>L+(x-x0)/(x1-x0)*(R-L),my=y=>B-(y-y0)/(y1-y0)*(B-T);
+ let s='';for(const v of yticks){const y=my(v);s+=axis(L,y,R,y,'w8-gridline')+`<text x="${L-12}" y="${y+5}" text-anchor="end" class="w8-tick">${v.toFixed(1)}</text>`;}for(const v of xticks){const x=mx(v);s+=axis(x,B,x,B+7)+`<text x="${x}" y="${B+24}" class="w8-tick" text-anchor="middle">${v}</text>`;}s+=axis(L,T,L,B)+axis(L,B,R,B)+`<text x="${(L+R)/2}" y="${B+64}" class="w8-axis-title" text-anchor="middle">${xlabel}</text><text x="21" y="${(T+B)/2}" transform="rotate(-90 21 ${(T+B)/2})" text-anchor="middle" class="w8-axis-title">${ylabel}</text>`;return{html:s,mx,my,L,R,T,B};}
+function points(xy,cls='w8-point',radius=5){return xy.map(([x,y])=>`<circle cx="${x.toFixed(2)}" cy="${y.toFixed(2)}" r="${radius}" class="${cls}"></circle>`).join('');}
+function lineSamples(fn,mx,my,lo,hi,N=100){const ar=[];for(let i=0;i<=N;i++){const x=lo+i*(hi-lo)/N;ar.push([mx(x),my(fn(x))]);}return ar;}
+function filledBetween(lower,upper,mx,my,x0=0,x1=12,fillCls='w8-band-mean'){
+ const top=[],bottom=[];for(let i=0;i<=90;i++){const x=x0+(x1-x0)*i/90;top.push([mx(x),my(upper(x))]);bottom.push([mx(x),my(lower(x))]);}return `<path class="${fillCls}" d="${top.concat(bottom.reverse()).map((p,i)=>`${i?'L':'M'}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ')}Z"></path>`;
+}
+/* CALIBRATION HAND-FIT */
+const olsX=[.6,1.6,2.5,3.4,4.4,5.5,6.5,7.4,8.5,9.6,10.7,11.6];
+const olsY=olsX.map((x,i)=>.048+.075*x+[.012,-.025,.026,-.019,.012,.037,-.021,.014,-.006,.031,-.013,.008][i]);
+let showTrueOLS=false;
+function renderOLS(){const a=num('olsIntercept',.22),b=num('olsSlope',.04),f=reg(olsX,olsY);setText('olsInterceptValue',a.toFixed(2));setText('olsSlopeValue',b.toFixed(3));setText('olsSseOut',olsX.reduce((s,x,i)=>s+(olsY[i]-a-b*x)**2,0).toFixed(4));setText('olsFit',showTrueOLS?'Hide least-squares fit':'Show least-squares fit');const svg=$('olsSvg');if(!svg)return;
+ const G=axesFrame({});let out=G.html+`<defs><clipPath id="olsClip"><rect x="${G.L}" y="${G.T}" width="${G.R-G.L}" height="${G.B-G.T}"></rect></clipPath></defs><g clip-path="url(#olsClip)">`;
+ olsX.forEach((x,i)=>{out+=axis(G.mx(x),G.my(olsY[i]),G.mx(x),G.my(a+b*x),'w8-residual');});
+ out+=path(lineSamples(x=>a+b*x,G.mx,G.my,0,12),'w8-guess');if(showTrueOLS)out+=path(lineSamples(x=>f.a+f.b*x,G.mx,G.my,0,12),'w8-fit');out+=points(olsX.map((x,i)=>[G.mx(x),G.my(olsY[i])]))+'</g>';
+ out+=`<text x="${G.L+8}" y="23" class="w8-plot-note">purple: your line</text>`+(showTrueOLS?`<text x="${G.R-8}" y="23" text-anchor="end" class="w8-plot-note">green: OLS · intercept ${f.a.toFixed(3)}, slope ${f.b.toFixed(3)}</text>`:'');svg.innerHTML=out;}
+/* CONFIDENCE, PREDICTION, TOLERANCE EXPLORER */
+let bandSeed=0,bandData=[];
+function bandInit(){
+ const sd=num('bandSd',.06);
+ bandData=olsX.map((x,i)=>({x,z:(olsY[i]-(.05+.075*x))/.06,y:olsY[i]}));
+ renderBands();
+}
+function bandNew(){
+ bandSeed++;
+ const r=rng32(80808+bandSeed*733),sd=num('bandSd',.06);
+ bandData=[];
+ for(let i=0;i<12;i++){
+   const x=olsX[i],z=randn(r);
+   bandData.push({x,z,y:.05+.075*x+sd*z});
+ }
+ renderBands();
+}
+function bandAdd(){
+ const r=rng32(88000+bandSeed*1357+bandData.length*911);
+ const sd=num('bandSd',.06),x=.6+11*r(),z=randn(r);
+ bandData.push({x,z,y:.05+.075*x+sd*z});
+ renderBands();
+}
+function bandRedrawNoise(){
+ const sd=num('bandSd',.06);
+ for(const p of bandData)p.y=.05+.075*p.x+sd*p.z;
+ renderBands();
+}
+function renderBands(){const svg=$('bandSvg');if(!svg||bandData.length<5)return;const xs=bandData.map(o=>o.x),ys=bandData.map(o=>o.y),f=reg(xs,ys),kind=$('bandType')?.value||'all';setText('bandSdValue',num('bandSd',.06).toFixed(3));setText('bandNOut',f.n);setText('bandR2Out',f.r2.toFixed(3));setText('bandPOut',pFormat(f.p));
+ const G=axesFrame({y0:-.20,y1:1.35,yticks:[-.2,0,.2,.4,.6,.8,1,1.2]});let out=G.html+`<defs><clipPath id="bandClip"><rect x="${G.L}" y="${G.T}" width="${G.R-G.L}" height="${G.B-G.T}"></rect></clipPath></defs><g clip-path="url(#bandClip)">`;
+ const tcrit=tInv(.975,f.df),tBonf=tInv(.9875,f.df),upperSig=f.s*Math.sqrt(f.df/chiInv(.025,f.df));const h=x=>1/f.n+(x-f.xbar)**2/f.sxx;
+ const meanW=x=>tcrit*f.s*Math.sqrt(h(x)),predW=x=>tcrit*f.s*Math.sqrt(1+h(x));
+ // Conservative 95%-confidence / 95%-content conditional normal tolerance envelope:
+ // Bonferroni 97.5% mean bound + 97.5% upper confidence bound on sigma.
+ const tolW=x=>tBonf*f.s*Math.sqrt(h(x))+1.95996398454*upperSig;
+ const selected=(name)=>kind==='all'||kind===name;
+ const addBand=(fn,cls)=>filledBetween(x=>f.a+f.b*x-fn(x),x=>f.a+f.b*x+fn(x),G.mx,G.my,0,12,cls);
+ if(selected('tolerance'))out+=addBand(tolW,'w8-band-tolerance');
+ if(selected('prediction'))out+=addBand(predW,'w8-band-prediction');
+ if(selected('mean'))out+=addBand(meanW,'w8-band-mean');
+ out+=path(lineSamples(x=>f.a+f.b*x,G.mx,G.my,0,12),'w8-fit');out+=path(lineSamples(x=>.05+.075*x,G.mx,G.my,0,12),'w8-true');out+=points(bandData.map(o=>[G.mx(o.x),G.my(o.y)]),'w8-point',4.1)+'</g>';
+ out+=`<text x="${G.L}" y="23" class="w8-plot-note">Dashed orange = generating mean · green = fitted mean</text>`;
+ svg.innerHTML=out;}
+/* DIAGNOSTICS AND TRANSFORMS: STATIC READY-TO-USE SVGS */
+const diagNotes={good_tight:'Residuals roughly random, QQ close to line; high R² is not the only check.',good_loose:'Weak correlation does not automatically mean the linear model is invalid.',nonnormal:'QQ departures indicate a skewed conditional error distribution.',curvature:'Residual-vs-fitted trend reveals an omitted nonlinear relationship.',outliers:'Check high standardized residuals and leverage/influence; do not delete mechanically.',hetero:'Residual spread increases with fitted response: constant-variance assumption fails.'};
+function renderDiagnostic(){const k=$('diagChoice')?.value||'good_tight';if($('diagImage'))$('diagImage').src=`figures/diagnostic_${k}.svg`;setText('diagInterpretation',diagNotes[k]);}
+const transformDescriptions={exponential:'log(y) = log(a) + b·x',power:'log(y) = log(a) + b·log(x)',hyperbolic:'1/y = a + b·(1/x)',logarithmic:'y = a + b·log(x)'};
+function renderTransform(){const key=$('transformChoice')?.value||'exponential';if($('transformImage'))$('transformImage').src=`figures/transform_${key}.svg`;setText('transformEquation',transformDescriptions[key]);}
+
+/* NONLINEAR TITRATION: 2-parameter Henderson-type sigmoid, fixed asymptote at 0 */
+const nlX = Array.from({ length: 40 }, (_, i) => 1 + 6 * i / 39);
+const nlTrue = { v: 4.0, d: 1.0 };
+const nlRng = rng32(8999);
+const nlY = nlX.map(x => 1 / (1 + Math.pow(10, 4 - x)) + 0.01 * randn(nlRng));
+
+let nlHistory = [], nlCurrent = 0, nlToken = 0;
+
+const sigmoid = (x, v, d) => d / (1 + Math.pow(10, clamp(v - x, -15, 15)));
+const nlSse = (v, d) => nlX.reduce((acc, x, i) => acc + (nlY[i] - sigmoid(x, v, d)) ** 2, 0);
+
+function nonlinearHistory() {
+  const maxSteps = Math.round(num('nlSteps', 12));
+  const initV = num('nlV', 2.0);
+  const initD = num('nlK', 0.8);
+  
+  let v = initV, d = initD, lam = 0.04;
+  const hist = [{ v, d, sse: nlSse(v, d) }];
+
+  for (let iter = 0; iter < maxSteps; iter++) {
+    let a = 0, b = 0, c = 0, dvGrad = 0, ddGrad = 0;
+
+    for (let i = 0; i < nlX.length; i++) {
+      const x = nlX[i];
+      const z = clamp(v - x, -15, 15);
+      const g = 1 / (1 + Math.pow(10, z));
+      
+      // Analytical derivatives: df/dpKa and df/dD
+      const jv = -Math.LN10 * d * g * (1 - g);
+      const jd = g;
+      const res = nlY[i] - sigmoid(x, v, d);
+
+      a += jv * jv;
+      b += jv * jd;
+      c += jd * jd;
+      dvGrad += jv * res;
+      ddGrad += jd * res;
+    }
+
+    let improved = false;
+    for (let tr = 0; tr < 9; tr++) {
+      const aa = a * (1 + lam);
+      const cc = c * (1 + lam);
+      const det = aa * cc - b * b;
+
+      if (det <= 1e-12) {
+        lam *= 8;
+        continue;
+      }
+
+      const dvStep = clamp((cc * dvGrad - b * ddGrad) / det, -1.5, 1.5);
+      const ddStep = clamp((aa * ddGrad - b * dvGrad) / det, -0.5, 0.5);
+
+      const vv = clamp(v + dvStep, 1.0, 7.0);
+      const dd = clamp(d + ddStep, 0.1, 2.0);
+      const loss = nlSse(vv, dd);
+
+      if (loss <= nlSse(v, d) + 1e-8) {
+        v = vv;
+        d = dd;
+        lam = Math.max(1e-8, lam * 0.6);
+        improved = true;
+        break;
+      }
+      lam *= 5;
+    }
+
+    hist.push({ v, d, sse: nlSse(v, d) });
+    if (!improved) break;
+  }
+  return hist;
+}
+
+function renderNL(i = nlCurrent) {
+  if (!nlHistory.length) return;
+  const svg = $('nlSvg');
+  if (!svg) return;
+
+  nlCurrent = clamp(i, 0, nlHistory.length - 1);
+  const cur = nlHistory[nlCurrent];
+
+  setText('nlKValue', num('nlV', 2.0).toFixed(1));
+  setText('nlDValue', num('nlK', 0.8).toFixed(1));
+  setText('nlStepsValue', num('nlSteps', 12));
+
+  setText('nlVOut', cur.v.toFixed(2));
+  setText('nlKOut', cur.d.toFixed(2));
+
+  const m = nlY.reduce((acc, val) => acc + val, 0) / nlY.length;
+  const syy = nlY.reduce((sum, y) => sum + (y - m) ** 2, 0);
+  setText('nlR2Out', (1 - cur.sse / syy).toFixed(3));
+
+  let a11 = 0, a12 = 0, a22 = 0;
+  for (const x of nlX) {
+    const z = clamp(cur.v - x, -15, 15);
+    const g = 1 / (1 + Math.pow(10, z));
+    const jv = -Math.LN10 * cur.d * g * (1 - g);
+    const jd = g;
+    a11 += jv * jv;
+    a12 += jv * jd;
+    a22 += jd * jd;
+  }
+
+  const det = a11 * a22 - a12 * a12;
+  const s2 = cur.sse / (nlX.length - 2);
+
+  setText('nlSeVOut', det > 1e-12 ? Math.sqrt(s2 * a22 / det).toFixed(3) : '—');
+  setText('nlSeKOut', det > 1e-12 ? Math.sqrt(s2 * a11 / det).toFixed(3) : '—');
+  setText('nlStepOut', `${nlCurrent}/${nlHistory.length - 1} · ${cur.sse.toFixed(4)}`);
+
+  const G = axesFrame({
+    x0: 1, x1: 7,
+    y0: 0, y1: 1.2,
+    xticks: [1, 2, 3, 4, 5, 6, 7],
+    yticks: [0, 0.3, 0.6, 0.9, 1.2],
+    xlabel: 'pH',
+    ylabel: 'Titrant volume difference (mL)'
+  });
+
+  let s = G.html + `<defs><clipPath id="nlClip"><rect x="${G.L}" y="${G.T}" width="${G.R - G.L}" height="${G.B - G.T}"></rect></clipPath></defs><g clip-path="url(#nlClip)">`;
+  s += path(lineSamples(x => sigmoid(x, cur.v, cur.d), G.mx, G.my, 1, 7, 180), 'w8-fit');
+  s += path(lineSamples(x => sigmoid(x, nlTrue.v, nlTrue.d), G.mx, G.my, 1, 7, 180), 'w8-true');
+  s += points(nlX.map((x, idx) => [G.mx(x), G.my(nlY[idx])]), 'w8-point', 4.1) + '</g>';
+  s += `<text x="${G.L}" y="23" class="w8-plot-note">Green: iteratively fitted · orange dashed: theoretical sigmoid</text>`;
+
+  svg.innerHTML = s;
+}
+
+function resetNL() {
+  nlToken++;
+  nlHistory = nonlinearHistory();
+  nlCurrent = 0;
+  renderNL(0);
+}
+
+function runNL() {
+  nlToken++;
+  const token = nlToken;
+  nlHistory = nonlinearHistory();
+  nlCurrent = 0;
+  renderNL(0);
+
+  function step() {
+    if (token !== nlToken) return;
+    if (nlCurrent >= nlHistory.length - 1) return;
+    nlCurrent++;
+    renderNL(nlCurrent);
+    setTimeout(step, 500);
+  }
+  setTimeout(step, 500);
+}
+
+/* POLYNOMIAL MODEL CAPACITY + AIC */
+let polySeed=1,polyPoints=[];
+function polyNew(){polySeed++;const r=rng32(30000+polySeed*523);polyPoints=Array.from({length:35},(_,i)=>{const x=-1+.02+1.96*i/34;return{x,y:.8+.85*x-.50*x*x+1.15*x*x*x+.14*randn(r)};});renderPoly();}
+function solve(A,b){const n=b.length;const a=A.map((row,i)=>row.slice().concat(b[i]));for(let c=0;c<n;c++){let pivot=c;for(let r=c+1;r<n;r++)if(Math.abs(a[r][c])>Math.abs(a[pivot][c]))pivot=r;[a[c],a[pivot]]=[a[pivot],a[c]];const d=a[c][c];if(Math.abs(d)<1e-13)return null;for(let j=c;j<=n;j++)a[c][j]/=d;for(let r=0;r<n;r++){if(r===c)continue;const k=a[r][c];for(let j=c;j<=n;j++)a[r][j]-=k*a[c][j];}}return a.map(row=>row[n]);}
+
+function fitPoly(deg){
+  const k=deg+1,A=Array.from({length:k},()=>Array(k).fill(0)),b=Array(k).fill(0);
+  for(const p of polyPoints){
+    let powers=[1];
+    for(let i=1;i<=2*deg;i++)powers.push(powers[i-1]*p.x);
+    for(let i=0;i<k;i++){
+      b[i]+=p.y*powers[i];
+      for(let j=0;j<k;j++)A[i][j]+=powers[i+j];
+    }
+  }
+  // Ridge safeguard to prevent matrix ill-conditioning at degree > 8
+  for(let i=0;i<k;i++) A[i][i] += 1e-7;
+
+  const coef=solve(A,b);if(!coef)return null;
+  const predict=x=>coef.reduce((s,c,j)=>s+c*x**j,0);
+  const SSE=polyPoints.reduce((s,p)=>s+(p.y-predict(p.x))**2,0),mean=polyPoints.reduce((s,p)=>s+p.y,0)/polyPoints.length,SST=polyPoints.reduce((s,p)=>s+(p.y-mean)**2,0),r2=1-SSE/SST;
+  const n=polyPoints.length,aic=n*Math.log(Math.max(1e-9,SSE)/n)+2*k;
+  return{deg,coef,predict,r2,aic};
+}
+
+function renderPoly(){
+  if(!polyPoints.length)return;
+  const deg=num('polyDegree',3);setText('polyDegreeValue',deg);
+  const models=Array.from({length:15},(_,i)=>fitPoly(i+1)).filter(Boolean),chosen=models[deg-1]||models[0],best=models.reduce((a,b)=>a.aic<b.aic?a:b);
+  setText('polyR2Out',chosen.r2.toFixed(3));setText('polyAicOut',chosen.aic.toFixed(1));setText('polyBestOut',best.deg);
+  const svg=$('polySvg');if(!svg)return;
+
+  const L=70,R=515,T=47,B=412,mx=x=>L+(x+1)/2*(R-L),my=y=>B-(y+1.5)/4.5*(B-T);
+  let s='';
+  for(const y of [-1,0,1,2,3]){s+=axis(L,my(y),R,my(y),'w8-gridline')+`<text x="${L-9}" y="${my(y)+4}" class="w8-tick" text-anchor="end">${y}</text>`;}
+  for(const x of [-1,-.5,0,.5,1]){s+=axis(mx(x),B,mx(x),B+7)+`<text x="${mx(x)}" y="${B+25}" class="w8-tick" text-anchor="middle">${x}</text>`;}
+  s+=axis(L,T,L,B)+axis(L,B,R,B)+`<text x="${(L+R)/2}" y="466" class="w8-axis-title" text-anchor="middle">Scaled cell size</text><text x="${L}" y="24" class="w8-plot-caption">Data and degree-${deg} fit</text>`;
+
+  s+=`<defs><clipPath id="polyClip"><rect x="${L}" y="${T}" width="${R-L}" height="${B-T}"></rect></clipPath></defs><g clip-path="url(#polyClip)">`;
+  s+=path(lineSamples(chosen.predict,mx,my,-1,1,200),'w8-fit');
+  s+=points(polyPoints.map(p=>[mx(p.x),my(p.y)]),'w8-point',3.6)+'</g>';
+
+  // Rescale right AIC panel for 15 degrees
+  const al=600,ar=862,at=56,ab=412,values=models.map(o=>o.aic),min=Math.min(...values)-6,max=Math.max(...values)+6,fy=y=>ab-(y-min)/(max-min)*(ab-at),fx=d=>al+(d-1)/14*(ar-al);
+  for(let d=1;d<=15;d++){
+    const x=fx(d);
+    // Draw tick line for all degrees; alternate tick labels to prevent text overlapping
+    const showLabel = d % 2 === 1 || d === 15 || d === deg;
+    s+=axis(x,ab,x,ab+6)+(showLabel?`<text x="${x}" y="${ab+23}" class="w8-tick" text-anchor="middle">${d}</text>`:'');
+  }
+  for(let j=0;j<=4;j++){const v=min+j*(max-min)/4,y=fy(v);s+=axis(al,y,ar,y,'w8-gridline')+`<text x="${al-9}" y="${y+5}" class="w8-tick" text-anchor="end">${v.toFixed(0)}</text>`;}
+  s+=axis(al,at,al,ab)+axis(al,ab,ar,ab)+`<text x="${(al+ar)/2}" y="466" class="w8-axis-title" text-anchor="middle">Polynomial degree</text><text x="${al}" y="24" class="w8-plot-caption">AIC (lower is better)</text>`;
+
+  s+=path(models.map(m=>[fx(m.deg),fy(m.aic)]),'w8-guess');
+  models.forEach(m=>{s+=`<circle cx="${fx(m.deg)}" cy="${fy(m.aic)}" r="${m.deg===deg?6:3.5}" fill="${m.deg===best.deg?'#18864b':m.deg===deg?'#c93838':'#7b4ab5'}" stroke="white" stroke-width="1.5"></circle>`;});
+  svg.innerHTML=s;
+}
+
+/* FOUR QUIZ FEEDBACK CHANNELS */
+const answerKey={model:{ans:'B',ok:'Simple linear regression models continuous absorbance against known concentration.'},coef:{ans:'B',ok:'The coefficient is a conditional association at the same modeled height, not an automatic causal effect.'},diag:{ans:'B',ok:'A strong R² can coexist with functional-form misspecification; investigate nonlinear terms and mechanism.'},extra:{ans:'B',ok:'This is extrapolation beyond validated standards. Re-measure at a suitable dilution.'}};
+function answerQuiz(btn){const key=btn.dataset.q,ans=btn.dataset.a,quiz=btn.closest('.w8-quiz'),feedback=$(`quiz${key[0].toUpperCase()+key.slice(1)}Feedback`),correct=answerKey[key].ans===ans;quiz.querySelectorAll('.w8-choice').forEach(b=>b.classList.remove('is-correct','is-wrong'));btn.classList.add(correct?'is-correct':'is-wrong');if(feedback){feedback.textContent=(correct?'Correct. ':'Not quite. ')+answerKey[key].ok;feedback.className='w8-quiz-feedback '+(correct?'correct':'wrong');}}
+/* INITIALIZE ONCE: no nested listeners / no duplicate rendering scripts */
+let initialized=false;
+function initWeek08(){if(initialized||!$('olsWidget'))return;initialized=true;
+ $('olsIntercept')?.addEventListener('input',renderOLS);$('olsSlope')?.addEventListener('input',renderOLS);$('olsFit')?.addEventListener('click',()=>{showTrueOLS=!showTrueOLS;renderOLS();});
+ $('bandType')?.addEventListener('change',renderBands);$('bandSd')?.addEventListener('input',bandRedrawNoise);$('bandNew')?.addEventListener('click',bandNew);$('bandAdd')?.addEventListener('click',bandAdd);
+ $('diagChoice')?.addEventListener('change',renderDiagnostic);$('transformChoice')?.addEventListener('change',renderTransform);
+ for(const id of ['nlV','nlK','nlSteps'])$(id)?.addEventListener('input',resetNL);$('nlRun')?.addEventListener('click',runNL);
+ $('polyDegree')?.addEventListener('input',renderPoly);$('polyNew')?.addEventListener('click',polyNew);
+ document.querySelectorAll('.w8-choice').forEach(b=>b.addEventListener('click',()=>answerQuiz(b)));
+ renderOLS();bandInit();renderDiagnostic();renderTransform();resetNL();polyNew();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initWeek08);else initWeek08();
+window.addEventListener('load',initWeek08);
+if(window.Reveal&&typeof window.Reveal.on==='function'){window.Reveal.on('ready',initWeek08);window.Reveal.on('slidechanged',initWeek08);}
+})();
+</script>

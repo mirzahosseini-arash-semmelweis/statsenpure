@@ -1,6 +1,6 @@
 ---
-title: "Statistics 101"
-subtitle: "Week 9 · Placeholder"
+title: "Statistics for Pharmacists"
+subtitle: "Week 9 · Beyond classical linear methods"
 author: "Graduate Pharmaceutical Studies"
 date: ""
 title-slide-attributes:
@@ -8,10 +8,533 @@ title-slide-attributes:
 format:
   revealjs:
     footer: "Statistics 101 · Week 9"
+    scrollable: false
+    transition: fade
+    theme:
+      - default
+      - ../assets/scss/course.scss
+      - ../assets/scss/week09.scss
+    resources:
+      - figures/**
 ---
 
-## Week 9 {.motivation-slide}
+## Beyond classical linear methods {.title-slide}
 
-<div class="eyebrow">Course skeleton</div>
+<div class="eyebrow">Week 9 · Midterm week</div>
+<div class="concept-line" style="margin-top:1em;">What if the outcome is <strong>not continuous and Normally distributed</strong>?</div>
 
-<div class="big-question">Content to be developed.</div>
+::: {.notes}
+Shorter teaching week owing to midterm. Main learning goal: choose an appropriate family for the outcome, not memorize a test catalog.
+:::
+
+## The last missing square {.concept-slide}
+
+<div class="eyebrow">What kind of outcome are we explaining?</div>
+<div class="w9-model-matrix">
+<div class="w9-matrix-corner">Outcome ↓ · Predictor →</div>
+<div class="w9-matrix-head">Categorical</div>
+<div class="w9-matrix-head">Numerical</div>
+<div class="w9-matrix-rowtitle">Categorical</div>
+<div class="w9-matrix-cell"><strong>χ2 / Fisher</strong><span>Group label ↔ disease status</span></div>
+<div class="w9-matrix-cell w9-focus-cell"><strong>Logistic regression</strong><span>Disease status ~ biomarker level</span></div>
+<div class="w9-matrix-rowtitle">Numerical</div>
+<div class="w9-matrix-cell"><strong>t test / ANOVA</strong><span>Blood pressure ~ treatment group</span></div>
+<div class="w9-matrix-cell"><strong>Linear regression</strong><span>Absorbance ~ concentration</span></div>
+</div>
+<div class="concept-line fragment fade-up">The model family is driven primarily by the <strong>outcome</strong> and its data-generating process.</div>
+
+## Clinical hook: fasting insulin levels and diabetes {.motivation-slide}
+
+<div class="w9-two w9-center">
+<div class="w9-card observed-border"><div class="w9-card-kicker">PREDICTOR $x$</div><div class="w9-card-large">Insulin</div><div class="w9-card-math">$10$, $20$, $50$ … pmol/L</div><div class="w9-card-sub">A continuous laboratory measurement</div></div>
+<div class="w9-card uncertainty-border"><div class="w9-card-kicker">OUTCOME $y$</div><div class="w9-card-large">Diabetes present?</div><div class="w9-card-math">$y\in\{0,1\}$</div><div class="w9-card-sub">Reference clinical classification for a synthetic study</div></div>
+</div>
+<div class="definition-box fragment fade-up"><div class="definition-title">Research question</div><p>How does <strong>the probability of diabetes</strong> change with fasting insulin level? A classification threshold is a different decision problem — next week.</p></div>
+<div class="w9-caption fragment fade-up">Clinical note: Fasting insulin is not an established diabetes diagnostic criterion, as standard diagnosis relies on evaluating blood glucose or HbA1c levels; fasting insulin testing helps evaluate pancreatic hormone production and identify insulin resistance but does not independently identify diabetes type. <a href="https://www.niddk.nih.gov/health-information/diabetes/overview/tests-diagnosis">NIDDK</a></div>
+
+## A binary outcome does not behave like absorbance {.concept-slide}
+
+<div class="w9-figure-holder" style="height:15.3em;"><img src="figures/binary_linear_failure.svg" alt="Synthetic binary diabetes classifications with an unconstrained least-squares line and bounded logistic probability curve"></div>
+<div class="w9-caption">Jitter only makes the binary points visible. Linear regression can produce predicted values outside $[0,1]$ and uses the wrong error/variance structure.</div>
+
+## Explore probability → odds → logit {.exercise-slide}
+
+<div class="eyebrow">Move one probability; watch two transformations</div>
+<div class="w9-lab" id="oddsWidget">
+<div class="w9-controls">
+<label class="w9-control">event probability $p$ = <strong id="oddsPVal">0.50</strong><input id="oddsP" type="range" min="0" max="100" step="1" value="50"></label>
+<div class="w9-readouts w9-readouts-one"><div class="w9-output"><span style="font-size: 60%">probability<span style="font-size: 300%">$p$</span></span><strong id="oddsProbOut">0.50</strong></div><div class="w9-output"><span style="font-size: 60%">odds<span style="font-size: 300%">$p/(1-p)$</span></span><strong id="oddsOddsOut">1.00</strong></div><div class="w9-output"><span style="font-size: 60%">logit<span style="font-size: 300%">$\log[p/(1-p)]$</span></span><strong id="oddsLogitOut">0.00</strong></div></div>
+<div class="w9-lab-note">For $p=0.20$, $\mathrm{odds}=0.20/0.80=0.25$.<p>Endpoints:</p><p>at $p=0$ $\mathrm{odds}=0$ and logit tends to $-\infty$;</p>at $p=1$ odds and logit tend to $+\infty$.</div>
+</div>
+<div class="w9-visual"><svg id="oddsSvg" class="w9-svg w9-svg-large" viewBox="0 0 900 500" aria-label="Odds and logit as functions of event probability"></svg></div>
+</div>
+
+## The logit opens the door to a straight line {.concept-slide}
+
+<div class="w9-figure-holder" style="height:12.5em;"><img src="figures/logistic_two_scales.svg" alt="Log-odds are linear in HbA1c while modeled probability follows an S-shaped curve"></div>
+
+<div class="concept-line fragment fade-up">We model the <strong>log-odds</strong>, not the raw 0/1 observation.</div>
+
+## Logistic regression: the recipe {.concept-slide}
+
+<div class="w9-equation-stack">
+<div class="w9-equation-line"><span>1 · Linear predictor</span><strong style="font-size: 120%">$\eta=\beta_0+\beta_1x$</strong></div>
+<div class="w9-equation-line"><span>2 · Log-odds link</span><strong style="font-size: 120%">$\log\dfrac{p}{1-p}=\eta$</strong></div>
+<div class="w9-equation-line"><span>3 · Back to probability</span><strong style="font-size: 120%">$p=\dfrac{1}{1+e^{-\eta}}$</strong></div>
+</div>
+<div class="w9-note fragment fade-up">The coefficients are estimated from Bernoulli outcomes using likelihood, <strong>not by taking the logit of each observed 0/1</strong>.</div>
+
+## What do $\beta_0$ and $\beta_1$ mean? {.concept-slide}
+
+<div class="w9-two w9-center">
+<div class="w9-card model-border"><div class="w9-card-kicker">INTERCEPT $\beta_0$</div><div class="w9-card-math" style="font-size: 120%">$e^{\beta_0}$</div><div class="w9-card-sub">Baseline odds at $x=0$; may be meaningless if zero is outside the observed domain</div></div>
+<div class="w9-card estimate-border"><div class="w9-card-kicker">SLOPE $\beta_1$</div><div class="w9-card-math" style="font-size: 120%">$e^{\beta_1}$</div><div class="w9-card-sub">Multiplicative change in event odds for +1 unit of $x$</div></div>
+</div>
+<div class="definition-box fragment fade-up"><div class="definition-title">Odds ratio (OR)</div><p>$OR=e^{\beta_1}$:</p><p>above $1$ → higher odds;</p><p>below $1$ → lower odds;</p><p>exactly $1$ → no odds change per modeled unit.</p></div>
+
+## A worked biomarker coefficient {.concept-slide}
+
+<div class="eyebrow">Illustrative fitted association · not a diagnostic rule</div>
+<div class="w9-big-equation">$\operatorname{logit}(\mathbb{P}(\mathrm{diabetes}))=-1.20+0.80\,\frac{\mathrm{insulin}-30}{10}$</div>
+<div class="w9-three fragment fade-up">
+<div class="w9-card model-border"><div class="w9-card-kicker">At insulin = $30$ pmol/L</div><div class="w9-card-math">$e^{-1.20}=0.30$</div><div class="w9-card-sub">Baseline odds; $p\approx0.23$</div></div>
+<div class="w9-card estimate-border"><div class="w9-card-kicker">For $+10$ pmol/L</div><div class="w9-card-math">$e^{0.80}=2.23$</div><div class="w9-card-sub">Odds are multiplied by $2.23$</div></div>
+<div class="w9-card uncertainty-border"><div class="w9-card-kicker">At insulin = $40$ pmol/L</div><div class="w9-card-math">$p\approx0.40$</div><div class="w9-card-sub">Probability computed by inverse logit</div></div>
+</div>
+<div class="w9-note fragment fade-up">Centering at $30$ and dividing by $10$ makes the intercept interpretable. The fitted coefficients are invented for teaching.</div>
+
+<div class="w9-figure-holder fragment fade-up" style="height:10.5em;"><img src="figures/diabetes.png" alt="Diabetes model"></div>
+
+## Multiplying odds is not adding risk {.concept-slide}
+
+<div class="w9-two w9-center">
+<div class="w9-card observed-border"><div class="w9-card-kicker">Baseline risk 10%</div><div class="w9-card-math">$\mathrm{odds}=0.10/0.90$</div><div class="w9-card-sub">Double odds → probability <strong>18.2%</strong>, not 20%</div></div>
+<div class="w9-card uncertainty-border"><div class="w9-card-kicker">Baseline risk 50%</div><div class="w9-card-math">$\mathrm{odds}=0.50/0.50$</div><div class="w9-card-sub">Double odds → probability <strong>66.7%</strong>, not 100%</div></div>
+</div>
+<div class="warning-box fragment fade-up"><div class="warning-title">Watch the language</div><p>An odds ratio of 2 is <strong>not necessarily a doubled probability or risk</strong>. Its effect on absolute risk depends on baseline risk.</p></div>
+
+## The GLM family {.concept-slide}
+
+<div class="eyebrow">Same idea, different outcome distributions and links</div>
+<div class="w9-model-list">
+<div class="w9-model-row"><strong>Continuous</strong><span>Gaussian model</span><span class="w9-chip">identity</span><span>$E(Y\mid x)=\eta$</span></div>
+<div class="w9-model-row focus"><strong>Binary</strong><span>Bernoulli model</span><span class="w9-chip">logit</span><span>$\operatorname{logit}(p)=\eta$</span></div>
+<div class="w9-model-row"><strong>Count</strong><span>Poisson model</span><span class="w9-chip">log</span><span>$\log(\mu)=\eta$</span></div>
+</div>
+<div class="concept-line fragment fade-up">$\eta$ is the <strong>linear predictor</strong>; the link function connects it to the outcome's conditional mean.</div>
+
+## Extending the model: ACS, SBP, smoking {.section-break}
+
+<div class="section-kicker">Part II</div>
+<div class="section-title">The predictors can be both numeric and categorical</div>
+<div class="section-subtitle">And an interaction asks whether one predictor modifies another's association.</div>
+
+## Add an interaction to the model {.concept-slide}
+
+<div class="concept-line">Now we model the probability of <strong>acute coronary syndrome (ACS)</strong> with predictor independent variables: systolic blood pressure (SBP) and smoking status.</div>
+
+<div class="w9-big-equation fragment fade-up">$\operatorname{logit}(\mathbb{P}(\mathrm{ACS}))=\beta_0+\beta_1\frac{\mathrm{SBP}-120}{10}+\beta_2I_{\mathrm{smoker}}+\beta_3\frac{\mathrm{SBP}-120}{10}I_{\mathrm{smoker}}$</div>
+
+<div class="w9-figure-holder fragment fade-up" style="height:12.5em;"><img src="figures/acs.png" alt="ACS model"></div>
+
+## Explore baseline, slopes, and interaction {.exercise-slide}
+
+<div class="w9-lab" id="logisticWidget">
+<div class="w9-controls">
+<label class="w9-control">baseline log-odds $\beta_0$ = <strong id="logB0Value">−2.30</strong><input id="logB0" type="range" min="-4" max="0" step="0.1" value="-2.3"></label>
+<label class="w9-control">SBP slope $\beta_1$ / 10 mmHg = <strong id="logB1Value">0.34</strong><input id="logB1" type="range" min="-0.6" max="1.2" step="0.02" value="0.34"></label>
+<label class="w9-control">smoking shift $\beta_2$ = <strong id="logB2Value">0.68</strong><input id="logB2" type="range" min="-2" max="2" step="0.1" value="0.68"></label>
+<div class="w9-interaction-control"><div class="w9-interaction-title">Interaction · slope modification</div>
+<div class="w9-interaction-input"><label class="w9-control">SBP × smoking $\beta_3$ = <strong id="logB3Value">0.26</strong><input id="logB3" type="range" min="-0.8" max="0.8" step="0.02" value="0.26"></label></div>
+</div>
+<div class="w9-lab-note">$x=(SBP-120)/10$; two probabilities come from one logistic model.</div>
+</div>
+<div class="w9-visual">
+<svg id="logisticSvg" class="w9-svg w9-svg-large" viewBox="0 0 900 500" aria-label="Interactive smoker and non-smoker logistic probability curves"></svg>
+<div class="w9-readouts"><div class="w9-output"><span>OR per +10 mmHg · non-smoker</span><strong id="logOrNon">1.40</strong></div><div class="w9-output"><span>OR per +10 mmHg · smoker</span><strong id="logOrSm">1.82</strong></div><div class="w9-output"><span>ratio of SBP ORs</span><strong id="logRatio">1.30</strong></div></div>
+</div>
+</div>
+
+## The reference-group (effects) view {.concept-slide}
+  
+<div class="w9-four-rules fragment fade-up">
+<div class="w9-rule">$e^{\beta_0}$<span>Baseline odds at SBP 120 mmHg for non-smokers</span></div>
+<div class="w9-rule">$e^{\beta_1}$<span>SBP odds ratio for +10 mmHg <em>within non-smokers</em></span></div>
+<div class="w9-rule">$e^{\beta_2}$<span>Smoker vs non-smoker odds ratio <em>at SBP 120 mmHg</em></span></div>
+<div class="w9-rule">$e^{\beta_3}$<span>Ratio of SBP odds ratios (smoker / non-smoker)</span></div>
+</div>
+
+## The group-specific (strata) view {.concept-slide}
+
+<div class="w9-two w9-center">
+<div class="w9-card observed-border"><div class="w9-card-kicker">Non-smoker</div><div class="w9-card-math">$\operatorname{logit}(p)=\beta_0+\beta_1\frac{\mathrm{SBP}-120}{10}$</div><div class="w9-card-sub">Reference odds: $e^{\beta_0}$</div><div class="w9-card-sub">SBP OR / +10 mmHg: $e^{\beta_1}$</div></div>
+<div class="w9-card model-border"><div class="w9-card-kicker">Smoker</div><div class="w9-card-math">$\operatorname{logit}(p)=(\beta_0+\beta_2)+(\beta_1+\beta_3)\frac{\mathrm{SBP}-120}{10}$</div><div class="w9-card-sub">Reference odds: $e^{\beta_0+\beta_2}$</div><div class="w9-card-sub">SBP OR / +10 mmHg: $e^{\beta_1+\beta_3}$</div></div>
+</div>
+<div class="w9-four-rules fragment fade-up">
+<div class="w9-rule">$e^{\beta_0}$<span>Baseline odds at SBP 120 mmHg for non-smokers</span></div>
+<div class="w9-rule">$e^{\beta_1}$<span>SBP odds ratio for +10 mmHg <em>within non-smokers</em></span></div>
+<div class="w9-rule">$e^{\beta_0+\beta_2}$<span>Baseline odds at SBP 120 mmHg for smokers</span></div>
+<div class="w9-rule">$e^{\beta_1+\beta_3}$<span>SBP odds ratio for +10 mmHg <em>within smokers</em></span></div>
+</div>
+<div class="concept-line fragment fade-up">One model; two equally valid ways to read its coefficients.</div>
+
+## Two views, different communication goals {.concept-slide}
+
+<div class="w9-comparison">
+<div class="w9-compare-head">Question</div><div class="w9-compare-head">Effects / reference-group view</div><div class="w9-compare-head">Group-specific / strata view</div>
+<div class="w9-compare-label">Emphasis</div><div>How does the smoking indicator <em>modify</em> the SBP association?</div><div>What is the SBP association <em>within each</em> smoking stratum?</div>
+<div class="w9-compare-label">Useful for</div><div>Testing and reporting interaction</div><div>Communicating subgroup profiles and conditional predictions</div>
+<div class="w9-compare-label">Caution</div><div>Reference levels and units matter</div><div>Subgroup ORs are not absolute patient risks</div>
+</div>
+
+## Interpretation is not diagnosis {.concept-slide}
+
+<div class="w9-three fragment fade-up">
+<div class="w9-card observed-border"><div class="w9-card-kicker">Fit</div><div class="w9-card-large">Model $\mathbb{P}(Y=1\mid X)$</div><div class="w9-card-sub">Conditional probabilities and uncertainty</div></div>
+<div class="w9-card uncertainty-border"><div class="w9-card-kicker">Evaluate</div><div class="w9-card-large">Calibration + discrimination</div><div class="w9-card-sub">Do estimates agree with reality? Can cases be ranked?</div></div>
+<div class="w9-card warning-border"><div class="w9-card-kicker">Decide</div><div class="w9-card-large">Choose a threshold</div><div class="w9-card-sub">False positives, false negatives, clinical consequences</div></div>
+</div>
+<div class="w9-note fragment fade-up">Regression assumptions and model checking still matter; no single ordinary $R^2$ replaces them. Detailed classification and diagnostics follow in Week 10.</div>
+
+## More than two outcome categories {.section-break}
+
+<div class="section-kicker">Part III</div>
+<div class="section-title">One binary logit is not always enough</div>
+<div class="section-subtitle">Multinomial outcomes and event counts call for other models.</div>
+
+## Multinomial logistic regression {.concept-slide}
+
+<div class="eyebrow">Stroke-presentation categories: ischemic (reference), hemorrhagic, TIA</div>
+<div class="w9-equation-stack">
+<div class="w9-equation-line"><span>Hemorrhagic vs ischemic</span><strong style="font-size: 120%">$\log\dfrac{\mathbb{P}(\mathrm{H})}{\mathbb{P}(\mathrm{I})}=\eta_{\mathrm{H}}(X)$</strong></div>
+<div class="w9-equation-line"><span>TIA vs ischemic</span><strong style="font-size: 120%">$\log\dfrac{\mathbb{P}(\mathrm{T})}{\mathbb{P}(\mathrm{I})}=\eta_{\mathrm{T}}(X)$</strong></div>
+<div class="w9-equation-line"><span>Probability normalization</span><strong style="font-size: 120%">$\mathbb{P}(\mathrm{I})=\dfrac{1}{1+e^{\eta_{\mathrm{H}}}+e^{\eta_{\mathrm{T}}}}$</strong></div>
+</div>
+<div class="w9-note">Each nonreference category has its own log-odds equation. Exponentiated intercepts are baseline odds <em>relative to ischemic</em>, not probabilities; slopes yield relative-category odds ratios.</div>
+
+## How do three probabilities move together? {.concept-slide}
+
+<div class="w9-figure-holder" style="height:15.3em;"><img src="figures/multinomial_probs.svg" alt="Synthetic multinomial softmax stacked probability plot with ischemic stroke, hemorrhagic stroke and TIA categories summing to 100 percent"></div>
+<div class="w9-caption">Illustrative synthetic probability profiles while changing age; other predictors are fixed. Each vertical stack adds to 100%.</div>
+
+## Reading a multinomial output {.concept-slide}
+
+<div class="eyebrow">Invented coefficients · outcome reference = ischemic stroke</div>
+<div class="w9-mini-coef">
+<div class="w9-mini-head">Comparison</div><div class="w9-mini-head">Predictor</div><div class="w9-mini-head">$\beta$</div><div class="w9-mini-head">$e^\beta$</div>
+<div>Hemorrhagic / ischemic</div><div>Anticoagulant (yes vs no)</div><div>0.80</div><div class="w9-coef-em">2.23</div>
+<div>Hemorrhagic / ischemic</div><div>SBP (+10 mmHg)</div><div>0.18</div><div class="w9-coef-em">1.20</div>
+<div>TIA / ischemic</div><div>Time since onset (+1 h)</div><div>−0.20</div><div class="w9-coef-em">0.82</div>
+<div>TIA / ischemic</div><div>Age (+10 y)</div><div>−0.15</div><div class="w9-coef-em">0.86</div>
+</div>
+<div class="concept-line fragment fade-up">$e^{0.80}=2.23$: modeled hemorrhagic-versus-ischemic odds are multiplied by 2.23 for anticoagulant use, with other predictors fixed.</div>
+<div class="w9-note fragment fade-up">Coefficients are purely illustrative; none assert a clinical relationship, significance, or recommended triage action.</div>
+
+## Poisson and negative binomial {.concept-slide}
+
+<div class="w9-figure-holder" style="height:13.2em;"><img src="figures/poisson_vs_nb.svg" alt="Poisson and negative binomial count distributions with the same mean but more dispersed negative binomial counts"></div>
+<div class="w9-two w9-condensed">
+<div class="w9-card observed-border"><div class="w9-card-kicker">Poisson</div><div class="w9-card-sub">$E(Y)=\mathrm{Var}(Y)=\mu$</div></div>
+<div class="w9-card uncertainty-border"><div class="w9-card-kicker">Negative binomial</div><div class="w9-card-sub">Allows $\mathrm{Var}(Y)>E(Y)$ (overdispersion)</div></div>
+</div>
+
+## Two pharmaceutical count examples {.concept-slide}
+
+<div class="w9-two w9-center">
+<div class="w9-card observed-border"><div class="w9-card-kicker">Sterile filling line</div><div class="w9-card-large">Bacteria / 10,000 vials</div><div class="w9-card-sub">Count events per comparable batch; a Poisson starting point may be useful.</div></div>
+<div class="w9-card uncertainty-border"><div class="w9-card-kicker">Phase III oncology study</div><div class="w9-card-large">Severe nausea episodes</div><div class="w9-card-sub">Counts per patient during follow-up; between-patient heterogeneity may cause overdispersion.</div></div>
+</div>
+<div class="w9-mini-math fragment fade-up">$\log E(Y_i)=\beta_0+\beta_1x_i+\log(t_i)$</div>
+<div class="w9-note fragment fade-up">If observation times $t_i$ differ, an <strong>offset</strong> accounts for exposure. $e^{\beta_1}$ then represents a multiplicative change in the <strong>event rate</strong>.</div>
+
+<div class="concept-line fragment fade-up" style="font-size:60%"><p>Interpretation of units:</p><p>In the Poisson example the equation can rewritten as: $\frac{E(Y_i)}{t_i}=e^{\beta_0+\beta_1x_i}$</p><p>$E(Y_i)$ is number of bacteria in sample $i$, $t_i$ is number of vials in sample $i$</p><p>$x$ is a predictor of our choice, e.g. incubation temperature $\text{°C}$, then $\beta_1$ is $\log{\text{(bacteria/vial)}}/\text{°C}$, and $\beta_0$ is $\log{\text{(bacteria/vial)}}$</p></div>
+
+## Ordinal categories have a model too {.concept-slide}
+
+<div class="w9-three fragment fade-up">
+<div class="w9-card observed-border"><div class="w9-card-kicker">Nominal 3+ levels</div><div class="w9-card-large">Multinomial logit</div><div class="w9-card-sub">No built-in order among categories</div></div>
+<div class="w9-card uncertainty-border"><div class="w9-card-kicker">Ordered levels</div><div class="w9-card-large">Ordinal logit</div><div class="w9-card-sub">Uses ordering, e.g. mild → moderate → severe</div></div>
+<div class="w9-card estimate-border"><div class="w9-card-kicker">Nonnegative counts</div><div class="w9-card-large">Poisson / Negative Binomial</div><div class="w9-card-sub">Number of events, possibly accounting for exposure</div></div>
+</div>
+<div class="concept-line fragment fade-up">All are discrete, but they do <strong>not</strong> describe the same type of outcome.</div>
+<div class="w9-figure-holder fragment fade-up" style="height:10.2em;"><img src="figures/ordinal_vs_count.svg" alt="Ordinal outcome"></div>
+
+## If Normality is implausible {.section-break}
+
+<div class="section-kicker">Part IV</div>
+<div class="section-title">Other inferential tools exist</div>
+<div class="section-subtitle">Know the rationale, not every test's formula.</div>
+
+## Rank-based alternatives {.concept-slide}
+
+<div class="w9-alternative-table">
+<div class="w9-alternative-head">Familiar method</div><div class="w9-alternative-head">Common rank-based alternative</div><div class="w9-alternative-head">What to remember</div>
+<div>One-sample or paired $t$</div><div><strong>Wilcoxon signed-rank</strong></div><div>Signed ranks of differences; symmetry matters for location interpretation</div>
+<div>Independent two-sample $t$ / Welch</div><div><strong>Mann–Whitney / Wilcoxon rank-sum</strong></div><div>Ranks across groups; tests relative distributional tendency, not automatically means</div>
+<div>One-way ANOVA</div><div><strong>Kruskal–Wallis</strong></div><div>Rank-based test of distributional differences across groups</div>
+</div>
+<div class="w9-note">These are <em>alternatives</em>, not perfect drop-in equivalents with identical null hypotheses.</div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 28em">
+  <div class="portrait-card">
+  <img src="figures/Wilcoxon.png" alt="Frank Wilcoxon">
+  <div class="portrait-name">Frank Wilcoxon</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Mann.png" alt="Henry Mann">
+  <div class="portrait-name">Henry Mann</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Whitney.jpg" alt="D. Ransom Whitney">
+  <div class="portrait-name">D. Ransom Whitney</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Kruskal.jpg" alt="William Kruskal">
+  <div class="portrait-name">William Kruskal</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Wallis.jpg" alt="W. Allen Wallis">
+  <div class="portrait-name">W. Allen Wallis</div>
+  </div>
+</div>
+
+## Rank methods are not assumption-free {.concept-slide}
+
+<div class="w9-three fragment fade-up">
+<div class="w9-card observed-border"><div class="w9-card-large">Outliers / skew</div><div class="w9-card-sub">Ranks can reduce sensitivity to extreme magnitudes</div></div>
+<div class="w9-card uncertainty-border"><div class="w9-card-large">Dependence</div><div class="w9-card-sub">Study design and pairing still matter</div></div>
+<div class="w9-card warning-border"><div class="w9-card-large">Different shapes</div><div class="w9-card-sub">A rank test is not automatically a test of median differences</div></div>
+</div>
+<div class="definition-box fragment fade-up"><div class="definition-title">Better decision rule</div><p>Start with the <strong>estimand, design, and data-generating process</strong>. Inspect distributions. Then choose a method whose assumptions and interpretation fit the question.</p></div>
+
+## Beyond this course {.concept-slide}
+
+<div class="w9-two w9-center">
+<div class="w9-card uncertainty-border"><div class="w9-card-kicker">Repeated / clustered observations</div><div class="w9-card-large">Mixed-effects models</div><div class="w9-card-sub">Patient, clinic or batch-specific variation; possible correlation and variance structures</div></div>
+<div class="w9-card model-border"><div class="w9-card-kicker">Population-average association</div><div class="w9-card-large">GEE</div><div class="w9-card-sub">Generalized estimating equations for correlated responses</div></div>
+</div>
+<div class="concept-line fragment fade-up">These address <strong>dependence and heterogeneity</strong>. They are not automatically fixes for any poor model.</div>
+
+<div class="mathematician-gallery fragment fade-up" style="max-width: 28em">
+  <div class="portrait-card">
+  <img src="figures/Nelder.jpg" alt="John Nelder">
+  <div class="portrait-name">John Nelder</div>
+  </div>
+  <div class="portrait-card">
+  <img src="figures/Wedderburn.jpg" alt="Robert Wedderburn">
+  <div class="portrait-name">Robert Wedderburn</div>
+  </div>
+</div>
+
+## Check your intuition: which outcome family? {.exercise-slide}
+
+<div class="w9-quiz" id="quizFamily">
+<div class="w9-quiz-question">You record the number of adverse-event episodes per patient during 6 months. Which is the most natural starting model?</div>
+<div class="w9-quiz-options"><button class="w9-choice" data-q="family" data-a="A">A · Simple linear regression</button><button class="w9-choice" data-q="family" data-a="B">B · Poisson / negative binomial count regression</button><button class="w9-choice" data-q="family" data-a="C">C · Multinomial logistic regression</button></div>
+<div class="w9-quiz-feedback" id="quizFamilyFeedback">Choose one.</div>
+</div>
+
+## Interpret an odds ratio {.exercise-slide}
+
+<div class="w9-quiz" id="quizOdds">
+<div class="w9-quiz-question">A logistic model reports $OR=1.50$ for a +10 mmHg SBP change. What does that mean?</div>
+<div class="w9-quiz-options"><button class="w9-choice" data-q="odds" data-a="A">A · Probability increases by 50 percentage points</button><button class="w9-choice" data-q="odds" data-a="B">B · Odds are multiplied by 1.5, conditional on the other modeled predictors</button><button class="w9-choice" data-q="odds" data-a="C">C · Every patient's outcome changes from 0 to 1</button></div>
+<div class="w9-quiz-feedback" id="quizOddsFeedback">Choose one.</div>
+</div>
+
+## Understand the interaction {.exercise-slide}
+
+<div class="w9-quiz" id="quizInteraction">
+<div class="w9-quiz-question">In $\operatorname{logit}(p)=\beta_0+\beta_1x+\beta_2s+\beta_3xs$, which coefficient tells us whether the SBP log-odds slope differs by smoking status?</div>
+<div class="w9-quiz-options"><button class="w9-choice" data-q="interaction" data-a="A">A · $\beta_0$</button><button class="w9-choice" data-q="interaction" data-a="B">B · $\beta_2$</button><button class="w9-choice" data-q="interaction" data-a="C">C · $\beta_3$</button></div>
+<div class="w9-quiz-feedback" id="quizInteractionFeedback">Choose one.</div>
+</div>
+
+## Final check: where can interpretation fail? {.exercise-slide}
+
+<div class="w9-quiz" id="quizRanks">
+<div class="w9-quiz-question">Two groups have strongly skewed data and unequal distribution shapes. A Mann–Whitney test is significant. What is safely concluded?</div>
+<div class="w9-quiz-options"><button class="w9-choice" data-q="ranks" data-a="A">A · Their population means are necessarily different</button><button class="w9-choice" data-q="ranks" data-a="B">B · There is evidence against equal distributions, not automatically evidence of a median difference</button><button class="w9-choice" data-q="ranks" data-a="C">C · All modeling assumptions have been removed</button></div>
+<div class="w9-quiz-feedback" id="quizRanksFeedback">Choose one.</div>
+</div>
+
+## Week 9 synthesis {.concept-slide}
+
+<div class="w9-rule-stack fragment fade-up">
+<div class="w9-rule"><strong>Binary event</strong><span>Model probability through a logit; interpret coefficients on the odds-ratio scale.</span></div>
+<div class="w9-rule"><strong>Several categories</strong><span>Model relative-category odds and normalize to probabilities summing to one.</span></div>
+<div class="w9-rule"><strong>Episode counts</strong><span>Use event-count models and investigate overdispersion and exposure time.</span></div>
+<div class="w9-rule"><strong>Nonstandard data</strong><span>Rank methods and more advanced dependence models exist; match method to estimand and design.</span></div>
+</div>
+
+## Next: specialized pharmaceutical applications {.section-slide}
+
+<div class="eyebrow">Week 10</div>
+<div class="concept-line">A fitted probability is not yet a clinical decision. We will examine <strong>diagnostic thresholds, sensitivity, specificity, trials, and evidence synthesis</strong>.</div>
+<div class="w9-three fragment fade-up"><div class="w9-card observed-border"><div class="w9-card-large">Measure</div><div class="w9-card-sub">Observed patient outcome</div></div><div class="w9-card uncertainty-border"><div class="w9-card-large">Estimate</div><div class="w9-card-sub">Predicted event probability</div></div><div class="w9-card estimate-border"><div class="w9-card-large">Decide</div><div class="w9-card-sub">Evidence + consequences</div></div></div>
+
+<!-- Exactly one Week 09 JS block. Do not add a second copy via a separate script tag. -->
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const num=(id,def)=>{const el=$(id);return el?Number(el.value):def;};
+const setText=(id,v)=>{const e=$(id);if(e)e.textContent=String(v);};
+const sigmoid=z=>1/(1+Math.exp(-clamp(z,-35,35)));
+const axis=(x1,y1,x2,y2,cls='w9-axis')=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="${cls}"></line>`;
+const curve=(xy,cls)=>`<path class="${cls}" d="${xy.map((p,i)=>`${i?'L':'M'}${p[0].toFixed(2)},${p[1].toFixed(2)}`).join(' ')}"></path>`;
+function axes({L=65,R=840,T=65,B=390,x0,x1,y0,y1,xticks,yticks,xlabel,ylabel}){
+ const mx=x=>L+(x-x0)/(x1-x0)*(R-L),my=y=>B-(y-y0)/(y1-y0)*(B-T);
+ let html='';
+ for(const y of yticks){const yy=my(y);html+=axis(L,yy,R,yy,'w9-gridline')+`<text x="${L-11}" y="${yy+4}" text-anchor="end" class="w9-tick">${y}</text>`;}
+ for(const x of xticks){const xx=mx(x);html+=axis(xx,B,xx,B+7)+`<text x="${xx}" y="${B+27}" text-anchor="middle" class="w9-tick">${x}</text>`;}
+ html+=axis(L,T,L,B)+axis(L,B,R,B)+`<text x="${(L+R)/2}" y="${B+63}" text-anchor="middle" class="w9-axis-title">${xlabel}</text>`;
+ html+=`<text transform="translate(18 ${(T+B)/2}) rotate(-90)" text-anchor="middle" class="w9-axis-title">${ylabel}</text>`;
+ return {mx,my,html,L,R,T,B};
+}
+<!-- function renderOdds(){ -->
+<!--  const p=num('oddsP',50)/100; -->
+<!--  setText('oddsPVal',p.toFixed(2));setText('oddsProbOut',p.toFixed(2)); -->
+<!--  setText('oddsOddsOut',p===1?'∞':(p/(1-p)).toFixed(2)); -->
+<!--  setText('oddsLogitOut',p===0?'−∞':p===1?'+∞':Math.log(p/(1-p)).toFixed(2)); -->
+<!--  const svg=$('oddsSvg');if(!svg)return; -->
+<!--  let html='';const panes=[{left:70,right:425,title:'Odds = p / (1−p)',type:'odds',color:'#18864b'},{left:525,right:860,title:'Logit = log(odds)',type:'logit',color:'#7b4ab5'}]; -->
+<!--  for(const pane of panes){ -->
+<!--   const {left:L,right:R,type,color}=pane,T=67,B=395; -->
+<!--   const mx=x=>L+x*(R-L); -->
+<!--   const range=type==='odds'?[0,12]:[-6,6];const my=y=>B-(y-range[0])/(range[1]-range[0])*(B-T); -->
+<!--   const clip=v=>clamp(v,...range); -->
+<!--   const f=x=>type==='odds'?x/(1-x):Math.log(x/(1-x)); -->
+<!--   html+=`<text x="${L}" y="31" class="w9-plot-title">${pane.title}</text>`; -->
+<!--   const yt=type==='odds'?[0,3,6,9,12]:[-6,-3,0,3,6]; -->
+<!--   for(const v of yt)html+=axis(L,my(v),R,my(v),'w9-gridline')+`<text x="${L-8}" y="${my(v)+5}" text-anchor="end" class="w9-tick">${v}</text>`; -->
+<!--   for(const v of [0,.25,.5,.75,1])html+=axis(mx(v),B,mx(v),B+6)+`<text x="${mx(v)}" y="${B+25}" text-anchor="middle" class="w9-tick">${v.toFixed(2)}</text>`; -->
+<!--   html+=axis(L,T,L,B)+axis(L,B,R,B)+`<text x="${(L+R)/2}" y="${B+57}" text-anchor="middle" class="w9-axis-title">Event probability p</text>`; -->
+<!--   const xy=Array.from({length:299},(_,i)=>{const v=.001+.998*i/298;return[mx(v),my(clip(f(v)))];}); -->
+<!--   html+=curve(xy,type==='odds'?'w9-curve-odds':'w9-curve-logit'); -->
+<!--   html+=axis(mx(p),T,mx(p),B,'w9-guide'); -->
+<!--   let y;if(p===0)y=type==='logit'?range[0]:0;else if(p===1)y=range[1];else y=clip(f(p)); -->
+<!--   html+=`<circle cx="${mx(p)}" cy="${my(y)}" r="7" fill="${color}" stroke="white" stroke-width="2"></circle>`; -->
+<!--   if(type==='odds')html+=`<text x="${R-4}" y="${T+18}" text-anchor="end" class="w9-plot-note">top clipped at odds = 12</text>`; -->
+<!--  } -->
+<!--  svg.innerHTML=html; -->
+<!-- } -->
+function renderOdds(){
+  const p = num('oddsP', 50) / 100;
+  setText('oddsPVal', p.toFixed(2));
+  setText('oddsProbOut', p.toFixed(2));
+  setText('oddsOddsOut', p === 1 ? '∞' : (p / (1 - p)).toFixed(2));
+  setText('oddsLogitOut', p === 0 ? '−∞' : p === 1 ? '+∞' : Math.log(p / (1 - p)).toFixed(2));
+
+  const svg = $('oddsSvg');
+  if (!svg) return;
+
+  let html = '';
+  const panes = [
+    { left: 70, right: 425, title: 'Odds = p / (1−p)', type: 'odds', color: '#18864b' },
+    { left: 525, right: 860, title: 'Logit = log(odds)', type: 'logit', color: '#7b4ab5' }
+  ];
+
+  for (const pane of panes) {
+    const { left: L, right: R, type, color } = pane, T = 67, B = 395;
+    const mx = x => L + x * (R - L);
+    const range = type === 'odds' ? [0, 12] : [-6, 6];
+    const my = y => B - (y - range[0]) / (range[1] - range[0]) * (B - T);
+    const clip = v => clamp(v, ...range);
+    const f = x => type === 'odds' ? x / (1 - x) : Math.log(x / (1 - x));
+
+    // SVG ClipPath prevents curves from drawing flattened segments along the plot borders
+    const clipId = `odds_clip_${type}`;
+    html += `<defs><clipPath id="${clipId}"><rect x="${L}" y="${T}" width="${R - L}" height="${B - T}"></rect></clipPath></defs>`;
+
+    html += `<text x="${L}" y="31" class="w9-plot-title">${pane.title}</text>`;
+    const yt = type === 'odds' ? [0, 3, 6, 9, 12] : [-6, -3, 0, 3, 6];
+    for (const v of yt) html += axis(L, my(v), R, my(v), 'w9-gridline') + `<text x="${L - 8}" y="${my(v) + 5}" text-anchor="end" class="w9-tick">${v}</text>`;
+    for (const v of [0, .25, .5, .75, 1]) html += axis(mx(v), B, mx(v), B + 6) + `<text x="${mx(v)}" y="${B + 25}" text-anchor="middle" class="w9-tick">${v.toFixed(2)}</text>`;
+    html += axis(L, T, L, B) + axis(L, B, R, B) + `<text x="${(L + R) / 2}" y="${B + 57}" text-anchor="middle" class="w9-axis-title">Event probability p</text>`;
+
+    // Generate unclamped curve points
+    const xy = [];
+    for (let i = 0; i < 400; i++) {
+      const v = .0001 + .9998 * i / 399;
+      const yVal = f(v);
+      if (isFinite(yVal)) {
+        xy.push([mx(v), my(yVal)]);
+      }
+    }
+
+    // Render curve wrapped inside clip-path
+    html += `<g clip-path="url(#${clipId})">${curve(xy, type === 'odds' ? 'w9-curve-odds' : 'w9-curve-logit')}</g>`;
+
+    // Guide line
+    html += axis(mx(p), T, mx(p), B, 'w9-guide');
+
+    // Exact value & off-chart detection
+    let val;
+    if (type === 'odds') {
+      val = p === 1 ? Infinity : p / (1 - p);
+    } else {
+      val = p === 0 ? -Infinity : p === 1 ? Infinity : Math.log(p / (1 - p));
+    }
+
+    const isOff = val < range[0] || val > range[1];
+    const cy = my(clip(val));
+
+    // Solid circle when in bounds; hollow circle anchored on boundary when off-chart
+    const fill = isOff ? '#ffffff' : color;
+    const stroke = isOff ? color : 'white';
+    const strokeWidth = isOff ? '2.5' : '2';
+
+    html += `<circle cx="${mx(p)}" cy="${cy}" r="7" fill="${fill}" stroke="${stroke}" stroke-width="${strokeWidth}"></circle>`;
+  }
+
+  svg.innerHTML = html;
+}
+function renderLogistic(){
+ const b0=num('logB0',-2.3),b1=num('logB1',.34),b2=num('logB2',.68),b3=num('logB3',.26);
+ for(const [id,v] of [['logB0Value',b0],['logB1Value',b1],['logB2Value',b2],['logB3Value',b3]])setText(id,v.toFixed(2));
+ setText('logOrNon',Math.exp(b1).toFixed(2));setText('logOrSm',Math.exp(b1+b3).toFixed(2));setText('logRatio',Math.exp(b3).toFixed(2));
+ const svg=$('logisticSvg');if(!svg)return;
+ const G=axes({L:80,R:855,T:56,B:397,x0:90,x1:180,y0:0,y1:1,xticks:[90,105,120,135,150,165,180],yticks:[0,.2,.4,.6,.8,1],xlabel:'Systolic blood pressure (mmHg)',ylabel:'Modeled probability of ACS'});
+ let html=G.html;
+ const f=(bp,smoker)=>sigmoid(b0+b1*((bp-120)/10)+smoker*(b2+b3*((bp-120)/10)));
+ for(const smoker of [0,1]){
+  const pts=Array.from({length:181},(_,i)=>{const bp=90+i*.5;return[G.mx(bp),G.my(f(bp,smoker))];});
+  html+=curve(pts,smoker?'w9-smoker-line':'w9-nonsmoker-line');
+  html+=`<circle cx="${G.mx(120)}" cy="${G.my(f(120,smoker))}" r="6.5" class="${smoker?'w9-smoker-point':'w9-nonsmoker-point'}"></circle>`;
+ }
+ html+=axis(G.mx(120),G.T,G.mx(120),G.B,'w9-reference-line');
+ html+=`<line x1="580" y1="26" x2="614" y2="26" class="w9-nonsmoker-line"></line><text x="621" y="31" class="w9-legend-a">Non-smoker</text>`;
+ html+=`<line x1="731" y1="26" x2="765" y2="26" class="w9-smoker-line"></line><text x="772" y="31" class="w9-legend-b">Smoker</text>`;
+ svg.innerHTML=html;
+}
+const answers={
+ family:{ans:'B',why:'An episode total is a count. Check overdispersion, exposure duration and zero inflation if relevant.'},
+ odds:{ans:'B',why:'An odds ratio multiplies conditional odds. It is not a percentage-point change in probability.'},
+ interaction:{ans:'C',why:'β₃ changes the slope when s switches from 0 to 1; exp(β₃) is the ratio of the two SBP odds ratios.'},
+ ranks:{ans:'B',why:'Different shapes can yield a rank-based difference without a simple interpretation as a shift in means or medians.'}
+};
+function answerQuiz(button){
+ const key=button.dataset.q,entry=answers[key];if(!entry)return;
+ const card=button.closest('.w9-quiz');if(!card)return;
+ card.querySelectorAll('.w9-choice').forEach(b=>b.classList.remove('is-correct','is-wrong'));
+ const correct=button.dataset.a===entry.ans;
+ button.classList.add(correct?'is-correct':'is-wrong');
+ const fb=$('quiz'+key[0].toUpperCase()+key.slice(1)+'Feedback');
+ if(fb){fb.textContent=(correct?'Correct. ':'Not quite. ')+entry.why;fb.className='w9-quiz-feedback '+(correct?'correct':'wrong');}
+}
+let initialized=false;
+function initWeek09(){
+ if(initialized||!$('oddsWidget'))return;
+ initialized=true;
+ $('oddsP')?.addEventListener('input',renderOdds);
+ for(const id of ['logB0','logB1','logB2','logB3'])$(id)?.addEventListener('input',renderLogistic);
+ document.querySelectorAll('.w9-choice').forEach(b=>b.addEventListener('click',()=>answerQuiz(b)));
+ renderOdds();renderLogistic();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initWeek09);else initWeek09();
+window.addEventListener('load',initWeek09);
+if(window.Reveal&&typeof window.Reveal.on==='function'){window.Reveal.on('ready',initWeek09);window.Reveal.on('slidechanged',initWeek09);}
+})();
+</script>

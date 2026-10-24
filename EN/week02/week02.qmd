@@ -28,13 +28,13 @@ The shape of probability.
 <div class="eyebrow">Recall from Week 1</div>
 
 <div class="flow-row">
-  <div class="flow-node">Experiment</div>
+  <div class="flow-node" style="font-size: 1em">Experiment</div>
   <div class="flow-arrow">→</div>
-  <div class="flow-node observed">Possible outcomes</div>
+  <div class="flow-node observed" style="font-size: 1em">Possible outcomes</div>
   <div class="flow-arrow">→</div>
-  <div class="flow-node probability">Events</div>
+  <div class="flow-node probability" style="font-size: 1em">Events</div>
   <div class="flow-arrow">→</div>
-  <div class="flow-node estimate">Numbers</div>
+  <div class="flow-node estimate" style="font-size: 1em">Numbers</div>
 </div>
 
 ::: {.fragment .fade-up}
@@ -1104,8 +1104,12 @@ Suggested live sequence: ask for between 1.99 and 2.01, then switch to at least 
 For the Gaussian model, $\mu$ moves the center and $\sigma$ controls the spread.
 </div>
 
-<div class="concept-line">
-Why Gaussian normal distribution is so common in nature: it models an outcome that is the sum of many tiny independent contributions.
+<div class="concept-line" style="font-size:60%">
+Why Gaussian normal distribution appears in nature: it models an outcome that is the sum of many tiny independent contributions, which often takes this shape.
+</div>
+
+<div class="concept-line" style="font-size:60%">
+Many physical quantities such as mass, time, and concentration cannot be negative. A normal distribution nevertheless has support on the entire real line, so it is an approximation for such quantities.
 </div>
 :::
 
@@ -1619,6 +1623,15 @@ Do not spend time deriving each formula. The story/mechanism is the learning tar
   </div>
 </div>
 
+<div class="portrait-grid-3 fragment fade-up">
+  <div class="portrait-badge warning-accent" style="grid-column: 3;">
+  <img src="figures/Poisson.jpg" alt="Denis Poisson" class="portrait-img">
+  <div class="portrait-info">
+  <strong>Siméon Denis Poisson</strong>
+  </div>
+  </div>
+</div>
+
 ::: {.fragment .fade-up}
 <div class="concept-line">
 Before calculating, identify the experiment that generated the count.
@@ -1682,6 +1695,16 @@ Use the tablet press example for geometric, batch sampling for hypergeometric, a
   </label>
   </div>
   <svg id="gammaDensity" class="mini-density" viewBox="0 0 240 135"></svg>
+  </div>
+</div>
+
+<!-- Portrait Row (Fades in after all 4 cards) -->
+<div class="portrait-grid-4 fragment fade-up">
+  <div class="portrait-badge warning-accent">
+  <img src="figures/Dirac.jpg" alt="Paul Dirac" class="portrait-img">
+  <div class="portrait-info">
+  <strong>Paul Dirac</strong>
+  </div>
   </div>
 </div>
 
@@ -1754,8 +1777,23 @@ Keep the Dirac delta simple: a mathematical idealization of all mass at one poin
   </div>
 </div>
 
+<div class="portrait-grid-4 fragment fade-up">
+  <div class="portrait-badge warning-accent" style="grid-column: 3;">
+  <img src="figures/Pareto.jpg" alt="Vilfredo Pareto" class="portrait-img">
+  <div class="portrait-info">
+  <strong>Vilfredo Pareto</strong>
+  </div>
+  </div>
+  <div class="portrait-badge warning-accent" style="grid-column: 4;">
+  <img src="figures/Cauchy.jpg" alt="Augustin-Louis Cauchy" class="portrait-img">
+  <div class="portrait-info">
+  <strong>Augustin-Louis Cauchy</strong>
+  </div>
+  </div>
+</div>
+
 ::: {.fragment .fade-up}
-<div class="takeaway">Real scientific data often choose the distribution for us: counts, proportions, positive times, concentrations, extremes.</div>
+<div class="takeaway">Pareto distribution is common in economics (distribution of resources), while Cauchy shows up when there is resonance phenomenon (e.g. NMR). Real scientific data often choose the distribution for us: counts, proportions, positive times, concentrations, extremes.</div>
 :::
 
 ::: {.notes}
@@ -1766,7 +1804,7 @@ Pharmaceutical examples: concentration and clearance often right-skew; assay err
 
 <div class="try-label">Checkpoint before calculation</div>
 
-<div class="matching-grid">
+<div class="matching-grid" style="font-size: 1.4em">
   <div class="scenario-list">
   <div class="scenario-item fragment fade-up">A. 20 patients each respond or do not respond.</div>
   <div class="scenario-item fragment fade-up">B. Count dispensing errors during an 8-hour shift.</div>
@@ -1783,6 +1821,10 @@ Pharmaceutical examples: concentration and clearance often right-skew; assay err
   </div>
 </div>
 
+::: {.fragment .fade-up}
+<div class="takeaway">These are candidate models under their characteristic assumptions; recognizing the mechanism comes first.</div>
+:::
+
 ::: {.notes}
 Let students answer before revealing the right side. The major skill is matching question to distribution, not formula recall.
 :::
@@ -1791,10 +1833,10 @@ Let students answer before revealing the right side. The major skill is matching
 
 <div class="try-label">Guided exercises</div>
 
-<div class="calc-grid">
-  <div class="calc-card fragment fade-up"><div class="calc-title">Geometric tablet-camera example</div><div class="calc-question">Fault probability per press is $p=0.001$. Probability of $1000$ error-free presses?</div><div class="calc-answer">$0.999^{1000}\approx0.368$</div></div>
+<div class="calc-grid" style="font-size: 1.5em">
+  <div class="calc-card fragment fade-up"><div class="calc-title">Geometric tablet-camera example</div><div class="calc-question">Fault probability per press is $p=0.001$ (events are independent). Probability of $1000$ error-free presses?</div><div class="calc-answer">$0.999^{1000}\approx0.368$</div></div>
   <div class="calc-card fragment fade-up"><div class="calc-title">Binomial patient group</div><div class="calc-question">$X\sim\operatorname{Binomial}(20,0.30)$. What is the probability of (i) exactly, (ii) at most and (iii) at least 5 responses?</div><div class="calc-answer">point vs cumulative probability</div></div>
-  <div class="calc-card fragment fade-up"><div class="calc-title">Hypergeometric batch sample</div><div class="calc-question">A batch has 20 tablets, 3 defective. Sample 5 without replacement.</div><div class="calc-answer">finite population + no replacement</div></div>
+  <div class="calc-card fragment fade-up"><div class="calc-title">Hypergeometric batch sample</div><div class="calc-question">A batch has 20 tablets, 3 defective. Sample 5 without replacement, what is the probability of finding no defective tablets?</div><div class="calc-answer">finite population + no replacement</div></div>
   <div class="calc-card fragment fade-up"><div class="calc-title">Normal tablet mass</div><div class="calc-question">$X\sim \mathcal{N}(2.000,0.008^2)$. Probability between 1.99 and 2.01 g?</div><div class="calc-answer">area under density</div></div>
 </div>
 
@@ -2018,7 +2060,7 @@ function drawEmpiricalRuleSvg(svgId) {
   ];
 
   labels.forEach(lbl => {
-    html += `<text x="${mapX(lbl.x)}" y="${baseline + 20}" text-anchor="middle" class="widget-label">${lbl.text}</text>`;
+    html += `<text x="${mapX(lbl.x)}" y="${baseline + 20}" text-anchor="middle" class="widget-label" style="font-size: 0.5em; font-weight: 700;">${lbl.text}</text>`;
   });
 
   svg.innerHTML = html;

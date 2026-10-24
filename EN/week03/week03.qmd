@@ -145,7 +145,7 @@ Use the definition but do not derive it. The priority is the inversion of the pr
 
 <div class="normal-like-widget" id="normalLikeWidget">
 <div class="w3-control-row">
-<label class="w3-control">Candidate mean μ
+<label class="w3-control">Candidate mean μ (at fixed σ = 0.008 g)
 <input id="likeMu" type="range" min="1.970" max="2.030" value="2.000" step="0.001">
 </label>
 <div class="w3-output"><span>observed tablet</span><strong class="observed">2.014 g</strong></div>
@@ -157,7 +157,7 @@ Use the definition but do not derive it. The priority is the inversion of the pr
 ::: {.fragment .fade-up}
 <div class="definition-box">
 $$
-P(X=2.014)=0\quad\text{but}\quad \mathcal{L}(\mu\mid x)\propto f(x\mid\mu)
+\mathbb{P}(X=2.014)=0\quad\text{but}\quad \mathcal{L}(\mu\mid x)\propto f(x\mid\mu)
 $$
 </div>
 :::
@@ -263,9 +263,10 @@ The key first branch is assignment. If the investigator assigns exposure/treatme
   <div class="w3-card-sub">start from outcome status, look backward for exposure</div>
   <div class="w3-card-eq">outcome → exposure history</div>
   </div>
-  <div class="study-direction-figure fragment fade-up">
+</div>
+
+<div class="study-direction-figure fragment fade-up" style="height: 14em; width: 28em">
   <img src="figures/study_direction.svg" alt="Direction of observation in common observational study designs">
-  </div>
 </div>
 
 ::: {.notes}
@@ -352,7 +353,7 @@ Mention double-dummy designs verbally: used when interventions look different, s
   <div class="meta-icon">∑</div>
   <div class="meta-content">
   <span class="meta-title">Meta-analysis &amp; Systematic Review</span>
-  <span class="meta-sub">Synthesizes and pools evidence across all available studies</span>
+  <span class="meta-sub">Synthesizes and pools evidence across available and eligible studies</span>
   </div>
 </div>
 
@@ -782,7 +783,7 @@ Connect to tablet mass, assay calibration, dissolution testing. Repeatability is
 <div class="concepts-section-title">Beyond Bias & Variance: Key Related Measurement Concepts</div>
 :::
 
-<div class="concept-cards-grid fragment fade-up">
+<div class="concept-cards-grid fragment fade-up" style="font-size: 1.1em">
   <!-- Card 1: Association & Concordance -->
   <div class="concept-card">
   <div class="card-header">
@@ -841,6 +842,7 @@ $$
 
 ::: {.fragment .fade-up}
 <div class="concept-line">Overall estimation error can arise from being systematically wrong, unstable, or both.</div>
+<div class="concept-line style="font-size:75%">Here we use bias in a narrower estimator/measurement sense.</div>
 :::
 
 ::: {.notes}
@@ -925,7 +927,7 @@ The red observation is an outlier. The mean shifts toward it; the median is more
 :::
 
 ::: {.notes}
-Use the example verbally: mean changes from 10 to 23.6; median remains 10. This is a nice quick mental arithmetic exercise.
+Use the example verbally: mean changes; median remains 10. This is a nice quick mental arithmetic exercise.
 :::
 
 ## Arithmetic, weighted and geometric means {.concept-slide}

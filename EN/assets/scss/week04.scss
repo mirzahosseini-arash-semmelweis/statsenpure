@@ -26,7 +26,7 @@
 .w4-card-img {
   display: block;
   width: 100%;
-  height: 4.8em;
+  height: 7.8em;
   object-fit: contain;
   margin: 0 auto;
 }
@@ -41,7 +41,7 @@
 
 /* ---- table styles ------------------------------------------------------- */
 .mini-data-table, .patient-table, .query-table, .join-table, .viz-table { display:grid; border:1px solid $line; border-radius:16px; overflow:hidden; background:$line; gap:1px; }
-.mini-data-table div, .patient-table div, .query-table div, .join-table div, .viz-table div { background:#fff; padding:.28em .35em; font-size:.42em; color:$navy; text-align:center; }
+.mini-data-table div, .patient-table div, .query-table div, .join-table div, .viz-table div { background:#fff; padding:.28em .35em; font-size:.55em; color:$navy; text-align:center; }
 .mini-data-table .head, .patient-table .head, .query-table .head, .join-table .head, .viz-table .head { background:$panel; color:$navy; font-weight:850; }
 .mini-data-table .muted, .patient-table .muted, .query-table .muted, .join-table .muted { color:$muted; }
 .mini-data-table .missing, .patient-table .missing { background:rgba($warning,.08); color:$warning; font-weight:850; }
@@ -93,7 +93,7 @@
 .var-branch.num { border-top:7px solid $model; }
 .var-branch-title { font-size:.72em; color:$navy; font-weight:850; text-align:center; }
 .var-leaves { display:grid; grid-template-columns:1fr 1fr; gap:.35em; margin-top:.45em; }
-.var-leaf { background:#f8fafc; border:1px solid $line; border-radius:16px; padding:.35em; text-align:center; font-size:.50em; color:$muted; }
+.var-leaf { background:#f8fafc; border:1px solid $line; border-radius:16px; padding:.35em; text-align:center; font-size:.55em; color:$muted; }
 .summary-sense-table { display:grid; grid-template-columns:1.1fr repeat(4,.8fr); gap:1px; background:$line; border:1px solid $line; border-radius:18px; overflow:hidden; margin-top:.6em; }
 .summary-sense-table div { background:#fff; padding:.32em; font-size:.48em; text-align:center; }
 .summary-sense-table .head { background:$panel; font-weight:850; color:$navy; }
@@ -232,7 +232,7 @@
   display: block;
   min-width: 0;
   color: $muted;
-  font-size: .42em;
+  font-size: .62em;
   font-weight: 780;
 }
 
@@ -247,7 +247,7 @@
 .query-controls select {
   border: 1px solid $line;
   border-radius: 10px;
-  padding: .25em .35em;
+  padding: .35em .45em;
   background: #fff;
   color: $navy;
 }
@@ -343,7 +343,7 @@
 .join-table.labs { grid-template-columns:repeat(2,1fr); }
 .join-table.joined { grid-template-columns:repeat(4,1fr); }
 .join-arrow { color:$uncertainty; font-size:1.25em; font-weight:900; text-align:center; }
-.join-caption { color:$muted; font-size:.43em; text-align:center; margin-top:.18em; }
+.join-caption { color:$muted; font-size:.55em; text-align:center; margin-top:.18em; }
 
 /* ---- visualization ------------------------------------------------------ */
 .viz-map { display:grid; grid-template-columns:1fr 1.1fr; gap:.55em; align-items:center; }
@@ -446,7 +446,7 @@
 /* ---- traps/exercises ---------------------------------------------------- */
 .trap-grid { display:grid; grid-template-columns:1fr 1fr; gap:.65em; align-items:center; }
 .trap-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.45em; }
-.trap-card svg { width:100%; height:6.5em; display:block; }
+.trap-card svg { width:100%; height:8.5em; display:block; }
 .trap-img {
   display: block;
   width: 100%;

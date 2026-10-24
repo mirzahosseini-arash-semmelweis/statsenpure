@@ -1,0 +1,775 @@
+/*-- scss:rules --*/
+
+/* -----------------------------------------------------------------------
+   Week 6 common layout
+   ----------------------------------------------------------------------- */
+.w6-grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:.55em; align-items:stretch; margin-top:.55em; }
+.w6-grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:.45em; align-items:stretch; margin-top:.55em; }
+.w6-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.55em; box-shadow:0 8px 20px rgba(16,24,40,.035); box-sizing:border-box; }
+.w6-card-title { color:$navy; font-weight:850; font-size:.68em; text-align:center; line-height:1.12; }
+.w6-card-sub { color:$muted; font-size:.55em; text-align:center; line-height:1.2; margin-top:.28em; }
+.big-symbol { font-size:1.1em; font-weight:900; text-align:center; margin:.24em 0 .05em; }
+
+.w6-callout { max-width:30em; margin:.55em auto 0; border-radius:16px; padding:.45em .65em; text-align:center; font-size:.58em; font-weight:760; }
+.estimate-callout { background:rgba($estimate,.07); border:1px solid rgba($estimate,.28); color:$ink; }
+.estimate-callout strong { color:$estimate; }
+
+/* -----------------------------------------------------------------------
+   Opening trial
+   ----------------------------------------------------------------------- */
+.trial-pipeline { display:grid; grid-template-columns:1fr .18fr 1fr .18fr 1fr .18fr 1fr; gap:.2em; align-items:center; margin-top:.75em; }
+.trial-step { background:#fff; border:1px solid $line; border-radius:18px; padding:.5em .35em; text-align:center; display:flex; flex-direction:column; gap:.12em; }
+.trial-step span { width:1.7em; height:1.7em; border-radius:50%; margin:0 auto .1em; display:flex; align-items:center; justify-content:center; background:rgba($observed,.09); color:$observed; font-size:.42em; font-weight:900; }
+.trial-step strong { color:$navy; font-size:.68em; }
+.trial-step small { color:$muted; font-size:.55em; line-height:1.15; }
+.trial-arrow { color:$uncertainty; font-size:1em; font-weight:900; text-align:center; }
+
+.trial-summary { display:grid; grid-template-columns:1.2fr .5fr 1.2fr .7fr .7fr; gap:1px; background:$line; border:1px solid $line; border-radius:18px; overflow:hidden; margin-top:.65em; }
+.trial-summary > div { background:#fff; padding:.42em .35em; text-align:center; color:$navy; font-size:.55em; }
+.trial-summary-head { background:$panel !important; font-weight:850; color:$muted !important; text-transform:uppercase; letter-spacing:.025em; }
+.trial-arm { font-weight:850; }
+.trial-arm.placebo { color:$muted; }
+.trial-arm.drug { color:$observed; }
+
+.decision-stage { display:grid; grid-template-columns:1fr .18fr 1fr .18fr 1fr; gap:.25em; align-items:center; max-width:27em; margin:.8em auto .35em; }
+.decision-stage > div:not(.decision-arrow) { background:#fff; border:1px solid $line; border-radius:20px; padding:.65em; text-align:center; font-size:.65em; font-weight:850; }
+.decision-arrow { color:$uncertainty; font-weight:900; text-align:center; font-size:1.15em; }
+.decision-question { text-align:center; color:$navy; font-weight:850; font-size:.72em; margin-top:.4em; }
+
+/* -----------------------------------------------------------------------
+   Decision theory / history
+   ----------------------------------------------------------------------- */
+.decision-theory-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.4em; margin-top:.65em; }
+.dt-node { background:#fff; border:1px solid $line; border-radius:18px; padding:.55em .4em; text-align:center; }
+.dt-node strong { display:block; color:$navy; font-size:.68em; }
+.dt-node span { display:block; color:$muted; font-size:.55em; margin-top:.25em; line-height:1.18; }
+
+.portrait {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1em;
+  max-width: 900px;
+  margin: 1em auto 0;
+}
+
+.portrait-step {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid $line;
+  border-radius: 18px;
+  padding: 0.6em;
+  box-shadow: 0 8px 22px rgba(16, 24, 40, 0.055);
+  box-sizing: border-box;
+
+  .label {
+    font-size: 0.58em;
+    font-weight: 780;
+    color: $navy;
+    text-align: center;
+    margin-bottom: 0.5em;
+  }
+
+  /* Image scaling & uniform cropping */
+  img.step-image,
+  img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 10px;
+    display: block;
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Confidence intervals
+   ----------------------------------------------------------------------- */
+.section-equation { margin:.8em auto 0; max-width:30em; text-align:center; color:$navy; font-size:.8em; font-weight:850; }
+.w6-flow-3 { display:grid; grid-template-columns:1fr .16fr 1fr .16fr 1fr; gap:.2em; align-items:center; margin-top:.65em; }
+.w6-flow-node { background:#fff; border:1px solid $line; border-radius:18px; padding:.5em .35em; text-align:center; }
+.w6-flow-node strong { display:block; font-size:.8em; color:$navy; }
+.w6-flow-node span { display:block; font-size:.8em; color:$muted; margin-top:.2em; line-height:1.16; }
+.w6-flow-arrow { color:$uncertainty; text-align:center; font-size:1em; font-weight:900; }
+
+.ci-formula-stage { display:flex; align-items:center; justify-content:center; gap:.32em; margin-top:1em; }
+.ci-formula { background:#fff; border:1px solid $line; border-radius:18px; padding:.55em .75em; font-size:.9em; font-weight:900; }
+.ci-sign, .ci-times { color:$muted; font-size:.9em; font-weight:900; }
+
+.coverage-cartoon { position:relative; width:22em; height:7.1em; margin:.5em auto .25em; background:#fff; border:1px solid $line; border-radius:20px; overflow:hidden; padding:.35em .7em; box-sizing:border-box; }
+.coverage-truth { position:absolute; left:52%; top:.35em; bottom:.35em; width:3px; background:$model; border-radius:99px; }
+.coverage-row { position:relative; height:.8em; margin:.08em 0; }
+.coverage-row span { position:absolute; top:50%; height:3px; transform:translateY(-50%); border-radius:99px; }
+.coverage-row i { position:absolute; top:50%; width:.2em; height:.2em; border-radius:50%; transform:translate(-50%,-50%); background:$observed; }
+.coverage-row.good span { left:25%; width:55%; background:$estimate; }
+.coverage-row.good i { left:58%; }
+.coverage-row.bad span { left:8%; width:31%; background:$warning; }
+.coverage-row.bad i { left:24%; }
+.coverage-row:nth-of-type(3) span { left:31%; width:48%; }
+.coverage-row:nth-of-type(3) i { left:55%; }
+.coverage-row:nth-of-type(5) span { left:36%; width:49%; }
+.coverage-row:nth-of-type(5) i { left:61%; }
+.coverage-row:nth-of-type(6) span { left:18%; width:57%; }
+.coverage-row:nth-of-type(6) i { left:47%; }
+.coverage-row:nth-of-type(7) span { left:29%; width:54%; }
+.coverage-row:nth-of-type(7) i { left:56%; }
+
+/* -----------------------------------------------------------------------
+   Widget system
+   ----------------------------------------------------------------------- */
+.ci-widget, .trial-widget, .error-widget, .multi-widget { background:#fff; border:1px solid $line; border-radius:22px; padding:.52em; box-shadow:0 8px 20px rgba(16,24,40,.04); box-sizing:border-box; }
+.w6-control-grid { display:grid; gap:.38em; align-items:end; margin-bottom:.35em; }
+.ci-controls { grid-template-columns:1fr 1fr 1fr 1fr 1.15fr .8fr .85fr .8fr; }
+.prop-controls { grid-template-columns:1.1fr 1fr 1fr .8fr .9fr .85fr; }
+.trial-controls { grid-template-columns:1.35fr .9fr .75fr .75fr; }
+.multi-controls { grid-template-columns:1.3fr .8fr 1fr; }
+.w6-control { font-size:.39em; color:$muted; font-weight:780; }
+.w6-control strong { color:$uncertainty; font-weight:900; }
+.w6-control input, .w6-control select { width:100%; margin-top:.12em; accent-color:$uncertainty; box-sizing:border-box; }
+.w6-control select { border:1px solid $line; border-radius:10px; padding:.25em .35em; background:#fff; color:$navy; }
+.w6-button { min-height:2.75em; border:1px solid rgba($uncertainty,.3); background:rgba($uncertainty,.08); color:$uncertainty; border-radius:12px; padding:.35em .45em; font-size:.4em; font-weight:850; cursor:pointer; }
+.w6-button:hover { background:rgba($uncertainty,.14); }
+.w6-output { background:$panel; border:1px solid $line; border-radius:14px; padding:.28em .35em; text-align:center; min-width:0; }
+.w6-output span { display:block; color:$muted; font-size:.36em; font-weight:760; line-height:1.1; }
+.w6-output strong { display:block; color:$uncertainty; font-size:.58em; font-weight:850; margin-top:.05em; white-space:nowrap; }
+.w6-lab-svg { display:block; width:100%; height:7.25em; background:#fbfcfe; border:1px solid #edf1f7; border-radius:18px; }
+.lab-axis, .error-axis { stroke:#98a2b3; stroke-width:1.5; }
+.lab-axis-label, .lab-note { fill:$muted; font-size:11px; font-weight:700; }
+.lab-truth-line { stroke:$model; stroke-width:2.5; stroke-dasharray:7 5; }
+.lab-truth-label { fill:$model; font-size:12px; font-weight:850; }
+.ci-cover { stroke:$estimate; stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.ci-miss { stroke:$warning; stroke-width:3; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+.ci-point { fill:$observed; stroke:#fff; stroke-width:1.2; }
+
+.ci-mean-svg {
+  height: 10.5em;
+}
+
+.ci-cover {
+  stroke: $estimate;
+  stroke-width: 3.8;
+  stroke-opacity: .28;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ci-miss {
+  stroke: $warning;
+  stroke-width: 3.8;
+  stroke-opacity: .40;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ci-point {
+  fill: $observed;
+  fill-opacity: .35;
+  stroke: none;
+}
+
+.lab-axis-tick {
+  stroke: #98a2b3;
+  stroke-width: 1.2;
+}
+
+.lab-axis-label {
+  fill: $muted;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ci-prop-svg {
+  height: 10.5em;
+}
+
+/* -----------------------------------------------------------------------
+   Tail geometry
+   ----------------------------------------------------------------------- */
+.tail-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.48em; margin-top:.55em; }
+.tail-card { background:#fff; border:1px solid $line; border-radius:18px; padding:.35em; text-align:center; overflow:hidden; }
+.tail-title { color:$navy; font-size:.56em; font-weight:850; }
+.tail-sub { color:$muted; font-size:.4em; margin-top:.12em; }
+.tail-svg { width:100%; height:3.5em; display:block; }
+.tail-curve { fill:none; stroke:$uncertainty; stroke-width:4; stroke-linecap:round; }
+.tail-middle, .tail-one { fill:rgba($uncertainty,.10); stroke:none; clip-path:inset(0 0 18px 0); }
+
+.tail-svg {
+  display: block;
+  width: 100%;
+  height: 4.8em;
+  overflow: visible;
+}
+
+.tail-curve {
+  fill: none;
+  stroke: $navy;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tail-axis {
+  stroke: $muted;
+  stroke-width: 1.2;
+}
+
+.tail-main-area {
+  fill: rgba($uncertainty, .22);
+}
+
+.tail-alpha-area {
+  fill: rgba($warning, .14);
+}
+
+.tail-cut {
+  stroke: $uncertainty;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.tail-label {
+  fill: $muted;
+  font-size: 8px;
+  font-weight: 750;
+}
+
+.tail-prob-label {
+  fill: $uncertainty;
+  font-size: 8px;
+  font-weight: 850;
+}
+
+.tail-alpha-label {
+  fill: $warning;
+  font-size: 7px;
+  font-weight: 850;
+}
+
+/* -----------------------------------------------------------------------
+   Two-group CI and clinical relevance
+   ----------------------------------------------------------------------- */
+.arm-ci-stage { max-width:28em; margin:.7em auto 0; display:flex; flex-direction:column; gap:.65em; }
+.arm-ci-row { display:grid; grid-template-columns:5.5em 1fr 4.3em; gap:.4em; align-items:center; }
+.arm-name { font-size:.52em; font-weight:850; text-align:right; }
+.arm-ci-row > span:last-child { font-size:.48em; color:$navy; font-weight:800; }
+.arm-track { position:relative; height:1em; background:linear-gradient(to right,transparent 0,transparent 49.7%,rgba($line,.7) 49.7%,rgba($line,.7) 50.3%,transparent 50.3%); }
+.arm-track i { position:absolute; top:50%; height:4px; background:$uncertainty; border-radius:99px; transform:translateY(-50%); }
+.arm-track b { position:absolute; top:50%; width:.34em; height:.34em; border-radius:50%; background:$observed; transform:translate(-50%,-50%); }
+
+.effect-ci-stage { 
+  position: relative; 
+  width: 28em; 
+  height: 5.7em; 
+  margin: .7em auto 0; 
+  background: #fff; 
+  border: 1px solid $line; 
+  border-radius: 20px; 
+}
+
+/* Axis baseline inset */
+.effect-axis,
+.effect-track { 
+  position: absolute; 
+  left: 1.2em; 
+  right: 1.2em; 
+}
+
+.effect-track {
+  top: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.effect-axis { 
+  bottom: .7em; 
+  display: flex; 
+  justify-content: space-between; 
+  color: $muted; 
+  font-size: .55em; 
+}
+
+/* Mathematically aligned plot elements */
+.effect-zero { 
+  position: absolute; 
+  left: 75%; /* x = 0 */
+  top: .65em; 
+  bottom: 1.25em; 
+  width: 2px; 
+  background: $warning; 
+  opacity: .5; 
+}
+
+.effect-interval { 
+  position: absolute; 
+  left: 11.25%; /* x = -10.2 */
+  width: 55%;    /* spans to x = -1.4 */
+  top: 2.25em; 
+  height: 5px; 
+  background: $estimate; 
+  border-radius: 99px; 
+}
+
+.effect-point { 
+  position: absolute; 
+  left: 38.75%; /* x = -5.8 */
+  top: 2.25em; 
+  width: .48em; 
+  height: .48em; 
+  border-radius: 50%; 
+  background: $observed; 
+  transform: translate(-50%, -45%); 
+  box-shadow: 0 0 0 3px #fff; 
+}
+
+.effect-label { 
+  position: absolute; 
+  top: .55em; 
+  left: 1em; 
+  right: 1em; 
+  text-align: center; 
+  color: $navy; 
+  font-size: .55em; 
+  font-weight: 800; 
+}
+
+.significance-split { display:grid; grid-template-columns:1fr 1fr; gap:.65em; margin-top:.65em; }
+.significance-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.65em; text-align:center; }
+.sig-question { color:$uncertainty; font-size:.58em; font-weight:900; text-transform:uppercase; letter-spacing:.04em; }
+.significance-card strong { display:block; color:$navy; font-size:.62em; line-height:1.15; margin:.28em 0; }
+.significance-card span { display:block; color:$muted; font-size:.55em; }
+
+/* -----------------------------------------------------------------------
+   Hypothesis testing
+   ----------------------------------------------------------------------- */
+.hypothesis-ladder { display:flex; flex-direction:column; gap:.18em; max-width:27em; margin:.55em auto; }
+.hyp-level { background:#fff; border:1px solid $line; border-radius:18px; padding:.45em .65em; text-align:center; }
+.hyp-level span { display:block; color:$muted; font-size:.55em; font-weight:800; text-transform:uppercase; }
+.hyp-level strong { display:block; color:$navy; font-size:.65em; margin-top:.12em; }
+.hyp-level.science { border-color:rgba($model,.32); }
+.hyp-level.endpoint { border-color:rgba($observed,.32); }
+.hyp-level.statistical { border-color:rgba($uncertainty,.32); }
+.hyp-arrow { color:$uncertainty; text-align:center; font-size:.55em; font-weight:850; }
+
+.hypothesis-pair { display:grid; grid-template-columns:1fr 1fr; gap:.6em; max-width:25em; margin:.7em auto 0; }
+.hyp-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.7em; text-align:center; }
+.hyp-card span { display:block; color:$muted; font-size:.62em; font-weight:800; text-transform:uppercase; }
+.hyp-card strong { display:block; color:$navy; font-size:.86em; margin:.15em 0; }
+.hyp-card small { display:block; color:$muted; font-size:.55em; }
+.hyp-card.null { border-color:rgba($model,.35); }
+.hyp-card.alt { border-color:rgba($estimate,.35); }
+
+.alt-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.5em; margin-top:.65em; }
+.alt-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.55em; text-align:center; }
+.alt-symbol { color:$uncertainty; font-size:.8em; font-weight:900; }
+.alt-card strong { display:block; color:$navy; font-size:.65em; margin:.18em 0; }
+.alt-card span { color:$muted; font-size:.55em; }
+
+.test-stat-stage { position:relative; width:24em; margin:.9em auto .25em; display:grid; grid-template-columns:1fr 4.5em; grid-template-rows:auto 4px auto; align-items:center; column-gap: 0.25em; }
+.test-stat-numerator, .test-stat-denominator { text-align:center; color:$navy; font-size:.65em; font-weight:850; }
+.test-stat-bar { background:$uncertainty; height:3px; border-radius:99px; width: 50%; margin:.18em auto; }
+.test-stat-equals { grid-column:2; grid-row:1 / span 3; color:$uncertainty; font-size:1em; font-weight:900; text-align:center; align-self: center; justify-self: start; }
+
+.null-world { width:27em; margin:.35em auto 0; }
+.null-svg { display:block; width:100%; height:7em; }
+.null-curve { fill:none; stroke:$uncertainty; stroke-width:4; stroke-linecap:round; }
+.null-axis { stroke:#98a2b3; stroke-width:2; }
+.decision-bound { stroke:$warning; stroke-width:2.5; stroke-dasharray:7 5; }
+.null-label { fill:$warning; font-size:15px; font-weight:850; }
+.null-middle-label { fill:$uncertainty; font-size:15px; font-weight:850; }
+
+.null-central-area {
+  fill: rgba($uncertainty, .18);
+}
+
+.null-tail-area {
+  fill: rgba($warning, .16);
+}
+
+.null-curve {
+  fill: none;
+  stroke: $navy;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.null-axis {
+  stroke: $muted;
+  stroke-width: 1.5;
+}
+
+.decision-bound {
+  stroke: $uncertainty;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+
+.null-label {
+  fill: $muted;
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.null-middle-label {
+  fill: $uncertainty;
+  font-size: 18px;
+  font-weight: 850;
+}
+
+.null-tail-label {
+  fill: $warning;
+  font-size: 15px;
+  font-weight: 850;
+}
+
+.observed-z { position: relative; max-width:28em; margin:.75em auto; padding-top: 1.4em; }
+.z-number { position: absolute; top: 0; left: 17.5%; transform: translateX(-50%); white-space: nowrap; color: $observed; font-size: .9em; font-weight: 900; }
+.z-track { position:relative; height:1.5em; border-radius:999px; background:linear-gradient(to right,rgba($warning,.10) 0 25.5%,rgba($estimate,.08) 25.5% 74.5%,rgba($warning,.10) 74.5% 100%); border:1px solid $line; }
+.z-bound-left, .z-bound-right, .z-zero, .z-observed { position:absolute; top:-.12em; bottom:-.12em; width:3px; border-radius:99px; }
+.z-bound-left { left:25.5%; background:$warning; }
+.z-bound-right { left:74.5%; background:$warning; }
+.z-zero { left:50%; background:$muted; }
+.z-observed { left:17.5%; background:$observed; width:.28em; border-radius:50%; top:50%; bottom:auto; height:.28em; transform:translate(-50%,-50%); }
+.z-reject-left, .z-reject-right { position:absolute; top:50%; transform:translateY(-50%); color:$warning; font-size:.55em; font-weight:850; }
+.z-reject-left { left:4%; }
+.z-reject-right { right:4%; }
+.z-scale { display:flex; justify-content:space-between; color:$muted; font-size:.36em; margin-top:.2em; }
+
+.pvalue-equation { text-align:center; color:$observed; font-size:.78em; font-weight:900; margin:.5em 0; }
+.pvalue-split { display:grid; grid-template-columns:repeat(3,1fr); gap:.45em; margin-top:.65em; }
+.pvalue-card { background:#fff; border:1px solid $line; border-radius:18px; padding:.5em; text-align:center; }
+.pvalue-card span { display:block; color:$uncertainty; font-size:.65em; font-weight:900; text-transform:uppercase; }
+.pvalue-card strong { display:block; color:$navy; font-size:.72em; margin:.2em 0; }
+.pvalue-card small { display:block; color:$muted; font-size:.55em; line-height:1.15; }
+
+.alpha-stage { display:grid; grid-template-columns:1fr .18fr 1fr; gap:.3em; align-items:center; max-width:30em; margin:.7em auto .4em; }
+.alpha-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.55em; text-align:center; }
+.alpha-card span { display:block; color:$muted; font-size:.6em; }
+.alpha-card strong { display:block; color:$uncertainty; font-size:.85em; margin:.1em 0; }
+.alpha-card small { display:block; color:$muted; font-size:.55em; }
+.alpha-arrow { color:$uncertainty; text-align:center; font-size:1em; font-weight:900; }
+
+.duality-stage { display:grid; grid-template-columns:1fr .2fr 1fr; gap:.35em; align-items:center; margin-top:.75em; }
+.duality-ci, .duality-test { background:#fff; border:1px solid $line; border-radius:20px; padding:.6em; text-align:center; }
+.duality-ci > span, .duality-test > span { display:block; color:$muted; font-size:.55em; }
+.duality-test strong { display:block; color:$estimate; font-size:.6em; margin-top:.25em; }
+.duality-ci small { color:$estimate; font-size:.55em; font-weight:800; }
+.duality-track { position:relative; height:1.1em; margin:.3em .4em; border-bottom:2px solid $line; }
+.duality-track::before { content: ""; position: absolute; right: 18%; top: -0.15em; bottom: -0.15em; width: 2px; background: $warning; opacity: 0.7; transform:translateX(50%); }
+.duality-track::after { content:"0"; position:absolute; right:18%; bottom:-1.25em; color:$warning; font-size:.45em; font-weight:850; transform:translateX(50%); }
+.duality-track i { position:absolute; left:12%; width:52%; top:50%; height:4px; background:$estimate; border-radius:99px; transform:translateY(-50%); }
+.duality-track b { position:absolute; left:39%; top:50%; width:.35em; height:.35em; border-radius:50%; background:$observed; transform:translate(-50%,-50%); }
+.duality-equals { color:$uncertainty; font-size:1.1em; font-weight:900; text-align:center; }
+
+.workflow-5 { display:grid; grid-template-columns:repeat(5,1fr); gap:.3em; margin-top:.65em; }
+.workflow-5 > div { background:#fff; border:1px solid $line; border-radius:18px; padding:.4em; text-align:center; }
+.workflow-5 span { width:1.6em; height:1.6em; border-radius:50%; margin:0 auto .15em; display:flex; align-items:center; justify-content:center; background:rgba($uncertainty,.09); color:$uncertainty; font-size:.55em; font-weight:900; }
+.workflow-5 strong { display:block; color:$navy; font-size:.65em; }
+.workflow-5 small { display:block; color:$muted; font-size:.55em; line-height:1.12; margin-top:.15em; }
+
+/* -----------------------------------------------------------------------
+   Trial widget
+   ----------------------------------------------------------------------- */
+.trial-widget-grid { display:grid; grid-template-columns:1fr 1fr; gap:.4em; }
+.trial-widget-panel { background:#fbfcfe; border:1px solid #edf1f7; border-radius:16px; padding:.2em; }
+.trial-widget-panel svg { display:block; width:100%; height:6.5em; }
+.mini-title { color:$muted; font-size:.49em; font-weight:820; text-align:center; margin-bottom:.05em; }
+.trial-results { display:grid; grid-template-columns:repeat(4,1fr); gap:.35em; margin-top:.35em; }
+.trial-results > div { background:$panel; border:1px solid $line; border-radius:12px; padding:.28em; text-align:center; }
+.trial-results span { display:block; color:$muted; font-size:.5em; font-weight:760; }
+.trial-results strong { display:block; color:$estimate; font-size:.62em; margin-top:.05em; }
+.trial-ci-placebo { stroke:$muted; stroke-width:3; }
+.trial-ci-drug { stroke:$observed; stroke-width:3; }
+.trial-dot-placebo { fill:$muted; stroke:#fff; stroke-width:2; }
+.trial-dot-drug { fill:$observed; stroke:#fff; stroke-width:2; }
+.trial-value-label { fill:$navy; font-size:15px; font-weight:850; }
+.effect-zero-line { stroke:$warning; stroke-width:3; stroke-dasharray:6 4; }
+.effect-zero-label { fill:$warning; font-size:15px; font-weight:800; }
+.trial-effect-ci { stroke:$estimate; stroke-width:5; stroke-linecap:round; }
+.trial-effect-dot { fill:$observed; stroke:#fff; stroke-width:2; }
+
+.n-effect-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.4em; margin-top:.65em; }
+.n-effect-card { background:#fff; border:1px solid $line; border-radius:18px; padding:.5em; text-align:center; }
+.n-effect-card span { display:block; color:$uncertainty; font-size:.72em; font-weight:900; }
+.n-effect-card strong { display:block; color:$navy; font-size:.65em; margin:.12em 0; }
+.n-effect-card small { display:block; color:$muted; font-size:.55em; line-height:1.13; }
+
+.effect-size-grid { display:grid; grid-template-columns:1fr 1fr; gap:.6em; margin-top:.7em; }
+.effect-size-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.65em; text-align:center; }
+.effect-size-card span { display:block; color:$muted; font-size:.75em; font-weight:800; }
+.effect-size-card strong { display:block; color:$navy; font-size:1.25em; margin:.3em 0; white-space: nowrap; }
+.effect-size-card small { display:block; color:$muted; font-size:.65em; }
+
+.baseline-stage { display:grid; grid-template-columns:1fr 1fr; gap:.55em; max-width:25em; margin:.6em auto 0; position:relative; padding-bottom:1.5em; }
+.baseline-arm { background:#fff; border:1px solid $line; border-radius:20px; padding:.55em; text-align:center; }
+.baseline-arm strong { display:block; font-size:.55em; color:$navy; }
+.baseline-arm span { display:block; font-size:.65em; color:$muted; margin-top:.2em; }
+.baseline-arm.placebo { border-color:rgba($muted,.35); }
+.baseline-arm.drug { border-color:rgba($observed,.35); }
+.baseline-question { position:absolute; bottom:0; left:0; right:0; text-align:center; color:$warning; font-size:.6em; font-weight:850; }
+
+/* -----------------------------------------------------------------------
+   Errors and power
+   ----------------------------------------------------------------------- */
+.decision-matrix { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:$line; border:1px solid $line; border-radius:18px; overflow:hidden; margin-top:.65em; }
+.decision-matrix > div { background:#fff; padding:.42em; text-align:center; font-size:.55em; }
+.matrix-head, .matrix-side { background:$panel !important; color:$navy; font-weight:850; }
+.matrix-good { color:$estimate; font-weight:850; }
+.matrix-alpha { background:rgba($warning,.07) !important; color:$warning; }
+.matrix-beta { background:rgba($uncertainty,.07) !important; color:$uncertainty; }
+.matrix-alpha strong, .matrix-beta strong { display:block; }
+.matrix-alpha span, .matrix-beta span { display:block; font-size:1.2em; font-weight:900; margin-top:.1em; }
+
+.error-story { display:grid; grid-template-columns:1fr .18fr 1.2fr .18fr 1fr; gap:.25em; align-items:center; margin-top:.8em; }
+.error-world, .error-data, .error-decision { background:#fff; border:1px solid $line; border-radius:18px; padding:.55em; text-align:center; font-size:.65em; font-weight:850; }
+.error-arrow { color:$uncertainty; font-size:1.2em; font-weight:900; text-align:center; }
+
+.risk-grid { display:grid; grid-template-columns:1fr 1fr; gap:.6em; margin-top:.7em; }
+.risk-card { background:#fff; border:1px solid $line; border-radius:20px; padding:.65em; text-align:center; }
+.risk-card strong { display:block; color:$navy; font-size:.7em; }
+.risk-card span { display:block; color:$ink; font-size:.67em; margin:.25em 0; }
+.risk-card small { display:block; color:$muted; font-size:.55em; }
+
+.error-widget-layout { display:grid; grid-template-columns:.75fr 1.75fr; gap:.45em; align-items:stretch; }
+.error-controls { display:flex; flex-direction:column; gap:.22em; background:$panel; border:1px solid $line; border-radius:16px; padding:.35em; }
+.error-controls .w6-control { font-size:.38em; }
+.error-output-row { display:grid; grid-template-columns:repeat(3,1fr); gap:.22em; margin-top:.08em; }
+.error-plot-wrap { background:#fbfcfe; border:1px solid #edf1f7; border-radius:16px; overflow:hidden; }
+.error-plot-wrap svg { display:block; width:100%; height:15em; }
+.null-density { fill:none; stroke:$model; stroke-width:3.4; stroke-linecap:round; }
+.alt-density { fill:none; stroke:$estimate; stroke-width:3.4; stroke-linecap:round; }
+.alpha-area { fill:rgba($warning,.20); stroke:none; }
+.beta-area { fill:rgba($uncertainty,.20); stroke:none; }
+.critical-line { stroke:$ink; stroke-width:2; stroke-dasharray:6 4; opacity:.72; }
+.mu0-line { stroke:$model; stroke-width:1.8; stroke-dasharray:4 4; opacity:.75; }
+.mu1-line { stroke:$estimate; stroke-width:1.8; stroke-dasharray:4 4; opacity:.75; }
+.mu0-label { fill:$model; font-size:12px; font-weight:850; }
+.mu1-label { fill:$estimate; font-size:12px; font-weight:850; }
+.alpha-label { fill:$warning; font-size:11px; font-weight:800; }
+.beta-label { fill:$uncertainty; font-size:11px; font-weight:800; }
+.decision-label { fill:$ink; font-size:11px; font-weight:800; }
+.reject-label { fill:$warning; font-size:11px; font-weight:850; }
+.lab-warning { fill:$warning; font-size:11px; font-weight:850; }
+
+.error-widget-layout {
+  grid-template-columns: minmax(250px, .72fr) minmax(0, 1.8fr);
+  gap: .7em;
+  align-items: start;
+}
+
+.error-controls .w6-control {
+  font-size: .61em;
+}
+
+.error-controls .w6-control strong {
+  font-size: 1.08em;
+}
+
+.error-controls select {
+  font-size: .95em;
+}
+
+.error-svg-large {
+  display: block;
+  width: 100%;
+  height: 15.0em;
+}
+
+.error-null-area {
+  fill: rgba($warning, .25);
+}
+
+.error-beta-area {
+  fill: rgba($observed, .24);
+}
+
+.error-null-curve {
+  fill: none;
+  stroke: $model;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.error-alt-curve {
+  fill: none;
+  stroke: $estimate;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.error-axis {
+  stroke: $muted;
+  stroke-width: 1.6;
+}
+
+.error-critical {
+  stroke: $warning;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+}
+
+.error-mu0-line {
+  stroke: $model;
+  stroke-width: 1.8;
+  stroke-dasharray: 4 4;
+}
+
+.error-mu1-line {
+  stroke: $estimate;
+  stroke-width: 1.8;
+  stroke-dasharray: 4 4;
+}
+
+.error-axis-label {
+  fill: $muted;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.error-curve-label {
+  font-size: 16px;
+  font-weight: 850;
+}
+
+.error-curve-label.null {
+  fill: $model;
+}
+
+.error-curve-label.alt {
+  fill: $estimate;
+}
+
+.error-region-arrow {
+  fill: none;
+  stroke: $uncertainty;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.error-region-label {
+  fill: $uncertainty;
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.error-area-label {
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.error-area-label.alpha {
+  fill: $warning;
+}
+
+.error-area-label.beta {
+  fill: $observed;
+}
+
+.error-coincide-title {
+  fill: $warning;
+  font-size: 27px;
+  font-weight: 900;
+}
+
+.error-coincide-sub {
+  fill: $muted;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.power-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:.38em; margin-top:.65em; }
+.power-card { background:#fff; border:1px solid $line; border-radius:18px; padding:.48em; text-align:center; }
+.power-card strong { display:block; color:$navy; font-size:.65em; }
+.power-card span { display:block; color:$uncertainty; font-size:.75em; font-weight:900; margin:.18em 0; }
+.power-card small { display:block; color:$muted; font-size:.55em; }
+
+.power-curve-cartoon { position:relative; height:6.5em; max-width:27em; margin:.5em auto 0; background:#fff; border:1px solid $line; border-radius:20px; overflow:hidden; }
+.power-axis { position:absolute; left:7%; right:5%; bottom:18%; height:2px; background:#98a2b3; }
+.power-curve { position:absolute; left:9%; right:7%; bottom:18%; height:68%; border-bottom:5px solid $estimate; border-radius:0 0 70% 15%; transform:skewX(-10deg); clip-path:polygon(0 94%,12% 92%,25% 84%,38% 64%,52% 38%,65% 19%,80% 10%,100% 7%,100% 100%,0 100%); background:rgba($estimate,.10); }
+.power-null, .power-near, .power-far { position:absolute; font-size:.4em; font-weight:800; }
+.power-null { left:18%; bottom:5%; color:$model; }
+.power-near { left:33%; top:42%; color:$muted; }
+.power-far { right:8%; top:14%; color:$estimate; }
+
+.nsig-stage { position:relative; width:28em; height:6em; margin:.6em auto 0; background:#fff; border:1px solid $line; border-radius:20px; }
+.nsig-zero { position:absolute; left:50%; top:.45em; bottom:.6em; width:2px; background:$warning; opacity:.6; }
+.nsig-ci { position:absolute; left:10%; right:10%; height:1em; }
+.nsig-ci.wide { top:1.5em; }
+.nsig-ci.narrow { top:3.5em; }
+.nsig-ci span { position:absolute; left:0; top:-.15em; color:$muted; font-size:.38em; }
+.nsig-ci i { position:absolute; left:28%; top:50%; height:4px; background:$uncertainty; border-radius:99px; transform:translateY(-50%); }
+.nsig-ci.wide i { width:48%; }
+.nsig-ci.narrow i { width:22%; }
+.nsig-ci b { position:absolute; left:46%; top:50%; width:.35em; height:.35em; border-radius:50%; background:$observed; transform:translate(-50%,-50%); }
+
+/* -----------------------------------------------------------------------
+   Multiplicity
+   ----------------------------------------------------------------------- */
+.multiplicity-dots { display:flex; gap:.4em; justify-content:center; margin-top:.8em; }
+.test-dot { width:2.8em; height:2.8em; border-radius:50%; display:flex; align-items:center; justify-content:center; background:#fff; border:1px solid $line; color:$observed; font-size:.58em; font-weight:900; }
+.multiplicity-equation { text-align:center; color:$muted; font-size:.5em; margin-top:.65em; }
+.multiplicity-big { text-align:center; color:$warning; font-size:.72em; font-weight:900; margin-top:.25em; }
+.multi-meter { position:relative; height:1.35em; border-radius:999px; background:$panel; border:1px solid $line; overflow:hidden; margin:.6em .5em .25em; }
+.multi-fill { position:absolute; left:0; top:0; bottom:0; width:0; background:rgba($warning,.65); transition:width .15s ease; }
+.multi-meter span { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:$navy; font-size:.75em; font-weight:900; text-shadow:0 1px 0 #fff; }
+.multi-note { text-align:center; color:$muted; font-size:.55em; }
+.correction-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.5em; margin-top:.65em; }
+.correction-card { background:#fff; border:1px solid $line; border-radius:18px; padding:.55em; text-align:center; }
+.correction-card strong { display:block; color:$navy; font-size:.75em; }
+.correction-card span { display:block; color:$uncertainty; font-size:.65em; margin:.18em 0; font-weight:800; }
+.correction-card small { display:block; color:$muted; font-size:.55em; }
+
+.salmon-card { 
+  background: #fff; 
+  border: 1px solid $line; 
+  border-radius: 20px; 
+  padding: .45em;
+  box-shadow: 0 8px 20px rgba(16,24,40,.035); 
+  box-sizing: border-box; 
+  max-width: 16em;
+  margin: 0.5em auto;
+}
+.salmon-img {
+  max-height: 240px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* -----------------------------------------------------------------------
+   Review / synthesis
+   ----------------------------------------------------------------------- */
+.quiz-grid { display:grid; grid-template-columns:1fr 1fr; gap:.45em; margin-top:.55em; }
+.quiz-card { background:#fff; border:1px solid $line; border-radius:18px; padding:.5em; color:$navy; font-size:.65em; font-weight:780; }
+.quiz-answer { margin-top:.35em; border-top:1px solid $line; padding-top:.3em; color:$estimate; font-size:.92em; font-weight:850; &.is-false { color: $warning; font-weight: 800; }}
+
+.trust-case { display:grid; grid-template-columns:repeat(4,1fr); gap:.4em; margin-top:.65em; }
+.trust-result { background:#fff; border:1px solid $line; border-radius:18px; padding:.5em; text-align:center; }
+.trust-result span { display:block; color:$muted; font-size:.55em; text-transform:uppercase; font-weight:800; }
+.trust-result strong { display:block; color:$observed; font-size:.75em; margin-top:.15em; }
+.question-line { max-width:28em; margin:.35em auto 0; background:#fff; border:1px solid $line; border-radius:14px; padding:.3em .5em; color:$ink; font-size:.48em; }
+.question-line strong { color:$estimate; }
+
+.synthesis-flow { display:grid; grid-template-columns:1fr .13fr 1.15fr .13fr 1fr .13fr 1fr .13fr 1fr; gap:.12em; align-items:center; margin-top:.75em; }
+.synth-node { background:#fff; border:1px solid $line; border-radius:16px; padding:.42em .28em; text-align:center; }
+.synth-node strong { display:block; color:$navy; font-size:.55em; }
+.synth-node span { display:block; color:$muted; font-size:.55em; line-height:1.12; margin-top:.15em; white-space: nowrap; .mjx-container, .katex { font-size: 1em !important; }}
+.synth-arrow { color:$uncertainty; text-align:center; font-weight:900; font-size:.75em; }
+.next-week-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:.4em; max-width:24em; margin:.7em auto 0; }
+.next-week-grid div { background:#fff; border:1px solid $line; border-radius:16px; padding:.45em; text-align:center; color:$navy; font-size:.65em; font-weight:800; }
+
+@media (max-width: 1100px) {
+  .ci-controls { grid-template-columns:repeat(4,1fr); }
+  .prop-controls { grid-template-columns:repeat(3,1fr); }
+  .decision-theory-grid, .power-grid, .n-effect-grid { grid-template-columns:repeat(2,1fr); }
+}
